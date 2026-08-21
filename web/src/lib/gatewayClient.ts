@@ -21,11 +21,23 @@ import {
   type GatewayEventName,
 } from "@hermes/shared";
 
-import { HERMES_BASE_PATH, buildWsAuthParam } from "@/lib/api";
+import {
+  HERMES_BASE_PATH,
+  buildWsAuthParam,
+  getBackendTargetInfo,
+} from "@/lib/api";
 import { maybeReloadForLoopbackWsAuthFailure } from "@/lib/dashboard-auth-reload";
 
 export type { ConnectionState, GatewayEvent, GatewayEventName };
 
+/**
+ * Single-connection WebSocket RPC client for the dashboard SPA.
+ *
+ * Implements the same protocol as the TUI gateway client (JsonRpcGatewayClient)
+ * but inherits browser auth: in gated mode fetches a single-use ticket via
+ * :func:`buildWsAuthParam` before connecting; in loopback mode passes the
+ * injected session token.
+ */
 export class GatewayClient extends JsonRpcGatewayClient {
   constructor() {
     super({
@@ -52,10 +64,17 @@ export class GatewayClient extends JsonRpcGatewayClient {
       );
     }
 
+    const targetInfo = getBackendTargetInfo();
     await super.connect(
       buildHermesWebSocketUrl({
         authParam,
         basePath: HERMES_BASE_PATH,
+        host: targetInfo.isCrossOrigin ? targetInfo.host : undefined,
+        protocol: targetInfo.isCrossOrigin
+          ? targetInfo.protocol === "https:"
+            ? "wss:"
+            : "ws:"
+          : undefined,
         path: "/api/ws",
       }),
     );

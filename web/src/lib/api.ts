@@ -1,4 +1,19 @@
 import { buildHermesWebSocketUrl } from "@hermes/shared";
+import {
+  resolveApiUrl,
+  getBackendTargetInfo,
+  probeBackend,
+  setBackendTarget,
+  getResolvedBackendUrl,
+} from "@/lib/backend-router";
+
+export {
+  resolveApiUrl,
+  getBackendTargetInfo,
+  probeBackend,
+  setBackendTarget,
+  getResolvedBackendUrl,
+};
 
 // The dashboard can be served either at the root of its host (e.g.
 // https://kanban.tilos.com/) or under a URL prefix when reverse-proxied
@@ -111,7 +126,8 @@ export async function fetchJSON<T>(
   if (token) {
     setSessionHeader(headers, token);
   }
-  const res = await fetch(`${BASE}${url}`, {
+  const requestUrl = resolveApiUrl(url, BASE);
+  const res = await fetch(requestUrl, {
     ...init,
     headers,
     // ``credentials: 'include'`` so the cookie-auth path (gated mode) works
@@ -220,7 +236,8 @@ function pluginPath(name: string): string {
  * fetch a fresh ticket.
  */
 export async function getWsTicket(): Promise<{ ticket: string; ttl_seconds: number }> {
-  const res = await fetch(`${BASE}/api/auth/ws-ticket`, {
+  const url = resolveApiUrl("/api/auth/ws-ticket", BASE);
+  const res = await fetch(url, {
     method: "POST",
     credentials: "include",
   });
@@ -249,17 +266,6 @@ export async function buildWsAuthParam(): Promise<[string, string]> {
  * plain JSON — file uploads (``FormData``), binary downloads (blobs), etc.
  * Mirrors ``fetchJSON``'s auth handling but returns the raw ``Response`` so
  * the caller can read ``.blob()`` / ``.formData()`` / stream it.
- *
- * Auth, in both modes, exactly as ``fetchJSON`` does it:
- *  - loopback / ``--insecure``: attach the ``X-Hermes-Session-Token`` header.
- *  - gated OAuth: no token header (it's absent by design); the
- *    ``hermes_session_at`` cookie rides along via ``credentials: 'include'``.
- *
- * Unlike ``fetchJSON`` this does NOT parse the body, does NOT throw on
- * non-2xx (the caller decides — a 404 on a download is meaningful), and
- * does NOT run the global 401 → /login redirect (binary endpoints aren't
- * navigation targets). Callers that want the redirect behaviour should use
- * ``fetchJSON``.
  */
 export async function authedFetch(
   url: string,
@@ -270,7 +276,8 @@ export async function authedFetch(
   if (token) {
     setSessionHeader(headers, token);
   }
-  return fetch(`${BASE}${url}`, {
+  const requestUrl = resolveApiUrl(url, BASE);
+  return fetch(requestUrl, {
     ...init,
     headers,
     credentials: init?.credentials ?? "include",
@@ -280,23 +287,22 @@ export async function authedFetch(
 /**
  * Build an absolute ``ws(s)://`` URL for a dashboard WebSocket endpoint,
  * with the correct auth query param appended for the active mode (fresh
- * single-use ``ticket`` in gated mode, ``token`` in loopback). Plugins and
- * the SPA should use this instead of hand-assembling a WS URL + reading
- * ``window.__HERMES_SESSION_TOKEN__`` directly, so the gated-mode ticket
- * path can never be forgotten.
- *
- * ``path`` is the dashboard-relative path (e.g.
- * ``"/api/plugins/kanban/events"``); the base-path prefix and host are
- * applied here. Extra query params can be supplied via ``params`` and are
- * merged before the auth param.
+ * single-use ``ticket`` in gated mode, ``token`` in loopback).
  */
 export async function buildWsUrl(
   path: string,
   params?: Record<string, string>,
 ): Promise<string> {
+  const targetInfo = getBackendTargetInfo();
   return buildHermesWebSocketUrl({
     authParam: await buildWsAuthParam(),
     basePath: BASE,
+    host: targetInfo.isCrossOrigin ? targetInfo.host : undefined,
+    protocol: targetInfo.isCrossOrigin
+      ? targetInfo.protocol === "https:"
+        ? "wss:"
+        : "ws:"
+      : undefined,
     params,
     path,
   });
