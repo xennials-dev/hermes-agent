@@ -981,7 +981,7 @@ function WhatsAppOnboardingPanel({
                         className="mt-3 inline-flex items-center gap-1 text-sm text-primary underline-offset-4 hover:underline"
                         href={linkedAccountChatUrl}
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener noreferrer"
                       >
                         Open chat link
                         <ExternalLink className="h-3.5 w-3.5" />
@@ -1428,7 +1428,7 @@ function TelegramOnboardingPanel({
               <a
                 href={setup.deep_link}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="inline-flex h-8 items-center gap-1 border border-border px-3 text-xs uppercase text-foreground hover:border-foreground/40"
               >
                 <ExternalLink className="h-4 w-4" />

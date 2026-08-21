@@ -974,7 +974,7 @@ export default function SystemPage() {
               <a
                 href={portal?.subscription_url || "https://portal.nousresearch.com/manage-subscription"}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="ml-auto text-xs text-primary underline"
               >
                 Manage subscription
@@ -1444,7 +1444,7 @@ export default function SystemPage() {
                     <a
                       href={url}
                       target="_blank"
-                      rel="noreferrer"
+                      rel="noopener noreferrer"
                       className="font-mono text-xs truncate flex-1 text-primary hover:underline"
                     >
                       {url}
