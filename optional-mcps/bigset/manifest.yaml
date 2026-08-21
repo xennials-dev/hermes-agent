@@ -1,0 +1,31 @@
+manifest_version: 1
+
+name: bigset
+description: >-
+  Self-hostable live dataset search and storage populated by TinyFish web agents.
+source: https://github.com/tinyfish-io/bigset-oss
+
+transport:
+  type: http
+  url: http://localhost:8000/mcp
+
+auth:
+  type: env
+  env_vars:
+    - BIGSET_API_KEY
+
+suggest:
+  keywords:
+    - bigset
+    - dataset
+    - live data
+    - knowledge base
+  hosts:
+    - bigset.org
+    - localhost
+
+post_install: |
+  1. Start BigSet OSS container or point to remote instance:
+     docker run -d -p 8000:8000 tinyfish/bigset-oss
+  2. Set BIGSET_API_KEY if auth is enabled.
+  3. Restart Hermes to load BigSet MCP tools.

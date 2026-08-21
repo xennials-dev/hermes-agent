@@ -1,0 +1,34 @@
+manifest_version: 1
+
+name: webiny
+description: >-
+  Manage and extend Webiny Serverless CMS projects and GraphQL APIs via MCP.
+source: https://github.com/webiny/webiny-js
+
+transport:
+  type: stdio
+  command: npx
+  args: ["-y", "@webiny/mcp"]
+
+auth:
+  type: env
+  env_vars:
+    - WEBINY_API_URL
+    - WEBINY_API_TOKEN
+
+suggest:
+  keywords:
+    - webiny
+    - cms
+    - serverless
+    - headless
+    - pagebuilder
+  hosts:
+    - webiny.com
+
+post_install: |
+  1. Navigate to your Webiny project folder:
+     cd my-cms
+  2. Start the Webiny MCP server:
+     npx @webiny/mcp
+  3. Restart Hermes to load Webiny management tools.

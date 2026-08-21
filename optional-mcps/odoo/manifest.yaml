@@ -1,0 +1,40 @@
+manifest_version: 1
+
+name: odoo
+description: >-
+  Connect to Odoo ERP to manage CRM leads, sales orders, invoices, inventory, project tasks, and employees via JSON-RPC.
+source: https://github.com/odoo/odoo
+
+transport:
+  type: stdio
+  command: python
+  args: ["-m", "skills.business.odoo.scripts.odoo_client", "mcp"]
+
+auth:
+  type: env
+  env_vars:
+    - ODOO_URL
+    - ODOO_DB
+    - ODOO_USERNAME
+    - ODOO_PASSWORD
+
+suggest:
+  keywords:
+    - odoo
+    - erp
+    - crm
+    - invoice
+    - accounting
+    - inventory
+    - sales
+    - purchase
+  hosts:
+    - odoo.com
+
+post_install: |
+  1. Configure your Odoo instance connection in ~/.hermes/.env:
+     ODOO_URL=http://localhost:8069 (or https://your-domain.odoo.com)
+     ODOO_DB=odoo
+     ODOO_USERNAME=your_email@example.com
+     ODOO_PASSWORD=your_api_key_or_password
+  2. Restart Hermes to load the Odoo ERP tools.

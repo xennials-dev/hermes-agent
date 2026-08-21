@@ -1,0 +1,7 @@
+name: web-agentql
+version: 1.0.0
+description: "AgentQL AI-powered web data extraction. Uses natural language queries to extract structured data from any web page, including behind auth and dynamic content. Requires AGENTQL_API_KEY — sign up at https://dev.agentql.com."
+author: TinyFish
+kind: backend
+provides_web_providers:
+  - agentql

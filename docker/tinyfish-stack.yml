@@ -1,0 +1,34 @@
+version: "3.8"
+
+services:
+  # BigSet OSS: Live dataset storage and search
+  bigset:
+    image: ghcr.io/tinyfish-io/bigset-oss:latest
+    container_name: hermes-bigset
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - DATA_DIR=/data
+    volumes:
+      - bigset_data:/data
+    restart: unless-stopped
+
+  # Hermes Agent Service
+  hermes-agent:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: hermes-agent
+    environment:
+      - AGENTQL_API_KEY=${AGENTQL_API_KEY}
+      - BIGSET_URL=http://bigset:8000
+    volumes:
+      - hermes_home:/root/.hermes
+    depends_on:
+      - bigset
+    restart: unless-stopped
+
+volumes:
+  bigset_data:
+  hermes_home:

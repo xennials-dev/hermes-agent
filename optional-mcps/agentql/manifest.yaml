@@ -1,0 +1,40 @@
+# Nous-approved MCP catalog entry.
+# Presence in this directory = approval. Merged via PR review.
+manifest_version: 1
+
+name: agentql
+description: >-
+  Extract structured data from web pages using AgentQL's
+  AI-powered query language. Powered by TinyFish.
+source: https://github.com/tinyfish-io/agentql-mcp
+
+# stdio transport — npx auto-installs the agentql-mcp package.
+transport:
+  type: stdio
+  command: npx
+  args: ["-y", "agentql-mcp"]
+
+auth:
+  type: env
+  env_vars:
+    - AGENTQL_API_KEY
+
+# Composer-suggestion triggers (desktop brand pills).
+suggest:
+  keywords:
+    - agentql
+    - extract data
+    - scrape
+    - web data
+    - tinyfish
+  hosts:
+    - agentql.com
+    - dev.agentql.com
+
+post_install: |
+  1. Get your API key from https://dev.agentql.com
+  2. Add AGENTQL_API_KEY=your_key to ~/.hermes/.env
+  3. Restart Hermes so the MCP tools load.
+
+  The server exposes one tool:
+    • extract-web-data — extract structured data from a URL using a prompt

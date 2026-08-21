@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  # PostgreSQL Database Backend
+  db:
+    image: postgres:16-alpine
+    container_name: odoo-postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo_secret_password
+    volumes:
+      - odoo_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  # Odoo 18 Community ERP Engine
+  odoo:
+    image: odoo:18.0
+    container_name: odoo-web
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo_secret_password
+    volumes:
+      - odoo_web_data:/var/lib/odoo
+      - ./odoo-config:/etc/odoo
+      - ./odoo-addons:/mnt/extra-addons
+    restart: unless-stopped
+
+volumes:
+  odoo_db_data:
+  odoo_web_data:
