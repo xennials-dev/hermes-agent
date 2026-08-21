@@ -57,12 +57,14 @@ function hermesDevToken(): Plugin {
   };
 }
 
+const rootDir = import.meta.dirname ?? path.resolve(".");
+
 export default defineConfig({
   plugins: [react(), tailwindcss(), hermesDevToken()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-      "@hermes/shared": path.resolve(__dirname, "../apps/shared/src"),
+      "@": path.resolve(rootDir, "./src"),
+      "@hermes/shared": path.resolve(rootDir, "../apps/shared/src"),
     },
     // When @nous-research/ui is symlinked via `file:../../design-language`,
     // Node's module resolution would pick up shared deps from
@@ -84,7 +86,7 @@ export default defineConfig({
     ],
   },
   build: {
-    outDir: "../hermes_cli/web_dist",
+    outDir: process.env.NETLIFY ? "dist" : "../hermes_cli/web_dist",
     emptyOutDir: true,
     // Shell stays a bit over Vite's 500 kB default after vendor splits;
     // page/xterm chunks load on demand. Keep a modest ceiling so a true
