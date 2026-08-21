@@ -175,9 +175,29 @@ export async function fetchJSON<T>(
     // 401 — if any — should be allowed to trigger its own reload cycle.
     clearDashboardTokenReloadAttempt();
   }
-  if (!res.ok) {
+  if (typeof res.text === "function") {
     const text = await res.text().catch(() => res.statusText);
-    throw new Error(`${res.status}: ${text}`);
+    if (!res.ok) {
+      throw new Error(`${res.status}: ${text}`);
+    }
+    const trimmed = (text || "").trim();
+    if (trimmed.startsWith("<") || trimmed.startsWith("<!DOCTYPE") || trimmed.startsWith("<html")) {
+      throw new Error(
+        `Received HTML instead of JSON from "${url}". Ensure the Hermes Agent backend is running and reachable.`,
+      );
+    }
+    try {
+      return JSON.parse(text) as T;
+    } catch (err) {
+      throw new Error(
+        `Invalid JSON response from "${url}": ${(err as Error).message}`,
+        { cause: err },
+      );
+    }
+  }
+
+  if (!res.ok) {
+    throw new Error(`${res.status}: ${res.statusText}`);
   }
   return res.json();
 }
