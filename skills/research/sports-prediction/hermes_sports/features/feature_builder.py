@@ -8,9 +8,9 @@ import logging
 from typing import Any, Dict, List, Optional
 
 try:
-    from ..data.base import ContextProviderBase, OddsProviderBase, StatsProviderBase
-    from ..utils import odds_to_implied_probability
-    from ..vig import remove_vig
+    from ..data.base import ContextProviderBase, OddsProviderBase, StatsProviderBase  # type: ignore
+    from ..utils import odds_to_implied_probability  # type: ignore
+    from ..vig import remove_vig  # type: ignore
 except (ImportError, ValueError):
     from hermes_sports.data.base import ContextProviderBase, OddsProviderBase, StatsProviderBase  # type: ignore
     from hermes_sports.utils import odds_to_implied_probability  # type: ignore

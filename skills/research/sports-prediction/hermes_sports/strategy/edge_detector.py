@@ -7,7 +7,10 @@ from __future__ import annotations
 import logging
 from typing import Optional
 
-from ..utils import odds_to_implied_probability
+try:
+    from ..utils import odds_to_implied_probability  # type: ignore
+except (ImportError, ValueError):
+    from hermes_sports.utils import odds_to_implied_probability  # type: ignore
 
 logger = logging.getLogger("hermes_sports.strategy.edge")
 
@@ -19,17 +22,16 @@ class EdgeDetector:
         self.threshold = threshold
         self.vig_method = vig_method
 
-    def detect_edge(self, model_prob: float, odds: float) -> Optional[float]:
-        """
-        Calculate edge = model_prob - market_implied_prob.
-        Returns edge float if >= threshold, else None.
-        """
-        if odds <= 1.0:
+    def calculate_edge(self, model_prob: float, offered_odds: float) -> Optional[float]:
+        """Calculates expected edge = (model_prob * decimal_odds) - 1.0."""
+        if offered_odds <= 1.0 or model_prob <= 0.0:
             return None
 
-        implied_prob = odds_to_implied_probability(odds, format_type="decimal")
-        edge = model_prob - implied_prob
-
+        edge = (model_prob * offered_odds) - 1.0
         if edge >= self.threshold:
-            return round(edge, 4)
+            return edge
         return None
+
+    def detect_edge(self, model_prob: float, offered_odds: float) -> Optional[float]:
+        """Alias for calculate_edge."""
+        return self.calculate_edge(model_prob, offered_odds)

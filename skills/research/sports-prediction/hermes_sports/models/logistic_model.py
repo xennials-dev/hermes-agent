@@ -8,7 +8,10 @@ import logging
 import math
 from typing import Any, List
 
-from .base import BaseModel
+try:
+    from .base import BaseModel  # type: ignore
+except (ImportError, ValueError):
+    from hermes_sports.models.base import BaseModel  # type: ignore
 
 logger = logging.getLogger("hermes_sports.models.logistic")
 
@@ -26,9 +29,9 @@ class LogisticModel(BaseModel):
         self.feature_names = feature_names
 
         try:
-            import numpy as np
-            from sklearn.linear_model import LogisticRegression
-            from sklearn.preprocessing import StandardScaler
+            import numpy as np  # type: ignore
+            from sklearn.linear_model import LogisticRegression  # type: ignore
+            from sklearn.preprocessing import StandardScaler  # type: ignore
 
             scaler = StandardScaler()
             X_scaled = scaler.fit_transform(np.array(X))
@@ -84,7 +87,7 @@ class LogisticModel(BaseModel):
             return features.get("home_fair_prob", 0.50)
 
         if isinstance(self.model, dict) and "clf" in self.model:
-            import numpy as np
+            import numpy as np  # type: ignore
             vec = [float(features.get(name, 0.0)) for name in self.feature_names]
             X = np.array([vec])
             X_scaled = self.model["scaler"].transform(X)

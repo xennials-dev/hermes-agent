@@ -8,7 +8,10 @@ import logging
 import math
 from typing import Any, Dict, List, Optional
 
-from .base import BaseModel
+try:
+    from .base import BaseModel  # type: ignore
+except (ImportError, ValueError):
+    from hermes_sports.models.base import BaseModel  # type: ignore
 
 logger = logging.getLogger("hermes_sports.models.xgb")
 
@@ -28,8 +31,8 @@ class XGBoostModel(BaseModel):
     def train(self, X: Any, y: Any, feature_names: List[str]):
         self.feature_names = feature_names
         try:
-            import xgboost as xgb
-            import numpy as np
+            import xgboost as xgb  # type: ignore
+            import numpy as np  # type: ignore
 
             clf = xgb.XGBClassifier(
                 max_depth=self.params.get("max_depth", 4),
@@ -47,8 +50,8 @@ class XGBoostModel(BaseModel):
             pass
 
         try:
-            from sklearn.ensemble import HistGradientBoostingClassifier
-            import numpy as np
+            from sklearn.ensemble import HistGradientBoostingClassifier  # type: ignore
+            import numpy as np  # type: ignore
 
             clf = HistGradientBoostingClassifier(
                 max_depth=self.params.get("max_depth", 4),
@@ -126,7 +129,7 @@ class XGBoostModel(BaseModel):
             return features.get("home_fair_prob", 0.50)
 
         if hasattr(self.model, "predict_proba"):
-            import numpy as np
+            import numpy as np  # type: ignore
             vec = [float(features.get(name, 0.0)) for name in self.feature_names]
             return float(self.model.predict_proba(np.array([vec]))[0][1])
 

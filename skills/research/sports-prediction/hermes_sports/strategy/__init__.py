@@ -1,8 +1,10 @@
 """
-Strategy, edge detection, and bankroll staking algorithms.
+Strategy and staking modules for sports betting.
 """
 
-from .edge_detector import EdgeDetector
-from .staking import KellyStaking
+from __future__ import annotations
+
+from .edge_detector import EdgeDetector  # type: ignore
+from .staking import KellyStaking  # type: ignore
 
 __all__ = ["EdgeDetector", "KellyStaking"]

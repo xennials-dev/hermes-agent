@@ -1,8 +1,10 @@
 """
-Execution and performance monitoring modules.
+Execution and performance tracking modules for sports betting.
 """
 
-from .bet_executor import BetExecutor
-from .performance import PerformanceEvaluator
+from __future__ import annotations
+
+from .bet_executor import BetExecutor  # type: ignore
+from .performance import PerformanceEvaluator  # type: ignore
 
 __all__ = ["BetExecutor", "PerformanceEvaluator"]

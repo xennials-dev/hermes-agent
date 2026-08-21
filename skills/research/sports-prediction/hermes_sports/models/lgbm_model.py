@@ -8,8 +8,8 @@ import logging
 from typing import Any, Dict, List, Optional
 
 try:
-    from .base import BaseModel
-    from .xgb_model import XGBoostModel
+    from .base import BaseModel  # type: ignore
+    from .xgb_model import XGBoostModel  # type: ignore
 except (ImportError, ValueError):
     from hermes_sports.models.base import BaseModel  # type: ignore
     from hermes_sports.models.xgb_model import XGBoostModel  # type: ignore

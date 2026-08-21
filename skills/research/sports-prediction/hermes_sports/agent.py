@@ -8,22 +8,22 @@ import logging
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from .config import Config
-from .data.context import OpenWeatherMapProvider
-from .data.mock_providers import MockContextProvider, MockOddsProvider, MockStatsProvider
-from .data.odds_api import TheOddsAPIProvider
-from .data.sportsdata_io import SportsDataIOProvider
-from .execution.bet_executor import BetExecutor
-from .features.feature_builder import FeatureBuilder
-from .features.feature_store import FeatureStore
-from .models.base import BaseModel
-from .models.ensemble import EnsembleModel
-from .models.lgbm_model import LightGBMModel
-from .models.logistic_model import LogisticModel
-from .models.xgb_model import XGBoostModel
-from .strategy.edge_detector import EdgeDetector
-from .strategy.staking import KellyStaking
-from .utils import odds_to_implied_probability, setup_logging
+from .config import Config  # type: ignore
+from .data.context import OpenWeatherMapProvider  # type: ignore
+from .data.mock_providers import MockContextProvider, MockOddsProvider, MockStatsProvider  # type: ignore
+from .data.odds_api import TheOddsAPIProvider  # type: ignore
+from .data.sportsdata_io import SportsDataIOProvider  # type: ignore
+from .execution.bet_executor import BetExecutor  # type: ignore
+from .features.feature_builder import FeatureBuilder  # type: ignore
+from .features.feature_store import FeatureStore  # type: ignore
+from .models.base import BaseModel  # type: ignore
+from .models.ensemble import EnsembleModel  # type: ignore
+from .models.lgbm_model import LightGBMModel  # type: ignore
+from .models.logistic_model import LogisticModel  # type: ignore
+from .models.xgb_model import XGBoostModel  # type: ignore
+from .strategy.edge_detector import EdgeDetector  # type: ignore
+from .strategy.staking import KellyStaking  # type: ignore
+from .utils import odds_to_implied_probability, setup_logging  # type: ignore
 
 
 class SportsPredictionAgent:

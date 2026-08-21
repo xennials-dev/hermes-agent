@@ -1,19 +1,21 @@
 """
-Machine learning models and calibration wrappers.
+Predictive and statistical model estimators.
 """
 
-from .base import BaseModel
-from .calibration import CalibratedModel
-from .ensemble import EnsembleModel
-from .lgbm_model import LightGBMModel
-from .logistic_model import LogisticModel
-from .xgb_model import XGBoostModel
+from __future__ import annotations
+
+from .base import BaseModel  # type: ignore
+from .calibration import CalibratedModel  # type: ignore
+from .ensemble import EnsembleModel  # type: ignore
+from .lgbm_model import LightGBMModel  # type: ignore
+from .logistic_model import LogisticModel  # type: ignore
+from .xgb_model import XGBoostModel  # type: ignore
 
 __all__ = [
     "BaseModel",
-    "XGBoostModel",
-    "LightGBMModel",
-    "LogisticModel",
     "CalibratedModel",
     "EnsembleModel",
+    "LightGBMModel",
+    "LogisticModel",
+    "XGBoostModel",
 ]

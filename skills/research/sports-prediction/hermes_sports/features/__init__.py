@@ -1,8 +1,10 @@
 """
-Feature engineering and feature store package.
+Feature extraction and feature store modules for sports events.
 """
 
-from .feature_builder import FeatureBuilder
-from .feature_store import FeatureStore
+from __future__ import annotations
+
+from .feature_builder import FeatureBuilder  # type: ignore
+from .feature_store import FeatureStore  # type: ignore
 
 __all__ = ["FeatureBuilder", "FeatureStore"]

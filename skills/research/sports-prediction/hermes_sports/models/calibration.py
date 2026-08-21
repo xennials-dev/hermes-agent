@@ -9,7 +9,7 @@ import math
 from typing import Any, Dict, List
 
 try:
-    from .base import BaseModel
+    from .base import BaseModel  # type: ignore
 except (ImportError, ValueError):
     from hermes_sports.models.base import BaseModel  # type: ignore
 

@@ -8,7 +8,7 @@ import logging
 from typing import Any, Dict, List, Optional
 
 try:
-    from .base import BaseModel
+    from .base import BaseModel  # type: ignore
 except (ImportError, ValueError):
     from hermes_sports.models.base import BaseModel  # type: ignore
 
