@@ -2,6 +2,7 @@ import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
+import fs from "fs";
 
 const BACKEND = process.env.HERMES_DASHBOARD_URL ?? "http://127.0.0.1:9119";
 
@@ -57,10 +58,29 @@ function hermesDevToken(): Plugin {
   };
 }
 
+function syncToHermesDist(): Plugin {
+  return {
+    name: "hermes:sync-dist",
+    apply: "build",
+    closeBundle() {
+      const srcDir = path.resolve(rootDir, "dist");
+      const destDir = path.resolve(rootDir, "../hermes_cli/web_dist");
+      try {
+        if (fs.existsSync(srcDir)) {
+          fs.mkdirSync(destDir, { recursive: true });
+          fs.cpSync(srcDir, destDir, { recursive: true, force: true });
+        }
+      } catch (err) {
+        console.warn(`[hermes] Notice: could not copy dist to web_dist (${(err as Error).message})`);
+      }
+    },
+  };
+}
+
 const rootDir = import.meta.dirname ?? path.resolve(".");
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), hermesDevToken()],
+  plugins: [react(), tailwindcss(), hermesDevToken(), syncToHermesDist()],
   resolve: {
     alias: {
       "@": path.resolve(rootDir, "./src"),
@@ -86,7 +106,7 @@ export default defineConfig({
     ],
   },
   build: {
-    outDir: process.env.NETLIFY ? "dist" : "../hermes_cli/web_dist",
+    outDir: "dist",
     emptyOutDir: true,
     // Shell stays a bit over Vite's 500 kB default after vendor splits;
     // page/xterm chunks load on demand. Keep a modest ceiling so a true
