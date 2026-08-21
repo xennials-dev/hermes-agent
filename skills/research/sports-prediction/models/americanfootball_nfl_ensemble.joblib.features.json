@@ -1,0 +1,21 @@
+[
+  "home_win_pct",
+  "away_win_pct",
+  "win_pct_diff",
+  "home_point_diff",
+  "away_point_diff",
+  "point_diff_delta",
+  "home_ypp",
+  "away_ypp",
+  "ypp_diff",
+  "turnover_diff",
+  "home_fair_prob",
+  "away_fair_prob",
+  "odds_dispersion",
+  "rest_differential",
+  "travel_distance",
+  "temperature",
+  "wind_speed",
+  "precipitation_prob",
+  "injury_differential"
+]

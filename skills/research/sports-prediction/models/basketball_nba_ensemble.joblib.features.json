@@ -1,0 +1,20 @@
+[
+  "home_win_pct",
+  "away_win_pct",
+  "win_pct_diff",
+  "home_off_eff",
+  "home_def_eff",
+  "away_off_eff",
+  "away_def_eff",
+  "net_rating_diff",
+  "pace_avg",
+  "home_three_point_pct",
+  "away_three_point_pct",
+  "home_fair_prob",
+  "away_fair_prob",
+  "odds_dispersion",
+  "rest_differential",
+  "travel_distance",
+  "motivation_index",
+  "injury_differential"
+]
