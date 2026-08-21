@@ -1,0 +1,12 @@
+{
+  "include": [
+    ".",
+    "skills"
+  ],
+  "extraPaths": [
+    ".",
+    "skills/research/sports-prediction"
+  ],
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none"
+}

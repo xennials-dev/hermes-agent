@@ -7,8 +7,12 @@ from __future__ import annotations
 import logging
 from typing import Any, Dict, List, Optional
 
-from .base import BaseModel
-from .xgb_model import XGBoostModel
+try:
+    from .base import BaseModel
+    from .xgb_model import XGBoostModel
+except (ImportError, ValueError):
+    from hermes_sports.models.base import BaseModel  # type: ignore
+    from hermes_sports.models.xgb_model import XGBoostModel  # type: ignore
 
 logger = logging.getLogger("hermes_sports.models.lgbm")
 
@@ -29,8 +33,8 @@ class LightGBMModel(BaseModel):
     def train(self, X: Any, y: Any, feature_names: List[str]):
         self.feature_names = feature_names
         try:
-            import lightgbm as lgb
-            import numpy as np
+            import lightgbm as lgb  # type: ignore
+            import numpy as np  # type: ignore
 
             clf = lgb.LGBMClassifier(
                 num_leaves=self.params.get("num_leaves", 20),
@@ -56,9 +60,12 @@ class LightGBMModel(BaseModel):
             return features.get("home_fair_prob", 0.50)
 
         if hasattr(self.model, "predict_proba"):
-            import numpy as np
-            vec = [float(features.get(name, 0.0)) for name in self.feature_names]
-            return float(self.model.predict_proba(np.array([vec]))[0][1])
+            try:
+                import numpy as np  # type: ignore
+                vec = [float(features.get(name, 0.0)) for name in self.feature_names]
+                return float(self.model.predict_proba(np.array([vec]))[0][1])
+            except Exception:
+                pass
 
         self._fallback_model.model = self.model
         self._fallback_model.feature_names = self.feature_names

@@ -8,7 +8,10 @@ import logging
 import math
 from typing import Any, Dict, List
 
-from .base import BaseModel
+try:
+    from .base import BaseModel
+except (ImportError, ValueError):
+    from hermes_sports.models.base import BaseModel  # type: ignore
 
 logger = logging.getLogger("hermes_sports.models.calibration")
 
@@ -34,16 +37,16 @@ class CalibratedModel(BaseModel):
             raw_probs.append(self.base_model.predict_proba(feat_dict))
 
         try:
-            import numpy as np
+            import numpy as np  # type: ignore
             if self.method == "isotonic":
-                from sklearn.isotonic import IsotonicRegression
+                from sklearn.isotonic import IsotonicRegression  # type: ignore
 
                 self.calibrator = IsotonicRegression(out_of_bounds="clip")
                 self.calibrator.fit(np.array(raw_probs), np.array(y_calib))
                 logger.info("Fitted Scikit-Learn Isotonic Regression calibrator.")
                 return
             else:
-                from sklearn.linear_model import LogisticRegression
+                from sklearn.linear_model import LogisticRegression  # type: ignore
 
                 self.calibrator = LogisticRegression(C=1.0)
                 self.calibrator.fit(np.array(raw_probs).reshape(-1, 1), np.array(y_calib))
@@ -53,7 +56,6 @@ class CalibratedModel(BaseModel):
             pass
 
         # Pure Python Platt Scaling (A * logit + B)
-        # Linear regression on logits
         logits = [math.log(max(1e-4, p) / max(1e-4, 1.0 - p)) for p in raw_probs]
         mean_l = sum(logits) / max(len(logits), 1)
         mean_y = sum(y_calib) / max(len(y_calib), 1)

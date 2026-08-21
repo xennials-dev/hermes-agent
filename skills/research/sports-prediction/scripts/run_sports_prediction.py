@@ -16,10 +16,10 @@ package_root = current_dir.parent
 if str(package_root) not in sys.path:
     sys.path.insert(0, str(package_root))
 
-from hermes_sports.agent import SportsPredictionAgent
-from hermes_sports.config import Config, DataProviderConfig, ExecutionConfig, ModelConfig, StrategyConfig
-from hermes_sports.execution.performance import PerformanceEvaluator
-from hermes_sports.training.train import train_prediction_pipeline
+from hermes_sports.agent import SportsPredictionAgent  # type: ignore
+from hermes_sports.config import Config, DataProviderConfig, ExecutionConfig, ModelConfig, StrategyConfig  # type: ignore
+from hermes_sports.execution.performance import PerformanceEvaluator  # type: ignore
+from hermes_sports.training.train import train_prediction_pipeline  # type: ignore
 
 
 def main():
@@ -102,7 +102,7 @@ def main():
 
     if args.action == "train":
         print("\n" + "=" * 65)
-        print("  HERMES SPORTS PREDICTION — MODEL TRAINING PIPELINE")
+        print("  HERMES SPORTS PREDICTION -- MODEL TRAINING PIPELINE")
         print("=" * 65)
         for s in sports:
             res = train_prediction_pipeline(config=config, sport=s)

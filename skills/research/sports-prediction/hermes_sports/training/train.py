@@ -9,13 +9,22 @@ import math
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
 
-from ..config import Config
-from ..models.calibration import CalibratedModel
-from ..models.ensemble import EnsembleModel
-from ..models.lgbm_model import LightGBMModel
-from ..models.logistic_model import LogisticModel
-from ..models.xgb_model import XGBoostModel
-from .synthetic_data import generate_training_dataset
+try:
+    from ..config import Config
+    from ..models.calibration import CalibratedModel
+    from ..models.ensemble import EnsembleModel
+    from ..models.lgbm_model import LightGBMModel
+    from ..models.logistic_model import LogisticModel
+    from ..models.xgb_model import XGBoostModel
+    from .synthetic_data import generate_training_dataset
+except (ImportError, ValueError):
+    from hermes_sports.config import Config  # type: ignore
+    from hermes_sports.models.calibration import CalibratedModel  # type: ignore
+    from hermes_sports.models.ensemble import EnsembleModel  # type: ignore
+    from hermes_sports.models.lgbm_model import LightGBMModel  # type: ignore
+    from hermes_sports.models.logistic_model import LogisticModel  # type: ignore
+    from hermes_sports.models.xgb_model import XGBoostModel  # type: ignore
+    from hermes_sports.training.synthetic_data import generate_training_dataset  # type: ignore
 
 logger = logging.getLogger("hermes_sports.training.train")
 

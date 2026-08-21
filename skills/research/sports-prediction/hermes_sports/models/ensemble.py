@@ -7,7 +7,10 @@ from __future__ import annotations
 import logging
 from typing import Any, Dict, List, Optional
 
-from .base import BaseModel
+try:
+    from .base import BaseModel
+except (ImportError, ValueError):
+    from hermes_sports.models.base import BaseModel  # type: ignore
 
 logger = logging.getLogger("hermes_sports.models.ensemble")
 
