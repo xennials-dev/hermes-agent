@@ -42,15 +42,15 @@ def implied_probability_to_decimal(prob: float) -> float:
     """Convert implied probability into decimal odds."""
     if prob <= 0.0 or prob >= 1.0:
         return 1.01
-    return round(1.0 / prob, 3)
+    return round(1.0 / prob, 4)
 
 
 def american_to_decimal(american: float) -> float:
-    """Convert American format odds (+150, -110) to Decimal (2.50, 1.91)."""
+    """Convert American format odds (+150, -110) to Decimal (2.50, 1.9091)."""
     if american > 0:
-        return round(1.0 + (american / 100.0), 3)
+        return round(1.0 + (american / 100.0), 4)
     else:
-        return round(1.0 - (100.0 / american), 3)
+        return round(1.0 - (100.0 / american), 4)
 
 
 def decimal_to_american(decimal: float) -> int:
