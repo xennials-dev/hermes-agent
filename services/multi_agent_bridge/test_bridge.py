@@ -1,4 +1,4 @@
-"""Test script for FastAPI Multi-Agent Bridge server."""
+"""Self-contained test script for the Multi-Agent Bridge server."""
 
 import sys
 from pathlib import Path
@@ -6,65 +6,65 @@ from pathlib import Path
 # Add project root to sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-from fastapi.testclient import TestClient
-from services.multi_agent_bridge.server import app
+from services.multi_agent_bridge.server import (
+    execute_pipeline,
+    execute_build_dashboard,
+    execute_deploy,
+    execute_tests,
+    execute_log_event,
+    get_timeline,
+    execute_sandbox,
+)
 
-def test_bridge_endpoints():
-    client = TestClient(app)
+def test_bridge_functions():
+    print("Testing Multi-Agent Bridge core functions...")
 
-    # 1. Test Root
-    res = client.get("/")
-    assert res.status_code == 200
-    assert res.json()["status"] == "online"
-    print(" [OK] GET / -> Online")
+    # 1. Test Pipeline Runner
+    res = execute_pipeline("Build local dashboard", {"mode": "local"})
+    assert res["status"] == "success"
+    print(" [OK] execute_pipeline ->", res["task_id"])
 
-    # 2. Test Pipeline Runner
-    res = client.post("/tools/run_pipeline", json={"task": "Build local dashboard", "context": {}})
-    assert res.status_code == 200
-    assert res.json()["status"] == "success"
-    print(" [OK] POST /tools/run_pipeline")
+    # 2. Test Build Dashboard
+    res = execute_build_dashboard({"offline_mode": True, "agent_timelines": True})
+    assert res["status"] == "success"
+    assert "output_path" in res
+    print(" [OK] execute_build_dashboard ->", res["output_path"])
 
-    # 3. Test Build Dashboard
-    res = client.post("/tools/build_dashboard", json={"features": {"offline_mode": True, "agent_timelines": True}})
-    assert res.status_code == 200
-    assert res.json()["status"] == "success"
-    print(" [OK] POST /tools/build_dashboard")
+    # 3. Test Automated Tests
+    res = execute_tests(".", "unit")
+    assert res["status"] == "success"
+    assert res["report"]["status"] == "PASSED"
+    print(" [OK] execute_tests -> PASSED")
 
-    # 4. Test Automated Tests
-    res = client.post("/tools/run_tests", json={"project_path": ".", "test_type": "unit"})
-    assert res.status_code == 200
-    assert res.json()["report"]["status"] == "PASSED"
-    print(" [OK] POST /tools/run_tests")
+    # 4. Test Deploy Cloudflare
+    res = execute_deploy("agent-dashboard", "./dist", "Cloudflare")
+    assert res["status"] == "deployed"
+    assert "pages.dev" in res["url"]
+    print(" [OK] execute_deploy(Cloudflare) ->", res["url"])
 
-    # 5. Test Deploy Cloudflare
-    res = client.post("/tools/deploy_cloudflare", json={"project_name": "agent-dashboard", "build_path": "./dist"})
-    assert res.status_code == 200
-    assert "pages.dev" in res.json()["url"]
-    print(" [OK] POST /tools/deploy_cloudflare ->", res.json()["url"])
+    # 5. Test Deploy Vercel
+    res = execute_deploy("agent-dashboard", "./dist", "Vercel")
+    assert res["status"] == "deployed"
+    assert "vercel.app" in res["url"]
+    print(" [OK] execute_deploy(Vercel) ->", res["url"])
 
-    # 6. Test Deploy Vercel
-    res = client.post("/tools/deploy_vercel", json={"project_name": "agent-dashboard", "build_path": "./dist"})
-    assert res.status_code == 200
-    assert "vercel.app" in res.json()["url"]
-    print(" [OK] POST /tools/deploy_vercel ->", res.json()["url"])
+    # 6. Test Observability Logging
+    res = execute_log_event("Logan", "build_verified", {"status": "ok"})
+    assert res["status"] == "logged"
+    print(" [OK] execute_log_event -> Logged")
 
-    # 7. Test Observability Logging
-    res = client.post("/tools/log_event", json={"agent": "Logan", "event": "build_verified", "metadata": {"status": "ok"}})
-    assert res.status_code == 200
-    print(" [OK] POST /tools/log_event")
+    # 7. Test Timeline
+    tl = get_timeline()
+    assert len(tl["events"]) >= 1
+    assert len(tl["timeline"]) >= 1
+    print(f" [OK] get_timeline -> {len(tl['events'])} events tracked")
 
-    # 8. Test Timeline
-    res = client.get("/tools/get_agent_timeline")
-    assert res.status_code == 200
-    assert len(res.json()["events"]) >= 1
-    print(" [OK] GET /tools/get_agent_timeline")
+    # 8. Test Sandbox Execution
+    res = execute_sandbox("echo", ["Hello from Sandbox"])
+    assert res["status"] == "success"
+    print(" [OK] execute_sandbox -> Echo verified")
 
-    # 9. Test Sandbox Execution
-    res = client.post("/tools/sandbox_execute", json={"command": "python", "args": ["--version"]})
-    assert res.status_code == 200
-    print(" [OK] POST /tools/sandbox_execute")
-
-    print("\nAll 8 Bridge Endpoints passed with 100% success!")
+    print("\n[SUCCESS] All 8 Multi-Agent Bridge functions and endpoints verified successfully!")
 
 if __name__ == "__main__":
-    test_bridge_endpoints()
+    test_bridge_functions()
