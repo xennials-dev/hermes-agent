@@ -2,6 +2,7 @@
 
 Exposes local multi-agent pipeline orchestration, automated testing, telemetry logging,
 timelines, sandboxed command execution, and deployment bridges to Cloudflare & Vercel.
+Features an interactive visual Web Control Center when visited in a browser.
 """
 
 from __future__ import annotations
@@ -12,8 +13,9 @@ import logging
 import os
 import subprocess
 import sys
-import tempfile
 import time
+import urllib.parse
+from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -24,7 +26,14 @@ logger = logging.getLogger("multi_agent_bridge")
 # State Store
 # ---------------------------------------------------------------------------
 
-EVENTS_LOG: List[Dict[str, Any]] = []
+EVENTS_LOG: List[Dict[str, Any]] = [
+    {
+        "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "agent": "System",
+        "event": "bridge_initialized",
+        "metadata": {"status": "ready", "version": "1.0.0"},
+    }
+]
 TIMELINE_ENTRIES: List[Dict[str, Any]] = []
 SANDBOX_ALLOWLIST = {"pytest", "python", "node", "npm", "git", "echo", "dir", "ls"}
 
@@ -34,18 +43,20 @@ def execute_pipeline(task: str, context: Optional[Dict[str, Any]] = None) -> Dic
     task_id = f"task_{int(time.time()*1000)}"
     entry = {
         "task_id": task_id,
-        "task": task,
+        "task": task or "Unnamed Task",
         "status": "completed",
-        "started_at": datetime.datetime.now().isoformat(),
+        "started_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "duration_seconds": round(time.time() - start_time, 3),
         "context": context or {},
     }
     TIMELINE_ENTRIES.append(entry)
+    execute_log_event("Laura", "pipeline_executed", {"task": task, "task_id": task_id})
     logger.info("Executed pipeline for task: %s", task)
     return {"status": "success", "task_id": task_id, "result": f"Local pipeline executed for '{task}'", "details": entry}
 
 
-def execute_build_dashboard(features: Dict[str, Any], output_dir: Optional[str] = None) -> Dict[str, Any]:
+def execute_build_dashboard(features: Optional[Dict[str, Any]] = None, output_dir: Optional[str] = None) -> Dict[str, Any]:
+    features = features or {"offline_mode": True, "agent_list": True, "task_runner": True}
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     target_path = output_dir or f"./dist/dashboard_{timestamp}"
     os.makedirs(target_path, exist_ok=True)
@@ -69,25 +80,26 @@ def execute_build_dashboard(features: Dict[str, Any], output_dir: Optional[str] 
 </body>
 </html>"""
     Path(target_path, "index.html").write_text(index_html, encoding="utf-8")
+    execute_log_event("Cody", "dashboard_built", {"output_path": os.path.abspath(target_path)})
     return {"status": "success", "output_path": os.path.abspath(target_path), "features_enabled": features}
 
 
 def execute_deploy(project_name: str, build_path: str, platform: str) -> Dict[str, Any]:
-    slug = project_name.lower().replace(" ", "-")
+    slug = (project_name or "agent-app").lower().replace(" ", "-")
     domain = "pages.dev" if platform.lower() == "cloudflare" else "vercel.app"
     live_url = f"https://{slug}.{domain}"
     event = {
         "platform": platform,
         "project": project_name,
         "build_path": build_path,
-        "deployed_at": datetime.datetime.now().isoformat(),
+        "deployed_at": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "url": live_url,
     }
-    EVENTS_LOG.append({"agent": "Cody", "event": f"{platform.lower()}_deploy", "metadata": event})
+    execute_log_event("Cody", f"{platform.lower()}_deploy", event)
     return {"status": "deployed", "platform": platform, "project_name": project_name, "url": live_url}
 
 
-def execute_tests(project_path: str, test_type: str = "unit") -> Dict[str, Any]:
+def execute_tests(project_path: str = ".", test_type: str = "unit") -> Dict[str, Any]:
     report = {
         "test_type": test_type,
         "project_path": project_path,
@@ -96,19 +108,20 @@ def execute_tests(project_path: str, test_type: str = "unit") -> Dict[str, Any]:
         "coverage_percent": 94.5,
         "status": "PASSED",
     }
+    execute_log_event("Cody", "tests_executed", {"test_type": test_type, "status": "PASSED"})
     return {"status": "success", "report": report}
 
 
 def execute_log_event(agent: str, event: str, metadata: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     entry = {
-        "timestamp": datetime.datetime.now().isoformat(),
-        "agent": agent,
-        "event": event,
+        "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "agent": agent or "Agent",
+        "event": event or "Event",
         "metadata": metadata or {},
     }
     EVENTS_LOG.append(entry)
     logger.info("[OBSERVABILITY] %s - %s: %s", agent, event, metadata)
-    return {"status": "logged", "count": len(EVENTS_LOG)}
+    return {"status": "logged", "count": len(EVENTS_LOG), "entry": entry}
 
 
 def get_timeline(limit: int = 50) -> Dict[str, Any]:
@@ -129,111 +142,352 @@ def execute_sandbox(command: str, args: Optional[List[str]] = None, cwd: Optiona
 
 
 # ---------------------------------------------------------------------------
-# FastAPI Implementation (if installed)
+# Interactive Web Dashboard UI
 # ---------------------------------------------------------------------------
 
-try:
-    from fastapi import FastAPI, HTTPException, Query
-    from fastapi.middleware.cors import CORSMiddleware
-    from pydantic import BaseModel, Field
+DASHBOARD_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hermes Multi-Agent Control Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 26, 44, 0.75);
+      --card-border: rgba(56, 189, 248, 0.15);
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --accent: #818cf8;
+      --success: #34d399;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.08) 0%, transparent 40%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .logo-area { display: flex; align-items: center; gap: 1rem; }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--success);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .pulse {
+      width: 8px; height: 8px;
+      background: var(--success);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--success);
+      animation: pulse-animation 2s infinite;
+    }
+    @keyframes pulse-animation {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .agent-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      background: rgba(129, 140, 248, 0.2);
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+    input, textarea {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus, textarea:focus { border-color: var(--primary); }
+    button {
+      background: var(--primary);
+      color: #04101e;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    button:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    button.secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    button.secondary:hover { background: rgba(255,255,255,0.12); }
+    .btn-group { display: flex; gap: 0.5rem; }
+    .btn-group button { flex: 1; }
+    .log-container {
+      background: #060911;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82rem;
+      max-height: 380px;
+      overflow-y: auto;
+    }
+    .log-entry {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      gap: 0.75rem;
+    }
+    .log-time { color: var(--text-muted); }
+    .log-agent { color: var(--primary); font-weight: 600; }
+    .log-msg { color: #cbd5e1; }
+    .response-box {
+      margin-top: 0.75rem;
+      padding: 0.75rem;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.4);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      display: none;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo-area">
+        <h1>Hermes Multi-Agent Control Center</h1>
+      </div>
+      <div class="status-badge">
+        <div class="pulse"></div> Bridge Online (Port 8000)
+      </div>
+    </header>
 
-    app = FastAPI(title="Hermes Multi-Agent Platform Bridge", version="1.0.0")
-    app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+    <div class="grid">
+      <!-- 1. Pipeline Execution -->
+      <div class="card">
+        <span class="agent-tag">LAURA / ORCHESTRATOR</span>
+        <h2>⚡ Trigger Local Pipeline</h2>
+        <input type="text" id="pipe-task" placeholder="Task description..." value="Build local-first agent dashboard">
+        <button onclick="callEndpoint('/tools/run_pipeline', {task: document.getElementById('pipe-task').value}, 'pipe-res')">
+          Run Pipeline
+        </button>
+        <div id="pipe-res" class="response-box"></div>
+      </div>
 
-    class PipelineReq(BaseModel):
-        task: str
-        context: Dict[str, Any] = {}
+      <!-- 2. Dashboard Build -->
+      <div class="card">
+        <span class="agent-tag">CODY / BUILD ENGINEER</span>
+        <h2>📦 Build Dashboard Project</h2>
+        <input type="text" id="build-features" value='{"offline_mode": true, "timelines": true, "task_runner": true}'>
+        <button onclick="callEndpoint('/tools/build_dashboard', {features: JSON.parse(document.getElementById('build-features').value)}, 'build-res')">
+          Compile Dashboard
+        </button>
+        <div id="build-res" class="response-box"></div>
+      </div>
 
-    class BuildDashboardReq(BaseModel):
-        features: Dict[str, Any] = {}
-        output_dir: Optional[str] = None
+      <!-- 3. Automated Tests -->
+      <div class="card">
+        <span class="agent-tag">CODY / CI VALIDATION</span>
+        <h2>🧪 Run Test Suite</h2>
+        <div class="btn-group">
+          <button onclick="callEndpoint('/tools/run_tests', {project_path: '.', test_type: 'unit'}, 'test-res')">Unit Tests</button>
+          <button class="secondary" onclick="callEndpoint('/tools/run_tests', {project_path: '.', test_type: 'e2e'}, 'test-res')">E2E Tests</button>
+        </div>
+        <div id="test-res" class="response-box"></div>
+      </div>
 
-    class DeployReq(BaseModel):
-        project_name: str
-        build_path: str
+      <!-- 4. Deployments -->
+      <div class="card">
+        <span class="agent-tag">CODY / CLOUD DEPLOY</span>
+        <h2>🚀 Deploy Applications</h2>
+        <input type="text" id="deploy-name" placeholder="Project Name" value="local-agent-dashboard">
+        <div class="btn-group">
+          <button onclick="callEndpoint('/tools/deploy_cloudflare', {project_name: document.getElementById('deploy-name').value, build_path: './dist'}, 'deploy-res')">
+            Cloudflare Pages
+          </button>
+          <button class="secondary" onclick="callEndpoint('/tools/deploy_vercel', {project_name: document.getElementById('deploy-name').value, build_path: './dist'}, 'deploy-res')">
+            Vercel
+          </button>
+        </div>
+        <div id="deploy-res" class="response-box"></div>
+      </div>
+    </div>
 
-    class TestReq(BaseModel):
-        project_path: str = "."
-        test_type: str = "unit"
+    <!-- Live Telemetry Log -->
+    <div class="card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <h2>📡 Live Observability & Activity Stream (Logan)</h2>
+        <button class="secondary" style="width:auto; padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="refreshTimeline()">
+          ↻ Refresh
+        </button>
+      </div>
+      <div class="log-container" id="timeline-log">
+        <div class="log-entry"><span class="log-time">Connecting...</span></div>
+      </div>
+    </div>
+  </div>
 
-    class LogEventReq(BaseModel):
-        agent: str
-        event: str
-        metadata: Dict[str, Any] = {}
+  <script>
+    async function callEndpoint(path, payload, resId) {
+      const box = document.getElementById(resId);
+      box.style.display = 'block';
+      box.innerHTML = '<span style="color:var(--text-muted)">Executing...</span>';
+      try {
+        const res = await fetch(path, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        box.innerHTML = `<pre style="color:var(--success);">${JSON.stringify(data, null, 2)}</pre>`;
+        refreshTimeline();
+      } catch (err) {
+        box.innerHTML = `<span style="color:#f87171">Error: ${err.message}</span>`;
+      }
+    }
 
-    class SandboxReq(BaseModel):
-        command: str
-        args: List[str] = []
-        cwd: Optional[str] = None
-
-    @app.get("/")
-    def _root():
-        return {"status": "online", "service": "Hermes Multi-Agent Bridge"}
-
-    @app.post("/tools/run_pipeline")
-    def _pipeline(r: PipelineReq):
-        return execute_pipeline(r.task, r.context)
-
-    @app.post("/tools/build_dashboard")
-    def _build(r: BuildDashboardReq):
-        return execute_build_dashboard(r.features, r.output_dir)
-
-    @app.post("/tools/deploy_cloudflare")
-    def _cf(r: DeployReq):
-        return execute_deploy(r.project_name, r.build_path, "Cloudflare")
-
-    @app.post("/tools/deploy_vercel")
-    def _vercel(r: DeployReq):
-        return execute_deploy(r.project_name, r.build_path, "Vercel")
-
-    @app.post("/tools/run_tests")
-    def _test(r: TestReq):
-        return execute_tests(r.project_path, r.test_type)
-
-    @app.post("/tools/log_event")
-    def _log(r: LogEventReq):
-        return execute_log_event(r.agent, r.event, r.metadata)
-
-    @app.get("/tools/get_agent_timeline")
-    def _timeline(limit: int = 50):
-        return get_timeline(limit)
-
-    @app.post("/tools/sandbox_execute")
-    def _sandbox(r: SandboxReq):
-        res = execute_sandbox(r.command, r.args, r.cwd)
-        if res.get("status") == "forbidden":
-            raise HTTPException(403, res.get("error"))
-        return res
-
-except ImportError:
-    app = None
+    async function refreshTimeline() {
+      try {
+        const res = await fetch('/tools/get_agent_timeline');
+        const data = await res.json();
+        const container = document.getElementById('timeline-log');
+        if (!data.events || data.events.length === 0) {
+          container.innerHTML = '<div class="log-entry"><span class="log-msg">No events recorded yet.</span></div>';
+          return;
+        }
+        container.innerHTML = data.events.slice().reverse().map(e => `
+          <div class="log-entry">
+            <span class="log-time">[${e.timestamp}]</span>
+            <span class="log-agent">${e.agent}:</span>
+            <span class="log-msg">${e.event} ${JSON.stringify(e.metadata || {})}</span>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    refreshTimeline();
+    setInterval(refreshTimeline, 4000);
+  </script>
+</body>
+</html>"""
 
 
 # ---------------------------------------------------------------------------
-# Fallback Built-in HTTP Server (Zero Dependencies)
+# HTTP Request Handler (With Full HTML UI & CORS Support)
 # ---------------------------------------------------------------------------
-
-from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class BridgeHTTPHandler(BaseHTTPRequestHandler):
-    def _send_json(self, data: Dict[str, Any], status: int = 200):
-        body = json.dumps(data).encode("utf-8")
-        self.send_response(status)
-        self.send_header("Content-Type", "application/json")
-        self.send_header("Content-Length", str(len(body)))
+    def _send_cors_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With")
+
+    def _send_json(self, data: Dict[str, Any], status: int = 200):
+        body = json.dumps(data, indent=2).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self._send_cors_headers()
         self.end_headers()
         self.wfile.write(body)
 
+    def _send_html(self, html_content: str, status: int = 200):
+        body = html_content.encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self._send_cors_headers()
+        self.end_headers()
+        self.wfile.write(body)
+
+    def do_OPTIONS(self):
+        """Handle CORS preflight requests from browser / desktop app."""
+        self.send_response(204)
+        self._send_cors_headers()
+        self.end_headers()
+
     def do_GET(self):
-        if self.path == "/" or self.path == "":
-            self._send_json({"status": "online", "service": "Hermes Multi-Agent Bridge (Stdlib Runner)"})
-        elif self.path.startswith("/tools/get_agent_timeline"):
-            self._send_json(get_timeline())
+        parsed = urllib.parse.urlparse(self.path)
+        clean_path = parsed.path.rstrip("/")
+        if clean_path == "":
+            clean_path = "/"
+
+        accept_header = self.headers.get("Accept", "")
+
+        # Serve Interactive HTML Dashboard when visited in browser
+        if clean_path in ("/", "/dashboard", "/ui", "/docs"):
+            if "application/json" in accept_header and "text/html" not in accept_header:
+                self._send_json({"status": "online", "service": "Hermes Multi-Agent Bridge", "version": "1.0.0"})
+            else:
+                self._send_html(DASHBOARD_HTML)
+        elif clean_path == "/health":
+            self._send_json({"status": "healthy", "timestamp": datetime.datetime.now().isoformat()})
+        elif clean_path == "/tools/get_agent_timeline":
+            params = urllib.parse.parse_qs(parsed.query)
+            limit = int(params.get("limit", [50])[0])
+            self._send_json(get_timeline(limit))
         else:
-            self._send_json({"error": "Not Found"}, 404)
+            self._send_json({"error": "Endpoint not found", "path": self.path}, 404)
 
     def do_POST(self):
+        parsed = urllib.parse.urlparse(self.path)
+        clean_path = parsed.path.rstrip("/")
         length = int(self.headers.get("Content-Length", 0))
         raw_body = self.rfile.read(length).decode("utf-8") if length > 0 else "{}"
         try:
@@ -241,24 +495,24 @@ class BridgeHTTPHandler(BaseHTTPRequestHandler):
         except Exception:
             payload = {}
 
-        if self.path == "/tools/run_pipeline":
+        if clean_path == "/tools/run_pipeline":
             self._send_json(execute_pipeline(payload.get("task", ""), payload.get("context", {})))
-        elif self.path == "/tools/build_dashboard":
+        elif clean_path == "/tools/build_dashboard":
             self._send_json(execute_build_dashboard(payload.get("features", {}), payload.get("output_dir")))
-        elif self.path == "/tools/deploy_cloudflare":
+        elif clean_path == "/tools/deploy_cloudflare":
             self._send_json(execute_deploy(payload.get("project_name", "app"), payload.get("build_path", "./dist"), "Cloudflare"))
-        elif self.path == "/tools/deploy_vercel":
+        elif clean_path == "/tools/deploy_vercel":
             self._send_json(execute_deploy(payload.get("project_name", "app"), payload.get("build_path", "./dist"), "Vercel"))
-        elif self.path == "/tools/run_tests":
+        elif clean_path == "/tools/run_tests":
             self._send_json(execute_tests(payload.get("project_path", "."), payload.get("test_type", "unit")))
-        elif self.path == "/tools/log_event":
+        elif clean_path == "/tools/log_event":
             self._send_json(execute_log_event(payload.get("agent", "Agent"), payload.get("event", "Event"), payload.get("metadata", {})))
-        elif self.path == "/tools/sandbox_execute":
+        elif clean_path == "/tools/sandbox_execute":
             res = execute_sandbox(payload.get("command", ""), payload.get("args", []), payload.get("cwd"))
             status_code = 403 if res.get("status") == "forbidden" else 200
             self._send_json(res, status_code)
         else:
-            self._send_json({"error": "Not Found"}, 404)
+            self._send_json({"error": "Endpoint not found", "path": self.path}, 404)
 
 
 def run_standalone_server(port: int = 8000):
@@ -274,13 +528,4 @@ if __name__ == "__main__":
             port = int(sys.argv[1])
         except ValueError:
             pass
-
-    if app is not None:
-        try:
-            import uvicorn
-            uvicorn.run(app, host="127.0.0.1", port=port)
-            sys.exit(0)
-        except Exception:
-            pass
-
     run_standalone_server(port)
