@@ -1,0 +1,6 @@
+name: opensource
+version: 1.0.0
+description: "Open-source local & remote AI video generation backend supporting 20+ models (Open-Sora, Wan 2.1/2.2, HunyuanVideo, LTX-Video, Mochi-1, CogVideoX, Ovi, Alice, SVD, Bernini, VACE, OpenVideo, Duix-Avatar, and ComfyUI/Diffusers endpoints)."
+author: Hermes AI
+kind: backend
+requires_env: []
