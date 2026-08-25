@@ -34,7 +34,7 @@ from hermes_sports.utils import (  # type: ignore
     decimal_to_american,
     odds_to_implied_probability,
 )
-from hermes_sports.vig import remove_vig, shin_vig_removal  # type: ignore
+from hermes_sports.vig import VigStripper, logarithmic_vig_removal, remove_vig, shin_vig_removal  # type: ignore
 
 
 def test_odds_conversions():
@@ -62,6 +62,18 @@ def test_vig_removal():
     # Proportional vig removal
     fair_prop = remove_vig([1.50, 2.70], method="proportional")
     assert round(sum(fair_prop), 4) == 1.0000
+
+    # Logarithmic Method (Shin-Shortcut / Power Method) on skewed American odds
+    # Favorite -200 (IP=0.667), Underdog +170 (IP=0.370), Overround=1.037
+    fair_over, fair_under, juice = VigStripper.logarithmic_method(-200, 170)
+    assert round(fair_over + fair_under, 4) == 1.0000
+    assert fair_over > 0.60
+    assert fair_under < 0.40
+    assert juice > 0.0
+
+    # Auto-routing for derivative / props markets
+    props_probs = remove_vig([1.80, 2.05], market_type="player_pass_yds")
+    assert round(sum(props_probs), 4) == 1.0000
 
 
 def test_mock_providers():

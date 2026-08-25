@@ -1,0 +1,111 @@
+{
+  "pipeline_metadata": {
+    "agent_name": "Hermes CLV Agent",
+    "version": "2.1.0",
+    "environment": "production",
+    "timezone": "America/New_York",
+    "update_interval_minutes": 15
+  },
+  "api_configuration": {
+    "provider": "the_odds_api",
+    "base_url": "https://api.the-odds-api.com/v4/sports",
+    "regions": "us,eu",
+    "odds_format": "american"
+  },
+  "sharp_anchors": {
+    "default": ["pinnacle", "circa"],
+    "derivatives": {
+      "spreads_q1": ["draftkings", "betrivers"],
+      "spreads_h1": ["pinnacle", "circa"]
+    }
+  },
+  "sportsbook_groups": {
+    "sharp_market_makers": ["pinnacle", "circa_sports"],
+    "retail_books": ["draftkings", "fanduel", "betrivers", "pointsbet", "caesars", "betmgm"]
+  },
+  "math_engine_defaults": {
+    "main_markets": {
+      "method": "multiplicative",
+      "min_edge_threshold": 0.015,
+      "max_overround_limit": 0.08
+    },
+    "derivative_markets": {
+      "method": "logarithmic",
+      "min_edge_threshold": 0.025,
+      "max_overround_limit": 0.12
+    },
+    "volatile_player_props": {
+      "method": "logarithmic",
+      "min_edge_threshold": 0.030,
+      "max_overround_limit": 0.15
+    }
+  },
+  "active_pipelines": [
+    {
+      "pipeline_id": "nfl_1h_spreads",
+      "sport_key": "americanfootball_nfl",
+      "description": "NFL First Half Spreads Derivative Pipeline",
+      "active": true,
+      "target_markets": [
+        "spreads_h1"
+      ],
+      "math_model": "logarithmic",
+      "edge_filters": {
+        "min_ev_edge": 0.02,
+        "clv_threshold_percent": 1.5,
+        "weight_key_numbers": true,
+        "key_numbers": [3, 7, 6, 10, 14]
+      }
+    },
+    {
+      "pipeline_id": "cfb_1h_spreads",
+      "sport_key": "americanfootball_ncaaf",
+      "description": "College Football First Half Spreads",
+      "active": true,
+      "target_markets": [
+        "spreads_h1"
+      ],
+      "math_model": "multiplicative",
+      "edge_filters": {
+        "min_ev_edge": 0.025,
+        "clv_threshold_percent": 2.0,
+        "weight_key_numbers": true,
+        "key_numbers": [3, 7, 6, 10, 14]
+      }
+    },
+    {
+      "pipeline_id": "nba_upcoming_markets",
+      "sport_key": "basketball_nba",
+      "description": "NBA Main Lines and Totals",
+      "active": true,
+      "target_markets": [
+        "h2h",
+        "spreads",
+        "totals"
+      ],
+      "math_model": "multiplicative",
+      "edge_filters": {
+        "min_ev_edge": 0.015,
+        "clv_threshold_percent": 1.0,
+        "weight_key_numbers": false
+      }
+    },
+    {
+      "pipeline_id": "ncaab_upcoming_markets",
+      "sport_key": "basketball_ncaab",
+      "description": "NCAA Men's Basketball Main Lines",
+      "active": true,
+      "target_markets": [
+        "h2h",
+        "spreads",
+        "totals"
+      ],
+      "math_model": "multiplicative",
+      "edge_filters": {
+        "min_ev_edge": 0.025,
+        "clv_threshold_percent": 1.5,
+        "weight_key_numbers": false
+      }
+    }
+  ]
+}
