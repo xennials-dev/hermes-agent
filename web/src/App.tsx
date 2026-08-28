@@ -101,6 +101,7 @@ const SystemPage = lazy(() => import("@/pages/SystemPage"));
 const ChatPage = lazy(() => import("@/pages/ChatPage"));
 const WarRoomPage = lazy(() => import("@/pages/WarRoomPage"));
 const EvaluationsPage = lazy(() => import("@/pages/EvaluationsPage"));
+const OdooCrmHomePage = lazy(() => import("@/pages/OdooCrmHomePage"));
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { useI18n } from "@/i18n";
@@ -118,9 +119,9 @@ function RouteFallback({ label = "Loading…" }: { label?: string }) {
     <div
       className="flex min-h-[12rem] flex-1 items-center justify-center"
       aria-busy="true"
-      aria-live="polite"
+      aria-label={label}
     >
-      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+      <div className="flex items-center gap-2 text-sm text-[var(--hermes-muted)]">
         <Spinner />
         <span>{label}</span>
       </div>
@@ -129,7 +130,7 @@ function RouteFallback({ label = "Loading…" }: { label?: string }) {
 }
 
 function RootRedirect() {
-  return <Navigate to="/sessions" replace />;
+  return <Navigate to="/crm" replace />;
 }
 
 function UnknownRouteFallback({ pluginsLoading }: { pluginsLoading: boolean }) {
@@ -137,7 +138,7 @@ function UnknownRouteFallback({ pluginsLoading }: { pluginsLoading: boolean }) {
     // Render nothing during the plugin-load window — a spinner here would just flash.
     return null;
   }
-  return <Navigate to="/sessions" replace />;
+  return <Navigate to="/" replace />;
 }
 
 const CHAT_NAV_ITEM: NavItem = {
@@ -159,7 +160,8 @@ const CHAT_NAV_ITEM: NavItem = {
  * keep working.
  */
 const BUILTIN_ROUTES_CORE: Record<string, ComponentType> = {
-  "/": RootRedirect,
+  "/": OdooCrmHomePage,
+  "/crm": OdooCrmHomePage,
   "/sessions": SessionsPage,
   "/war-room": WarRoomPage,
   "/evaluations": EvaluationsPage,
@@ -191,6 +193,11 @@ function ChatRouteSink() {
 }
 
 const BUILTIN_NAV_REST: NavItem[] = [
+  {
+    path: "/",
+    label: "CRM Home",
+    icon: Sparkles,
+  },
   {
     path: "/sessions",
     labelKey: "sessions",

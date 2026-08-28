@@ -238,6 +238,12 @@ TOOLSETS = {
         "tools": ["todo"],
         "includes": []
     },
+
+    "crm": {
+        "description": "Odoo CRM and enterprise pipeline management: list leads, inspect deals, create opportunities, update pipeline stages",
+        "tools": ["crm_manage"],
+        "includes": []
+    },
     
     "memory": {
         "description": "Persistent memory across sessions (personal notes + user profile)",
