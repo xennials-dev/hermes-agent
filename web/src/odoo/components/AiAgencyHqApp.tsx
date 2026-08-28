@@ -1317,6 +1317,32 @@ export default function AiAgencyHqApp() {
                     <span>Connected Example Projects Catalog</span>
                   </h3>
                   <div className="space-y-2.5 text-xs">
+                    <div className="p-2.5 rounded-lg bg-indigo-950/30 border border-indigo-500/30 flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-white flex items-center gap-1.5">
+                          <span>TutorBot Agents (DeepTutor)</span>
+                          <span className="text-[9px] bg-indigo-500/20 text-indigo-300 px-1.5 py-0.5 rounded font-mono">LIVE APP</span>
+                        </div>
+                        <div className="text-[10px] text-gray-400">Agent-native intelligent learning companion</div>
+                      </div>
+                      <a href="https://clever-mochi-c38d64.netlify.app/agents" target="_blank" rel="noreferrer" className="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-[10px] font-bold transition flex items-center gap-1">
+                        Launch <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+
+                    <div className="p-2.5 rounded-lg bg-pink-950/30 border border-pink-500/30 flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-white flex items-center gap-1.5">
+                          <span>Hermes Agent &amp; Odoo Suite</span>
+                          <span className="text-[9px] bg-pink-500/20 text-pink-300 px-1.5 py-0.5 rounded font-mono">LIVE APP</span>
+                        </div>
+                        <div className="text-[10px] text-gray-400">Personal runtime &amp; Enterprise CRM Suite</div>
+                      </div>
+                      <a href="https://xennials-agent.netlify.app/" target="_blank" rel="noreferrer" className="px-2.5 py-1 bg-pink-600 hover:bg-pink-500 text-white rounded text-[10px] font-bold transition flex items-center gap-1">
+                        Launch <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+
                     <div className="p-2.5 rounded-lg bg-black/30 border border-white/5 flex items-center justify-between">
                       <div>
                         <div className="font-bold text-white">Odoo Enterprise CRM Suite</div>
