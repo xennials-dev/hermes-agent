@@ -176,7 +176,7 @@ def _try_instantiate(name: str, tts_config: Dict) -> Optional[StreamingTTSProvid
 # latency/quality first. Deliberately hard-coded (a UX decision, not a
 # config knob); edge is absent because it has no chunked-PCM API — the
 # dispatcher's per-sentence sync path keeps it conversational instead.
-_PROVIDER_PRIORITY: List[str] = ["elevenlabs", "gemini", "openai", "xai"]
+_PROVIDER_PRIORITY: List[str] = ["elevenlabs", "nemotron", "gemini", "openai", "xai"]
 
 
 def resolve_streaming_provider(
@@ -486,3 +486,67 @@ class XAIStreamer(StreamingTTSProvider):
                     return
                 logger.warning("xAI WS receive failed: %s", exc)
                 return
+
+
+@register("nemotron")
+@register("nvidia_voice")
+class NemotronVoiceStreamer(StreamingTTSProvider):
+    """NVIDIA Nemotron / Riva streaming TTS → chunked PCM audio (24 kHz int16)."""
+
+    sample_rate = 24000
+
+    @staticmethod
+    def available() -> bool:
+        return bool(
+            _resolve_key("NVIDIA_API_KEY", "nemotron")
+            or _resolve_key("NGC_API_KEY", "nemotron")
+            or get_env_value("NVIDIA_NIM_BASE_URL")
+        )
+
+    def stream(self, text: str) -> Iterator[bytes]:
+        import requests
+        import json as _json
+
+        api_key = (
+            _resolve_key("NVIDIA_API_KEY", "nemotron")
+            or _resolve_key("NGC_API_KEY", "nemotron")
+            or ""
+        )
+        base_url = str(
+            self.section.get("base_url")
+            or get_env_value("NVIDIA_NIM_BASE_URL")
+            or "https://integrate.api.nvidia.com/v1"
+        ).rstrip("/")
+
+        voice = self.section.get("voice", "English-US.Female-1")
+        model = self.section.get("model", "nvidia/nemotron-voice-tts")
+
+        headers = {
+            "Content-Type": "application/json",
+            "User-Agent": "hermes-agent",
+        }
+        if api_key:
+            headers["Authorization"] = f"Bearer {api_key}"
+
+        payload = {
+            "model": model,
+            "input": text,
+            "voice": voice,
+            "response_format": "pcm",
+        }
+
+        try:
+            with requests.post(
+                f"{base_url}/audio/speech",
+                headers=headers,
+                json=payload,
+                stream=True,
+                timeout=10,
+            ) as resp:
+                if resp.status_code == 200:
+                    yield from _capped(resp.iter_content(chunk_size=4096), "Nemotron streaming TTS")
+                else:
+                    logger.warning("Nemotron TTS failed with HTTP %d: %s", resp.status_code, resp.text[:200])
+        except Exception as e:
+            logger.warning("Nemotron TTS stream error: %s", e)
+

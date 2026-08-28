@@ -52,6 +52,8 @@ import {
   Terminal,
   Users,
   Webhook,
+  Workflow,
+  Gauge,
   Wrench,
   X,
   Zap,
@@ -67,6 +69,7 @@ import { SidebarStatusStrip, gatewayLine } from "@/components/SidebarStatusStrip
 import { useBelowBreakpoint } from "@nous-research/ui/hooks/use-below-breakpoint";
 import { useSidebarStatus } from "@/hooks/useSidebarStatus";
 import { AuthWidget } from "@/components/AuthWidget";
+import { RbacRoleSwitcher } from "@/components/RbacRoleSwitcher";
 import { PageHeaderProvider } from "@/contexts/PageHeaderProvider";
 import { ProfileProvider } from "@/contexts/ProfileProvider";
 import { useProfileScope } from "@/contexts/useProfileScope";
@@ -96,6 +99,8 @@ const ChannelsPage = lazy(() => import("@/pages/ChannelsPage"));
 const WebhooksPage = lazy(() => import("@/pages/WebhooksPage"));
 const SystemPage = lazy(() => import("@/pages/SystemPage"));
 const ChatPage = lazy(() => import("@/pages/ChatPage"));
+const WarRoomPage = lazy(() => import("@/pages/WarRoomPage"));
+const EvaluationsPage = lazy(() => import("@/pages/EvaluationsPage"));
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { useI18n } from "@/i18n";
@@ -156,6 +161,8 @@ const CHAT_NAV_ITEM: NavItem = {
 const BUILTIN_ROUTES_CORE: Record<string, ComponentType> = {
   "/": RootRedirect,
   "/sessions": SessionsPage,
+  "/war-room": WarRoomPage,
+  "/evaluations": EvaluationsPage,
   "/files": FilesPage,
   "/analytics": AnalyticsPage,
   "/models": ModelsPage,
@@ -189,6 +196,16 @@ const BUILTIN_NAV_REST: NavItem[] = [
     labelKey: "sessions",
     label: "Sessions",
     icon: MessageSquare,
+  },
+  {
+    path: "/war-room",
+    label: "War Room",
+    icon: Workflow,
+  },
+  {
+    path: "/evaluations",
+    label: "Evaluations",
+    icon: Gauge,
   },
   { path: "/files", label: "Files", icon: FolderOpen },
   {
@@ -742,10 +759,16 @@ export default function App() {
 
             <div
               className={cn(
-                "flex shrink-0 flex-col",
+                "flex shrink-0 flex-col gap-1",
                 isDesktopCollapsed && "lg:hidden",
               )}
             >
+              <div className="px-4 py-1 flex items-center justify-between">
+                <span className="text-[10px] font-mono text-text-tertiary uppercase tracking-wider">
+                  Access Scope
+                </span>
+                <RbacRoleSwitcher />
+              </div>
               <AuthWidget />
               <SidebarFooter status={sidebarStatus} />
             </div>

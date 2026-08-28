@@ -4,6 +4,11 @@ import {
   getResolvedBackendUrl,
   probeBackend,
   setBackendTarget,
+  getCustomAuthToken,
+  setCustomAuthToken,
+  isDemoModeActive,
+  setDemoModeActive,
+  TUNNEL_PRESETS,
   type BackendProbeResult,
   type BackendTargetInfo,
 } from "@/lib/backend-router";
@@ -14,10 +19,13 @@ import {
   Activity,
   CheckCircle2,
   Globe,
+  KeyRound,
   Laptop,
   Radio,
   RefreshCw,
   Server,
+  Sparkles,
+  Workflow,
   XCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -30,10 +38,23 @@ interface BackendRouterModalProps {
 export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
   const [targetInfo, setTargetInfo] = useState<BackendTargetInfo>(getBackendTargetInfo);
   const [customUrl, setCustomUrl] = useState(getResolvedBackendUrl() || "http://127.0.0.1:9119");
+  const [authToken, setAuthToken] = useState(getCustomAuthToken() || "");
+  const [demoMode, setDemoMode] = useState(isDemoModeActive());
   const [probing, setProbing] = useState(false);
   const [probeResult, setProbeResult] = useState<BackendProbeResult | null>(null);
 
   const runProbe = async (urlToTest: string) => {
+    if (demoMode) {
+      setProbeResult({
+        ok: true,
+        url: "Simulated Backend",
+        latencyMs: 12,
+        gatewayState: "running",
+        activeSessions: 2,
+        version: "hermes-agent (Demo Mode)",
+      });
+      return;
+    }
     setProbing(true);
     try {
       const res = await probeBackend(urlToTest);
@@ -49,6 +70,8 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
       setTargetInfo(info);
       const active = getResolvedBackendUrl() || "http://127.0.0.1:9119";
       setCustomUrl(active);
+      setAuthToken(getCustomAuthToken() || "");
+      setDemoMode(isDemoModeActive());
       void runProbe(active);
     }
   }, [open]);
@@ -56,6 +79,8 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
   if (!open) return null;
 
   const handleApply = (url: string) => {
+    setDemoModeActive(demoMode);
+    setCustomAuthToken(authToken);
     setBackendTarget(url);
     const updated = getBackendTargetInfo();
     setTargetInfo(updated);
@@ -64,6 +89,8 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
   };
 
   const handleReset = () => {
+    setDemoModeActive(false);
+    setCustomAuthToken(null);
     setBackendTarget(null);
     const updated = getBackendTargetInfo();
     setTargetInfo(updated);
@@ -73,11 +100,11 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-lg rounded-xl border border-border bg-background p-6 shadow-2xl animate-in fade-in zoom-in-95 duration-150"
+        className="w-full max-w-xl rounded-xl border border-border bg-background p-6 shadow-2xl animate-in fade-in zoom-in-95 duration-150 my-auto max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between pb-4 border-b border-border">
@@ -90,7 +117,7 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
                 Backend Connection Router
               </h2>
               <p className="text-xs text-muted-foreground">
-                Configure local or remote Hermes Agent instance endpoint
+                Configure remote tunnels, local PTY bridge, or standalone Demo Mode
               </p>
             </div>
           </div>
@@ -102,22 +129,70 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
           </button>
         </div>
 
+        {/* Demo Mode Banner */}
+        <div className="mt-4 rounded-lg border border-primary/30 bg-primary/5 p-3 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <Sparkles className="h-4 w-4 text-primary shrink-0" />
+            <div>
+              <div className="text-xs font-semibold text-foreground">Disconnected Demo Mode</div>
+              <div className="text-[11px] text-muted-foreground">
+                Preview dashboard features, analytics, and simulated sessions with no backend required.
+              </div>
+            </div>
+          </div>
+          <Button
+            outlined={!demoMode}
+            className={cn(
+              "h-7 text-xs px-3 shrink-0 font-medium",
+              demoMode
+                ? "bg-primary text-primary-foreground border-primary"
+                : "border-border text-foreground hover:bg-muted/50",
+            )}
+            onClick={() => {
+              const next = !demoMode;
+              setDemoMode(next);
+              if (next) {
+                setProbeResult({
+                  ok: true,
+                  url: "Simulated Backend",
+                  latencyMs: 8,
+                  gatewayState: "running",
+                  activeSessions: 2,
+                  version: "hermes-agent (Demo Mode)",
+                });
+              } else {
+                void runProbe(customUrl);
+              }
+            }}
+          >
+            {demoMode ? "Demo Active" : "Enable Demo"}
+          </Button>
+        </div>
+
         {/* Live Status Card */}
-        <div className="my-5 rounded-lg border border-border/80 bg-muted/40 p-4 space-y-3">
+        <div className="my-4 rounded-lg border border-border/80 bg-muted/40 p-4 space-y-3">
           <div className="flex items-center justify-between text-xs">
             <span className="text-muted-foreground font-mono">Current Host:</span>
             <span className="font-mono font-medium text-foreground">
-              {targetInfo.url || `${window?.location?.origin || "Local Origin"} (Same-Origin)`}
+              {demoMode
+                ? "Simulated Client Engine (Demo)"
+                : targetInfo.url || `${window?.location?.origin || "Local Origin"} (Same-Origin)`}
             </span>
           </div>
 
           <div className="flex items-center justify-between text-xs">
             <span className="text-muted-foreground font-mono">Target Type:</span>
             <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-medium bg-primary/10 text-primary">
-              {targetInfo.type === "local-default" && <Laptop className="h-3 w-3" />}
-              {targetInfo.type === "remote-custom" && <Globe className="h-3 w-3" />}
-              {targetInfo.type === "same-origin" && <Activity className="h-3 w-3" />}
-              {targetInfo.type}
+              {demoMode ? (
+                <Sparkles className="h-3 w-3" />
+              ) : targetInfo.type === "local-default" ? (
+                <Laptop className="h-3 w-3" />
+              ) : targetInfo.type === "remote-custom" ? (
+                <Globe className="h-3 w-3" />
+              ) : (
+                <Activity className="h-3 w-3" />
+              )}
+              {demoMode ? "demo-simulation" : targetInfo.type}
             </span>
           </div>
 
@@ -139,7 +214,9 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
               ) : probeResult?.ok ? (
                 <>
                   <CheckCircle2 className="h-4 w-4 text-success" />
-                  <span className="text-success font-medium">Connected</span>
+                  <span className="text-success font-medium">
+                    {demoMode ? "Simulated Ready" : "Connected"}
+                  </span>
                   {probeResult.latencyMs !== undefined && (
                     <span className="text-[11px] text-muted-foreground font-mono">
                       ({probeResult.latencyMs}ms)
@@ -160,7 +237,7 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
               outlined
               className="h-7 text-xs gap-1.5 px-2.5"
               onClick={() => void runProbe(customUrl)}
-              disabled={probing}
+              disabled={probing || demoMode}
             >
               <RefreshCw className={cn("h-3 w-3", probing && "animate-spin")} />
               Probe
@@ -168,69 +245,71 @@ export function BackendRouterModal({ open, onClose }: BackendRouterModalProps) {
           </div>
         </div>
 
-        {/* Presets */}
+        {/* Quick Remote Tunnel Presets */}
         <div className="space-y-2 mb-4">
-          <label className="text-xs font-medium text-muted-foreground">Quick Presets</label>
+          <label className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+            <Workflow className="h-3.5 w-3.5" />
+            Quick Tunnel Presets
+          </label>
           <div className="grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => {
-                setCustomUrl("http://127.0.0.1:9119");
-                void runProbe("http://127.0.0.1:9119");
-              }}
-              className={cn(
-                "flex items-center gap-2 p-2.5 rounded-lg border text-left text-xs transition-colors",
-                customUrl === "http://127.0.0.1:9119"
-                  ? "border-primary bg-primary/5 text-foreground"
-                  : "border-border hover:bg-muted/50 text-muted-foreground",
-              )}
-            >
-              <Laptop className="h-4 w-4 text-primary shrink-0" />
-              <div>
-                <div className="font-medium text-foreground">Local Default</div>
-                <div className="text-[10px] text-muted-foreground">127.0.0.1:9119</div>
-              </div>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                setCustomUrl("http://localhost:9119");
-                void runProbe("http://localhost:9119");
-              }}
-              className={cn(
-                "flex items-center gap-2 p-2.5 rounded-lg border text-left text-xs transition-colors",
-                customUrl === "http://localhost:9119"
-                  ? "border-primary bg-primary/5 text-foreground"
-                  : "border-border hover:bg-muted/50 text-muted-foreground",
-              )}
-            >
-              <Radio className="h-4 w-4 text-primary shrink-0" />
-              <div>
-                <div className="font-medium text-foreground">Localhost</div>
-                <div className="text-[10px] text-muted-foreground">localhost:9119</div>
-              </div>
-            </button>
+            {TUNNEL_PRESETS.map((preset) => (
+              <button
+                key={preset.id}
+                type="button"
+                onClick={() => {
+                  setCustomUrl(preset.example);
+                  void runProbe(preset.example);
+                }}
+                className={cn(
+                  "flex items-center gap-2 p-2.5 rounded-lg border text-left text-xs transition-colors",
+                  customUrl === preset.example
+                    ? "border-primary bg-primary/5 text-foreground"
+                    : "border-border hover:bg-muted/50 text-muted-foreground",
+                )}
+              >
+                {preset.id === "tailscale" && <Globe className="h-4 w-4 text-primary shrink-0" />}
+                {preset.id === "ngrok" && <Radio className="h-4 w-4 text-primary shrink-0" />}
+                {preset.id === "cloudflare" && <Activity className="h-4 w-4 text-primary shrink-0" />}
+                {preset.id === "ssh" && <Laptop className="h-4 w-4 text-primary shrink-0" />}
+                <div className="min-w-0">
+                  <div className="font-medium text-foreground truncate">{preset.label}</div>
+                  <div className="text-[10px] text-muted-foreground truncate">{preset.example}</div>
+                </div>
+              </button>
+            ))}
           </div>
         </div>
 
         {/* Custom Input */}
-        <div className="space-y-2 mb-6">
+        <div className="space-y-2 mb-4">
           <label htmlFor="backend-url" className="text-xs font-medium text-muted-foreground">
             Custom Host / IP & Port
           </label>
-          <div className="flex gap-2">
-            <Input
-              id="backend-url"
-              value={customUrl}
-              onChange={(e) => setCustomUrl(e.target.value)}
-              placeholder="e.g. http://192.168.1.50:9119 or https://hermes.domain.com"
-              className="h-9 text-xs font-mono"
-            />
-          </div>
-          <p className="text-[11px] text-muted-foreground">
-            Connects web UI to remote or local Hermes Agent server. Supports HTTP/HTTPS and WS/WSS.
-          </p>
+          <Input
+            id="backend-url"
+            value={customUrl}
+            onChange={(e) => setCustomUrl(e.target.value)}
+            disabled={demoMode}
+            placeholder="e.g. https://xyz.ngrok-free.app or http://192.168.1.50:9119"
+            className="h-9 text-xs font-mono"
+          />
+        </div>
+
+        {/* Custom Auth Token */}
+        <div className="space-y-2 mb-6">
+          <label htmlFor="auth-token" className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
+            <KeyRound className="h-3.5 w-3.5" />
+            Session / Auth Token (Optional for remote tunnels)
+          </label>
+          <Input
+            id="auth-token"
+            type="password"
+            value={authToken}
+            onChange={(e) => setAuthToken(e.target.value)}
+            disabled={demoMode}
+            placeholder="Paste __HERMES_SESSION_TOKEN__ or API Gateway key"
+            className="h-9 text-xs font-mono"
+          />
         </div>
 
         {/* Footer Actions */}

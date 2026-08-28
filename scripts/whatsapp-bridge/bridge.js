@@ -110,6 +110,7 @@ try {
 } catch {}
 const PAIR_ONLY = args.includes('--pair-only');
 const PAIR_JSON = args.includes('--pair-json');
+const PAIR_PHONE = getArg('phone', process.env.WHATSAPP_PHONE_NUMBER || process.env.WHATSAPP_PAIR_PHONE || '');
 const WHATSAPP_MODE = getArg('mode', process.env.WHATSAPP_MODE || 'self-chat'); // "bot" or "self-chat"
 const WHATSAPP_DM_POLICY = String(process.env.WHATSAPP_DM_POLICY || 'open').trim().toLowerCase();
 const ALLOWED_USERS = parseAllowedUsers(process.env.WHATSAPP_ALLOWED_USERS || '');
@@ -421,10 +422,35 @@ async function startSocket() {
 
   sock.ev.on('creds.update', () => { saveCreds(); lidToPhone = buildLidMap(); });
 
+  if (PAIR_PHONE && !sock.authState?.creds?.registered) {
+    setTimeout(async () => {
+      try {
+        const cleanedPhone = String(PAIR_PHONE).replace(/[^0-9]/g, '');
+        if (cleanedPhone) {
+          const code = await sock.requestPairingCode(cleanedPhone);
+          if (PAIR_JSON) {
+            emitPairEvent({ event: 'pairing_code', code, phone: cleanedPhone });
+          } else {
+            console.log('\n==================================================');
+            console.log(`  🔑 WHATSAPP PAIRING CODE FOR +${cleanedPhone}`);
+            console.log(`  Code: ${code}`);
+            console.log('==================================================');
+            console.log('  1. Open WhatsApp on your phone');
+            console.log('  2. Tap Settings -> Linked Devices -> Link a Device');
+            console.log('  3. Tap "Link with phone number instead"');
+            console.log(`  4. Enter the code above: ${code}\n`);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to request pairing code:', err);
+      }
+    }, 3000);
+  }
+
   sock.ev.on('connection.update', (update) => {
     const { connection, lastDisconnect, qr } = update;
 
-    if (qr) {
+    if (qr && !PAIR_PHONE) {
       if (PAIR_JSON) {
         emitPairEvent({ event: 'qr', qr });
       } else {

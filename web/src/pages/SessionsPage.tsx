@@ -31,7 +31,9 @@ import {
   Pencil,
   Check,
   Archive,
+  History,
 } from "lucide-react";
+import { SessionFileJournalModal } from "@/components/SessionFileJournalModal";
 import { api } from "@/lib/api";
 import { formatSessionPruneResult } from "@/lib/session-prune";
 import { shouldRefreshSessions } from "@/lib/session-refresh";
@@ -480,6 +482,7 @@ function SessionRow({
   const [renaming, setRenaming] = useState(false);
   const [renameValue, setRenameValue] = useState(session.title ?? "");
   const [renameSaving, setRenameSaving] = useState(false);
+  const [journalOpen, setJournalOpen] = useState(false);
   const { t } = useI18n();
   const navigate = useNavigate();
 
@@ -561,6 +564,20 @@ function SessionRow({
         }}
       >
         <Pencil />
+      </Button>
+
+      <Button
+        ghost
+        size="icon"
+        className="text-muted-foreground hover:text-primary"
+        aria-label="View file mutations & rollback"
+        title="View file modifications & rollback turn"
+        onClick={(e) => {
+          e.stopPropagation();
+          setJournalOpen(true);
+        }}
+      >
+        <History />
       </Button>
 
       <Button
@@ -756,6 +773,13 @@ function SessionRow({
           )}
         </div>
       )}
+
+      <SessionFileJournalModal
+        sessionId={session.id}
+        sessionTitle={session.title || undefined}
+        open={journalOpen}
+        onClose={() => setJournalOpen(false)}
+      />
     </div>
   );
 }

@@ -39,7 +39,61 @@ export interface BackendProbeResult {
 }
 
 const STORAGE_KEY = "hermes_backend_target";
+const AUTH_TOKEN_KEY = "hermes_custom_auth_token";
 const DEFAULT_LOCAL_URL = "http://127.0.0.1:9119";
+
+export { isDemoModeActive, setDemoModeActive } from "./demo-mode";
+
+export interface TunnelPreset {
+  id: string;
+  label: string;
+  description: string;
+  example: string;
+  protocol: "http" | "https";
+}
+
+export const TUNNEL_PRESETS: TunnelPreset[] = [
+  {
+    id: "tailscale",
+    label: "Tailscale Funnel / MagicDNS",
+    description: "Connect via Tailscale IP or MagicDNS node name",
+    example: "http://my-machine.tailnet.ts.net:9119",
+    protocol: "http",
+  },
+  {
+    id: "ngrok",
+    label: "ngrok Tunnel",
+    description: "Forwarded public tunnel (ngrok http 9119)",
+    example: "https://abcd-12-34.ngrok-free.app",
+    protocol: "https",
+  },
+  {
+    id: "cloudflare",
+    label: "Cloudflare Tunnel",
+    description: "Cloudflare Named or Quick Tunnel",
+    example: "https://hermes-gateway.yourdomain.com",
+    protocol: "https",
+  },
+  {
+    id: "ssh",
+    label: "SSH Port Forward",
+    description: "Forwarded local port (ssh -L 9119:localhost:9119)",
+    example: "http://127.0.0.1:9119",
+    protocol: "http",
+  },
+];
+
+export function getCustomAuthToken(): string | null {
+  return getStorageItem(AUTH_TOKEN_KEY);
+}
+
+export function setCustomAuthToken(token: string | null): void {
+  if (!token || !token.trim()) {
+    setStorageItem(AUTH_TOKEN_KEY, null);
+  } else {
+    setStorageItem(AUTH_TOKEN_KEY, token.trim());
+  }
+}
 
 declare global {
   interface Window {
@@ -310,12 +364,19 @@ export async function probeBackend(
   const timeoutId = setTimeout(() => controller.abort(), 3000);
 
   try {
+    const headers: Record<string, string> = {
+      Accept: "application/json",
+    };
+    const customToken = getCustomAuthToken();
+    if (customToken) {
+      headers["X-Hermes-Session-Token"] = customToken;
+      headers["Authorization"] = `Bearer ${customToken}`;
+    }
+
     const res = await fetch(testEndpoint, {
       method: "GET",
       signal: controller.signal,
-      headers: {
-        Accept: "application/json",
-      },
+      headers,
     });
 
     clearTimeout(timeoutId);

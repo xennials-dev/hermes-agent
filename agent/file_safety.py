@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import hashlib
+import json
 import os
+import time
 from pathlib import Path
 from typing import Optional
 
@@ -744,3 +747,177 @@ def get_container_mirror_warning(
         f"(Defense-in-depth — not a security boundary; the terminal tool "
         f"can still bypass.)"
     )
+
+
+# ---------------------------------------------------------------------------
+# File Change Journal & One-Click Turn Rollback
+# ---------------------------------------------------------------------------
+
+class FileJournalManager:
+    """Manages transactional pre/post turn file snapshots, unified diffs,
+    and single-click rollbacks for autonomous file operations."""
+
+    @staticmethod
+    def _journal_dir(session_id: str) -> Path:
+        base = _hermes_home_path() / "file_journal" / session_id
+        base.mkdir(parents=True, exist_ok=True)
+        return base
+
+    @classmethod
+    def record_before_write(cls, session_id: str, turn_index: int, file_path: str) -> None:
+        """Capture the pre-mutation content of a file before tool execution."""
+        if not session_id or turn_index < 0:
+            return
+        try:
+            resolved = Path(os.path.realpath(os.path.expanduser(str(file_path))))
+            turn_dir = cls._journal_dir(session_id) / f"turn_{turn_index}"
+            turn_dir.mkdir(parents=True, exist_ok=True)
+
+            rel_name = hashlib.sha256(str(resolved).encode("utf-8")).hexdigest()[:16]
+            before_file = turn_dir / f"{rel_name}.before"
+
+            if before_file.exists():
+                return  # First snapshot of this turn is authoritative
+
+            meta_file = turn_dir / f"{rel_name}.meta.json"
+            meta = {
+                "file_path": str(resolved),
+                "timestamp": time.time(),
+                "turn_index": turn_index,
+                "existed": resolved.exists(),
+            }
+            meta_file.write_text(json.dumps(meta, indent=2), encoding="utf-8")
+
+            if resolved.exists() and resolved.is_file():
+                try:
+                    content = resolved.read_bytes()
+                    before_file.write_bytes(content)
+                except Exception:
+                    pass
+        except Exception:
+            pass
+
+    @classmethod
+    def record_after_write(
+        cls, session_id: str, turn_index: int, file_path: str, action: str = "modify"
+    ) -> Optional[dict]:
+        """Compute unified diff and finalize turn journal entry."""
+        if not session_id or turn_index < 0:
+            return None
+        try:
+            import difflib
+
+            resolved = Path(os.path.realpath(os.path.expanduser(str(file_path))))
+            turn_dir = cls._journal_dir(session_id) / f"turn_{turn_index}"
+            rel_name = hashlib.sha256(str(resolved).encode("utf-8")).hexdigest()[:16]
+            before_file = turn_dir / f"{rel_name}.before"
+            meta_file = turn_dir / f"{rel_name}.meta.json"
+
+            before_lines: list[str] = []
+            if before_file.exists():
+                try:
+                    before_lines = before_file.read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
+                except Exception:
+                    before_lines = []
+
+            after_lines: list[str] = []
+            if resolved.exists() and resolved.is_file():
+                try:
+                    after_lines = resolved.read_text(encoding="utf-8", errors="replace").splitlines(keepends=True)
+                except Exception:
+                    after_lines = []
+
+            diff_lines = list(
+                difflib.unified_diff(
+                    before_lines,
+                    after_lines,
+                    fromfile=f"a/{resolved.name}",
+                    tofile=f"b/{resolved.name}",
+                )
+            )
+            diff_text = "".join(diff_lines)
+
+            entry = {
+                "turn_index": turn_index,
+                "file_path": str(resolved),
+                "action": action if before_lines else "create",
+                "diff": diff_text,
+                "timestamp": time.time(),
+                "has_changes": bool(diff_text),
+            }
+
+            if meta_file.exists():
+                try:
+                    meta = json.loads(meta_file.read_text(encoding="utf-8"))
+                    meta.update(entry)
+                    meta_file.write_text(json.dumps(meta, indent=2), encoding="utf-8")
+                except Exception:
+                    pass
+
+            return entry
+        except Exception:
+            return None
+
+    @classmethod
+    def get_session_journal(cls, session_id: str) -> list[dict]:
+        """Retrieve all turn file modifications for a session in chronological order."""
+        if not session_id:
+            return []
+        try:
+            jdir = cls._journal_dir(session_id)
+            entries: list[dict] = []
+            for turn_path in sorted(jdir.glob("turn_*")):
+                for meta_file in turn_path.glob("*.meta.json"):
+                    try:
+                        data = json.loads(meta_file.read_text(encoding="utf-8"))
+                        entries.append(data)
+                    except Exception:
+                        continue
+            entries.sort(key=lambda x: (x.get("turn_index", 0), x.get("timestamp", 0)))
+            return entries
+        except Exception:
+            return []
+
+    @classmethod
+    def rollback_turn(cls, session_id: str, turn_index: int) -> dict:
+        """Rollback all file mutations performed in a specific turn."""
+        if not session_id or turn_index < 0:
+            return {"success": False, "error": "Invalid session or turn index"}
+        try:
+            turn_dir = cls._journal_dir(session_id) / f"turn_{turn_index}"
+            if not turn_dir.exists():
+                return {"success": False, "error": f"No journal found for turn {turn_index}"}
+
+            restored_files: list[str] = []
+            errors: list[str] = []
+
+            for meta_file in turn_dir.glob("*.meta.json"):
+                try:
+                    meta = json.loads(meta_file.read_text(encoding="utf-8"))
+                    target_path = Path(meta["file_path"])
+                    existed = meta.get("existed", True)
+                    rel_name = meta_file.name.replace(".meta.json", "")
+                    before_file = turn_dir / f"{rel_name}.before"
+
+                    if not existed:
+                        # File was created in this turn; remove it
+                        if target_path.exists():
+                            target_path.unlink()
+                        restored_files.append(f"Deleted (reverted creation): {target_path}")
+                    elif before_file.exists():
+                        # File existed; restore original bytes
+                        target_path.parent.mkdir(parents=True, exist_ok=True)
+                        target_path.write_bytes(before_file.read_bytes())
+                        restored_files.append(f"Restored original: {target_path}")
+                except Exception as e:
+                    errors.append(f"Failed restoring {meta_file.name}: {e}")
+
+            return {
+                "success": len(errors) == 0,
+                "turn_index": turn_index,
+                "restored_files": restored_files,
+                "errors": errors,
+            }
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+

@@ -3464,6 +3464,27 @@ def _(rid, params: dict) -> dict:
     return _ok(rid, {"cols": session["cols"]})
 
 
+@method("session.file_journal")
+def _(rid, params: dict) -> dict:
+    session_id = str(params.get("session_id") or "").strip()
+    if not session_id:
+        return _err(rid, 4000, "session_id required")
+    from agent.file_safety import FileJournalManager
+    entries = FileJournalManager.get_session_journal(session_id)
+    return _ok(rid, {"session_id": session_id, "journal": entries})
+
+
+@method("session.rollback_turn")
+def _(rid, params: dict) -> dict:
+    session_id = str(params.get("session_id") or "").strip()
+    turn_index = int(params.get("turn_index", -1))
+    if not session_id or turn_index < 0:
+        return _err(rid, 4000, "session_id and non-negative turn_index required")
+    from agent.file_safety import FileJournalManager
+    result = FileJournalManager.rollback_turn(session_id, turn_index)
+    return _ok(rid, result)
+
+
 def register(server) -> None:
     """Bind this module's handlers onto ``server``'s globals and registry."""
     _registry.install(server)

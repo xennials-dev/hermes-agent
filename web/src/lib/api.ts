@@ -5,7 +5,16 @@ import {
   probeBackend,
   setBackendTarget,
   getResolvedBackendUrl,
+  getCustomAuthToken,
+  isDemoModeActive,
+  setDemoModeActive,
+  TUNNEL_PRESETS,
 } from "@/lib/backend-router";
+import {
+  MOCK_STATUS,
+  MOCK_SESSIONS,
+  MOCK_ANALYTICS,
+} from "@/lib/demo-mode";
 
 export {
   resolveApiUrl,
@@ -13,6 +22,10 @@ export {
   probeBackend,
   setBackendTarget,
   getResolvedBackendUrl,
+  getCustomAuthToken,
+  isDemoModeActive,
+  setDemoModeActive,
+  TUNNEL_PRESETS,
 };
 
 // The dashboard can be served either at the root of its host (e.g.
@@ -119,12 +132,34 @@ export async function fetchJSON<T>(
   init?: RequestInit,
   options?: FetchJSONOptions,
 ): Promise<T> {
+  if (isDemoModeActive()) {
+    const path = url.split("?")[0];
+    if (path === "/api/status" || path === "/api/gateway/status") {
+      return MOCK_STATUS as unknown as T;
+    }
+    if (path === "/api/sessions" || path === "/api/sessions/list") {
+      return { sessions: MOCK_SESSIONS, total: MOCK_SESSIONS.length } as unknown as T;
+    }
+    if (path.startsWith("/api/sessions/")) {
+      const parts = path.split("/");
+      const id = parts[3];
+      const match = MOCK_SESSIONS.find((s) => s.id === id) || MOCK_SESSIONS[0];
+      return match as unknown as T;
+    }
+    if (path === "/api/analytics" || path === "/api/analytics/tokens") {
+      return MOCK_ANALYTICS as unknown as T;
+    }
+  }
+
   url = withManagementProfile(url);
-  // Inject the session token into all /api/ requests.
+  // Inject the session token or custom auth token into all /api/ requests.
   const headers = new Headers(init?.headers);
-  const token = window.__HERMES_SESSION_TOKEN__;
+  const token = window.__HERMES_SESSION_TOKEN__ || getCustomAuthToken();
   if (token) {
     setSessionHeader(headers, token);
+    if (!headers.has("Authorization")) {
+      headers.set("Authorization", `Bearer ${token}`);
+    }
   }
   const requestUrl = resolveApiUrl(url, BASE);
   const res = await fetch(requestUrl, {
@@ -253,11 +288,14 @@ export async function getWsTicket(): Promise<{ ticket: string; ttl_seconds: numb
  * mode returns the injected session token.
  */
 export async function buildWsAuthParam(): Promise<[string, string]> {
+  if (isDemoModeActive()) {
+    return ["token", "demo-token"];
+  }
   if (window.__HERMES_AUTH_REQUIRED__) {
     const { ticket } = await getWsTicket();
     return ["ticket", ticket];
   }
-  const token = window.__HERMES_SESSION_TOKEN__ ?? "";
+  const token = window.__HERMES_SESSION_TOKEN__ || getCustomAuthToken() || "";
   return ["token", token];
 }
 
@@ -433,6 +471,40 @@ export const api = {
       {
         method: "DELETE",
       },
+    ),
+  getFileJournal: (id: string, profile = getManagementProfile()) =>
+    fetchJSON<{
+      session_id: string;
+      journal: Array<{
+        turn_index: number;
+        file_path: string;
+        action: string;
+        diff: string;
+        timestamp: number;
+        has_changes: boolean;
+      }>;
+    }>(
+      appendProfileParam(
+        `/api/sessions/${encodeURIComponent(id)}/file-journal`,
+        profile,
+      ),
+    ),
+  rollbackTurn: (
+    id: string,
+    turnIndex: number,
+    profile = getManagementProfile(),
+  ) =>
+    fetchJSON<{
+      success: boolean;
+      turn_index: number;
+      restored_files: string[];
+      errors: string[];
+    }>(
+      appendProfileParam(
+        `/api/sessions/${encodeURIComponent(id)}/rollback-turn/${turnIndex}`,
+        profile,
+      ),
+      { method: "POST" },
     ),
   getEmptySessionsCount: (profile = getManagementProfile()) =>
     fetchJSON<{ count: number }>(

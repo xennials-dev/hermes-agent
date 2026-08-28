@@ -25,6 +25,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@nous-research/ui/ui/c
 import { usePageHeader } from "@/contexts/usePageHeader";
 import { useI18n } from "@/i18n";
 import { PluginSlot } from "@/plugins";
+import { MemoryConstellation } from "@/components/MemoryConstellation";
 
 const PERIODS = [
   { label: "7d", days: 7 },
@@ -599,6 +600,9 @@ export default function AnalyticsPage() {
             </CardContent>
           </Card>
         )}
+      <div className="mt-6">
+        <MemoryConstellation />
+      </div>
       <PluginSlot name="analytics:bottom" />
     </div>
   );

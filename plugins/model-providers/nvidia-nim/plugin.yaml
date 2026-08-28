@@ -1,0 +1,5 @@
+name: nvidia-nim-provider
+kind: model-provider
+version: 1.1.0
+description: Dedicated NVIDIA NIM Microservice & Cloud API Provider with dynamic endpoint discovery and health probing
+author: Nous Research / NVIDIA

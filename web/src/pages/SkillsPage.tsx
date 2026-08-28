@@ -42,6 +42,7 @@ import type {
 import { useProfileScope } from "@/contexts/useProfileScope";
 import { ToolsetConfigDrawer } from "@/components/ToolsetConfigDrawer";
 import { SkillEditorDialog } from "@/components/SkillEditorDialog";
+import { SkillStudioModal } from "@/components/SkillStudioModal";
 import { useToast } from "@nous-research/ui/hooks/use-toast";
 import { Toast } from "@nous-research/ui/ui/components/toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@nous-research/ui/ui/components/card";
@@ -242,8 +243,10 @@ export default function SkillsPage() {
     const composed = segs.join("; ").replace(/\s*\n\s*/g, " ").trim();
     if (!composed) return;
     setLearnOpen(false);
-    navigate(`/chat?learn=${encodeURIComponent(composed)}`);
+    navigate(`/chat?prompt=${encodeURIComponent(`/learn ${composed}`)}`);
   }, [learnDir, learnUrl, learnText, navigate]);
+
+  const [studioOpen, setStudioOpen] = useState(false);
   const openEditEditor = useCallback((skillName: string) => {
     setEditorSkill(skillName);
     setEditorOpen(true);
@@ -527,6 +530,15 @@ export default function SkillsPage() {
                     <Button
                       size="sm"
                       outlined
+                      onClick={() => setStudioOpen(true)}
+                      prefix={<Wrench />}
+                      title="Open Skill Studio with live schema linter & dry-run sandbox"
+                    >
+                      Skill Studio
+                    </Button>
+                    <Button
+                      size="sm"
+                      outlined
                       onClick={openLearn}
                       prefix={<Sparkles />}
                     >
@@ -728,6 +740,7 @@ export default function SkillsPage() {
           </div>
         </DialogContent>
       </Dialog>
+      <SkillStudioModal open={studioOpen} onClose={() => setStudioOpen(false)} />
       <PluginSlot name="skills:bottom" />
     </div>
   );
