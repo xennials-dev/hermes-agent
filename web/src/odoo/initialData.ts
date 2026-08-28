@@ -116,16 +116,16 @@ export const INITIAL_LEADS: CrmLead[] = [
   },
   {
     id: 'crm_lead_3',
-    name: 'HQ Acoustical Treatment Project',
+    name: 'Xennials Tech — Hermes AI Agent Interactive Showcase (Featured)',
     partner_id: 'res_partner_4', // Gemini Space Corp
-    expected_revenue: 45000.00,
+    expected_revenue: 125000.00,
     probability: 100,
     stage_id: 'won',
-    email: 'procurement@geminispace.example.com',
-    phone: '+1 415-555-0131',
-    description: 'Signed agreement to outfit the new audio recording suite with a full wall array of sound insulation modules.',
+    email: 'contact@xennials.tech',
+    phone: '+1 314-348-3944',
+    description: 'Featured production deployment on xennials.tech (Netlify Site ID: d0d08609-b91b-4dfa-927d-a103ef6cd305) showcasing Hermes Agent interactive voice, multi-agent war room orchestration, and enterprise CRM automation.',
     priority: 3,
-    date_deadline: '2026-05-18'
+    date_deadline: '2026-08-28'
   },
   {
     id: 'crm_lead_4',

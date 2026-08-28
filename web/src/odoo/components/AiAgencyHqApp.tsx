@@ -1220,23 +1220,23 @@ export default function AiAgencyHqApp() {
                       <span>Netlify Production Ready</span>
                     </span>
                     <span className="bg-black/40 border border-white/10 px-3 py-1 rounded-lg text-amber-300">
-                      Site ID: <code className="text-white">83e3ab4c-6740-4ccb-b841-dd590558d635</code>
+                      Site ID: <code className="text-white">d0d08609-b91b-4dfa-927d-a103ef6cd305</code>
                     </span>
                     <span className="bg-black/40 border border-white/10 px-3 py-1 rounded-lg text-purple-300">
-                      Domain: <code className="text-white">xennials.tech</code>
+                      Domain: <code className="text-white">xennials.tech / xennials-agent.netlify.app</code>
                     </span>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 w-full lg:w-auto shrink-0">
                   <a 
-                    href="https://hermes-agent-ad.netlify.app" 
+                    href="https://xennials-agent.netlify.app" 
                     target="_blank" 
                     rel="noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold rounded-xl transition shadow-lg shadow-amber-950/40 text-xs uppercase tracking-wider"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    <span>Open Live Netlify App</span>
+                    <span>Open Live Production (xennials.tech)</span>
                   </a>
                   <a 
                     href="/chat" 
