@@ -24,6 +24,7 @@ import {
   Volume2, 
   ExternalLink,
   Smartphone,
+  Monitor,
   Eye,
   RefreshCw,
   Zap
@@ -56,7 +57,7 @@ interface ScraperJob {
 }
 
 export default function AiAgencyHqApp() {
-  const [activeTab, setActiveTab] = useState<'cluster' | 'scrapers' | 'terminal' | 'ceo_mrr'>('cluster');
+  const [activeTab, setActiveTab] = useState<'cluster' | 'scrapers' | 'terminal' | 'ceo_mrr' | 'showcase'>('showcase');
   
   // Custom uploaded or default agents state
   const [agents, setAgents] = useState<CustomAgent[]>([
@@ -473,6 +474,19 @@ export default function AiAgencyHqApp() {
           >
             <Briefcase className="w-3.5 h-3.5" />
             <span>Client Retainers ({clients.length})</span>
+          </button>
+
+          <button 
+            onClick={() => setActiveTab('showcase')}
+            className={cn(
+              "px-3 py-1.5 rounded-lg text-xs font-bold font-mono transition uppercase tracking-wider flex items-center gap-1.5 border border-transparent",
+              activeTab === 'showcase' 
+                ? "bg-gradient-to-r from-amber-500/20 to-purple-500/20 text-amber-300 border-amber-500/30 font-bold shadow-sm" 
+                : "text-[#8E95A3] hover:text-white hover:bg-white/5"
+            )}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span>🚀 Example Projects & Showcases</span>
           </button>
         </div>
 
@@ -1181,6 +1195,161 @@ export default function AiAgencyHqApp() {
               </div>
             </div>
 
+          </div>
+        )}
+
+        {/* Tab 5: Example Projects & Netlify Showcase */}
+        {activeTab === 'showcase' && (
+          <div className="max-w-7xl mx-auto space-y-6 animate-fadeIn font-mono">
+            {/* Hero Showcase Banner */}
+            <div className="bg-gradient-to-r from-amber-950/30 via-[#14171D] to-purple-950/30 border border-amber-500/30 rounded-2xl p-6 relative overflow-hidden shadow-2xl">
+              <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+              <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative z-10">
+                <div className="space-y-2">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-[11px] font-bold text-amber-400 uppercase tracking-widest">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Featured Live Production Deployment</span>
+                  </div>
+                  <h2 className="text-2xl font-bold text-white tracking-tight">Hermes Agent Interactive AI Voice &amp; Video Ad</h2>
+                  <p className="text-sm text-gray-300 max-w-2xl font-sans leading-relaxed">
+                    A cinematic 10-second interactive marketing asset with synchronized Edge/ElevenLabs voiceover, responsive CSS keyframe animations, terminal telemetry, and direct bi-directional links into Hermes Agent.
+                  </p>
+                  <div className="flex flex-wrap items-center gap-3 pt-2 text-xs">
+                    <span className="bg-black/40 border border-white/10 px-3 py-1 rounded-lg text-emerald-400 font-bold flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                      <span>Netlify Production Ready</span>
+                    </span>
+                    <span className="bg-black/40 border border-white/10 px-3 py-1 rounded-lg text-amber-300">
+                      Site ID: <code className="text-white">83e3ab4c-6740-4ccb-b841-dd590558d635</code>
+                    </span>
+                    <span className="bg-black/40 border border-white/10 px-3 py-1 rounded-lg text-purple-300">
+                      Domain: <code className="text-white">xennials.tech</code>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col sm:flex-row lg:flex-col gap-2.5 w-full lg:w-auto shrink-0">
+                  <a 
+                    href="https://hermes-agent-ad.netlify.app" 
+                    target="_blank" 
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold rounded-xl transition shadow-lg shadow-amber-950/40 text-xs uppercase tracking-wider"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Open Live Netlify App</span>
+                  </a>
+                  <a 
+                    href="/chat" 
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-[#1E232D] hover:bg-[#282F3C] text-white border border-white/10 font-bold rounded-xl transition text-xs uppercase tracking-wider"
+                  >
+                    <Sparkles className="w-4 h-4 text-purple-400" />
+                    <span>Consult Hermes Copilot</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Live Interactive Preview & Details */}
+            <div className="grid grid-cols-1 xl:grid-cols-12 gap-6">
+              {/* Left: Embedded Live Preview (7 Cols) */}
+              <div className="xl:col-span-7 bg-[#14171D] border border-[#252A33] rounded-xl p-4 flex flex-col gap-3">
+                <div className="flex items-center justify-between border-b border-[#252A33] pb-3">
+                  <h3 className="font-bold text-xs uppercase tracking-wider text-white flex items-center gap-2">
+                    <Monitor className="w-4 h-4 text-amber-400" />
+                    <span>Live Interactive Viewport (10s Motion Sequence)</span>
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] text-gray-400">100% Client-Side Rendered</span>
+                  </div>
+                </div>
+
+                <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-white/10 bg-black shadow-inner">
+                  <iframe 
+                    src="https://hermes-agent-ad.netlify.app" 
+                    title="Hermes Agent Interactive Ad" 
+                    className="w-full h-full border-0"
+                    allow="autoplay"
+                  />
+                </div>
+                <p className="text-[11px] text-gray-400 text-center">
+                  Click inside the preview above to trigger playback with voiceover speech and interactive scene transitions.
+                </p>
+              </div>
+
+              {/* Right: Technical Specs & Multi-Project Catalog (5 Cols) */}
+              <div className="xl:col-span-5 flex flex-col gap-4">
+                <div className="bg-[#14171D] border border-[#252A33] rounded-xl p-4 space-y-3">
+                  <h3 className="font-bold text-xs uppercase tracking-wider text-white border-b border-[#252A33] pb-2 flex items-center gap-2">
+                    <Cpu className="w-4 h-4 text-purple-400" />
+                    <span>Deployment Specifications</span>
+                  </h3>
+                  <div className="space-y-2 text-xs">
+                    <div className="flex justify-between py-1 border-b border-white/5">
+                      <span className="text-gray-400">Target Framework</span>
+                      <span className="text-white font-bold">Vanilla HTML5 / Modern CSS / ES6</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-white/5">
+                      <span className="text-gray-400">Audio Subsystem</span>
+                      <span className="text-amber-400 font-bold">100KB Preloaded Voiceover Asset</span>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-white/5">
+                      <span className="text-gray-400">Primary Domain</span>
+                      <a href="https://xennials.tech" target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">
+                        xennials.tech ↗
+                      </a>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-white/5">
+                      <span className="text-gray-400">Netlify Preview</span>
+                      <a href="https://hermes-agent-ad.netlify.app" target="_blank" rel="noreferrer" className="text-indigo-400 hover:underline">
+                        hermes-agent-ad.netlify.app ↗
+                      </a>
+                    </div>
+                    <div className="flex justify-between py-1">
+                      <span className="text-gray-400">Local Source Dir</span>
+                      <code className="text-emerald-400 text-[11px]">c:\Users\tee\hermes_ad</code>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-[#14171D] border border-[#252A33] rounded-xl p-4 space-y-3">
+                  <h3 className="font-bold text-xs uppercase tracking-wider text-white border-b border-[#252A33] pb-2 flex items-center gap-2">
+                    <Briefcase className="w-4 h-4 text-emerald-400" />
+                    <span>Connected Example Projects Catalog</span>
+                  </h3>
+                  <div className="space-y-2.5 text-xs">
+                    <div className="p-2.5 rounded-lg bg-black/30 border border-white/5 flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-white">Odoo Enterprise CRM Suite</div>
+                        <div className="text-[10px] text-gray-400">Central homepage with Copilot lead bridge</div>
+                      </div>
+                      <a href="/crm" className="px-2.5 py-1 bg-purple-600/30 text-purple-300 border border-purple-500/30 rounded text-[10px] font-bold hover:bg-purple-600/50 transition">
+                        Open
+                      </a>
+                    </div>
+
+                    <div className="p-2.5 rounded-lg bg-black/30 border border-white/5 flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-white">HermesClaw WeChat Router</div>
+                        <div className="text-[10px] text-gray-400">Multi-agent multiplexer for messaging</div>
+                      </div>
+                      <a href="/skills" className="px-2.5 py-1 bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 rounded text-[10px] font-bold hover:bg-emerald-600/50 transition">
+                        Skill
+                      </a>
+                    </div>
+
+                    <div className="p-2.5 rounded-lg bg-black/30 border border-white/5 flex items-center justify-between">
+                      <div>
+                        <div className="font-bold text-white">Anthropic Cybersecurity Suite</div>
+                        <div className="text-[10px] text-gray-400">317+ Red/Blue team defense skills</div>
+                      </div>
+                      <a href="/skills" className="px-2.5 py-1 bg-amber-600/30 text-amber-300 border border-amber-500/30 rounded text-[10px] font-bold hover:bg-amber-600/50 transition">
+                        Skills
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
