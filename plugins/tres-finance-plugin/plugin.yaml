@@ -1,0 +1,13 @@
+name: tres-finance-plugin
+version: 1.12.1
+description: "The first official TRES Finance plugin for Claude Code \u2014 blockchain\
+  \ accounting workflows, ledger management, and transaction analysis. Connects to\
+  \ the hosted TRES Finance MCP server; collects no usage telemetry. Privacy: https://tres.finance/privacy-policy/"
+author: Nadav Gilliam
+category: claude-community
+keywords:
+- tres-finance
+- blockchain
+- accounting
+- ledger
+- crypto

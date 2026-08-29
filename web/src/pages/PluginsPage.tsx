@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { ExternalLink, RefreshCw, Trash2, Eye, EyeOff } from "lucide-react";
+import { ExternalLink, RefreshCw, Trash2, Eye, EyeOff, Search, Sparkles, Box, CheckCircle, DownloadCloud } from "lucide-react";
+import claudePluginsData from "@/data/claudePluginsMarketplace.json";
 import type { Translations } from "@/i18n/types";
 import { Link } from "react-router";
 import { api } from "@/lib/api";
@@ -516,6 +517,34 @@ export default function PluginsPage() {
   const visibleMemoryFields =
     memoryConfig?.fields.filter((field) => fieldIsVisible(field, memoryValues)) ?? [];
 
+  const [claudeSearch, setClaudeSearch] = useState("");
+  const [claudeCategory, setClaudeCategory] = useState("all");
+  const [claudePage, setClaudePage] = useState(1);
+
+  const filteredClaudePlugins = claudePluginsData.filter((p) => {
+    const pTags = Array.isArray(p.tags) ? (p.tags as string[]) : [];
+    const matchesSearch =
+      !claudeSearch.trim() ||
+      p.name.toLowerCase().includes(claudeSearch.toLowerCase()) ||
+      p.description.toLowerCase().includes(claudeSearch.toLowerCase()) ||
+      p.author.toLowerCase().includes(claudeSearch.toLowerCase()) ||
+      pTags.some((t: string) => t.toLowerCase().includes(claudeSearch.toLowerCase()));
+    const matchesCat =
+      claudeCategory === "all" ||
+      (claudeCategory === "installed" && p.is_installed) ||
+      (claudeCategory === "media" && (p.category.toLowerCase().includes("media") || pTags.includes("image-generation") || pTags.includes("video-generation"))) ||
+      (claudeCategory === "testing" && (p.category.toLowerCase().includes("test") || p.name.toLowerCase().includes("test"))) ||
+      (claudeCategory === "finance" && (p.category.toLowerCase().includes("finance") || p.name.toLowerCase().includes("tres") || p.name.toLowerCase().includes("finance")));
+    return matchesSearch && matchesCat;
+  });
+
+  const PAGE_SIZE = 6;
+  const totalClaudePages = Math.ceil(filteredClaudePlugins.length / PAGE_SIZE) || 1;
+  const paginatedClaudePlugins = filteredClaudePlugins.slice(
+    (claudePage - 1) * PAGE_SIZE,
+    claudePage * PAGE_SIZE,
+  );
+
   return (
     <div className="flex flex-col gap-4">
       <PluginSlot name="plugins:top" />
@@ -830,6 +859,191 @@ export default function PluginsPage() {
             <p className="text-xs tracking-[0.06em] text-text-tertiary">
               {t.pluginsPage.removeHint}
             </p>
+          </CardContent>
+        </Card>
+
+        {/* ── Claude Community Plugins Marketplace Card ────────────────── */}
+        <Card className="border-amber-500/20 bg-gradient-to-br from-card via-card to-amber-950/10">
+          <CardHeader className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div>
+              <div className="flex items-center gap-2">
+                <Sparkles className="h-4 w-4 text-amber-400" />
+                <CardTitle className="text-sm font-semibold tracking-wide">
+                  Claude Community Plugins Marketplace
+                </CardTitle>
+                <Badge tone="outline" className="border-amber-500/40 text-[10px] text-amber-400">
+                  2,282 Ecosystem Plugins
+                </Badge>
+              </div>
+              <p className="mt-1 text-xs tracking-normal text-text-tertiary">
+                Directly connect Anthropic Claude ecosystem plugins, custom skills, and tooling packages into Hermes Agent.
+              </p>
+            </div>
+            <a
+              href="https://github.com/anthropics/claude-plugins-community"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-amber-400/90 underline hover:text-amber-300"
+            >
+              <ExternalLink className="h-3 w-3" />
+              anthropics/claude-plugins-community
+            </a>
+          </CardHeader>
+
+          <CardContent className="flex flex-col gap-4">
+            {/* Search and Category Filters */}
+            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <div className="relative w-full md:w-80">
+                <Search className="absolute left-2.5 top-2.5 h-3.5 w-3.5 text-text-tertiary" />
+                <Input
+                  className="pl-8 text-xs font-mono-ui"
+                  placeholder="Search 2,282 community plugins & skills..."
+                  value={claudeSearch}
+                  onChange={(e) => {
+                    setClaudeSearch(e.target.value);
+                    setClaudePage(1);
+                  }}
+                />
+              </div>
+
+              <div className="flex flex-wrap gap-1.5">
+                {[
+                  { id: "all", label: `All (${claudePluginsData.length})` },
+                  { id: "installed", label: "Installed (4)" },
+                  { id: "media", label: "Media & GenAI" },
+                  { id: "testing", label: "Testing & QA" },
+                  { id: "finance", label: "Finance & Web3" },
+                ].map((cat) => (
+                  <Button
+                    key={cat.id}
+                    size="sm"
+                    ghost={claudeCategory !== cat.id}
+                    className={cn(
+                      "h-7 text-[11px] px-2.5",
+                      claudeCategory === cat.id ? "bg-amber-500/20 text-amber-300 border border-amber-500/40" : "text-text-secondary border border-border/40"
+                    )}
+                    onClick={() => {
+                      setClaudeCategory(cat.id);
+                      setClaudePage(1);
+                    }}
+                  >
+                    {cat.label}
+                  </Button>
+                ))}
+              </div>
+            </div>
+
+            {/* Plugin Grid */}
+            {paginatedClaudePlugins.length === 0 ? (
+              <div className="py-8 text-center text-xs text-text-tertiary">
+                No matching Claude community plugins found. Try searching for "eli5", "design", "test", or "crypto".
+              </div>
+            ) : (
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {paginatedClaudePlugins.map((plugin) => {
+                  const isAlreadyInstalled =
+                    plugin.is_installed ||
+                    rows.some((r) => r.name.toLowerCase() === plugin.name.toLowerCase());
+
+                  return (
+                    <div
+                      key={plugin.name}
+                      className={cn(
+                        "flex flex-col justify-between rounded-lg border p-3.5 transition-all",
+                        isAlreadyInstalled
+                          ? "border-emerald-500/30 bg-emerald-950/10"
+                          : "border-border/60 bg-card/60 hover:border-amber-500/30"
+                      )}
+                    >
+                      <div className="flex flex-col gap-1.5">
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex items-center gap-1.5 min-w-0">
+                            <Box className="h-3.5 w-3.5 shrink-0 text-amber-400" />
+                            <span className="truncate font-mono-ui text-xs font-semibold text-text-primary">
+                              {plugin.name}
+                            </span>
+                          </div>
+                          {isAlreadyInstalled ? (
+                            <Badge tone="success" className="shrink-0 border-emerald-500/40 bg-emerald-500/10 text-[10px] text-emerald-400">
+                              <CheckCircle className="mr-1 h-2.5 w-2.5 inline" /> Installed
+                            </Badge>
+                          ) : (
+                            <Badge tone="outline" className="shrink-0 text-[10px] text-text-tertiary">
+                              v{plugin.version}
+                            </Badge>
+                          )}
+                        </div>
+
+                        <p className="line-clamp-2 text-[11px] leading-relaxed text-text-secondary">
+                          {plugin.description || "Community skill & plugin package for Claude and Hermes Agent."}
+                        </p>
+                      </div>
+
+                      <div className="mt-3 flex items-center justify-between pt-2 border-t border-border/40">
+                        <span className="text-[10px] text-text-tertiary truncate max-w-[120px]">
+                          by {plugin.author}
+                        </span>
+
+                        {isAlreadyInstalled ? (
+                          <span className="text-[10px] font-medium text-emerald-400">
+                            Active in Hermes
+                          </span>
+                        ) : (
+                          <Button
+                            size="sm"
+                            ghost
+                            className="h-6 px-2 text-[10px] text-amber-400 hover:bg-amber-500/10 hover:text-amber-300"
+                            onClick={() => {
+                              setInstallId(plugin.repository || `anthropics/claude-plugins-community/${plugin.name}`);
+                              showToast(`Added ${plugin.name} to installer input`, "success");
+                              const el = document.getElementById("install-url");
+                              if (el) {
+                                el.scrollIntoView({ behavior: "smooth" });
+                                el.focus();
+                              }
+                            }}
+                          >
+                            <DownloadCloud className="mr-1 h-3 w-3 inline" /> Install
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Pagination Controls */}
+            {totalClaudePages > 1 && (
+              <div className="flex items-center justify-between border-t border-border/40 pt-3 text-xs text-text-tertiary">
+                <span>
+                  Showing {(claudePage - 1) * PAGE_SIZE + 1} - {Math.min(claudePage * PAGE_SIZE, filteredClaudePlugins.length)} of {filteredClaudePlugins.length} plugins
+                </span>
+                <div className="flex items-center gap-2">
+                  <Button
+                    size="sm"
+                    ghost
+                    className="h-7 text-xs px-2.5 border border-border/40"
+                    disabled={claudePage <= 1}
+                    onClick={() => setClaudePage((p) => Math.max(1, p - 1))}
+                  >
+                    Previous
+                  </Button>
+                  <span className="text-xs font-mono-ui">
+                    {claudePage} / {totalClaudePages}
+                  </span>
+                  <Button
+                    size="sm"
+                    ghost
+                    className="h-7 text-xs px-2.5 border border-border/40"
+                    disabled={claudePage >= totalClaudePages}
+                    onClick={() => setClaudePage((p) => Math.min(totalClaudePages, p + 1))}
+                  >
+                    Next
+                  </Button>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
 

@@ -1,0 +1,14 @@
+name: testdino
+version: 1.0.0
+description: Use TestDino inside Claude Code through the hosted remote MCP server
+  to inspect test runs, debug failing test cases, manage manual tests, and run TestDino
+  audits.
+author: TestDino
+category: claude-community
+keywords:
+- claude-code
+- mcp
+- testdino
+- testing
+- playwright
+- qa
