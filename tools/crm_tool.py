@@ -5,6 +5,7 @@ and update CRM leads and pipeline stages directly during conversation loops.
 """
 
 import json
+import time
 from pathlib import Path
 from hermes_constants import get_hermes_home
 from tools.registry import registry
@@ -81,16 +82,16 @@ def crm_manage(
     elif action == "create":
         if not name:
             return json.dumps({"status": "error", "message": "name is required to create a lead"})
-        new_id = f"crm_lead_{Date_now() if 'Date_now' in globals() else len(leads) + 1}"
+        new_id = f"crm_lead_{int(time.time())}"
         new_lead = {
             "id": new_id,
             "name": name,
             "partner_name": partner_name or "Enterprise Partner",
             "email": email or "sales@example.com",
-            "expected_revenue": float(expected_revenue or 0.0),
+            "expected_revenue": expected_revenue if expected_revenue is not None else 0.0,
             "probability": 100 if stage == "won" else 70 if stage == "proposition" else 40 if stage == "qualified" else 20,
             "stage_id": stage or "new",
-            "description": description or "Created via Hermes Agent CRM Tool",
+            "description": description or "Created via CRM Tool",
         }
         leads.append(new_lead)
         _save_leads(leads)
