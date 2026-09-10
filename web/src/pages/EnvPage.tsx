@@ -47,8 +47,11 @@ import { PluginSlot } from "@/plugins";
 const PROVIDER_GROUPS: { prefix: string; name: string; priority: number }[] = [
   // Nous Portal first
   { prefix: "NOUS_", name: "Nous Portal", priority: 0 },
+  // NVIDIA NIM (Global Free Foundation)
+  { prefix: "NVIDIA_", name: "NVIDIA NIM", priority: 1 },
+  { prefix: "NVAPI_", name: "NVIDIA NIM", priority: 1 },
   // Then alphabetical by display name
-  { prefix: "ANTHROPIC_", name: "Anthropic", priority: 1 },
+  { prefix: "ANTHROPIC_", name: "Anthropic", priority: 2 },
   { prefix: "DASHSCOPE_", name: "DashScope (Qwen)", priority: 2 },
   { prefix: "HERMES_QWEN_", name: "DashScope (Qwen)", priority: 2 },
   { prefix: "DEEPSEEK_", name: "DeepSeek", priority: 3 },
@@ -296,7 +299,7 @@ function EnvVarRow({
             autoFocus
             type="text"
             value={edits[varKey]}
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setEdits((prev) => ({ ...prev, [varKey]: e.target.value }))
             }
             placeholder={
@@ -573,8 +576,8 @@ function CustomKeysCard({
               <Input
                 type="text"
                 value={newKey}
-                onChange={(e) => setNewKey(e.target.value)}
-                onKeyDown={(e) => {
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewKey(e.target.value)}
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
                   if (e.key === "Enter") handleAdd();
                 }}
                 placeholder={t.env.customKeyNamePlaceholder}
@@ -616,12 +619,25 @@ export default function EnvPage() {
   const { t } = useI18n();
   const { setAfterTitle } = usePageHeader();
 
-  useEffect(() => {
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const fetchEnvVars = useCallback(() => {
+    setLoadError(null);
     api
       .getEnvVars()
-      .then(setVars)
-      .catch(() => {});
+      .then((data) => {
+        setVars(data ?? {});
+      })
+      .catch((err) => {
+        console.warn("[EnvPage] Failed to fetch env vars:", err);
+        setLoadError(err instanceof Error ? err.message : String(err));
+        setVars({});
+      });
   }, []);
+
+  useEffect(() => {
+    fetchEnvVars();
+  }, [fetchEnvVars]);
 
   // Scroll-to sub-nav in the page header
   const sections = useMemo(() => {
@@ -902,6 +918,15 @@ export default function EnvPage() {
     <div className="flex flex-col gap-6">
       <PluginSlot name="env:top" />
       <Toast toast={toast} />
+
+      {loadError && (
+        <div className="flex items-center justify-between gap-3 border border-border/50 bg-card p-3 text-xs text-text-secondary">
+          <span>Failed to load env vars from backend ({loadError}). Showing local/custom keys mode.</span>
+          <Button size="sm" outlined onClick={fetchEnvVars}>
+            Retry
+          </Button>
+        </div>
+      )}
 
       <DeleteConfirmDialog
         open={keyClear.isOpen}

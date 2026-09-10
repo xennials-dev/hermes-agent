@@ -1,21 +1,13 @@
-# Netlify Configuration for Hermes Agent Dashboard (web directory)
-
 [build]
   command = "npm run build"
   publish = "dist"
 
-# SPA Fallback Redirect for React Router client-side routing
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Security & Static Asset Cache Headers
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "DENY"
     X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
@@ -23,9 +15,6 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-<<<<<<< HEAD
-=======
-
 [[redirects]]
   from = "/skills"
   to = "/skills.html"
@@ -45,4 +34,3 @@
   from = "/blog"
   to = "/blog.html"
   status = 200
->>>>>>> 9ceedd0c9e373d768b0e8dd6e42507adfe37aa50

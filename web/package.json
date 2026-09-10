@@ -1,11 +1,10 @@
 {
-  "name": "web",
+  "name": "xennials-web",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.5.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-<<<<<<< HEAD
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -56,30 +55,6 @@
     "typescript-eslint": "^8.66.0",
     "vite": "8.2.0",
     "vitest": "4.1.10"
-=======
-    "build": "vite build",
-    "preview": "vite preview",
-    "test": "vitest run"
-  },
-  "devDependencies": {
-    "@nous-research/ui": "^1.5.2",
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^5.1.0",
-    "jsdom": "^26.1.0",
-    "vite": "^6.0.0",
-    "vitest": "^4.1.11"
-  },
-  "dependencies": {
-    "@xterm/addon-fit": "^0.11.0",
-    "@xterm/addon-unicode11": "^0.9.0",
-    "@xterm/addon-web-links": "^0.12.0",
-    "@xterm/addon-webgl": "^0.19.0",
-    "@xterm/xterm": "^6.0.0",
-    "lucide-react": "^1.39.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-router": "^8.3.1",
-    "react-router-dom": "^7.18.3"
->>>>>>> 9ceedd0c9e373d768b0e8dd6e42507adfe37aa50
   }
+}
 }

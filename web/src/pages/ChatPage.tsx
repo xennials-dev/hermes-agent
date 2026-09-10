@@ -34,7 +34,7 @@ import { ChatSidebar } from "@/components/ChatSidebar";
 import { ChatSessionList } from "@/components/ChatSessionList";
 import { usePageHeader } from "@/contexts/usePageHeader";
 import { useI18n } from "@/i18n";
-import { api } from "@/lib/api";
+import { api, getCustomAuthToken } from "@/lib/api";
 import { latchChatActivation } from "@/lib/chat-activation";
 import { copyTextToClipboard } from "@/lib/clipboard";
 import { normalizeSessionTitle } from "@/lib/chat-title";
@@ -210,13 +210,19 @@ export default function ChatPage({ isActive = true }: { isActive?: boolean }) {
   // In gated (OAuth) mode the server intentionally omits the session token —
   // the dashboard API layer authenticates the WS via a single-use ticket,
   // so a missing token there is expected, not an error.
-  const [banner, setBanner] = useState<string | null>(() =>
-    typeof window !== "undefined" &&
-    !window.__HERMES_SESSION_TOKEN__ &&
-    !window.__HERMES_AUTH_REQUIRED__
-      ? "Session token unavailable. Open this page through `hermes dashboard`, not directly."
-      : null,
-  );
+  const [banner, setBanner] = useState<string | null>(() => {
+    if (typeof window === "undefined") return null;
+    const token = window.__HERMES_SESSION_TOKEN__ || getCustomAuthToken();
+    const gated = !!window.__HERMES_AUTH_REQUIRED__;
+    const isLocalhost =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1" ||
+      window.location.hostname === "0.0.0.0";
+    if (!token && !gated && !isLocalhost) {
+      return "Session token unavailable. Open this page through `hermes dashboard`, not directly.";
+    }
+    return null;
+  });
   const [copyState, setCopyState] = useState<"idle" | "copied">("idle");
   const copyResetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const reconnectTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -519,12 +525,17 @@ export default function ChatPage({ isActive = true }: { isActive?: boolean }) {
     // may point elsewhere by then — react-hooks/exhaustive-deps).
     const termWrap = termWrapRef.current;
 
-    const token = window.__HERMES_SESSION_TOKEN__;
+    const token = window.__HERMES_SESSION_TOKEN__ || getCustomAuthToken();
     const gated = !!window.__HERMES_AUTH_REQUIRED__;
+    const isLocalhost =
+      typeof window !== "undefined" &&
+      (window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1" ||
+        window.location.hostname === "0.0.0.0");
     // Banner already initialised above; just bail before wiring xterm/WS.
     // In gated mode the token is absent by design — api.buildWsUrl() mints
     // a WS ticket instead, so don't bail; let the effect reach that path.
-    if (!token && !gated) {
+    if (!token && !gated && !isLocalhost) {
       return;
     }
 
