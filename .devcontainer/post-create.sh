@@ -9,9 +9,18 @@ echo "=========================================================="
 sudo apt-get update && sudo apt-get install -y \
     curl git jq tree tmux build-essential ripgrep
 
-# 2. Configure Git safe directories
+# 2. Configure Git safe directories and automated upstream sync protocols
 git config --global --add safe.directory "*"
 git config --global pull.rebase true
+git config --global rebase.autoStash true
+git config --global alias.sync-upstream "!git fetch upstream && git pull upstream main"
+git config --global alias.sync-status "!git log --oneline -n 10 && git status"
+
+# Configure upstream remote if not present
+if ! git remote | grep -q "upstream"; then
+    git remote add upstream https://github.com/NousResearch/hermes-agent.git || true
+fi
+git config remote.upstream.fetch "+refs/heads/main:refs/remotes/upstream/main" || true
 
 # 3. Ensure uv is installed for blazing fast Python environment management
 if ! command -v uv &> /dev/null; then

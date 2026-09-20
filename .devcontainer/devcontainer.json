@@ -28,10 +28,15 @@
     }
   },
 
-  "forwardPorts": [3000, 5173, 8000, 8080],
+  "forwardPorts": [3000, 5173, 8000, 8080, 9119],
   "portsAttributes": {
+    "9119": {
+      "label": "Hermes Agent Core Web Dashboard",
+      "onAutoForward": "notify",
+      "elevateIfNeeded": false
+    },
     "3000": {
-      "label": "Hermes Web UI / Dashboard",
+      "label": "Hermes Web UI / App Server",
       "onAutoForward": "notify",
       "elevateIfNeeded": false
     },
