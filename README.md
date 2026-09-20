@@ -32,6 +32,20 @@ Use any model you want — [Nous Portal](https://portal.nousresearch.com), OpenR
 
 ---
 
+## 🏛️ System Architecture & Infographic
+
+<p align="center">
+  <a href="docs/ARCHITECTURE_INFOGRAPHIC.md">
+    <img src="assets/xennials-agent-infographic.png" alt="Xennials Agent & Hermes AI System Architecture Infographic" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  👉 <b><a href="docs/ARCHITECTURE_INFOGRAPHIC.md">View Full Architectural Deep-Dive & Subsystem Specifications →</a></b>
+</p>
+
+---
+
 ## Quick Install
 
 ### Linux, macOS, WSL2, Termux
