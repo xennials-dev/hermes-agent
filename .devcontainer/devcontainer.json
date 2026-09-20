@@ -1,0 +1,78 @@
+{
+  "name": "Nous Hermes Agent & CodeGraph Workspace",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true,
+      "username": "vscode"
+    },
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11",
+      "installTools": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": true
+    }
+  },
+
+  "forwardPorts": [3000, 5173, 8000, 8080],
+  "portsAttributes": {
+    "3000": {
+      "label": "Hermes Web UI / Dashboard",
+      "onAutoForward": "notify",
+      "elevateIfNeeded": false
+    },
+    "5173": {
+      "label": "Vite Dev Server (Web App)",
+      "onAutoForward": "notify",
+      "elevateIfNeeded": false
+    },
+    "8000": {
+      "label": "Hermes Gateway API / Backend",
+      "onAutoForward": "silent",
+      "elevateIfNeeded": false
+    },
+    "8080": {
+      "label": "General Microservice / Mock Server",
+      "onAutoForward": "silent",
+      "elevateIfNeeded": false
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "git.autofetch": true,
+        "git.confirmSync": false
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "github.vscode-github-actions",
+        "ms-azuretools.vscode-docker"
+      ]
+    }
+  },
+
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
+  "remoteUser": "vscode"
+}
