@@ -13,10 +13,11 @@
     :root { --skills-ink: #f8fafc; --skills-muted: #94a3b8; --skills-line: rgba(148,163,184,.18); --skills-accent: #38bdf8; }
     .skills-page { min-height: 100vh; background: radial-gradient(circle at 12% 0%, rgba(14,165,233,.14), transparent 32rem), #070b12; color: var(--skills-ink); font-family: 'Space Grotesk', sans-serif; }
     .skills-shell { max-width: 1180px; margin: 0 auto; padding: 8rem 1.5rem 4rem; }
-    .skills-nav { position: fixed; inset: 0 0 auto; z-index: 10; padding: 1rem 1.5rem; background: rgba(7,11,18,.86); border-bottom: 1px solid var(--skills-line); backdrop-filter: blur(16px); }
+    .skills-nav { position: fixed; inset: 0 0 auto; z-index: 10; padding: 1rem 1.5rem; background: rgba(7,11,18,.86); border-bottom: 1px solid var(--skills-line); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); }
     .skills-nav-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
     .skills-brand { color: var(--skills-ink); text-decoration: none; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
     .skills-back { color: var(--skills-muted); text-decoration: none; font-family: 'DM Mono', monospace; font-size: .78rem; }
+    .skills-link-spacing { margin-right: 1.25rem; }
     .skills-back:hover { color: var(--skills-accent); }
     .skills-kicker { color: var(--skills-accent); font: 500 .75rem 'DM Mono', monospace; letter-spacing: .16em; text-transform: uppercase; }
     .skills-title { max-width: 760px; margin: .75rem 0 1rem; font-size: clamp(2.8rem, 8vw, 6.5rem); line-height: .95; letter-spacing: -.04em; }
@@ -37,7 +38,7 @@
   </style>
 </head>
 <body class="skills-page">
-  <nav class="skills-nav"><div class="skills-nav-inner"><a class="skills-brand" href="index.html">Xennials AI</a><a class="skills-back" href="index.html">Back to portal /</a></div></nav>
+  <nav class="skills-nav"><div class="skills-nav-inner"><a class="skills-brand" href="index.html">Xennials AI</a><div><a class="skills-back skills-link-spacing" href="portfolio.html">Portfolio /</a><a class="skills-back" href="index.html">Back to portal /</a></div></div></nav>
   <main class="skills-shell">
     <div class="skills-kicker">Xennials / Agent capability library</div>
     <h1 class="skills-title">Give your agent a better instinct.</h1>

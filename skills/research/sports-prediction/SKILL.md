@@ -1,14 +1,28 @@
 ---
 name: sports-prediction
-description: "Autonomous sports outcome prediction and +EV betting intelligence suite for NBA and NFL."
+description: Autonomous sports outcome prediction and +EV betting inte...
 version: 1.0.0
 author: Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [SportsBetting, MachineLearning, NBA, NFL, OddsComparison, KellyCriterion, EV, Analytics]
-    related_skills: [web-extraction, auto-scraper, shopping-comparison]
+    tags:
+    - SportsBetting
+    - MachineLearning
+    - NBA
+    - NFL
+    - OddsComparison
+    - KellyCriterion
+    - EV
+    - Analytics
+    related_skills:
+    - web-extraction
+    - auto-scraper
+    - shopping-comparison
 ---
 
 # Autonomous Sports Prediction & +EV Betting Intelligence Agent

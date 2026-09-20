@@ -1,14 +1,24 @@
 ---
 name: ai-concierge
-description: "Manage high-ticket monthly AI coaching and advisory retainers."
+description: Manage high-ticket monthly AI coaching and advisory retai...
 version: 1.0.0
 author: Terrance (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [Retainer, Coaching, Concierge, Advisory, HighTicket]
-    related_skills: [audit-review, process-redesign]
+    tags:
+    - Retainer
+    - Coaching
+    - Concierge
+    - Advisory
+    - HighTicket
+    related_skills:
+    - audit-review
+    - process-redesign
 ---
 
 # AI Concierge (Monthly Retainer Service)

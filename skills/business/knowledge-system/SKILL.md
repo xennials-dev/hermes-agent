@@ -1,14 +1,26 @@
 ---
 name: knowledge-system
-description: "Design, build, and deploy custom Knowledge Systems and AI Assistants trained on proprietary company documents, marketing materials, and FAQs."
+description: Design, build, and deploy custom Knowledge Systems and AI...
 version: 1.0.0
 author: Hermes Consulting Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [KnowledgeSystem, CustomGPT, HermesAgent, DocumentGrounding, RepetitiveQA]
-    related_skills: [ai-audit, audit-review, ai-concierge, process-redesign]
+    tags:
+    - KnowledgeSystem
+    - CustomGPT
+    - HermesAgent
+    - DocumentGrounding
+    - RepetitiveQA
+    related_skills:
+    - ai-audit
+    - audit-review
+    - ai-concierge
+    - process-redesign
 ---
 
 # Hermes Knowledge System Builder

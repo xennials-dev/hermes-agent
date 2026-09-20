@@ -1,14 +1,26 @@
 ---
 name: faceless-media-business
-description: "Launch and scale faceless YouTube, TikTok, and media businesses."
+description: Launch and scale faceless YouTube, TikTok, and media busi...
 version: 1.0.0
 author: Xennials (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [FacelessMedia, YouTube, TikTok, VideoCreation, AIContent, Monetization, Xennials]
-    related_skills: [generative-video-audio, one-person-ai-stack]
+    tags:
+    - FacelessMedia
+    - YouTube
+    - TikTok
+    - VideoCreation
+    - AIContent
+    - Monetization
+    - Xennials
+    related_skills:
+    - generative-video-audio
+    - one-person-ai-stack
 ---
 
 # Faceless AI Media & YouTube Channel Playbook

@@ -1,12 +1,16 @@
 ---
 name: odoo-crm-automation
-description: Automate Odoo CRM pipelines, manage leads, update stages, draft customer follow-ups, and track deals.
+description: Automate Odoo CRM pipelines, manage leads, update stages...
 tags:
-  - business
-  - crm
-  - sales
-  - leads
-  - odoo
+- business
+- crm
+- sales
+- leads
+- odoo
+platforms:
+- linux
+- macos
+- windows
 ---
 
 # Odoo CRM & Sales Pipeline Automation Skill

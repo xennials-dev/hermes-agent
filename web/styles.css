@@ -76,22 +76,22 @@ h1, h2, h3, h4, h5, h6, .font-space {
 
 .glass-panel {
     background: rgba(19, 27, 46, 0.72);
-    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-panel-subtle {
     background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .glass-nav {
     background: rgba(11, 15, 25, 0.88);
-    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
 }
 
 /* Official Universal Gold Logo Styling */
@@ -140,6 +140,7 @@ h1, h2, h3, h4, h5, h6, .font-space {
     color: #c7d2fe;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    -webkit-user-select: none;
     user-select: none;
 }
 .random-prompt-btn:hover {
@@ -176,8 +177,8 @@ h1, h2, h3, h4, h5, h6, .font-space {
     margin-top: 0.5rem;
     min-width: 290px;
     background: rgba(15, 23, 42, 0.96);
-    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(99, 102, 241, 0.25);
     border-radius: 1rem;
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(99, 102, 241, 0.15);
@@ -391,6 +392,7 @@ h1, h2, h3, h4, h5, h6, .font-space {
 /* Range Slider Customization */
 input[type=range] {
     -webkit-appearance: none;
+    appearance: none;
     background: #1e293b;
     height: 8px;
     border-radius: 4px;
@@ -421,6 +423,7 @@ input[type=range]::-webkit-slider-thumb:hover {
     width: 100vw;
     height: 100vh;
     background: rgba(11, 15, 25, 0.85);
+    -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     z-index: 999;
     display: flex;
@@ -489,6 +492,7 @@ input[type=range]::-webkit-slider-thumb:hover {
     height: 3rem;
     border-radius: 9999px;
     background: rgba(30, 41, 59, 0.8);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border: 1px solid var(--dark-border);
     color: white;
@@ -680,8 +684,8 @@ body.guide-mode-active [data-step-guide]:hover {
     max-width: 320px;
     min-width: 260px;
     background: rgba(15, 23, 42, 0.95);
-    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     border: 1px solid rgba(99, 102, 241, 0.4);
     border-radius: 1rem;
     padding: 1rem;
@@ -750,8 +754,8 @@ body.guide-mode-active [data-step-guide]:hover {
     align-items: center;
     gap: 0.5rem;
     background: rgba(15, 23, 42, 0.85);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid rgba(99, 102, 241, 0.3);
     padding: 0.4rem 0.6rem;
     border-radius: 9999px;
@@ -808,8 +812,8 @@ body.guide-mode-active [data-step-guide]:hover {
     pointer-events: auto;
     display: none;
     background: rgba(3, 7, 18, 0.75);
-    backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
 }
 
 #tour-spotlight-modal.active {
@@ -897,8 +901,8 @@ body.guide-mode-active [data-step-guide]:hover {
     border-radius: 1rem;
     padding: 1rem 1.25rem;
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.9), 0 0 25px rgba(245, 158, 11, 0.25);
-    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
 }
 
 #universal-hover-annotation-card.visible {
@@ -1023,6 +1027,7 @@ body.guide-mode-active [data-step-guide]:hover {
 .cinema-watermark {
     font-family: 'Anton', 'Bebas Neue', sans-serif;
     letter-spacing: -0.05em;
+    -webkit-user-select: none;
     user-select: none;
     line-height: 0.8;
 }
@@ -1037,8 +1042,6 @@ body.guide-mode-active [data-step-guide]:hover {
     gap: 0.5rem;
     overflow-x: auto;
     padding-bottom: 0.6rem;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
 }
 
 .task-quick-bar::-webkit-scrollbar {
@@ -1064,6 +1067,7 @@ body.guide-mode-active [data-step-guide]:hover {
     white-space: nowrap;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     cursor: pointer;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -1110,6 +1114,7 @@ body.guide-mode-active [data-step-guide]:hover {
     color: #cbd5e1;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    -webkit-user-select: none;
     user-select: none;
     text-align: left;
 }
@@ -1158,6 +1163,7 @@ body.guide-mode-active [data-step-guide]:hover {
     color: #94a3b8;
     cursor: pointer;
     transition: all 0.2s ease;
+    -webkit-user-select: none;
     user-select: none;
 }
 
@@ -1182,8 +1188,8 @@ body.guide-mode-active [data-step-guide]:hover {
     inset: 0;
     z-index: 10000;
     background: rgba(2, 6, 23, 0.85);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1217,8 +1223,8 @@ body.guide-mode-active [data-step-guide]:hover {
 .hermes-os-card {
     background: rgba(15, 23, 42, 0.75);
     border: 1px solid rgba(99, 102, 241, 0.25);
-    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     border-radius: 1.25rem;
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     position: relative;
@@ -1307,8 +1313,8 @@ body.guide-mode-active [data-step-guide]:hover {
     inset: 0;
     z-index: 10000;
     background: rgba(2, 6, 23, 0.88);
-    backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1370,6 +1376,7 @@ body.guide-mode-active [data-step-guide]:hover {
     letter-spacing: -0.05em;
     color: rgba(255, 255, 255, 0.07);
     text-transform: capitalize;
+    -webkit-user-select: none;
     user-select: none;
     transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s ease;
 }
@@ -1457,8 +1464,8 @@ body.guide-mode-active [data-step-guide]:hover {
 .capsule-chip-btn {
     background: rgba(15, 23, 42, 0.85);
     border: 1px solid rgba(99, 102, 241, 0.35);
-    backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     color: #e2e8f0;
     font-size: 0.68rem;
     font-family: 'Space Grotesk', sans-serif;
@@ -1489,8 +1496,8 @@ body.guide-mode-active [data-step-guide]:hover {
     z-index: 15;
     background: rgba(11, 15, 25, 0.88);
     border: 1px solid rgba(99, 102, 241, 0.3);
-    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     border-radius: 1.15rem;
     padding: 1rem 1.25rem;
     max-width: 270px;
@@ -1581,8 +1588,8 @@ body.guide-mode-active [data-step-guide]:hover {
     inset: 0;
     border-radius: 50%;
     background: conic-gradient(from 0deg, rgba(99, 102, 241, 0.35), rgba(236, 72, 153, 0.35), rgba(245, 158, 11, 0.35), rgba(99, 102, 241, 0.35));
-    mask: radial-gradient(circle, transparent 38%, black 40%);
     -webkit-mask: radial-gradient(circle, transparent 38%, black 40%);
+    mask: radial-gradient(circle, transparent 38%, black 40%);
     animation: rotateWheel 14s linear infinite;
     transition: animation-duration 0.3s ease;
 }
@@ -1650,8 +1657,8 @@ body.guide-mode-active [data-step-guide]:hover {
     border-radius: 50%;
     background: rgba(15, 23, 42, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
     display: flex;
     flex-direction: column;
     align-items: center;

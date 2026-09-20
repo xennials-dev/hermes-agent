@@ -74,6 +74,9 @@
             background: linear-gradient(to right, #6366f1 0%, #6366f1 var(--val, 50%), #1e293b var(--val, 50%), #1e293b 100%);
             outline: none;
         }
+        #param-temperature { --val: 35%; }
+        #param-top-p { --val: 90%; }
+        #param-max-tokens { --val: 12.3%; }
         .param-slider::-webkit-slider-thumb {
             -webkit-appearance: none;
             width: 16px;
@@ -171,18 +174,18 @@
                             <div class="px-3 py-1.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wider border-b border-slate-800">
                                 Live AI Ecosystem
                             </div>
-                            <a href="https://clever-mochi-c38d64.netlify.app/agents" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+                            <a href="deeptutor.html" class="dropdown-item">
                                 <div class="w-7 h-7 rounded-lg bg-cyan-950 flex items-center justify-center text-cyan-400"><i class="fas fa-robot"></i></div>
                                 <div>
                                     <div class="font-semibold text-white">TutorBot Agents</div>
-                                    <div class="text-[11px] text-gray-400 font-mono">Live Multi-Agent Workspace</div>
+                                    <div class="text-[11px] text-gray-400 font-mono">Autonomous Socratic Hub</div>
                                 </div>
                             </a>
-                            <a href="https://xennials-agent.netlify.app/" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+                            <a href="playground.html" class="dropdown-item">
                                 <div class="w-7 h-7 rounded-lg bg-amber-950 flex items-center justify-center text-amber-400"><i class="fas fa-brain"></i></div>
                                 <div>
                                     <div class="font-semibold text-white">Xennials AI Suite</div>
-                                    <div class="text-[11px] text-gray-400 font-mono">Enterprise Autonomous Agents</div>
+                                    <div class="text-[11px] text-gray-400 font-mono">Agent OS & CodeGraph</div>
                                 </div>
                             </a>
                         </div>
@@ -217,8 +220,8 @@
                 <div class="pt-2 pb-1 border-t border-slate-800">
                     <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Projects</span>
                     <div class="grid grid-cols-1 gap-1.5 mt-2">
-                        <a href="https://clever-mochi-c38d64.netlify.app/agents" target="_blank" rel="noopener noreferrer" class="text-sm py-1 text-gray-300 hover:text-white"><i class="fas fa-robot mr-2"></i> TutorBot Agents</a>
-                        <a href="https://xennials-agent.netlify.app/" target="_blank" rel="noopener noreferrer" class="text-sm py-1 text-gray-300 hover:text-white"><i class="fas fa-brain mr-2"></i> Xennials AI Suite</a>
+                        <a href="deeptutor.html" class="text-sm py-1 text-gray-300 hover:text-white"><i class="fas fa-robot mr-2"></i> TutorBot Agents</a>
+                        <a href="playground.html" class="text-sm py-1 text-gray-300 hover:text-white"><i class="fas fa-brain mr-2"></i> Xennials AI Suite</a>
                     </div>
                 </div>
             </div>
@@ -482,12 +485,12 @@
                 <div class="bg-slate-900/80 rounded-2xl border border-slate-800 glass-panel overflow-hidden" data-step-number="PG-05" data-step-title="📜 System Persona & Role Presets" data-step-guide="Assign explicit instructions and role behaviors to the AI assistant. Use one of our quick presets (Coder, Tutor, Creative, Concise) or define your own." data-step-action="👉 Click preset button or customize text">
                     <div class="px-4 py-3 border-b border-slate-800 flex items-center justify-between">
                         <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">System Prompt</h3>
-                        <button id="system-prompt-toggle" class="text-indigo-400 hover:text-indigo-300 text-xs">
+                        <button id="system-prompt-toggle" class="text-indigo-400 hover:text-indigo-300 text-xs" aria-label="Toggle system prompt panel" title="Toggle system prompt panel">
                             <i class="fas fa-chevron-down"></i>
                         </button>
                     </div>
                     <div class="p-3" id="system-prompt-panel">
-                        <textarea id="system-prompt" rows="3" placeholder="You are a helpful AI assistant..." class="w-full px-3 py-2 bg-slate-950 border border-slate-700 focus:border-indigo-500 rounded-lg text-gray-300 text-xs pg-mono focus:outline-none transition-colors resize-none"></textarea>
+                        <textarea id="system-prompt" rows="3" placeholder="You are a helpful AI assistant..." aria-label="System Prompt" title="System Prompt" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 focus:border-indigo-500 rounded-lg text-gray-300 text-xs pg-mono focus:outline-none transition-colors resize-none"></textarea>
                         <div class="flex flex-wrap gap-1.5 mt-2">
                             <button class="system-preset px-2 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md text-[10px] text-gray-400 hover:text-white transition-colors" data-preset="You are a helpful, concise AI assistant.">Concise</button>
                             <button class="system-preset px-2 py-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-md text-[10px] text-gray-400 hover:text-white transition-colors" data-preset="You are an expert software engineer. Provide detailed, production-quality code with explanations.">Coder</button>
@@ -506,32 +509,32 @@
                         <!-- Temperature -->
                         <div>
                             <div class="flex justify-between items-center mb-2">
-                                <label class="text-xs font-medium text-gray-300">Temperature</label>
+                                <label for="param-temperature" class="text-xs font-medium text-gray-300">Temperature</label>
                                 <span class="token-badge" id="temp-val">0.7</span>
                             </div>
-                            <input type="range" id="param-temperature" class="param-slider w-full" min="0" max="2" step="0.05" value="0.7" style="--val: 35%">
+                            <input type="range" id="param-temperature" class="param-slider w-full" min="0" max="2" step="0.05" value="0.7" aria-label="Temperature" title="Temperature">
                         </div>
                         <!-- Top-P -->
                         <div>
                             <div class="flex justify-between items-center mb-2">
-                                <label class="text-xs font-medium text-gray-300">Top-P</label>
+                                <label for="param-top-p" class="text-xs font-medium text-gray-300">Top-P</label>
                                 <span class="token-badge" id="topp-val">0.9</span>
                             </div>
-                            <input type="range" id="param-top-p" class="param-slider w-full" min="0" max="1" step="0.05" value="0.9" style="--val: 90%">
+                            <input type="range" id="param-top-p" class="param-slider w-full" min="0" max="1" step="0.05" value="0.9" aria-label="Top-P" title="Top-P">
                         </div>
                         <!-- Max Tokens -->
                         <div>
                             <div class="flex justify-between items-center mb-2">
-                                <label class="text-xs font-medium text-gray-300">Max Tokens</label>
+                                <label for="param-max-tokens" class="text-xs font-medium text-gray-300">Max Tokens</label>
                                 <span class="token-badge" id="maxtok-val">2048</span>
                             </div>
-                            <input type="range" id="param-max-tokens" class="param-slider w-full" min="64" max="16384" step="64" value="2048" style="--val: 12.3%">
+                            <input type="range" id="param-max-tokens" class="param-slider w-full" min="64" max="16384" step="64" value="2048" aria-label="Max Tokens" title="Max Tokens">
                         </div>
                         <!-- Streaming Toggle -->
                         <div class="flex items-center justify-between">
-                            <label class="text-xs font-medium text-gray-300">Stream Response</label>
+                            <label for="param-stream" class="text-xs font-medium text-gray-300">Stream Response</label>
                             <label class="relative inline-flex items-center cursor-pointer">
-                                <input type="checkbox" id="param-stream" class="sr-only peer" checked>
+                                <input type="checkbox" id="param-stream" class="sr-only peer" checked aria-label="Stream Response" title="Stream Response">
                                 <div class="w-9 h-5 bg-slate-700 peer-focus:ring-2 peer-focus:ring-indigo-500/50 rounded-full peer-checked:bg-indigo-600 transition-colors after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-full"></div>
                             </label>
                         </div>
@@ -545,13 +548,13 @@
                     </div>
                     <div class="p-4 space-y-3">
                         <div>
-                            <label class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-1 block">Base URL / Proxy</label>
-                            <input type="text" id="gateway-url" value="/v1" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 focus:border-indigo-500 rounded-lg text-gray-300 text-xs pg-mono focus:outline-none transition-colors" placeholder="/v1 or http://localhost:4000/v1">
+                            <label for="gateway-url" class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-1 block">Base URL / Proxy</label>
+                            <input type="text" id="gateway-url" value="/v1" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 focus:border-indigo-500 rounded-lg text-gray-300 text-xs pg-mono focus:outline-none transition-colors" placeholder="/v1 or http://localhost:4000/v1" aria-label="Base URL or Proxy" title="Base URL or Proxy">
                             <p class="text-[10px] text-gray-500 mt-1">Auto-routes: <code class="text-indigo-300">/v1</code> (LiteLLM) or fallback <code class="text-emerald-300">/ollama</code></p>
                         </div>
                         <div>
-                            <label class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-1 block">API Key</label>
-                            <input type="password" id="gateway-key" value="sk-xennials-playground-dev-key" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 focus:border-indigo-500 rounded-lg text-gray-300 text-xs pg-mono focus:outline-none transition-colors" placeholder="sk-...">
+                            <label for="gateway-key" class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-1 block">API Key</label>
+                            <input type="password" id="gateway-key" value="sk-xennials-playground-dev-key" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 focus:border-indigo-500 rounded-lg text-gray-300 text-xs pg-mono focus:outline-none transition-colors" placeholder="sk-..." aria-label="API Key" title="API Key">
                         </div>
                         <button id="connect-gateway-btn" class="w-full px-3 py-2 bg-indigo-950 hover:bg-indigo-900 border border-indigo-500/40 rounded-lg text-xs font-medium text-indigo-300 hover:text-white transition-all flex items-center justify-center gap-2">
                             <i class="fas fa-plug"></i> Connect / Refresh
@@ -567,7 +570,7 @@
 
                 <!-- ── CHAT MODE ──────────────────────────────────────── -->
                 <div id="mode-chat" class="mode-panel">
-                    <div class="bg-slate-900/90 rounded-2xl border border-slate-800 glass-panel flex flex-col" style="min-height: 560px;">
+                    <div class="bg-slate-900/90 rounded-2xl border border-slate-800 glass-panel flex flex-col min-h-[560px]">
                         <!-- Chat Header -->
                         <div class="px-5 py-3 border-b border-slate-800 flex items-center justify-between flex-shrink-0">
                             <div class="flex items-center gap-3">
@@ -618,7 +621,7 @@
                                 </div>
                                 <div class="flex items-end gap-3">
                                     <div class="flex-1 relative">
-                                        <textarea id="chat-input" rows="1" placeholder="Message the AI..." class="w-full px-4 py-3 bg-slate-950 border border-slate-700 focus:border-indigo-500 rounded-xl text-gray-200 text-sm focus:outline-none transition-colors resize-none pr-12" style="max-height: 160px;"></textarea>
+                                        <textarea id="chat-input" rows="1" placeholder="Message the AI..." aria-label="Chat Input" title="Chat Input" class="w-full px-4 py-3 bg-slate-950 border border-slate-700 focus:border-indigo-500 rounded-xl text-gray-200 text-sm focus:outline-none transition-colors resize-none pr-12 max-h-40"></textarea>
                                         <button type="button" id="random-chat-icon-btn" class="absolute right-3 top-3.5 text-indigo-400/60 hover:text-indigo-300 transition-all hover:scale-110" title="Random prompt">
                                             <i class="fas fa-dice text-base"></i>
                                         </button>
@@ -661,9 +664,9 @@
                         <!-- Comparison Panels -->
                         <div class="grid md:grid-cols-2 gap-4">
                             <!-- Panel A -->
-                            <div class="comparison-panel flex flex-col" style="min-height: 400px;">
+                            <div class="comparison-panel flex flex-col min-h-[400px]">
                                 <div class="px-4 py-3 border-b border-slate-700/50 flex items-center justify-between">
-                                    <select id="compare-model-a" class="bg-slate-950 border border-slate-700 text-gray-300 text-xs rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 pg-mono w-full">
+                                    <select id="compare-model-a" class="bg-slate-950 border border-slate-700 text-gray-300 text-xs rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 pg-mono w-full" aria-label="Comparison Model A" title="Comparison Model A">
                                         <option value="">Model A — select</option>
                                     </select>
                                 </div>
@@ -678,9 +681,9 @@
                                 </div>
                             </div>
                             <!-- Panel B -->
-                            <div class="comparison-panel flex flex-col" style="min-height: 400px;">
+                            <div class="comparison-panel flex flex-col min-h-[400px]">
                                 <div class="px-4 py-3 border-b border-slate-700/50 flex items-center justify-between">
-                                    <select id="compare-model-b" class="bg-slate-950 border border-slate-700 text-gray-300 text-xs rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 pg-mono w-full">
+                                    <select id="compare-model-b" class="bg-slate-950 border border-slate-700 text-gray-300 text-xs rounded-lg px-3 py-1.5 focus:outline-none focus:border-indigo-500 pg-mono w-full" aria-label="Comparison Model B" title="Comparison Model B">
                                         <option value="">Model B — select</option>
                                     </select>
                                 </div>
@@ -713,8 +716,8 @@
 
                         <!-- Image Model Selector -->
                         <div>
-                            <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Image Model</label>
-                            <select id="image-model" class="w-full bg-slate-950 border border-slate-700 text-gray-300 text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-pink-500 pg-mono">
+                            <label for="image-model" class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Image Model</label>
+                            <select id="image-model" class="w-full bg-slate-950 border border-slate-700 text-gray-300 text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-pink-500 pg-mono" aria-label="Image Model" title="Image Model">
                                 <option value="fal-flux-schnell">FLUX.1 [schnell] — fast open-source</option>
                                 <option value="fal-krea-2-turbo">Krea 2 Turbo — high fidelity</option>
                             </select>
@@ -742,12 +745,12 @@
                                 </div>
                             </div>
                             <div>
-                                <label class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-1 block">Steps</label>
-                                <input type="number" id="image-steps" value="4" min="1" max="50" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 text-gray-300 text-xs pg-mono rounded-lg focus:outline-none focus:border-pink-500">
+                                <label for="image-steps" class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-1 block">Steps</label>
+                                <input type="number" id="image-steps" value="4" min="1" max="50" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 text-gray-300 text-xs pg-mono rounded-lg focus:outline-none focus:border-pink-500" aria-label="Image generation steps" title="Image generation steps">
                             </div>
                             <div>
-                                <label class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-1 block">Seed (optional)</label>
-                                <input type="number" id="image-seed" placeholder="Random" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 text-gray-300 text-xs pg-mono rounded-lg focus:outline-none focus:border-pink-500">
+                                <label for="image-seed" class="text-[10px] font-medium text-gray-500 uppercase tracking-wider mb-1 block">Seed (optional)</label>
+                                <input type="number" id="image-seed" placeholder="Random" class="w-full px-3 py-1.5 bg-slate-950 border border-slate-700 text-gray-300 text-xs pg-mono rounded-lg focus:outline-none focus:border-pink-500" aria-label="Seed (optional)" title="Seed (optional)">
                             </div>
                         </div>
 
@@ -777,8 +780,8 @@
 
                         <!-- Video Model Selector -->
                         <div>
-                            <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Video Model</label>
-                            <select id="video-model" class="w-full bg-slate-950 border border-slate-700 text-gray-300 text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-amber-500 pg-mono">
+                            <label for="video-model" class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 block">Video Model</label>
+                            <select id="video-model" class="w-full bg-slate-950 border border-slate-700 text-gray-300 text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-amber-500 pg-mono" aria-label="Video Model" title="Video Model">
                                 <optgroup label="Text → Video">
                                     <option value="fal-minimax-h3-max-t2v">MiniMax H3 Max — high quality T2V</option>
                                     <option value="fal-seedance-2.5-t2v">Seedance 2.5 — 30s 720p T2V</option>
@@ -810,7 +813,7 @@
                             <div class="w-full p-6 border-2 border-dashed border-slate-700 hover:border-amber-500/40 rounded-xl bg-slate-950/50 text-center cursor-pointer transition-colors" id="video-drop-zone">
                                 <i class="fas fa-cloud-upload-alt text-2xl text-gray-600 mb-2"></i>
                                 <p class="text-xs text-gray-500">Drop an image or <span class="text-amber-400 underline">click to browse</span></p>
-                                <input type="file" id="video-image-input" accept="image/*" class="hidden">
+                                <input type="file" id="video-image-input" accept="image/*" class="hidden" aria-label="Upload source image for video" title="Upload source image for video">
                             </div>
                             <div id="video-image-preview" class="hidden mt-3"></div>
                         </div>
@@ -861,7 +864,7 @@
                         <p class="text-xs text-gray-400">Click any task or framework chip to instantly load model archetypes, system personas, and sampling templates.</p>
                     </div>
                 </div>
-                <button id="close-taxonomy-modal-btn" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-gray-400 hover:text-white flex items-center justify-center text-base transition-colors">
+                <button id="close-taxonomy-modal-btn" class="w-9 h-9 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-gray-400 hover:text-white flex items-center justify-center text-base transition-colors" aria-label="Close taxonomy modal" title="Close taxonomy modal">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
@@ -1081,7 +1084,7 @@
     <!-- Gateway Settings Modal -->
     <div id="gateway-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
         <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
-            <button id="close-gateway-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg">
+            <button id="close-gateway-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-lg" aria-label="Close gateway configuration" title="Close gateway configuration">
                 <i class="fas fa-times"></i>
             </button>
             <h3 class="text-lg font-bold font-space text-white mb-2 flex items-center gap-2">
@@ -1092,21 +1095,21 @@
             </p>
             <div class="space-y-4 text-xs font-mono">
                 <div>
-                    <label class="block text-gray-300 mb-1">LiteLLM Gateway Base URL</label>
-                    <input type="text" id="gateway-url" value="/v1" placeholder="/v1 or http://localhost:4000" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none">
+                    <label for="modal-gateway-url" class="block text-gray-300 mb-1">LiteLLM Gateway Base URL</label>
+                    <input type="text" id="modal-gateway-url" value="/v1" placeholder="/v1 or http://localhost:4000" aria-label="LiteLLM Gateway Base URL" title="LiteLLM Gateway Base URL" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-gray-300 mb-1">LiteLLM Master Key</label>
-                    <input type="password" id="gateway-key" value="sk-xennials-playground-dev-key" placeholder="sk-..." class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none">
+                    <label for="modal-gateway-key" class="block text-gray-300 mb-1">LiteLLM Master Key</label>
+                    <input type="password" id="modal-gateway-key" value="sk-xennials-playground-dev-key" placeholder="sk-..." aria-label="LiteLLM Master Key" title="LiteLLM Master Key" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white focus:border-indigo-500 focus:outline-none">
                 </div>
                 <div>
-                    <label class="block text-gray-300 mb-1">fal.ai API Key (for Video / Image)</label>
-                    <input type="password" id="fal-key-input" placeholder="fal_key_..." class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white focus:border-amber-500 focus:outline-none">
+                    <label for="fal-key-input" class="block text-gray-300 mb-1">fal.ai API Key (for Video / Image)</label>
+                    <input type="password" id="fal-key-input" placeholder="fal_key_..." aria-label="fal.ai API Key" title="fal.ai API Key" class="w-full px-3 py-2 bg-slate-950 border border-slate-700 rounded-lg text-white focus:border-amber-500 focus:outline-none">
                 </div>
             </div>
             <div class="mt-6 flex justify-between items-center">
                 <span class="text-[10px] text-gray-500 font-mono">Saved in browser storage</span>
-                <button id="connect-gateway-btn" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-semibold text-xs transition-colors shadow-lg shadow-indigo-600/30">
+                <button id="modal-connect-gateway-btn" class="px-5 py-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg font-semibold text-xs transition-colors shadow-lg shadow-indigo-600/30">
                     Save & Connect
                 </button>
             </div>

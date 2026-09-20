@@ -122,40 +122,30 @@ export default defineConfig({
     // xterm/three/plot/etc. until a route actually needs them. Lazy page
     // imports in App.tsx create the route boundaries; these groups keep
     // shared node_modules out of every page chunk.
-    rolldownOptions: {
+    rollupOptions: {
       output: {
-        codeSplitting: {
-          minSize: 20_000,
-          groups: [
-            {
-              name: "react-vendor",
-              test: /node_modules[\\/](react|react-dom|scheduler|react-router|react-router)([\\/]|$)/,
-            },
-            {
-              name: "xterm",
-              test: /node_modules[\\/]@xterm[\\/]/,
-            },
-            {
-              name: "three",
-              test: /node_modules[\\/](three|@react-three)([\\/]|$)/,
-            },
-            {
-              name: "plot",
-              test: /node_modules[\\/]@observablehq[\\/]plot([\\/]|$)/,
-            },
-            {
-              name: "motion",
-              test: /node_modules[\\/](motion|framer-motion)([\\/]|$)/,
-            },
-            {
-              name: "ui",
-              test: /node_modules[\\/]@nous-research[\\/]ui([\\/]|$)/,
-            },
-            {
-              name: "vendor",
-              test: /node_modules[\\/]/,
-            },
-          ],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (/node_modules[\\/](react|react-dom|scheduler|react-router)([\\/]|$)/.test(id)) {
+              return "react-vendor";
+            }
+            if (/node_modules[\\/]@xterm[\\/]/.test(id)) {
+              return "xterm";
+            }
+            if (/node_modules[\\/](three|@react-three)([\\/]|$)/.test(id)) {
+              return "three";
+            }
+            if (/node_modules[\\/]@observablehq[\\/]plot([\\/]|$)/.test(id)) {
+              return "plot";
+            }
+            if (/node_modules[\\/](motion|framer-motion)([\\/]|$)/.test(id)) {
+              return "motion";
+            }
+            if (/node_modules[\\/]@nous-research[\\/]ui([\\/]|$)/.test(id)) {
+              return "ui";
+            }
+            return "vendor";
+          }
         },
       },
     },

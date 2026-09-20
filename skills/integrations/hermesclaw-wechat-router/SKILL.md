@@ -1,13 +1,17 @@
 ---
 name: hermesclaw-wechat-router
-description: Multi-agent WeChat multiplexer routing Hermes Agent, OpenClaw, and OpenCode concurrently on a single iLink WeChat account.
+description: Multi-agent WeChat multiplexer routing Hermes Agent, Open...
 tags:
-  - integrations
-  - wechat
-  - openclaw
-  - opencode
-  - ilink
-  - multi-agent
+- integrations
+- wechat
+- openclaw
+- opencode
+- ilink
+- multi-agent
+platforms:
+- linux
+- macos
+- windows
 ---
 
 # HermesClaw — Multi-Agent WeChat Multiplexer Workflow

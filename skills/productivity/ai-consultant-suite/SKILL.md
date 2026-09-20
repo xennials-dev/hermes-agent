@@ -1,14 +1,29 @@
 ---
 name: ai-consultant-suite
-description: "Autonomously execute end-to-end AI audits, reports, and upsells."
+description: Autonomously execute end-to-end AI audits, reports, and u...
 version: 1.0.0
 author: Terrance (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [Consulting, AutonomousAgent, AIAudit, Reports, Sales, Upsell, Business]
-    related_skills: [ai-audit, audit-analyze, audit-report, audit-review, ai-concierge]
+    tags:
+    - Consulting
+    - AutonomousAgent
+    - AIAudit
+    - Reports
+    - Sales
+    - Upsell
+    - Business
+    related_skills:
+    - ai-audit
+    - audit-analyze
+    - audit-report
+    - audit-review
+    - ai-concierge
 ---
 
 # Autonomous AI Consultant Agent

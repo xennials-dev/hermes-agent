@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Da.Winner.Net — Winnertainment | Only Winners Win</title>
+  <meta name="description" content="Da.Winner.Net is the premier platform for artists, producers and musicians to share music, network, and grow. Submit your songs, mixtapes, and beats. Free music promotion. Custom clothes, hats & shoes." />
+  <meta name="keywords" content="music, artists, producers, musicians, mixtapes, beats, free music promotion, winnertainment, da winner net" />
+  <meta property="og:title" content="Da.Winner.Net — Winnertainment | Only Winners Win" />
+  <meta property="og:description" content="The premier platform for artists, producers and musicians to share music and network." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://winnertainment.com/" />
+  <link rel="canonical" href="https://winnertainment.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="winnertainment.css" />
+</head>
+<body>
+
+  <!-- CURSOR GLOW -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- PRELOADER -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <div class="vinyl-loader">
+        <div class="vinyl-hole"></div>
+      </div>
+      <p>LOADING THE VIBE</p>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <span class="brand-icon">🏆</span>
+        <span class="brand-name">Da.Winner.Net</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#hero" class="nav-link active" data-index="01">Home</a>
+        <a href="#about" class="nav-link" data-index="02">About</a>
+        <a href="#releases" class="nav-link" data-index="03">Releases</a>
+        <a href="#artists" class="nav-link" data-index="04">Artists</a>
+        <a href="#merch" class="nav-link" data-index="05">Merch</a>
+        <a href="#submit" class="nav-link" data-index="06">Submit</a>
+      </div>
+
+      <div class="nav-right">
+        <a href="#submit" class="nav-btn">Submit Music <span>→</span></a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="#hero" class="mobile-link" data-index="01">Home</a>
+      <a href="#about" class="mobile-link" data-index="02">About</a>
+      <a href="#releases" class="mobile-link" data-index="03">Releases</a>
+      <a href="#artists" class="mobile-link" data-index="04">Artists</a>
+      <a href="#merch" class="mobile-link" data-index="05">Merch</a>
+      <a href="#submit" class="mobile-link" data-index="06">Submit</a>
+      <div class="mobile-menu-footer">
+        <a href="mailto:mqparker78@gmail.com">mqparker78@gmail.com</a>
+        <div class="mobile-socials">
+          <a href="https://instagram.com" aria-label="Instagram" title="Follow Winnertainment on Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" aria-label="YouTube" title="Subscribe to Winnertainment on YouTube" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+          <a href="https://soundcloud.com" aria-label="SoundCloud" title="Listen on SoundCloud" target="_blank" rel="noopener noreferrer"><i class="fab fa-soundcloud"></i></a>
+          <a href="https://tiktok.com" aria-label="TikTok" title="Follow Winnertainment on TikTok" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag animate-in">
+          <span class="tag-dot"></span>
+          <span>MUSIC NETWORK EST. 2020</span>
+        </div>
+        <h1 class="hero-title animate-in d1">
+          <span class="hero-line">Where</span>
+          <span class="hero-line italic">Winners</span>
+          <span class="hero-line">Share Their</span>
+          <span class="hero-line accent">Sound<span class="period">.</span></span>
+        </h1>
+        <p class="hero-desc animate-in d2">
+          The premier platform for artists, producers &amp; musicians to share music, network, and build their brand. Free promotion for your songs, mixtapes &amp; beats.
+        </p>
+        <div class="hero-actions animate-in d3">
+          <a href="#releases" class="btn-primary">
+            <span>Explore Releases</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+          <a href="#submit" class="btn-ghost">Submit Your Track</a>
+        </div>
+
+        <div class="hero-stats animate-in d4">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="500">0</span>
+            <span class="hero-stat-label">Artists</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="2000">0</span>
+            <span class="hero-stat-label">Tracks</span>
+          </div>
+          <div class="hero-stat-sep"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="50">0</span><span class="hero-stat-suffix">K</span>
+            <span class="hero-stat-label">Plays</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right animate-in d2">
+        <div class="hero-vinyl-wrap">
+          <video class="hero-vinyl-video" autoplay muted loop playsinline src="assets/videos/hero-vinyl.mp4"></video>
+          <div class="hero-vinyl">
+            <div class="vinyl-grooves"></div>
+            <div class="vinyl-label">
+              <span class="vinyl-label-text">WINNERTAINMENT</span>
+              <span class="vinyl-label-sub">ONLY WINNERS WIN</span>
+            </div>
+          </div>
+          <div class="hero-disc-glow"></div>
+        </div>
+        <div class="hero-floating-tag ft-1">🎵 Hip-Hop</div>
+        <div class="hero-floating-tag ft-2">🔥 R&B</div>
+        <div class="hero-floating-tag ft-3">🎤 Trap</div>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <!-- Marquee -->
+    <div class="hero-marquee">
+      <div class="marquee-track">
+        <span>ONLY WINNERS WIN ✦ DA.WINNER.NET ✦ WINNERTAINMENT ✦ FREE MUSIC PROMOTION ✦ ARTISTS ✦ PRODUCERS ✦ MUSICIANS ✦ CUSTOM MERCH ✦ NETWORK ✦ ONLY WINNERS WIN ✦ DA.WINNER.NET ✦ WINNERTAINMENT ✦ FREE MUSIC PROMOTION ✦ ARTISTS ✦ PRODUCERS ✦ MUSICIANS ✦ CUSTOM MERCH ✦ NETWORK ✦ </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section section-about">
+    <div class="container">
+      <div class="split-layout">
+        <div class="split-left">
+          <span class="sec-num">01</span>
+          <h2 class="sec-title">
+            The<br/><span class="italic">Winnertainment</span><br/>Movement
+          </h2>
+        </div>
+        <div class="split-right">
+          <p class="sec-desc">
+            More than a platform — we're a community of winners building something bigger. Da.Winner.Net is a way for artists, producers, and musicians to share music and network. We do custom clothes, hats &amp; shoes. <strong>Only Winners Win.</strong>
+          </p>
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-microphone-alt"></i></div>
+              <h3>For Artists</h3>
+              <p>Share your songs, mixtapes, and beats with a growing audience of real listeners and peers.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-sliders-h"></i></div>
+              <h3>For Producers</h3>
+              <p>Showcase your production skills, connect with artists looking for beats, build your reputation.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-users"></i></div>
+              <h3>Network</h3>
+              <p>Connect with creators, collaborate on projects, and grow together. Winners support winners.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-tshirt"></i></div>
+              <h3>Custom Merch</h3>
+              <p>Custom clothes, hats &amp; shoes. Rep your brand with exclusive Winnertainment gear.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RELEASES (MUSIC) ===== -->
+  <section id="releases" class="section section-releases">
+    <div class="container">
+      <div class="sec-header">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title-center">Latest <span class="italic">Releases</span></h2>
+        <p class="sec-sub">Listen to the hottest tracks from our community.</p>
+      </div>
+
+      <div class="releases-grid">
+        <div class="release-card" data-track="1">
+          <div class="release-art">
+            <video class="release-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/release-01.mp4"></video>
+            <img class="release-img-fallback" src="assets/release_01.png" alt="Winner's Anthem" />
+            <div class="release-art-inner gradient-1 d-none">
+              <i class="fas fa-compact-disc release-icon"></i>
+              <span class="release-number">01</span>
+            </div>
+            <button class="play-overlay" aria-label="Play Winner's Anthem" title="Play Winner's Anthem"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="release-info">
+            <h3>Winner's Anthem</h3>
+            <p>Da.Winner.Net Featured</p>
+          </div>
+          <span class="release-duration">3:45</span>
+        </div>
+
+        <div class="release-card" data-track="2">
+          <div class="release-art">
+            <video class="release-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/release-02.mp4"></video>
+            <div class="release-art-inner gradient-2">
+              <i class="fas fa-compact-disc release-icon"></i>
+              <span class="release-number">02</span>
+            </div>
+            <button class="play-overlay" aria-label="Play Only Winners Win" title="Play Only Winners Win"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="release-info">
+            <h3>Only Winners Win</h3>
+            <p>Winnertainment Records</p>
+          </div>
+          <span class="release-duration">4:12</span>
+        </div>
+
+        <div class="release-card" data-track="3">
+          <div class="release-art">
+            <video class="release-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/release-03.mp4"></video>
+            <div class="release-art-inner gradient-3">
+              <i class="fas fa-compact-disc release-icon"></i>
+              <span class="release-number">03</span>
+            </div>
+            <button class="play-overlay" aria-label="Play On Top" title="Play On Top"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="release-info">
+            <h3>On Top</h3>
+            <p>Da.Winner.Net Featured</p>
+          </div>
+          <span class="release-duration">3:28</span>
+        </div>
+
+        <div class="release-card" data-track="4">
+          <div class="release-art">
+            <video class="release-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/release-04.mp4"></video>
+            <div class="release-art-inner gradient-4">
+              <i class="fas fa-compact-disc release-icon"></i>
+              <span class="release-number">04</span>
+            </div>
+            <button class="play-overlay" aria-label="Play Grind Mode" title="Play Grind Mode"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="release-info">
+            <h3>Grind Mode</h3>
+            <p>Winnertainment Records</p>
+          </div>
+          <span class="release-duration">3:55</span>
+        </div>
+
+        <div class="release-card" data-track="5">
+          <div class="release-art">
+            <video class="release-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/release-05.mp4"></video>
+            <div class="release-art-inner gradient-5">
+              <i class="fas fa-compact-disc release-icon"></i>
+              <span class="release-number">05</span>
+            </div>
+            <button class="play-overlay" aria-label="Play Level Up" title="Play Level Up"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="release-info">
+            <h3>Level Up</h3>
+            <p>Da.Winner.Net Featured</p>
+          </div>
+          <span class="release-duration">4:01</span>
+        </div>
+
+        <div class="release-card" data-track="6">
+          <div class="release-art">
+            <video class="release-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/release-06.mp4"></video>
+            <div class="release-art-inner gradient-6">
+              <i class="fas fa-compact-disc release-icon"></i>
+              <span class="release-number">06</span>
+            </div>
+            <button class="play-overlay" aria-label="Play No Cap" title="Play No Cap"><i class="fas fa-play"></i></button>
+          </div>
+          <div class="release-info">
+            <h3>No Cap</h3>
+            <p>Winnertainment Records</p>
+          </div>
+          <span class="release-duration">3:33</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE DIVIDER ===== -->
+  <div class="divider-marquee">
+    <div class="marquee-track reverse">
+      <span>✦ ARTISTS ✦ PRODUCERS ✦ MUSICIANS ✦ BEATS ✦ MIXTAPES ✦ WINNERS ✦ ARTISTS ✦ PRODUCERS ✦ MUSICIANS ✦ BEATS ✦ MIXTAPES ✦ WINNERS ✦ ARTISTS ✦ PRODUCERS ✦ MUSICIANS ✦ BEATS ✦ MIXTAPES ✦ WINNERS ✦ </span>
+    </div>
+  </div>
+
+  <!-- ===== ARTISTS ===== -->
+  <section id="artists" class="section section-artists">
+    <div class="container">
+      <div class="sec-header">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title-center">Featured <span class="italic">Artists</span></h2>
+        <p class="sec-sub">Meet the talented creators in our community.</p>
+      </div>
+
+      <div class="artists-scroll">
+        <div class="artist-card">
+          <div class="artist-img gradient-1">
+            <video class="artist-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/artist-01.mp4"></video>
+            <i class="fas fa-user"></i>
+            <div class="artist-overlay">
+              <div class="artist-socials">
+                <a href="https://youtube.com" aria-label="YouTube Channel" title="YouTube Channel" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                <a href="https://soundcloud.com" aria-label="SoundCloud Profile" title="SoundCloud Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-soundcloud"></i></a>
+                <a href="https://instagram.com" aria-label="Instagram Profile" title="Instagram Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="artist-meta">
+            <h3>Featured Artist 1</h3>
+            <span class="artist-genre">Hip-Hop / Rap</span>
+          </div>
+          <div class="artist-stats">
+            <span><i class="fas fa-music"></i> 12 Tracks</span>
+            <span><i class="fas fa-headphones"></i> 5.2K</span>
+          </div>
+        </div>
+
+        <div class="artist-card">
+          <div class="artist-img gradient-2">
+            <video class="artist-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/artist-02.mp4"></video>
+            <i class="fas fa-user"></i>
+            <div class="artist-overlay">
+              <div class="artist-socials">
+                <a href="https://youtube.com" aria-label="YouTube Channel" title="YouTube Channel" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                <a href="https://soundcloud.com" aria-label="SoundCloud Profile" title="SoundCloud Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-soundcloud"></i></a>
+                <a href="https://instagram.com" aria-label="Instagram Profile" title="Instagram Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="artist-meta">
+            <h3>Featured Artist 2</h3>
+            <span class="artist-genre">R&B / Soul</span>
+          </div>
+          <div class="artist-stats">
+            <span><i class="fas fa-music"></i> 8 Tracks</span>
+            <span><i class="fas fa-headphones"></i> 3.8K</span>
+          </div>
+        </div>
+
+        <div class="artist-card">
+          <div class="artist-img gradient-3">
+            <video class="artist-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/artist-03.mp4"></video>
+            <i class="fas fa-user"></i>
+            <div class="artist-overlay">
+              <div class="artist-socials">
+                <a href="https://youtube.com" aria-label="YouTube Channel" title="YouTube Channel" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                <a href="https://soundcloud.com" aria-label="SoundCloud Profile" title="SoundCloud Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-soundcloud"></i></a>
+                <a href="https://instagram.com" aria-label="Instagram Profile" title="Instagram Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="artist-meta">
+            <h3>Featured Artist 3</h3>
+            <span class="artist-genre">Producer / Beatmaker</span>
+          </div>
+          <div class="artist-stats">
+            <span><i class="fas fa-music"></i> 20 Beats</span>
+            <span><i class="fas fa-headphones"></i> 8.1K</span>
+          </div>
+        </div>
+
+        <div class="artist-card">
+          <div class="artist-img gradient-4">
+            <video class="artist-video-loop" autoplay muted loop playsinline preload="metadata" src="assets/videos/artist-04.mp4"></video>
+            <i class="fas fa-user"></i>
+            <div class="artist-overlay">
+              <div class="artist-socials">
+                <a href="https://youtube.com" aria-label="YouTube Channel" title="YouTube Channel" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                <a href="https://soundcloud.com" aria-label="SoundCloud Profile" title="SoundCloud Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-soundcloud"></i></a>
+                <a href="https://instagram.com" aria-label="Instagram Profile" title="Instagram Profile" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="artist-meta">
+            <h3>Featured Artist 4</h3>
+            <span class="artist-genre">Trap / Drill</span>
+          </div>
+          <div class="artist-stats">
+            <span><i class="fas fa-music"></i> 15 Tracks</span>
+            <span><i class="fas fa-headphones"></i> 6.4K</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MERCH ===== -->
+  <section id="merch" class="section section-merch">
+    <div class="container">
+      <div class="split-layout">
+        <div class="split-left">
+          <span class="sec-num">04</span>
+          <h2 class="sec-title">
+            Winner<br/><span class="italic">Merch</span><span class="period accent">.</span>
+          </h2>
+          <p class="sec-desc merch-desc">Custom clothes, hats &amp; shoes. Rep the winner lifestyle with exclusive Winnertainment gear and custom designs.</p>
+          <a href="#" class="btn-primary merch-cta">
+            <span>Shop All</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+        <div class="split-right">
+          <div class="merch-grid">
+            <div class="merch-card">
+              <div class="merch-img gradient-1">
+                <video class="merch-video-loop" autoplay muted loop playsinline src="assets/videos/merch-tee.mp4"></video>
+                <i class="fas fa-tshirt"></i>
+                <span class="merch-badge">NEW</span>
+              </div>
+              <div class="merch-info">
+                <h3>Winner Tee — Black</h3>
+                <span class="merch-price">$35</span>
+              </div>
+            </div>
+            <div class="merch-card">
+              <div class="merch-img">
+                <video class="merch-video-loop" autoplay muted loop playsinline src="assets/videos/merch-hat.mp4"></video>
+                <img class="merch-img-fallback" src="assets/merch_hat.png" alt="Winner Snapback" />
+                <span class="merch-badge hot">HOT</span>
+              </div>
+              <div class="merch-info">
+                <h3>Winner Snapback</h3>
+                <span class="merch-price">$28</span>
+              </div>
+            </div>
+            <div class="merch-card">
+              <div class="merch-img">
+                <video class="merch-video-loop" autoplay muted loop playsinline src="assets/videos/merch-kicks.mp4"></video>
+                <img class="merch-img-fallback" src="assets/merch_kicks.png" alt="Custom Winner Kicks" />
+                <span class="merch-badge custom">CUSTOM</span>
+              </div>
+              <div class="merch-info">
+                <h3>Custom Winner Kicks</h3>
+                <span class="merch-price">$120</span>
+              </div>
+            </div>
+            <div class="merch-card">
+              <div class="merch-img gradient-4">
+                <video class="merch-video-loop" autoplay muted loop playsinline src="assets/videos/merch-hoodie.mp4"></video>
+                <i class="fas fa-vest"></i>
+              </div>
+              <div class="merch-info">
+                <h3>Winner Hoodie</h3>
+                <span class="merch-price">$55</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUBMIT ===== -->
+  <section id="submit" class="section section-submit">
+    <div class="container">
+      <div class="submit-layout">
+        <div class="submit-left">
+          <span class="sec-num">05</span>
+          <h2 class="sec-title">
+            Submit<br/>Your <span class="italic">Music</span><span class="period accent">.</span>
+          </h2>
+          <p class="sec-desc">Want to share your songs or mixtapes on Da.Winner.Net? We promote your music for <strong>FREE</strong>.</p>
+          <ul class="check-list">
+            <li><span class="check-icon">✦</span> YouTube links</li>
+            <li><span class="check-icon">✦</span> SoundCloud links</li>
+            <li><span class="check-icon">✦</span> MP3s with artwork</li>
+            <li><span class="check-icon">✦</span> Up to 5 links per artist</li>
+            <li><span class="check-icon">✦</span> 100% Free promotion</li>
+          </ul>
+        </div>
+        <div class="submit-right">
+          <form id="submitForm" class="submit-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="artistName">Artist Name</label>
+                <input id="artistName" name="artistName" type="text" placeholder="Your stage name" required />
+              </div>
+              <div class="form-group">
+                <label for="artistEmail">Email</label>
+                <input id="artistEmail" name="artistEmail" type="email" placeholder="your@email.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="submitGenre">Genre</label>
+              <select id="submitGenre" name="genre" aria-label="Music Genre" title="Select Music Genre" required>
+                <option value="">Select genre</option>
+                <option value="Hip-Hop / Rap">Hip-Hop / Rap</option>
+                <option value="R&B / Soul">R&B / Soul</option>
+                <option value="Trap / Drill">Trap / Drill</option>
+                <option value="Pop">Pop</option>
+                <option value="Beats / Production">Beats / Production</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="musicLinks">Music Links (up to 5)</label>
+              <textarea id="musicLinks" name="musicLinks" rows="4" placeholder="Paste YouTube, SoundCloud, or other links — one per line" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="shortBio">Short Bio</label>
+              <textarea id="shortBio" name="shortBio" rows="3" placeholder="Tell us about yourself and your music..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-full" aria-label="Submit music for review" title="Submit for Review">
+              <span>Submit for Review</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-cta">
+          <h2>Ready to<br/><span class="italic">Win</span>?</h2>
+          <a href="mailto:mqparker78@gmail.com" class="btn-primary">
+            <span>Get in Touch</span>
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <span class="brand-icon">🏆</span>
+            <span class="brand-name">Da.Winner.Net</span>
+          </div>
+          <p>The premier music networking platform.<br/>Only winners win.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <a href="#hero">Home</a>
+          <a href="#about">About</a>
+          <a href="#releases">Releases</a>
+          <a href="#artists">Artists</a>
+        </div>
+        <div class="footer-col">
+          <h4>More</h4>
+          <a href="#merch">Merch Shop</a>
+          <a href="#submit">Submit Music</a>
+          <a href="mailto:mqparker78@gmail.com">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-socials">
+            <a href="#" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="#" aria-label="SoundCloud" title="SoundCloud"><i class="fab fa-soundcloud"></i></a>
+            <a href="#" aria-label="TikTok" title="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="X" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Winnertainment.com — Da.Winner.Net</span>
+        <span>ONLY WINNERS WIN</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FIXED PLAYER BAR -->
+  <div class="player-bar" id="playerBar">
+    <div class="player-bar-inner">
+      <div class="player-bar-left">
+        <div class="player-bar-art gradient-1">
+          <i class="fas fa-compact-disc"></i>
+        </div>
+        <div class="player-bar-info">
+          <span class="player-bar-track" id="pTrack">Select a Track</span>
+          <span class="player-bar-artist" id="pArtist">Da.Winner.Net</span>
+        </div>
+      </div>
+      <div class="player-bar-center">
+        <button class="pb-btn" id="pbPrev" aria-label="Previous Track" title="Previous Track"><i class="fas fa-step-backward"></i></button>
+        <button class="pb-btn pb-play" id="pbPlay" aria-label="Play or Pause Track" title="Play or Pause Track"><i class="fas fa-play" id="pbPlayIcon"></i></button>
+        <button class="pb-btn" id="pbNext" aria-label="Next Track" title="Next Track"><i class="fas fa-step-forward"></i></button>
+      </div>
+      <div class="player-bar-right">
+        <span class="pb-time" id="pbTime">0:00</span>
+        <div class="pb-progress" id="pbProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Track playback progress">
+          <div class="pb-progress-fill" id="pbFill"></div>
+        </div>
+        <span class="pb-time" id="pbTotal">3:45</span>
+        <button class="pb-btn pb-vol" aria-label="Toggle Volume" title="Toggle Volume"><i class="fas fa-volume-up"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCROLL TOP -->
+  <button id="scrollTop" class="scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="winnertainment.js"></script>
+</body>
+</html>

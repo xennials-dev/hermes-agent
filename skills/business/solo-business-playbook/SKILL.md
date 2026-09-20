@@ -1,14 +1,25 @@
 ---
 name: solo-business-playbook
-description: "Operational playbook for 45 remote and home-based AI business models."
+description: Operational playbook for 45 remote and home-based AI busi...
 version: 1.0.0
 author: Xennials (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [SoloBusiness, RemoteWork, Freelancing, SideHustle, Agency, Xennials]
-    related_skills: [monetization-engine, one-person-ai-stack]
+    tags:
+    - SoloBusiness
+    - RemoteWork
+    - Freelancing
+    - SideHustle
+    - Agency
+    - Xennials
+    related_skills:
+    - monetization-engine
+    - one-person-ai-stack
 ---
 
 # 45 High-Yield Remote & Home Business Playbook

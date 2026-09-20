@@ -1,0 +1,11 @@
+{
+  "name": "hyperframes-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "description": "HyperFrames code-first video composition for Xennials Web",
+  "scripts": {
+    "check": "npx hyperframes check index.html",
+    "preview": "npx hyperframes preview",
+    "render": "npx hyperframes render index.html --output output.mp4"
+  }
+}

@@ -1,13 +1,22 @@
 ---
 name: multi-agent-team
-description: "Orchestrate a 5-agent specialized bot team (Laura, Drew, Bob, Cody, Logan) with local FastAPI pipeline execution, testing, telemetry, and Cloudflare/Vercel deployments."
+description: Orchestrate a 5-agent specialized bot team (Laura, Drew...
 version: 1.0.0
 author: Hermes Multi-Agent Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [MultiAgent, BotMode, TeamOrchestration, LocalFirstDashboard, CloudflareDeploy, CI/CD]
+    tags:
+    - MultiAgent
+    - BotMode
+    - TeamOrchestration
+    - LocalFirstDashboard
+    - CloudflareDeploy
+    - CI/CD
 ---
 
 # Hermes Multi-Agent Bot Team & Bridge

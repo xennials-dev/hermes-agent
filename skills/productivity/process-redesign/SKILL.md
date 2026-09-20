@@ -1,14 +1,24 @@
 ---
 name: process-redesign
-description: "Optimize and streamline business workflows using AOA framework."
+description: Optimize and streamline business workflows using AOA fram...
 version: 1.0.0
 author: Terrance (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [Process, Workflow, Optimization, Automation, Operations]
-    related_skills: [audit-analyze, knowledge-system]
+    tags:
+    - Process
+    - Workflow
+    - Optimization
+    - Automation
+    - Operations
+    related_skills:
+    - audit-analyze
+    - knowledge-system
 ---
 
 # Process Redesign (AOA Framework)

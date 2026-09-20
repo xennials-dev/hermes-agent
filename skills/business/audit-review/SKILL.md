@@ -1,14 +1,26 @@
 ---
 name: audit-review
-description: "Conduct the 30-minute client review call, present the audit findings, qualify upsell opportunities, and close high-ticket implementation packages."
+description: Conduct the 30-minute client review call, present the aud...
 version: 1.0.0
 author: Hermes Consulting Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [ReviewCall, SalesClosing, UpsellStrategy, RetainerPitch]
-    related_skills: [ai-audit, audit-report, knowledge-system, process-redesign, ai-concierge]
+    tags:
+    - ReviewCall
+    - SalesClosing
+    - UpsellStrategy
+    - RetainerPitch
+    related_skills:
+    - ai-audit
+    - audit-report
+    - knowledge-system
+    - process-redesign
+    - ai-concierge
 ---
 
 # Review Call & Upsell Qualification

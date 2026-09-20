@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Xennials AI & Full-Stack Web Development</title>
+    <meta name="description" content="Explore production applications and AI agent systems engineered by Xennials. Full-stack web apps, autonomous agents, business booking platforms, and API gateways.">
+    <meta name="keywords" content="Fiverr Portfolio, AI Automation, Full Stack Developer, React 19, Next.js, Python AI, DeepTutor, Hermes Agent, Web Development">
+    
+    <!-- Preload Fonts & Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .portfolio-filter-btn.active {
+            background: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+        .project-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.7), 0 0 15px rgba(99, 102, 241, 0.2);
+        }
+        .metric-badge {
+            background: rgba(15, 23, 42, 0.8);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-[#0b0f19] text-gray-200 overflow-x-hidden relative">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-slate-800/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="flex items-center gap-2 group py-1" aria-label="Xennials Home">
+                    <img src="assets/images/xennials-gold-logo.png" alt="Xennials AI Logo" class="brand-logo-img">
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                    <a href="index.html" class="hover:text-indigo-400 transition-colors">Home</a>
+                    <a href="portfolio.html" class="text-indigo-400 font-semibold border-b-2 border-indigo-500 pb-0.5">Portfolio</a>
+                    <a href="#live-sandbox" class="hover:text-cyan-400 transition-colors">Sandbox</a>
+                    <a href="#performance-audits" class="hover:text-emerald-400 transition-colors">Audits</a>
+                    <a href="#edge-ai" class="hover:text-purple-400 transition-colors">Edge AI</a>
+                    <a href="playground.html" class="hover:text-indigo-400 transition-colors">Playground</a>
+                    <a href="blog.html" class="hover:text-indigo-400 transition-colors">Blog</a>
+                    <a href="skills.html" class="hover:text-indigo-400 transition-colors">Skills</a>
+                    
+                    <!-- Projects Directory Dropdown -->
+                    <div class="nav-dropdown">
+                        <button class="flex items-center gap-1.5 hover:text-indigo-400 transition-colors py-1 focus:outline-none" aria-expanded="false" id="projects-menu-btn">
+                            <span>Projects</span>
+                            <i class="fas fa-chevron-down text-xs text-gray-400 transition-transform"></i>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="px-3 py-1.5 text-[11px] font-semibold text-gray-400 uppercase tracking-wider border-b border-slate-800">
+                                Live Ecosystem
+                            </div>
+                            <a href="deeptutor.html" class="dropdown-item">
+                                <div class="w-7 h-7 rounded-lg bg-cyan-950 flex items-center justify-center text-cyan-400"><i class="fas fa-robot"></i></div>
+                                <div>
+                                    <div class="font-semibold text-white">TutorBot Agents</div>
+                                    <div class="text-[11px] text-gray-400 font-mono">Autonomous Socratic Hub</div>
+                                </div>
+                            </a>
+                            <a href="https://jasminetnails-booking.vercel.app" target="_blank" rel="noopener noreferrer" class="dropdown-item">
+                                <div class="w-7 h-7 rounded-lg bg-pink-950 flex items-center justify-center text-pink-400"><i class="fas fa-calendar-check"></i></div>
+                                <div>
+                                    <div class="font-semibold text-white">Jasmine's Nails Booking</div>
+                                    <div class="text-[11px] text-gray-400 font-mono">Live Vercel Production</div>
+                                </div>
+                            </a>
+                            <a href="playground.html" class="dropdown-item">
+                                <div class="w-7 h-7 rounded-lg bg-indigo-950 flex items-center justify-center text-indigo-400"><i class="fas fa-microchip"></i></div>
+                                <div>
+                                    <div class="font-semibold text-white">Agent Playground</div>
+                                    <div class="text-[11px] text-gray-400 font-mono">Nous Hermes & CodeGraph</div>
+                                </div>
+                            </a>
+                            <a href="winnertainment.html" class="dropdown-item">
+                                <div class="w-7 h-7 rounded-lg bg-rose-950 flex items-center justify-center text-rose-400"><i class="fas fa-gamepad"></i></div>
+                                <div>
+                                    <div class="font-semibold text-white">Winnertainment Arcade</div>
+                                    <div class="text-[11px] text-gray-400 font-mono">Interactive Retro Gaming</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <a href="#fiverr-gigs" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition-all shadow-lg shadow-emerald-500/20">
+                        <i class="fas fa-bolt"></i>
+                        <span>Hire on Fiverr</span>
+                    </a>
+                    <a href="index.html#contact" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition-all shadow-lg shadow-indigo-500/20">
+                        <span>Get in Touch</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-36 pb-20 px-6 relative overflow-hidden">
+        <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-br from-indigo-600/20 via-cyan-500/10 to-transparent blur-3xl pointer-events-none rounded-full"></div>
+
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-semibold uppercase tracking-widest mb-6">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                Official Freelance Portfolio • Available for Q3/Q4 Projects
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                Architecting Intelligent <span class="bg-gradient-to-r from-indigo-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent">AI Systems</span> & Modern Web Platforms
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-lg sm:text-xl text-gray-300 leading-relaxed mb-10">
+                Explore 10 production-ready applications engineered inside the AntiGravity ecosystem — spanning autonomous tool-calling agents, local business booking platforms, high-performance API gateways, and code-first video engines.
+            </p>
+
+            <!-- Metrics Strip -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+                <div class="metric-badge p-5 rounded-2xl">
+                    <div class="text-3xl font-extrabold text-indigo-400 font-mono">10+</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider mt-1 font-semibold">Production Apps</div>
+                </div>
+                <div class="metric-badge p-5 rounded-2xl">
+                    <div class="text-3xl font-extrabold text-cyan-400 font-mono">-57%</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider mt-1 font-semibold">Token Reduction</div>
+                </div>
+                <div class="metric-badge p-5 rounded-2xl">
+                    <div class="text-3xl font-extrabold text-emerald-400 font-mono">&lt; 350ms</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider mt-1 font-semibold">API Latency</div>
+                </div>
+                <div class="metric-badge p-5 rounded-2xl">
+                    <div class="text-3xl font-extrabold text-pink-400 font-mono">100%</div>
+                    <div class="text-xs text-gray-400 uppercase tracking-wider mt-1 font-semibold">On-Time Delivery</div>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3.5">
+                <a href="#live-sandbox" class="px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 font-semibold text-white text-xs uppercase tracking-wider shadow-lg shadow-cyan-500/25 transition-all">
+                    <i class="fab fa-telegram-plane mr-1.5"></i> Live Sandbox
+                </a>
+                <a href="#performance-audits" class="px-6 py-3 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 font-semibold text-white text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/25 transition-all">
+                    <i class="fas fa-chart-line mr-1.5"></i> Before & After Audits
+                </a>
+                <a href="#edge-ai" class="px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 font-semibold text-white text-xs uppercase tracking-wider shadow-lg shadow-purple-600/25 transition-all">
+                    <i class="fas fa-microchip mr-1.5"></i> Edge & Local AI
+                </a>
+                <a href="#all-projects" class="px-6 py-3 rounded-full bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-white font-semibold text-xs uppercase tracking-wider transition-all">
+                    All 10 Projects
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Intro Video & Developer Profile Section -->
+    <section class="py-16 px-6 bg-slate-900/40 border-y border-slate-800/60 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Video Player (DocsVideo showcase) -->
+            <div class="lg:col-span-7">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/80 bg-black aspect-video group">
+                    <video 
+                        id="intro-video-element"
+                        class="w-full h-full object-cover" 
+                        poster="https://static.heygen.ai/hyperframes-oss/docs/images/showcase/journey-developers-v3.jpg"
+                        src="https://static.heygen.ai/hyperframes-oss/docs/images/showcase/journey-developers-v3-v2.mp4"
+                        preload="metadata"
+                        playsinline
+                    ></video>
+
+                    <!-- Custom Glassmorphic Controls Bar -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/20 transition-all pointer-events-none" id="video-overlay-play">
+                        <button type="button" class="w-20 h-20 rounded-full bg-indigo-600/90 hover:bg-indigo-500 text-white flex items-center justify-center text-2xl shadow-xl shadow-indigo-600/40 pointer-events-auto transform group-hover:scale-110 transition-transform cursor-pointer" onclick="toggleIntroVideo()" title="Play introduction video" aria-label="Play introduction video">
+                            <i class="fas fa-play translate-x-0.5"></i>
+                        </button>
+                    </div>
+
+                    <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent p-4 flex items-center justify-between text-xs text-white">
+                        <div class="flex items-center gap-3">
+                            <button type="button" onclick="toggleIntroVideo()" class="text-white hover:text-cyan-400 transition-colors p-1" id="video-ctrl-btn" title="Toggle play/pause" aria-label="Toggle play/pause">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <span class="font-mono text-gray-300" id="video-time-display">0:00 / 0:45</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 rounded bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-mono text-[10px] uppercase">HyperFrames Engine</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Story & Skills Breakdown -->
+            <div class="lg:col-span-5 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
+                    <i class="fas fa-user-check"></i>
+                    <span>Senior AI & Full-Stack Architect</span>
+                </div>
+
+                <h2 class="text-3xl font-extrabold text-white tracking-tight leading-snug">
+                    Bridging Analog Intuition With Digital Precision
+                </h2>
+
+                <p class="text-gray-300 text-sm leading-relaxed">
+                    I design and implement custom autonomous agents, intelligent full-stack platforms, and business automation pipelines. Every solution is delivered with enterprise-grade testing, documented architecture, and zero runtime bloat.
+                </p>
+
+                <div class="space-y-3 pt-2">
+                    <div class="flex items-center gap-3 text-sm text-gray-300">
+                        <i class="fas fa-check-circle text-emerald-400"></i>
+                        <span><strong>Full-Stack Excellence:</strong> React 19, Next.js 15, TypeScript, Tailwind v4, Python</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-gray-300">
+                        <i class="fas fa-check-circle text-emerald-400"></i>
+                        <span><strong>Agentic AI Infrastructure:</strong> Nous Hermes, CodeGraph AST, LangChain, Ollama</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-gray-300">
+                        <i class="fas fa-check-circle text-emerald-400"></i>
+                        <span><strong>Compliance & Verification:</strong> U.S. W-9 Submitted • Official ID Verified • Fast 1h Response</span>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex items-center gap-4">
+                    <a href="#fiverr-gigs" class="px-6 py-2.5 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-semibold text-xs uppercase tracking-wider shadow-lg shadow-emerald-500/20 transition-all">
+                        View Fiverr Gigs
+                    </a>
+                    <a href="https://github.com/heygen-com/hyperframes" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white font-semibold text-xs tracking-wider transition-all border border-slate-700">
+                        <i class="fab fa-github mr-1"></i> Open Source
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- 1. LIVE SANDBOX / INTERACTIVE TELEGRAM BOT STATE & MINI AI AGENT -->
+    <!-- ================================================================= -->
+    <section id="live-sandbox" class="py-20 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                Live Neural Playground
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                Interactive Telegram Bot & Workflow State
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+                Experience our multi-model neural gateway in real-time. Trigger automated subagent workflows, query Xennials services, or inspect live webhook payloads directly from your browser.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <!-- Left: Telegram Bot Simulation Window (7 cols) -->
+            <div class="lg:col-span-7 glass-card rounded-3xl border border-slate-800 overflow-hidden shadow-2xl flex flex-col h-[640px]">
+                <!-- Telegram Window Header -->
+                <div class="bg-slate-900/95 px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="relative">
+                            <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white text-base font-bold shadow-md">
+                                <i class="fab fa-telegram-plane"></i>
+                            </div>
+                            <span class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 rounded-full border-2 border-slate-900" title="Online"></span>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="font-bold text-white text-sm">Xennials Agent Bot</span>
+                                <i class="fas fa-check-circle text-cyan-400 text-xs" title="Verified Bot"></i>
+                            </div>
+                            <div class="text-[11px] text-gray-400 font-mono flex items-center gap-2">
+                                <span>@XennialsAgentBot</span>
+                                <span class="text-emerald-400">• listening on port 9119</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <button type="button" id="tg-clear-btn" class="text-xs text-gray-400 hover:text-white px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" title="Clear Chat History">
+                            <i class="fas fa-trash-alt mr-1"></i> Clear
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Command Quick Trigger Pills -->
+                <div class="bg-slate-900/60 px-6 py-3 border-b border-slate-800/80 flex items-center gap-2 overflow-x-auto text-xs">
+                    <span class="text-[11px] font-mono text-gray-400 uppercase tracking-wider shrink-0">Triggers:</span>
+                    <button type="button" class="tg-command-pill px-3 py-1.5 rounded-full bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/40 text-cyan-300 font-mono text-xs font-semibold whitespace-nowrap transition-all hover:scale-105 cursor-pointer" data-cmd="/audit">
+                        <i class="fas fa-tachometer-alt mr-1"></i> /audit
+                    </button>
+                    <button type="button" class="tg-command-pill px-3 py-1.5 rounded-full bg-indigo-950/80 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-300 font-mono text-xs font-semibold whitespace-nowrap transition-all hover:scale-105 cursor-pointer" data-cmd="/deploy_agent">
+                        <i class="fas fa-robot mr-1"></i> /deploy_agent
+                    </button>
+                    <button type="button" class="tg-command-pill px-3 py-1.5 rounded-full bg-purple-950/80 hover:bg-purple-900 border border-purple-500/40 text-purple-300 font-mono text-xs font-semibold whitespace-nowrap transition-all hover:scale-105 cursor-pointer" data-cmd="/model_status">
+                        <i class="fas fa-microchip mr-1"></i> /model_status
+                    </button>
+                    <button type="button" class="tg-command-pill px-3 py-1.5 rounded-full bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-500/40 text-emerald-300 font-mono text-xs font-semibold whitespace-nowrap transition-all hover:scale-105 cursor-pointer" data-cmd="/quote">
+                        <i class="fas fa-calculator mr-1"></i> /quote
+                    </button>
+                </div>
+
+                <!-- Chat History Area -->
+                <div id="tg-chat-history" class="flex-1 p-6 overflow-y-auto space-y-4 bg-gradient-to-b from-black/40 via-slate-900/20 to-black/60 font-sans text-xs">
+                    <!-- Default initial bot greeting -->
+                    <div class="flex gap-3 max-w-[85%] mr-auto">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold shrink-0 shadow-md">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="space-y-1">
+                            <div class="bg-slate-800/90 border border-slate-700/80 rounded-2xl rounded-tl-none p-3.5 text-xs text-gray-200 leading-relaxed shadow-lg">
+                                👋 <strong>Welcome to the Xennials Neural Workflow Sandbox!</strong><br/><br/>
+                                I am an autonomous orchestrator connected to our multi-platform neural model APIs and local GPU inference node.<br/><br/>
+                                Try clicking one of the <strong>command pills</strong> above, or ask a question in natural language (e.g. <em>"How does CodeGraph AST save tokens?"</em> or <em>"What models do you run locally?"</em>).
+                            </div>
+                            <span class="text-[10px] text-gray-500 font-mono px-1">Just now • Live</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Field Area -->
+                <div class="p-4 bg-slate-900/95 border-t border-slate-800">
+                    <div class="flex items-center gap-2 bg-black/60 border border-slate-700/80 rounded-2xl px-4 py-2 focus-within:border-cyan-500 transition-colors">
+                        <i class="fas fa-terminal text-gray-500 text-xs"></i>
+                        <input type="text" id="tg-chat-input" placeholder="Type a message or command (/audit, /deploy_agent)..." class="bg-transparent text-xs text-white placeholder-gray-500 focus:outline-none flex-1 py-1">
+                        <button type="button" id="tg-send-btn" class="w-8 h-8 rounded-xl bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white flex items-center justify-center text-xs transition-transform hover:scale-105 cursor-pointer" title="Send message" aria-label="Send message">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-gray-500 font-mono mt-2 px-1">
+                        <span>Press <kbd class="px-1 py-0.5 rounded bg-slate-800 text-gray-400">Enter</kbd> to send</span>
+                        <span class="text-cyan-400/80">⚡ Local WebSocket Bridge Active</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Webhook Telemetry & Architecture Inspector (5 cols) -->
+            <div class="lg:col-span-5 space-y-6">
+                <!-- Live Telemetry Monitor Card -->
+                <div class="glass-card rounded-3xl p-6 border border-slate-800 relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <h3 class="text-sm font-bold text-white uppercase tracking-wider font-mono">Webhook Telemetry</h3>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="tg-latency-badge" class="px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-mono text-[11px]">18ms</span>
+                            <span id="tg-token-badge" class="px-2 py-0.5 rounded bg-purple-950/80 border border-purple-500/40 text-purple-300 font-mono text-[11px]">142 tok</span>
+                        </div>
+                    </div>
+
+                    <div class="relative bg-black/90 rounded-2xl p-4 border border-slate-800 font-mono text-[11px] text-gray-300 h-[260px] overflow-y-auto">
+                        <button type="button" id="tg-copy-log-btn" class="absolute top-3 right-3 text-[10px] text-gray-400 hover:text-white px-2 py-1 rounded bg-slate-800/80 hover:bg-slate-700 transition-colors cursor-pointer" title="Copy JSON Payload">
+                            <i class="fas fa-copy mr-1"></i> Copy
+                        </button>
+                        <pre id="tg-telemetry-json" class="text-cyan-300 leading-relaxed font-mono">
+{
+  "event": "handshake_established",
+  "timestamp": "2026-09-13T19:20:00Z",
+  "protocol": "WSS / HTTPS Webhook",
+  "client_id": "tg_guest_session",
+  "route": "/api/v1/bot/webhook",
+  "status": 200,
+  "latency_ms": 18,
+  "tokens_consumed": 142,
+  "runtime": "Nous Hermes + FastAPI Bridge",
+  "edge_verified": true
+}</pre>
+                    </div>
+                </div>
+
+                <!-- Key Capabilities Pill Grid -->
+                <div class="glass-card rounded-3xl p-6 border border-slate-800 space-y-4">
+                    <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider font-mono flex items-center gap-2">
+                        <i class="fas fa-cubes text-indigo-400"></i>
+                        <span>Neural Model Architecture Highlights</span>
+                    </h4>
+
+                    <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800/80">
+                            <div class="text-cyan-400 font-bold">Multi-Platform</div>
+                            <div class="text-gray-400 text-[11px] mt-0.5">Telegram • Discord • Web</div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800/80">
+                            <div class="text-indigo-400 font-bold">CodeGraph AST</div>
+                            <div class="text-gray-400 text-[11px] mt-0.5">-57% Token Burn Rate</div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800/80">
+                            <div class="text-emerald-400 font-bold">Tool Calling</div>
+                            <div class="text-gray-400 text-[11px] mt-0.5">n8n, Activepieces, REST</div>
+                        </div>
+                        <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800/80">
+                            <div class="text-pink-400 font-bold">Local Fallback</div>
+                            <div class="text-gray-400 text-[11px] mt-0.5">Ollama / On-Prem GPU</div>
+                        </div>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="playground.html" class="w-full inline-flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-600/20">
+                            <span>Open Full Agent Playground</span>
+                            <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top 4 Flagship Case Studies -->
+    <section id="case-studies" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-950/60 border border-indigo-500/30 text-indigo-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                Flagship Implementations
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                Featured Case Studies
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mt-4 text-base">
+                Deep dive into high-impact systems deployed across education, agentic intelligence, and local business booking.
+            </p>
+        </div>
+
+        <div class="space-y-16">
+
+            <!-- Case Study 1: DeepTutor -->
+            <div class="glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-mono text-xs font-semibold">AI Education</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-800 text-gray-300 font-mono text-xs">Next.js + FastAPI</span>
+                            <span class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs">Live Multi-Agent</span>
+                        </div>
+
+                        <h3 class="text-3xl font-extrabold text-white">
+                            DeepTutor — Autonomous Multi-Agent Tutoring Ecosystem
+                        </h3>
+
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            A production learning portal combining pedagogical agent routing with FastAPI streaming. DeepTutor evaluates student comprehension in real time, breaks complex concepts into digestible Socratic dialogues, and persists context across sessions.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 pt-2">
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-cyan-400 font-mono">100%</div>
+                                <div class="text-xs text-gray-400 mt-1">Autonomous Socratic Routing</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-indigo-400 font-mono">&lt; 400ms</div>
+                                <div class="text-xs text-gray-400 mt-1">Token First-Byte Latency</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-emerald-400 font-mono">Multi-Agent</div>
+                                <div class="text-xs text-gray-400 mt-1">Specialized Pedagogical Roles</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 pt-2">
+                            <a href="deeptutor.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-600/30">
+                                <span>Launch TutorBot Hub</span>
+                                <i class="fas fa-robot text-[10px]"></i>
+                            </a>
+                            <a href="https://github.com/xennials-dev/DeepTutor" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white font-semibold text-xs tracking-wider border border-slate-700 transition-all">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub Repository</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 via-cyan-950/30 to-slate-900 rounded-2xl p-6 border border-cyan-900/40">
+                        <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fas fa-terminal"></i>
+                            <span>System Architecture</span>
+                        </div>
+                        <div class="bg-black/80 rounded-xl p-4 font-mono text-xs text-gray-300 space-y-2 border border-slate-800">
+                            <div class="text-emerald-400">// Pedagogical Orchestrator</div>
+                            <div>POST /api/v1/tutor/solve</div>
+                            <div class="text-gray-500">Agent: TutorBot-Reasoning</div>
+                            <div class="text-cyan-300">Model: Gemini 2.5 / DeepSeek</div>
+                            <div class="text-purple-400">Context: AST Memory Buffer</div>
+                            <div class="text-yellow-400">Response: SSE Stream (Chunked)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 2: Jasmine's Nails Booking -->
+            <div class="glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="px-3 py-1 rounded-full bg-pink-950/80 border border-pink-500/40 text-pink-300 font-mono text-xs font-semibold">E-Commerce & Booking</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-800 text-gray-300 font-mono text-xs">React 19 + Tailwind</span>
+                            <span class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs">Vercel Production</span>
+                        </div>
+
+                        <h3 class="text-3xl font-extrabold text-white">
+                            Jasmine's Nails — High-Conversion Local Business Booking App
+                        </h3>
+
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            An ultra-responsive salon appointment scheduling platform built for conversion. Features mobile-first date/time slot picker, instant add-on pricing calculator, automated calendar synching, and high-contrast accessibility.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 pt-2">
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-pink-400 font-mono">Mobile 1st</div>
+                                <div class="text-xs text-gray-400 mt-1">Instant Touch Navigation</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-indigo-400 font-mono">Real-Time</div>
+                                <div class="text-xs text-gray-400 mt-1">Tiered Cost Calculator</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-emerald-400 font-mono">100/100</div>
+                                <div class="text-xs text-gray-400 mt-1">Lighthouse Performance</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 pt-2">
+                            <a href="https://jasminetnails-booking.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-pink-600 hover:bg-pink-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-pink-600/30">
+                                <span>Launch Live Vercel App</span>
+                                <i class="fas fa-external-link-alt text-[10px]"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 via-pink-950/20 to-slate-900 rounded-2xl p-6 border border-pink-900/40">
+                        <div class="text-xs font-mono text-pink-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Booking Capabilities</span>
+                        </div>
+                        <ul class="text-xs text-gray-300 space-y-2.5 font-mono">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Dynamic calendar time-slot allocation</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Client SMS / Email confirmation triggers</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Custom nail art tier selector with live subtotal</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Full Vercel serverless edge deployment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 3: Nous Hermes AI Agent & CodeGraph -->
+            <div class="glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="px-3 py-1 rounded-full bg-purple-950/80 border border-purple-500/40 text-purple-300 font-mono text-xs font-semibold">Autonomous Agents</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-800 text-gray-300 font-mono text-xs">Python + Rust AST</span>
+                            <span class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs">-57% Token Burn</span>
+                        </div>
+
+                        <h3 class="text-3xl font-extrabold text-white">
+                            Nous Hermes AI Agent & CodeGraph OS Integration
+                        </h3>
+
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Autonomous AI agent system engineered with CodeGraph AST knowledge indexing. Eliminates trial-and-error recursive file scanning by indexing repository symbols into an abstract syntax tree, cutting token consumption by 57% and eliminating 71% of redundant tool calls.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 pt-2">
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-purple-400 font-mono">-57%</div>
+                                <div class="text-xs text-gray-400 mt-1">Token Burn Reduction</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-cyan-400 font-mono">-71%</div>
+                                <div class="text-xs text-gray-400 mt-1">Tool Calls Eliminated</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-emerald-400 font-mono">+46%</div>
+                                <div class="text-xs text-gray-400 mt-1">Faster Task Velocity</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 pt-2">
+                            <a href="playground.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-purple-600/30">
+                                <span>Launch Agent Playground</span>
+                                <i class="fas fa-terminal text-[10px]"></i>
+                            </a>
+                            <a href="https://github.com/xennials-dev/xennials-agent" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white font-semibold text-xs tracking-wider border border-slate-700 transition-all">
+                                <i class="fab fa-github"></i>
+                                <span>CodeGraph Source</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 via-purple-950/20 to-slate-900 rounded-2xl p-6 border border-purple-900/40">
+                        <div class="text-xs font-mono text-purple-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fas fa-network-wired"></i>
+                            <span>Multi-Channel Gateways</span>
+                        </div>
+                        <div class="bg-black/80 rounded-xl p-4 font-mono text-xs text-gray-300 space-y-2 border border-slate-800">
+                            <div>CLI / Terminal: <span class="text-emerald-400">Active</span></div>
+                            <div>Web Dashboard: <span class="text-emerald-400">Active (port 9119)</span></div>
+                            <div>Discord Gateway: <span class="text-purple-300">Bi-directional</span></div>
+                            <div>Telegram Gateway: <span class="text-cyan-300">Live Webhook</span></div>
+                            <div>Model Runtime: <span class="text-yellow-300">Ollama / OpenRouter / Nous</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case Study 4: Next.js Visual Website Builder -->
+            <div class="glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 relative overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <span class="px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-mono text-xs font-semibold">Web Platforms</span>
+                            <span class="px-3 py-1 rounded-full bg-slate-800 text-gray-300 font-mono text-xs">Next.js 15 + React 19</span>
+                            <span class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs">Modular CMS Blocks</span>
+                        </div>
+
+                        <h3 class="text-3xl font-extrabold text-white">
+                            Next.js Visual Website Builder & Custom CMS Block System
+                        </h3>
+
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            A high-speed drag-and-drop page builder engineered with Next.js App Router and server actions. Allows non-technical editors to assemble responsive landing pages, configure marketing themes, and serialize structured layout JSON without writing code.
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-4 pt-2">
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-indigo-400 font-mono">App Router</div>
+                                <div class="text-xs text-gray-400 mt-1">Next.js 15 Server Components</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-cyan-400 font-mono">Zero-Latency</div>
+                                <div class="text-xs text-gray-400 mt-1">Live Canvas Preview</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                                <div class="text-xl font-bold text-emerald-400 font-mono">JSON Export</div>
+                                <div class="text-xs text-gray-400 mt-1">Portable CMS Schema</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4 pt-2">
+                            <a href="index.html" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-indigo-600/30">
+                                <span>Explore Web Architecture</span>
+                                <i class="fas fa-arrow-right text-[10px]"></i>
+                            </a>
+                            <a href="https://xennials.vercel.app" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-800 hover:bg-slate-700 text-gray-300 hover:text-white font-semibold text-xs tracking-wider border border-slate-700 transition-all">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Vercel Production</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 via-indigo-950/20 to-slate-900 rounded-2xl p-6 border border-indigo-900/40">
+                        <div class="text-xs font-mono text-indigo-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Block Library Architecture</span>
+                        </div>
+                        <ul class="text-xs text-gray-300 space-y-2 font-mono">
+                            <li>• Hero / Value Proposition Sections</li>
+                            <li>• Responsive Dynamic Data Grids</li>
+                            <li>• Interactive Pricing & Tier Cards</li>
+                            <li>• Multi-Step Lead Intake Forms</li>
+                            <li>• Tailwind Theme Token Ingestion</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- 2. PERFORMANCE AUDIT "BEFORE & AFTER" STATES                     -->
+    <!-- ================================================================= -->
+    <section id="performance-audits" class="py-24 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                <i class="fas fa-chart-line text-emerald-400"></i>
+                Full-Stack Performance Engineering
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                Client Optimization: Before vs. After
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+                Interactive case studies showcasing our full-stack web audits, Core Web Vitals optimization, and conversion-rate engineering. Toggle between the "Before" and "After" states to inspect the exact metrics and technical remedies.
+            </p>
+        </div>
+
+        <!-- Project Switcher & State Toggle Bar -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-10 bg-slate-900/80 p-3 rounded-2xl border border-slate-800">
+            <!-- Project Tabs -->
+            <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                <button type="button" class="audit-project-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white border-transparent cursor-pointer" data-project="modern-styles">
+                    <i class="fas fa-spa mr-1.5"></i> Modern Styles Business Suites
+                </button>
+                <button type="button" class="audit-project-btn px-4 py-2 rounded-xl text-xs font-semibold text-gray-300 hover:text-white bg-slate-800 border border-slate-700 transition-all cursor-pointer" data-project="winnertainment">
+                    <i class="fas fa-gamepad mr-1.5"></i> Winnertainment Arcade Hub
+                </button>
+            </div>
+
+            <!-- Before / After Toggle -->
+            <div class="flex items-center gap-1.5 bg-black/60 p-1 rounded-xl border border-slate-800 shrink-0">
+                <button type="button" class="audit-state-toggle-btn px-5 py-2 rounded-xl text-xs font-semibold text-gray-400 hover:text-white bg-slate-800/80 border border-slate-700/60 transition-all cursor-pointer" data-state="before">
+                    <i class="fas fa-history mr-1 text-rose-400"></i> Before Optimization
+                </button>
+                <button type="button" class="audit-state-toggle-btn px-5 py-2 rounded-xl text-xs font-bold transition-all shadow-md bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-emerald-500/20 cursor-pointer" data-state="after">
+                    <i class="fas fa-bolt mr-1 text-amber-300"></i> After Optimization
+                </button>
+            </div>
+        </div>
+
+        <!-- Dynamic Audit Display Card -->
+        <div class="glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 shadow-2xl relative overflow-hidden">
+            <!-- Header with Title & Badge -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-slate-800/80">
+                <div>
+                    <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider">Audit Case Study Analysis</span>
+                    <h3 id="audit-project-title" class="text-2xl sm:text-3xl font-extrabold text-white mt-1">
+                        Modern Styles Business Suites — Salon Booking Platform
+                    </h3>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span id="audit-badge" class="px-3.5 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider font-mono border bg-emerald-950/80 border-emerald-500/50 text-emerald-300 transition-all">
+                        High-Performance Certified
+                    </span>
+                </div>
+            </div>
+
+            <!-- Score & Metrics Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center py-8">
+                <!-- Circular Score Gauge (4 cols) -->
+                <div class="lg:col-span-4 flex flex-col items-center justify-center p-6 bg-slate-900/60 rounded-2xl border border-slate-800">
+                    <div class="relative w-44 h-44 flex items-center justify-center">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                            <!-- Background Track -->
+                            <circle cx="50" cy="50" r="40" stroke="#1e293b" stroke-width="8" fill="none" />
+                            <!-- Dynamic Score Circle -->
+                            <circle id="audit-score-circle" cx="50" cy="50" r="40" stroke="#10b981" stroke-width="8" stroke-dasharray="248, 251" stroke-linecap="round" fill="none" class="transition-all duration-700 ease-out" />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span id="audit-score-value" class="text-5xl font-extrabold font-mono text-emerald-400 transition-colors duration-500">99</span>
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest font-mono font-semibold">Lighthouse</span>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <div class="text-xs font-semibold text-gray-300">Overall Performance Index</div>
+                        <div class="text-[11px] text-gray-500 font-mono mt-0.5">Simulated Mobile Moto G4 on Slow 4G</div>
+                    </div>
+                </div>
+
+                <!-- Core Web Vitals Key Dials (8 cols) -->
+                <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    <!-- Metric 1: LCP -->
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-gray-400 font-mono">
+                            <span>LCP (Largest Paint)</span>
+                            <span id="audit-lcp-status" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-gray-300">Good</span>
+                        </div>
+                        <div id="audit-lcp-val" class="text-2xl font-bold font-mono text-emerald-400 mt-2">0.78s</div>
+                        <div class="text-[10px] text-gray-500 mt-1">Target: &lt; 2.5s</div>
+                    </div>
+
+                    <!-- Metric 2: CLS -->
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-gray-400 font-mono">
+                            <span>CLS (Layout Shift)</span>
+                            <span id="audit-cls-status" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-gray-300">Good</span>
+                        </div>
+                        <div id="audit-cls-val" class="text-2xl font-bold font-mono text-emerald-400 mt-2">0.000</div>
+                        <div class="text-[10px] text-gray-500 mt-1">Target: &lt; 0.10</div>
+                    </div>
+
+                    <!-- Metric 3: INP -->
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <div class="flex items-center justify-between text-xs text-gray-400 font-mono">
+                            <span>INP (Interaction)</span>
+                            <span id="audit-inp-status" class="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-gray-300">Good</span>
+                        </div>
+                        <div id="audit-inp-val" class="text-2xl font-bold font-mono text-emerald-400 mt-2">32ms</div>
+                        <div class="text-[10px] text-gray-500 mt-1">Target: &lt; 200ms</div>
+                    </div>
+
+                    <!-- Metric 4: Total Weight -->
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <div class="text-xs text-gray-400 font-mono">Total Transferred</div>
+                        <div id="audit-weight-val" class="text-2xl font-bold font-mono text-cyan-400 mt-2">340 KB</div>
+                        <div class="text-[10px] text-gray-500 mt-1">Payload Size</div>
+                    </div>
+
+                    <!-- Metric 5: Conversion Rate -->
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <div class="text-xs text-gray-400 font-mono">Conversion Rate</div>
+                        <div id="audit-conversion-val" class="text-2xl font-bold font-mono text-emerald-400 mt-2">4.8%</div>
+                        <div class="text-[10px] text-gray-500 mt-1">Booking Velocity</div>
+                    </div>
+
+                    <!-- Metric 6: Bounce Rate -->
+                    <div class="bg-slate-900/70 p-4 rounded-xl border border-slate-800 flex flex-col justify-between">
+                        <div class="text-xs text-gray-400 font-mono">Bounce Rate</div>
+                        <div id="audit-bounce-val" class="text-2xl font-bold font-mono text-purple-400 mt-2">24%</div>
+                        <div class="text-[10px] text-gray-500 mt-1">User Retention</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Dive Breakdown & Remedies -->
+            <div class="pt-6 border-t border-slate-800/80 grid grid-cols-1 md:grid-cols-12 gap-8">
+                <div class="md:col-span-5 space-y-3">
+                    <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider font-mono flex items-center gap-2">
+                        <i class="fas fa-file-invoice text-indigo-400"></i>
+                        <span>Audit Summary</span>
+                    </h4>
+                    <p id="audit-summary-desc" class="text-xs text-gray-300 leading-relaxed">
+                        Re-engineered with Next.js 15 Server Components, modern AVIF/WebP image pipeline, critical CSS inlining, Redis edge caching, and zero cumulative layout shifts.
+                    </p>
+                </div>
+
+                <div class="md:col-span-7 space-y-3">
+                    <h4 class="text-xs font-bold text-gray-300 uppercase tracking-wider font-mono flex items-center gap-2">
+                        <i class="fas fa-clipboard-check text-cyan-400"></i>
+                        <span>Technical Analysis & Remedies</span>
+                    </h4>
+                    <ul id="audit-points-list" class="space-y-2 font-mono">
+                        <!-- Populated dynamically via JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Complete AntiGravity Application Catalog (10 Projects) -->
+    <section id="all-projects" class="py-20 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-3">
+                    AntiGravity Ecosystem
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                    Complete Application Catalog
+                </h2>
+                <p class="text-gray-400 text-sm mt-2">
+                    Filter by domain to inspect architecture, source code, and live implementations.
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-2">
+                <button class="portfolio-filter-btn active px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-gray-300 hover:text-white transition-all cursor-pointer" onclick="filterProjects('all', this)">
+                    All (10)
+                </button>
+                <button class="portfolio-filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-gray-300 hover:text-white transition-all cursor-pointer" onclick="filterProjects('ai', this)">
+                    AI & Agents (4)
+                </button>
+                <button class="portfolio-filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-gray-300 hover:text-white transition-all cursor-pointer" onclick="filterProjects('web', this)">
+                    Full-Stack Web (3)
+                </button>
+                <button class="portfolio-filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-gray-300 hover:text-white transition-all cursor-pointer" onclick="filterProjects('booking', this)">
+                    Business & Booking (1)
+                </button>
+                <button class="portfolio-filter-btn px-4 py-2 rounded-xl text-xs font-semibold border border-slate-700 bg-slate-800 text-gray-300 hover:text-white transition-all cursor-pointer" onclick="filterProjects('creative', this)">
+                    Creative Tech (2)
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+
+            <!-- Card 1: Xennials Web OS -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="web ai">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-indigo-950/80 border border-indigo-500/40 text-indigo-400">Flagship Web OS</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Xennials Web OS</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Comprehensive agency portal and AI execution studio featuring interactive terminal emulation (xterm.js), 3D constellations, and profile management.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">React 19</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Vite</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Tailwind v4</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Three.js</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="index.html" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold flex items-center gap-1">
+                            Explore Portal <i class="fas fa-arrow-right text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-gray-500 font-mono">v2.5.0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: DeepTutor -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="ai">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-400">Autonomous AI</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">DeepTutor Platform</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        AI-powered Socratic tutoring system with multi-agent orchestration, SSE stream reasoning, and interactive student evaluation.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Next.js</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">FastAPI</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Python</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">TutorBots</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="deeptutor.html" class="text-xs text-cyan-400 hover:text-cyan-300 font-semibold flex items-center gap-1">
+                            Launch TutorBot <i class="fas fa-robot text-[10px]"></i>
+                        </a>
+                        <a href="https://github.com/xennials-dev/DeepTutor" target="_blank" rel="noopener noreferrer" class="text-[11px] text-gray-400 hover:text-white font-mono flex items-center gap-1">
+                            <i class="fab fa-github"></i> Source
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Jasmine's Nails -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="booking web">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-pink-950/80 border border-pink-500/40 text-pink-400">Business Booking</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Jasmine's Nails Booking</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Modern salon appointment and service scheduling web application with date picker, add-on pricing calculator, and mobile checkout.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Vite</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">React 19</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Tailwind</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Vercel</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="https://jasminetnails-booking.vercel.app" target="_blank" rel="noopener noreferrer" class="text-xs text-pink-400 hover:text-pink-300 font-semibold flex items-center gap-1">
+                            Live Vercel App <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-emerald-400 font-mono">100% Mobile</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Nous Hermes AI Agent -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="ai">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-purple-950/80 border border-purple-500/40 text-purple-400">Agentic Engine</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Nous Hermes Agent & CodeGraph</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Autonomous tool-calling AI agent with pre-indexed CodeGraph AST indexing, cutting 57% of token burn and orchestrating multi-channel tasks.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Python</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">CodeGraph AST</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Discord/Telegram</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="playground.html" class="text-xs text-purple-400 hover:text-purple-300 font-semibold flex items-center gap-1">
+                            Agent Playground <i class="fas fa-terminal text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-purple-400 font-mono">-57% Tokens</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Free LLM API Gateway -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="ai web">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-400">API Infrastructure</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Free LLM API Gateway</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Multi-provider unified LLM API proxy with automatic key rotation, rate-limiting queues, and OpenAI API drop-in compatibility.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">TypeScript</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Monorepo</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Docker</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">REST API</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="playground.html" class="text-xs text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1">
+                            API Console <i class="fas fa-bolt text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-gray-500 font-mono">Key Rotator</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Next.js Website Builder -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="web">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-blue-950/80 border border-blue-500/40 text-blue-400">Drag & Drop CMS</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Next.js Website Builder</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Modular page-builder environment leveraging Next.js 15 App Router, React Server Components, and live visual theme customizers.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Next.js 15</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">React 19</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">App Router</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="https://xennials.vercel.app" target="_blank" rel="noopener noreferrer" class="text-xs text-blue-400 hover:text-blue-300 font-semibold flex items-center gap-1">
+                            Live Vercel App <i class="fas fa-external-link-alt text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-gray-500 font-mono">Tailwind v4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7: Wan 2.1 Video Studio -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="creative ai">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-yellow-950/80 border border-yellow-500/40 text-yellow-400">Generative AI Video</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Wan 2.1 Video Studio</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Local and cloud generative video launcher with automated prompt queues, checkpoint loading, and desktop orchestration scripts.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Python</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">PyTorch</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Wan 2.1</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Gradio CLI</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="#fiverr-gigs" class="text-xs text-yellow-400 hover:text-yellow-300 font-semibold flex items-center gap-1">
+                            Video Pipeline <i class="fas fa-film text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-yellow-400 font-mono">1080p Video</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8: HyperFrames Code-First Video Suite -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="creative web">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-teal-950/80 border border-teal-500/40 text-teal-400">Code Video Engine</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">HyperFrames Video Suite</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Deterministic HTML/CSS/GSAP composition engine with automated linter checks, timeline registration, and embedded DocsVideo React component.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">HTML5 Video</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">GSAP 3</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">DocsVideo</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">CLI Render</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="videos/showcase/index.html" target="_blank" class="text-xs text-teal-400 hover:text-teal-300 font-semibold flex items-center gap-1">
+                            Play Showcase <i class="fas fa-play text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-teal-400 font-mono">Headless MP4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 9: Winnertainment Arcade Hub -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="creative web">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-rose-950/80 border border-rose-500/40 text-rose-400">Interactive Game</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Winnertainment Arcade Hub</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Retro-futuristic browser arcade platform built with HTML5 Canvas, Web Audio API synthesis, and zero-framework pure performance.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">JavaScript ES6</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">HTML5 Canvas</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Web Audio</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="winnertainment.html" target="_blank" class="text-xs text-rose-400 hover:text-rose-300 font-semibold flex items-center gap-1">
+                            Launch Arcade <i class="fas fa-gamepad text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-rose-400 font-mono">60 FPS Render</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 10: Webiny Serverless Headless CMS -->
+            <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 flex flex-col justify-between" data-category="web">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-orange-950/80 border border-orange-500/40 text-orange-400">Enterprise Cloud</span>
+                        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400" title="Active Production"></span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Webiny Serverless Headless CMS</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-4">
+                        Enterprise multi-tenant CMS extensions running on AWS Lambda and GraphQL, complete with live preview hooks and custom plugins.
+                    </p>
+                </div>
+                <div>
+                    <div class="flex flex-wrap gap-1.5 mb-5 font-mono text-[10px] text-gray-400">
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Webiny</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">AWS Lambda</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">GraphQL</span>
+                        <span class="bg-slate-800 px-2 py-0.5 rounded">Serverless</span>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                        <a href="https://github.com/xennials-dev" target="_blank" rel="noopener noreferrer" class="text-xs text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1">
+                            Cloud Architecture <i class="fas fa-cloud text-[10px]"></i>
+                        </a>
+                        <span class="text-[11px] text-gray-500 font-mono">Serverless Scale</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================================================================= -->
+    <!-- 3. EDGE AI & HARDWARE INTEGRATION PROFILES                        -->
+    <!-- ================================================================= -->
+    <section id="edge-ai" class="py-24 px-6 max-w-7xl mx-auto border-t border-slate-800/80">
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                <i class="fas fa-microchip text-purple-400"></i>
+                Bare-Metal & Embedded Intelligence
+            </div>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                Edge AI & Hardware Integration Profiles
+            </h2>
+            <p class="text-gray-400 max-w-2xl mx-auto mt-4 text-sm sm:text-base">
+                Bridging physical hardware configurations with autonomous AI logic. We deploy on-premise high-performance GPU nodes, configure Docker GPU passthrough, and engineer custom firmware applications.
+            </p>
+        </div>
+
+        <!-- Interactive Architecture Tabs -->
+        <div class="flex flex-wrap gap-2.5 mb-10 justify-center">
+            <button type="button" class="edge-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold border border-cyan-500 text-cyan-400 bg-cyan-950/40 transition-all flex items-center gap-2 cursor-pointer" data-target="edge-panel-gpu">
+                <i class="fas fa-server"></i> On-Prem GPU Inference Rig
+            </button>
+            <button type="button" class="edge-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold border border-slate-700 text-gray-400 bg-slate-800/50 hover:text-white transition-all flex items-center gap-2 cursor-pointer" data-target="edge-panel-docker">
+                <i class="fab fa-docker"></i> Docker Compose GPU Allocation
+            </button>
+            <button type="button" class="edge-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold border border-slate-700 text-gray-400 bg-slate-800/50 hover:text-white transition-all flex items-center gap-2 cursor-pointer" data-target="edge-panel-firmware">
+                <i class="fas fa-tv"></i> Custom Firmware & SlimBOXtv
+            </button>
+            <button type="button" class="edge-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold border border-slate-700 text-gray-400 bg-slate-800/50 hover:text-white transition-all flex items-center gap-2 cursor-pointer" data-target="edge-panel-topology">
+                <i class="fas fa-project-diagram"></i> Edge-to-Cloud Topology
+            </button>
+        </div>
+
+        <!-- Tab Panel 1: On-Prem GPU Inference Rig -->
+        <div id="edge-panel-gpu" class="edge-tab-panel glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 shadow-2xl">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 font-mono text-xs font-semibold">Bare-Metal Inference</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-gray-300 font-mono text-xs">Dual RTX 4090 / A100</span>
+                        <span class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs">Air-Gapped Privacy</span>
+                    </div>
+
+                    <h3 class="text-3xl font-extrabold text-white">
+                        Dual RTX 4090 / A100 High-Performance On-Premise Inference Server
+                    </h3>
+
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Engineered for organizations requiring zero cloud data leakage and deterministic sub-15ms local inference. Hosts quantized open-weight reasoning models (DeepSeek-R1, Nous Hermes 70B, Llama 3.3) via vLLM and Ollama with CUDA memory pinning.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-cyan-400 font-mono">85 tok/s</div>
+                            <div class="text-xs text-gray-400 mt-1">Local Generation Speed</div>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-indigo-400 font-mono">100%</div>
+                            <div class="text-xs text-gray-400 mt-1">Zero Data Egress / Air-Gapped</div>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-emerald-400 font-mono">&lt; 14ms</div>
+                            <div class="text-xs text-gray-400 mt-1">Local Network Latency</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs text-gray-300 font-mono pt-2">
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-cyan-400"></i> AWQ & EXL2 4-bit precision quantization for maximum VRAM efficiency</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-cyan-400"></i> Tailscale / WireGuard mesh tunneling with authenticated TLS mTLS</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-cyan-400"></i> Automated fallback failover to cloud endpoints during peak load</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 via-cyan-950/20 to-slate-900 rounded-2xl p-6 border border-cyan-900/40 font-mono text-xs">
+                    <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-3 flex items-center justify-between">
+                        <span><i class="fas fa-terminal mr-1.5"></i> Node Hardware Specs</span>
+                        <span class="text-emerald-400 font-bold">ONLINE</span>
+                    </div>
+                    <div class="bg-black/80 rounded-xl p-4 space-y-2 text-gray-300 border border-slate-800">
+                        <div><span class="text-gray-500">Host:</span> xennials-edge-rig-01</div>
+                        <div><span class="text-gray-500">Compute:</span> 2x NVIDIA GeForce RTX 4090 24GB</div>
+                        <div><span class="text-gray-500">CUDA Cores:</span> 32,768 • Tensor: 1,024 (4th Gen)</div>
+                        <div><span class="text-gray-500">VRAM Total:</span> 48 GB GDDR6X (1,008 GB/s bandwidth)</div>
+                        <div><span class="text-gray-500">Engine:</span> vLLM v0.6.4 + Ollama 0.5.8 Daemon</div>
+                        <div><span class="text-gray-500">Quant Model:</span> Nous-Hermes-3-Llama-3.1-70B-AWQ</div>
+                        <div><span class="text-gray-500">Context Window:</span> 128k Tokens (FlashAttention-2)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Panel 2: Docker Compose GPU Allocation -->
+        <div id="edge-panel-docker" class="edge-tab-panel glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 shadow-2xl hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 rounded-full bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 font-mono text-xs font-semibold">Container Orchestration</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-gray-300 font-mono text-xs">NVIDIA Container Toolkit</span>
+                    </div>
+
+                    <h3 class="text-3xl font-extrabold text-white">
+                        Docker Compose GPU Allocation & Multi-Container AI Swarms
+                    </h3>
+
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Production multi-container orchestration utilizing <code class="text-cyan-300 font-mono">nvidia-container-toolkit</code> to isolate GPU resources, manage persistent cache volumes, and route autonomous n8n workflows through localized LiteLLM proxy routers.
+                    </p>
+
+                    <div class="space-y-3 text-xs text-gray-300 font-mono">
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-indigo-400"></i> Declarative resource reservations with strict memory thresholds</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-indigo-400"></i> CUDA runtime passthrough without kernel overhead</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-indigo-400"></i> Automated health checks and restart policies for 24/7 reliability</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 relative">
+                    <div class="bg-black/90 rounded-2xl p-5 border border-slate-800 font-mono text-xs text-gray-300 relative">
+                        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-800">
+                            <span class="text-indigo-400 text-xs font-bold"><i class="fab fa-docker mr-1.5"></i> docker-compose.ai.yml</span>
+                            <button type="button" id="copy-docker-compose-btn" class="text-[10px] text-gray-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 transition-colors cursor-pointer">
+                                <i class="fas fa-copy mr-1"></i> Copy YAML
+                            </button>
+                        </div>
+                        <pre id="docker-compose-code" class="text-cyan-300 text-[11px] leading-relaxed overflow-x-auto">
+version: '3.8'
+
+services:
+  ollama-gpu:
+    image: ollama/ollama:latest
+    container_name: xennials_local_gpu_node
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - /mnt/fast_nvme/ollama:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - OLLAMA_FLASH_ATTENTION=1
+      - OLLAMA_KEEP_ALIVE=24h
+      - CUDA_VISIBLE_DEVICES=0,1
+
+  litellm-proxy:
+    image: ghcr.io/berriai/litellm:main-latest
+    ports:
+      - "4000:4000"
+    depends_on:
+      - ollama-gpu
+    volumes:
+      - ./litellm_config.yaml:/app/config.yaml
+    command: ["--config", "/app/config.yaml", "--port", "4000"]</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Panel 3: Custom Firmware & SlimBOXtv -->
+        <div id="edge-panel-firmware" class="edge-tab-panel glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 shadow-2xl hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="px-3 py-1 rounded-full bg-pink-950/80 border border-pink-500/40 text-pink-300 font-mono text-xs font-semibold">Embedded & IoT Systems</span>
+                        <span class="px-3 py-1 rounded-full bg-slate-800 text-gray-300 font-mono text-xs">Amlogic S905X / Rockchip</span>
+                        <span class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-mono text-xs">Root Automation</span>
+                    </div>
+
+                    <h3 class="text-3xl font-extrabold text-white">
+                        Custom Firmware Engineering & SlimBOXtv Hardware Setups
+                    </h3>
+
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Extending AI logic directly into physical devices. We flash, customize, and automate ARM-based media hardware (Amlogic S905X3/S905X4 and Rockchip SoC platforms) utilizing debloated SlimBOXtv Android TV firmware with root Magisk modules, automated ADB daemons, and low-power 24/7 edge listeners.
+                    </p>
+
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-pink-400 font-mono">10W</div>
+                            <div class="text-xs text-gray-400 mt-1">Ultra-Low Power Draw</div>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-indigo-400 font-mono">ADB Shell</div>
+                            <div class="text-xs text-gray-400 mt-1">Autonomous Daemon Hooks</div>
+                        </div>
+                        <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800">
+                            <div class="text-xl font-bold text-emerald-400 font-mono">Magisk Root</div>
+                            <div class="text-xs text-gray-400 mt-1">Unrestricted Kernel Control</div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-2.5 text-xs text-gray-300 font-mono pt-2">
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> SlimBOXtv ROM optimization: 0 bloatware, native 4K AV1/HEVC hardware decoding</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Headless daemon scripts for remote telemetry, wake-on-LAN, and kiosk playback</div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Direct neural audio integration: voice wake word trigger to localized LLM agent</div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 via-pink-950/20 to-slate-900 rounded-2xl p-6 border border-pink-900/40 font-mono text-xs">
+                    <div class="text-xs font-mono text-pink-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                        <i class="fas fa-microchip"></i>
+                        <span>Embedded Firmware Deployment Pipeline</span>
+                    </div>
+                    <div class="bg-black/80 rounded-xl p-4 space-y-3 text-gray-300 border border-slate-800">
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 rounded-full bg-pink-900/60 text-pink-400 flex items-center justify-center text-[10px] shrink-0">1</span>
+                            <div><strong>Burning Tool:</strong> Amlogic USB Burning Tool v3.x flash SlimBOXtv ATV ROM image.</div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 rounded-full bg-pink-900/60 text-pink-400 flex items-center justify-center text-[10px] shrink-0">2</span>
+                            <div><strong>Kernel Patch:</strong> Magisk root injection + Termux bootstrap environment.</div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 rounded-full bg-pink-900/60 text-pink-400 flex items-center justify-center text-[10px] shrink-0">3</span>
+                            <div><strong>Daemon Service:</strong> Python micro-listener executing headless ADB keyevent triggers.</div>
+                        </div>
+                        <div class="flex items-start gap-2">
+                            <span class="w-5 h-5 rounded-full bg-pink-900/60 text-pink-400 flex items-center justify-center text-[10px] shrink-0">4</span>
+                            <div><strong>Mesh Sync:</strong> WireGuard VPN link directly into central Xennials Neural Hub.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Panel 4: Edge-to-Cloud Topology Diagram -->
+        <div id="edge-panel-topology" class="edge-tab-panel glass-card rounded-3xl p-8 lg:p-12 border border-slate-800 shadow-2xl hidden">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-xs font-mono text-cyan-400 uppercase tracking-wider">End-to-End Orchestration</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Unified Edge & Cloud Mesh Architecture</h3>
+                <p class="text-gray-400 text-xs mt-2">
+                    How high-level automation requests flow securely between public cloud APIs, physical GPU servers, and embedded edge devices.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs font-mono">
+                <!-- Step 1 -->
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="w-7 h-7 rounded-lg bg-cyan-950 text-cyan-400 flex items-center justify-center font-bold">01</span>
+                        <i class="fas fa-globe text-gray-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-white mb-1">Trigger Ingestion</div>
+                        <div class="text-gray-400 text-[11px]">Telegram Webhook, React Web UI, or REST API Request.</div>
+                    </div>
+                    <div class="text-cyan-400 text-[10px]">Cloud Edge Gateways</div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="w-7 h-7 rounded-lg bg-indigo-950 text-indigo-400 flex items-center justify-center font-bold">02</span>
+                        <i class="fas fa-network-wired text-gray-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-white mb-1">WireGuard Mesh</div>
+                        <div class="text-gray-400 text-[11px]">Encrypted tunnel connects cloud proxy to private on-prem GPU rig.</div>
+                    </div>
+                    <div class="text-indigo-400 text-[10px]">mTLS Encrypted Bridge</div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="w-7 h-7 rounded-lg bg-purple-950 text-purple-400 flex items-center justify-center font-bold">03</span>
+                        <i class="fas fa-microchip text-gray-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-white mb-1">Local GPU Inference</div>
+                        <div class="text-gray-400 text-[11px]">Ollama/vLLM executes Nous Hermes 70B with CodeGraph AST index.</div>
+                    </div>
+                    <div class="text-purple-400 text-[10px]">Dual RTX 4090 Bare-Metal</div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="w-7 h-7 rounded-lg bg-pink-950 text-pink-400 flex items-center justify-center font-bold">04</span>
+                        <i class="fas fa-bolt text-gray-500"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold text-white mb-1">Edge Hardware Actuation</div>
+                        <div class="text-gray-400 text-[11px]">Commands dispatch to SlimBOXtv media boxes or automated webhooks.</div>
+                    </div>
+                    <div class="text-pink-400 text-[10px]">ADB & IoT Action Handlers</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fiverr Service Packages & Gigs -->
+    <section id="fiverr-gigs" class="py-24 px-6 bg-slate-900/50 border-t border-slate-800/80">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-300 text-xs font-semibold uppercase tracking-wider mb-4">
+                    <i class="fas fa-check-shield"></i>
+                    <span>Marketplace Services</span>
+                </div>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+                    Published Fiverr Service Gigs
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-4 text-base">
+                    Productized freelance services optimized for rapid delivery, clear deliverables, and 5-star results.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                
+                <!-- Gig 1 -->
+                <div class="glass-card rounded-3xl p-8 border border-slate-800 flex flex-col justify-between relative hover:border-emerald-500/50 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-indigo-950/80 border border-indigo-500/40 text-indigo-400">Flagship AI Service</span>
+                            <span class="text-xs font-mono text-emerald-400 font-bold">From $150</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">
+                            I will build autonomous AI agents and intelligent chatbots using Python and React
+                        </h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                            Custom AI chatbots with tool-calling capabilities, vector databases, LangChain pipelines, and live web interfaces.
+                        </p>
+                        
+                        <div class="space-y-2.5 text-xs text-gray-300 mb-6 font-mono">
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Basic: Prompt & Single API ($150)</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Standard: Tool-Calling Agent + UI ($450)</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Premium: Multi-Agent + Memory ($1,200)</div>
+                        </div>
+                    </div>
+
+                    <a href="https://www.fiverr.com" target="_blank" rel="noopener noreferrer" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-emerald-500/20">
+                        Order on Fiverr
+                    </a>
+                </div>
+
+                <!-- Gig 2 -->
+                <div class="glass-card rounded-3xl p-8 border border-slate-800 flex flex-col justify-between relative hover:border-pink-500/50 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-pink-950/80 border border-pink-500/40 text-pink-400">Web & Booking</span>
+                            <span class="text-xs font-mono text-emerald-400 font-bold">From $120</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">
+                            I will develop custom web applications and appointment booking systems using React
+                        </h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                            Turn visitors into bookings. Fast, responsive booking systems with calendar sync, price calculators, and payment setup.
+                        </p>
+                        
+                        <div class="space-y-2.5 text-xs text-gray-300 mb-6 font-mono">
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Basic: Landing Page ($120)</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Standard: Full Booking Calendar ($380)</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-pink-400"></i> Premium: Platform + Stripe ($950)</div>
+                        </div>
+                    </div>
+
+                    <a href="https://www.fiverr.com" target="_blank" rel="noopener noreferrer" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-pink-600/20">
+                        Order on Fiverr
+                    </a>
+                </div>
+
+                <!-- Gig 3 -->
+                <div class="glass-card rounded-3xl p-8 border border-slate-800 flex flex-col justify-between relative hover:border-cyan-500/50 transition-all">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-400">API & Automation</span>
+                            <span class="text-xs font-mono text-emerald-400 font-bold">From $90</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">
+                            I will build custom API gateways and n8n workflow automations for your business
+                        </h3>
+                        <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                            Connect your tools, eliminate manual data entry, and unify multiple LLM APIs behind high-performance proxy gateways.
+                        </p>
+                        
+                        <div class="space-y-2.5 text-xs text-gray-300 mb-6 font-mono">
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-cyan-400"></i> Basic: 1 API Integration / Webhook ($90)</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-cyan-400"></i> Standard: Automated Pipeline ($290)</div>
+                            <div class="flex items-center gap-2"><i class="fas fa-check text-cyan-400"></i> Premium: Unified API Proxy Gateway ($750)</div>
+                        </div>
+                    </div>
+
+                    <a href="https://www.fiverr.com" target="_blank" rel="noopener noreferrer" class="w-full text-center py-3 rounded-xl bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white font-semibold text-xs uppercase tracking-wider transition-all shadow-lg shadow-cyan-600/20">
+                        Order on Fiverr
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-slate-800 bg-[#070a12] text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <img src="assets/images/xennials-gold-logo.png" alt="Xennials Logo" class="h-6 opacity-80">
+                <span>© 2026 Xennials AI. AntiGravity Freelance Portfolio Suite.</span>
+            </div>
+
+            <div class="flex items-center gap-6">
+                <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                <a href="portfolio.html" class="text-white font-semibold">Portfolio</a>
+                <a href="playground.html" class="hover:text-white transition-colors">Playground</a>
+                <a href="skills.html" class="hover:text-white transition-colors">Skills</a>
+                <a href="https://www.fiverr.com" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 font-semibold">Fiverr Profile</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Portfolio Interactive Engine (Live Sandbox, Before/After Audits, Edge AI) -->
+    <script src="assets/js/portfolio-interactive.js"></script>
+
+    <!-- Interactive Script for Filters and Video Player -->
+    <script>
+        // Category Filter
+        function filterProjects(category, btn) {
+            const buttons = document.querySelectorAll('.portfolio-filter-btn');
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const cats = card.getAttribute('data-category') || '';
+                if (category === 'all' || cats.includes(category)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Intro Video Controls
+        const video = document.getElementById('intro-video-element');
+        const playOverlay = document.getElementById('video-overlay-play');
+        const ctrlBtn = document.getElementById('video-ctrl-btn');
+        const timeDisplay = document.getElementById('video-time-display');
+
+        function toggleIntroVideo() {
+            if (!video) return;
+            if (video.paused || video.ended) {
+                video.play();
+                playOverlay.style.opacity = '0';
+                ctrlBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                video.pause();
+                playOverlay.style.opacity = '1';
+                ctrlBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
+        }
+
+        if (video) {
+            video.addEventListener('timeupdate', () => {
+                const cur = Math.floor(video.currentTime || 0);
+                const dur = Math.floor(video.duration || 45);
+                const curM = Math.floor(cur / 60);
+                const curS = String(cur % 60).padStart(2, '0');
+                const durM = Math.floor(dur / 60);
+                const durS = String(dur % 60).padStart(2, '0');
+                if (timeDisplay) timeDisplay.textContent = `${curM}:${curS} / ${durM}:${durS}`;
+            });
+            video.addEventListener('ended', () => {
+                playOverlay.style.opacity = '1';
+                ctrlBtn.innerHTML = '<i class="fas fa-play"></i>';
+            });
+        }
+    </script>
+</body>
+</html>

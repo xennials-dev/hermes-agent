@@ -1,14 +1,25 @@
 ---
 name: audit-analyze
-description: "Analyze discovery transcripts and recommend high-ROI AI tools."
+description: Analyze discovery transcripts and recommend high-ROI AI t...
 version: 1.0.0
 author: Terrance (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [Analysis, Transcript, Tools, SaaS, Consulting, ROI]
-    related_skills: [ai-audit, audit-report]
+    tags:
+    - Analysis
+    - Transcript
+    - Tools
+    - SaaS
+    - Consulting
+    - ROI
+    related_skills:
+    - ai-audit
+    - audit-report
 ---
 
 # Audit Transcript Analysis

@@ -68,8 +68,16 @@
         const savedUrl = localStorage.getItem('pg_gateway_url');
         const savedKey = localStorage.getItem('pg_gateway_key');
         const savedFal = localStorage.getItem('pg_fal_key');
-        if (savedUrl) { CONFIG.baseUrl = savedUrl; if ($('#gateway-url')) $('#gateway-url').value = savedUrl; }
-        if (savedKey) { CONFIG.apiKey = savedKey; if ($('#gateway-key')) $('#gateway-key').value = savedKey; }
+        if (savedUrl) {
+            CONFIG.baseUrl = savedUrl;
+            if ($('#gateway-url')) $('#gateway-url').value = savedUrl;
+            if ($('#modal-gateway-url')) $('#modal-gateway-url').value = savedUrl;
+        }
+        if (savedKey) {
+            CONFIG.apiKey = savedKey;
+            if ($('#gateway-key')) $('#gateway-key').value = savedKey;
+            if ($('#modal-gateway-key')) $('#modal-gateway-key').value = savedKey;
+        }
         if (savedFal) { CONFIG.falKey = savedFal; if ($('#fal-key-input')) $('#fal-key-input').value = savedFal; }
 
         // Attempt initial connection (auto-detect LiteLLM vs Ollama)
@@ -82,13 +90,18 @@
 
     function bindGatewayConfig() {
         const connectBtn = $('#connect-gateway-btn');
+        const modalConnectBtn = $('#modal-connect-gateway-btn');
         const refreshBtn = $('#refresh-models-btn');
         const openModalBtn = $('#open-gateway-modal-btn');
         const closeModalBtn = $('#close-gateway-modal-btn');
         const modal = $('#gateway-modal');
 
         if (openModalBtn && modal) {
-            openModalBtn.addEventListener('click', () => modal.classList.remove('hidden'));
+            openModalBtn.addEventListener('click', () => {
+                if ($('#modal-gateway-url') && $('#gateway-url')) $('#modal-gateway-url').value = $('#gateway-url').value;
+                if ($('#modal-gateway-key') && $('#gateway-key')) $('#modal-gateway-key').value = $('#gateway-key').value;
+                modal.classList.remove('hidden');
+            });
         }
         if (closeModalBtn && modal) {
             closeModalBtn.addEventListener('click', () => modal.classList.add('hidden'));
@@ -99,22 +112,36 @@
             });
         }
 
+        const handleSaveGateway = (isModal = false) => {
+            const urlEl = isModal ? ($('#modal-gateway-url') || $('#gateway-url')) : ($('#gateway-url') || $('#modal-gateway-url'));
+            const keyEl = isModal ? ($('#modal-gateway-key') || $('#gateway-key')) : ($('#gateway-key') || $('#modal-gateway-key'));
+            const falEl = $('#fal-key-input');
+            if (urlEl) {
+                CONFIG.baseUrl = urlEl.value.replace(/\/+$/, '');
+                if ($('#gateway-url')) $('#gateway-url').value = CONFIG.baseUrl;
+                if ($('#modal-gateway-url')) $('#modal-gateway-url').value = CONFIG.baseUrl;
+            }
+            if (keyEl) {
+                CONFIG.apiKey = keyEl.value;
+                if ($('#gateway-key')) $('#gateway-key').value = CONFIG.apiKey;
+                if ($('#modal-gateway-key')) $('#modal-gateway-key').value = CONFIG.apiKey;
+            }
+            if (falEl) CONFIG.falKey = falEl.value;
+
+            localStorage.setItem('pg_gateway_url', CONFIG.baseUrl);
+            localStorage.setItem('pg_gateway_key', CONFIG.apiKey);
+            if (CONFIG.falKey) localStorage.setItem('pg_fal_key', CONFIG.falKey);
+
+            if (modal) modal.classList.add('hidden');
+            connectGateway();
+        };
+
         if (connectBtn) {
-            connectBtn.addEventListener('click', () => {
-                const urlEl = $('#gateway-url');
-                const keyEl = $('#gateway-key');
-                const falEl = $('#fal-key-input');
-                if (urlEl) CONFIG.baseUrl = urlEl.value.replace(/\/+$/, '');
-                if (keyEl) CONFIG.apiKey = keyEl.value;
-                if (falEl) CONFIG.falKey = falEl.value;
+            connectBtn.addEventListener('click', () => handleSaveGateway(false));
+        }
 
-                localStorage.setItem('pg_gateway_url', CONFIG.baseUrl);
-                localStorage.setItem('pg_gateway_key', CONFIG.apiKey);
-                if (CONFIG.falKey) localStorage.setItem('pg_fal_key', CONFIG.falKey);
-
-                if (modal) modal.classList.add('hidden');
-                connectGateway();
-            });
+        if (modalConnectBtn) {
+            modalConnectBtn.addEventListener('click', () => handleSaveGateway(true));
         }
 
         if (refreshBtn) {

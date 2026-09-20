@@ -1,6 +1,10 @@
 ---
 name: rag-streaming-pipeline
-description: Streaming data into vector stores with hybrid BM25 + dense search
+description: Streaming data into vector stores with hybrid BM25 + dens...
+platforms:
+- linux
+- macos
+- windows
 ---
 
 # RAG Streaming Pipeline & Vector Search Playbook

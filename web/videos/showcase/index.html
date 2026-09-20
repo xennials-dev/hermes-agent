@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HyperFrames Showcase</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+  <!-- HyperFrames Composition Root -->
+  <div
+    id="root"
+    data-composition-id="main"
+    data-start="0"
+    data-duration="12"
+    data-width="1920"
+    data-height="1080"
+  >
+    <!-- Ambient Background Lighting -->
+    <div class="ambient-glow glow-1" id="glow-1"></div>
+    <div class="ambient-glow glow-2" id="glow-2"></div>
+
+    <!-- Scene 1: Introduction / Hero (0s - 4s) -->
+    <div
+      class="clip hero-scene"
+      id="scene-1"
+      data-start="0"
+      data-duration="4"
+      data-track-index="1"
+    >
+      <div class="badge-container" id="hero-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+        <span>HyperFrames x Xennials</span>
+      </div>
+
+      <h1 class="title-hero" id="hero-title">
+        Code-First Video <br />
+        <span class="highlight-text">Powered by AI Agents</span>
+      </h1>
+
+      <p class="subtitle-hero" id="hero-subtitle">
+        Declarative HTML, CSS animations, and GSAP timelines designed for automated agent video generation.
+      </p>
+    </div>
+
+    <!-- Scene 2: Code Walkthrough Terminal (4s - 8.5s) -->
+    <div
+      class="clip code-scene scene-hidden"
+      id="scene-2"
+      data-start="4"
+      data-duration="4.5"
+      data-track-index="1"
+    >
+      <div class="terminal-window" id="terminal">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+          </div>
+          <div class="terminal-title">composition.html</div>
+        </div>
+        <div class="terminal-body">
+          <div class="code-line" id="line-1">
+            <span class="line-number">1</span>
+            <span><span class="tag">&lt;div</span> <span class="attr">id</span>=<span class="string">"root"</span> <span class="attr">data-composition-id</span>=<span class="string">"main"</span> <span class="attr">data-duration</span>=<span class="string">"12"</span><span class="tag">&gt;</span></span>
+          </div>
+          <div class="code-line" id="line-2">
+            <span class="line-number">2</span>
+            <span>&nbsp;&nbsp;<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"clip"</span> <span class="attr">data-start</span>=<span class="string">"0"</span> <span class="attr">data-duration</span>=<span class="string">"4"</span><span class="tag">&gt;</span></span>
+          </div>
+          <div class="code-line" id="line-3">
+            <span class="line-number">3</span>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">&lt;!-- Agent renders deterministic web standards --&gt;</span></span>
+          </div>
+          <div class="code-line" id="line-4">
+            <span class="line-number">4</span>
+            <span>&nbsp;&nbsp;<span class="tag">&lt;/div&gt;</span></span>
+          </div>
+          <div class="code-line" id="line-5">
+            <span class="line-number">5</span>
+            <span><span class="tag">&lt;/div&gt;</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 3: Outro / Call To Action (8.5s - 12s) -->
+    <div
+      class="clip outro-scene scene-hidden"
+      id="scene-3"
+      data-start="8.5"
+      data-duration="3.5"
+      data-track-index="1"
+    >
+      <div class="outro-card" id="outro-card">
+        <h2 class="title-hero title-outro">
+          Build, Check, & Render
+        </h2>
+        <p class="subtitle-hero">
+          Run checks, preview live in Studio, or export MP4s headlessly.
+        </p>
+        <div class="cta-button" id="cta-btn">
+          <span>npx hyperframes render</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // HyperFrames Mandatory Timeline Registration
+    window.__timelines = window.__timelines || [];
+
+    // Pre-hide initial state safely outside timeline for cold-seek safety
+    gsap.set(["#scene-2", "#scene-3"], { opacity: 0 });
+
+    const tl = gsap.timeline();
+    window.__timelines.push(tl);
+
+    // --- Ambient Glow Continuous Animation (Deterministic 12s) ---
+    tl.to("#glow-1", {
+      scale: 1.25,
+      x: 60,
+      y: 40,
+      duration: 6,
+      repeat: 1,
+      yoyo: true,
+      ease: "sine.inOut"
+    }, 0);
+
+    tl.to("#glow-2", {
+      scale: 1.2,
+      x: -50,
+      y: -30,
+      duration: 6,
+      repeat: 1,
+      yoyo: true,
+      ease: "sine.inOut"
+    }, 0);
+
+    // --- Scene 1 Animations (0s to 4s) ---
+    tl.fromTo("#hero-badge", 
+      { opacity: 0, y: -20, scale: 0.9 }, 
+      { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }, 
+      0.2
+    );
+
+    tl.fromTo("#hero-title", 
+      { opacity: 0, y: 30 }, 
+      { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, 
+      0.5
+    );
+
+    tl.fromTo("#hero-subtitle", 
+      { opacity: 0, y: 20 }, 
+      { opacity: 1, y: 0, duration: 0.9, ease: "power2.out" }, 
+      0.8
+    );
+
+    // Scene 1 Exit Transition (3.6s to 4.0s)
+    tl.to("#scene-1", {
+      opacity: 0,
+      scale: 0.96,
+      y: -20,
+      duration: 0.4,
+      ease: "power2.in"
+    }, 3.6);
+
+    // --- Scene 2 Animations (4.0s to 8.5s) ---
+    tl.fromTo("#scene-2", 
+      { opacity: 0, scale: 0.94, y: 30 }, 
+      { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "power3.out" }, 
+      4.0
+    );
+
+    // Terminal lines sequenced entrance
+    tl.fromTo(["#line-1", "#line-2", "#line-3", "#line-4", "#line-5"], 
+      { opacity: 0, x: -15 }, 
+      { opacity: 1, x: 0, duration: 0.35, stagger: 0.25, ease: "power1.out" }, 
+      4.5
+    );
+
+    // Scene 2 Exit Transition (8.0s to 8.5s)
+    tl.to("#scene-2", {
+      opacity: 0,
+      scale: 1.05,
+      duration: 0.5,
+      ease: "power2.in"
+    }, 8.0);
+
+    // --- Scene 3 Animations (8.5s to 12.0s) ---
+    tl.fromTo("#scene-3", 
+      { opacity: 0, scale: 0.95 }, 
+      { opacity: 1, scale: 1, duration: 0.7, ease: "power3.out" }, 
+      8.5
+    );
+
+    tl.fromTo("#cta-btn", 
+      { opacity: 0, y: 25, scale: 0.9 }, 
+      { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.7)" }, 
+      9.2
+    );
+  </script>
+</body>
+</html>

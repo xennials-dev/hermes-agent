@@ -1,14 +1,25 @@
 ---
 name: niche-validation
-description: "Validate market demand, pricing potential, and competitor gaps."
+description: Validate market demand, pricing potential, and competitor...
 version: 1.0.0
 author: Xennials (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [NicheValidation, MarketResearch, Strategy, Pricing, Demand, Xennials]
-    related_skills: [monetization-engine, ai-consultant-suite]
+    tags:
+    - NicheValidation
+    - MarketResearch
+    - Strategy
+    - Pricing
+    - Demand
+    - Xennials
+    related_skills:
+    - monetization-engine
+    - ai-consultant-suite
 ---
 
 # The 6-Step Niche Validation Framework

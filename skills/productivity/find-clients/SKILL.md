@@ -1,14 +1,24 @@
 ---
 name: find-clients
-description: "Execute 7 zero-cost strategies to acquire AI consulting clients."
+description: Execute 7 zero-cost strategies to acquire AI consulting c...
 version: 1.0.0
 author: Terrance (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [Sales, ClientAcquisition, Marketing, Outreach, Consulting]
-    related_skills: [ai-audit, audit-review]
+    tags:
+    - Sales
+    - ClientAcquisition
+    - Marketing
+    - Outreach
+    - Consulting
+    related_skills:
+    - ai-audit
+    - audit-review
 ---
 
 # Client Acquisition: 7 Zero‑Cost Methods

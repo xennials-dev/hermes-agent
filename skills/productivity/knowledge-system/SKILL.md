@@ -1,14 +1,25 @@
 ---
 name: knowledge-system
-description: "Build custom GPT and AI document knowledge systems for clients."
+description: Build custom GPT and AI document knowledge systems for cl...
 version: 1.0.0
 author: Terrance (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [Knowledge, RAG, CustomGPT, Documents, AI, Consulting]
-    related_skills: [process-redesign, ai-concierge]
+    tags:
+    - Knowledge
+    - RAG
+    - CustomGPT
+    - Documents
+    - AI
+    - Consulting
+    related_skills:
+    - process-redesign
+    - ai-concierge
 ---
 
 # Knowledge System Builder

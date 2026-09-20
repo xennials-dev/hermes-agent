@@ -1,14 +1,27 @@
 ---
 name: ai-audit
-description: "Conduct a 45-minute AI assessment discovery call with a small business owner using the Corey Ganim AOA framework."
+description: Conduct a 45-minute AI assessment discovery call with a s...
 version: 1.0.0
 author: Hermes Consulting Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [AIConsulting, DiscoveryCall, Audit, SmallBusiness, AOA]
-    related_skills: [audit-analyze, audit-report, audit-review, process-redesign, ai-concierge]
+    tags:
+    - AIConsulting
+    - DiscoveryCall
+    - Audit
+    - SmallBusiness
+    - AOA
+    related_skills:
+    - audit-analyze
+    - audit-report
+    - audit-review
+    - process-redesign
+    - ai-concierge
 ---
 
 # AI Assessment Discovery Call (Corey Ganim Method)

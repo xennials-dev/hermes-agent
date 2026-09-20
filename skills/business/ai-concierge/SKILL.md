@@ -1,14 +1,26 @@
 ---
 name: ai-concierge
-description: "High-ticket monthly AI coaching & concierge retainer ($1,200–$2,000/mo). Bi-weekly 45-min working sessions with asynchronous Voxer/Slack access."
+description: High-ticket monthly AI coaching & concierge retainer ($1...
 version: 1.0.0
 author: Hermes Consulting Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [MonthlyRetainer, AIConcierge, Coaching, HighTicketConsulting, MRR]
-    related_skills: [ai-audit, audit-review, process-redesign, knowledge-system]
+    tags:
+    - MonthlyRetainer
+    - AIConcierge
+    - Coaching
+    - HighTicketConsulting
+    - MRR
+    related_skills:
+    - ai-audit
+    - audit-review
+    - process-redesign
+    - knowledge-system
 ---
 
 # AI Concierge Retainer Playbook

@@ -1,14 +1,25 @@
 ---
 name: audit-analyze
-description: "Analyze a client discovery call transcript to extract pain points, classify ROI levers, and recommend off-the-shelf AI/SaaS tools."
+description: Analyze a client discovery call transcript to extract pai...
 version: 1.0.0
 author: Hermes Consulting Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [TranscriptAnalysis, ToolRecommendation, BottleneckExtraction, ROIEvaluation]
-    related_skills: [ai-audit, audit-report, audit-review, process-redesign]
+    tags:
+    - TranscriptAnalysis
+    - ToolRecommendation
+    - BottleneckExtraction
+    - ROIEvaluation
+    related_skills:
+    - ai-audit
+    - audit-report
+    - audit-review
+    - process-redesign
 ---
 
 # Audit Transcript Analysis

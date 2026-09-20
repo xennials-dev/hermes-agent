@@ -1,14 +1,24 @@
 ---
 name: find-clients
-description: "Seven zero-cost, high-conversion client acquisition strategies to land AI assessment clients with zero initial capital or audience."
+description: Seven zero-cost, high-conversion client acquisition strat...
 version: 1.0.0
 author: Hermes Consulting Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [ClientAcquisition, LeadGeneration, SalesOutreach, AgencyGrowth]
-    related_skills: [ai-audit, audit-review, ai-concierge]
+    tags:
+    - ClientAcquisition
+    - LeadGeneration
+    - SalesOutreach
+    - AgencyGrowth
+    related_skills:
+    - ai-audit
+    - audit-review
+    - ai-concierge
 ---
 
 # Client Acquisition: 7 Zero-Cost Lead Strategies

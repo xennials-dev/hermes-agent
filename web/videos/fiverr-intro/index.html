@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiverr Introduction & Portfolio Reel</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+  <div
+    id="root"
+    data-composition-id="fiverr-intro"
+    data-start="0"
+    data-duration="45"
+    data-width="1920"
+    data-height="1080"
+  >
+    <!-- Background Ambient Glow -->
+    <div class="glow-orb orb-left" id="glow-left"></div>
+    <div class="glow-orb orb-right" id="glow-right"></div>
+
+    <!-- Scene 1: Intro Hook (0s - 10s) -->
+    <div class="clip" id="scene-1" data-start="0" data-duration="10" data-track-index="1">
+      <div class="badge-intro" id="s1-badge">
+        <span>Verified Fiverr Freelance Suite</span>
+      </div>
+
+      <h1 class="title-large s1-title-margin" id="s1-title">
+        Engineering Intelligent <br />
+        <span class="gradient-word">AI Systems & Web Apps</span>
+      </h1>
+
+      <p class="subtitle-large" id="s1-sub">
+        Senior Full-Stack Developer & Autonomous AI Agent Architect. Transforming complex requirements into high-converting digital realities.
+      </p>
+    </div>
+
+    <!-- Scene 2: DeepTutor & Autonomous Agents (10s - 22s) -->
+    <div class="clip scene-hidden" id="scene-2" data-start="10" data-duration="12" data-track-index="1">
+      <div class="feature-card" id="s2-card">
+        <div class="card-header-row">
+          <span class="tag-cyan">01 • AI Agent Systems</span>
+          <span class="tag-tech">Next.js + FastAPI + LLM</span>
+        </div>
+
+        <h2 class="card-title">
+          DeepTutor — Autonomous Multi-Agent Learning
+        </h2>
+
+        <p class="card-desc">
+          Pedagogical routing with live Socratic dialogue, real-time token streaming, and persistent memory buffers.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value text-cyan">100%</div>
+            <div class="stat-label">Autonomous Socratic Routing</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value text-purple">&lt; 350ms</div>
+            <div class="stat-label">First-Byte Token Latency</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value text-emerald">Multi-Role</div>
+            <div class="stat-label">Agentic Intelligence</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 3: Jasmine's Nails & Full-Stack Web (22s - 34s) -->
+    <div class="clip scene-hidden" id="scene-3" data-start="22" data-duration="12" data-track-index="1">
+      <div class="feature-card" id="s3-card">
+        <div class="card-header-row">
+          <span class="tag-pink">02 • Business Web & Booking</span>
+          <span class="tag-tech">React 19 + Tailwind + Vercel</span>
+        </div>
+
+        <h2 class="card-title">
+          Jasmine's Nails — High-Converting Booking Platform
+        </h2>
+
+        <p class="card-desc">
+          Mobile-first appointment scheduling with live calendar time-slot allocation and instantaneous add-on price computation.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-value text-pink">100/100</div>
+            <div class="stat-label">Lighthouse Performance</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value text-cyan">Mobile-1st</div>
+            <div class="stat-label">Touch Optimized</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value text-emerald">Instant</div>
+            <div class="stat-label">Checkout Conversion</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scene 4: CodeGraph & Call to Action (34s - 45s) -->
+    <div class="clip scene-hidden" id="scene-4" data-start="34" data-duration="11" data-track-index="1">
+      <div class="badge-intro s4-badge-green" id="s4-badge">
+        <span>5-Star Delivery • U.S. Verified</span>
+      </div>
+
+      <h2 class="title-large s4-title-style" id="s4-title">
+        Let's Build Your Competitive Advantage
+      </h2>
+
+      <p class="subtitle-large s4-sub-margin" id="s4-sub">
+        CodeGraph AST Token Optimization (-57% cost) • Custom Toolsets • Zero Technical Debt.
+      </p>
+
+      <div class="cta-fiverr" id="s4-cta">
+        <span>Order My Fiverr Services Today</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // HyperFrames Timelines Registration
+    window.__timelines = window.__timelines || [];
+
+    // Pre-hide non-first scenes outside timeline for cold-seek safety
+    gsap.set(["#scene-2", "#scene-3", "#scene-4"], { opacity: 0 });
+
+    const tl = gsap.timeline();
+    window.__timelines.push(tl);
+
+    // Continuous ambient glow
+    tl.to("#glow-left", {
+      x: 80,
+      y: 50,
+      duration: 8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    }, 0);
+
+    tl.to("#glow-right", {
+      x: -60,
+      y: -40,
+      duration: 8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    }, 0);
+
+    // --- Scene 1: 0s to 10s ---
+    tl.fromTo("#s1-badge", { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, 0.5);
+    tl.fromTo("#s1-title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }, 1.0);
+    tl.fromTo("#s1-sub", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, 1.6);
+    tl.to("#scene-1", { opacity: 0, scale: 0.95, duration: 0.6, ease: "power2.in" }, 9.4);
+
+    // --- Scene 2: 10s to 22s ---
+    tl.fromTo("#scene-2", { opacity: 0, scale: 0.94, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power3.out" }, 10.0);
+    tl.to("#scene-2", { opacity: 0, scale: 1.04, duration: 0.6, ease: "power2.in" }, 21.4);
+
+    // --- Scene 3: 22s to 34s ---
+    tl.fromTo("#scene-3", { opacity: 0, scale: 0.94, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "power3.out" }, 22.0);
+    tl.to("#scene-3", { opacity: 0, scale: 1.04, duration: 0.6, ease: "power2.in" }, 33.4);
+
+    // --- Scene 4: 34s to 45s ---
+    tl.fromTo("#scene-4", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 34.0);
+    tl.fromTo("#s4-cta", { opacity: 0, y: 30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "back.out(1.7)" }, 35.5);
+  </script>
+</body>
+</html>

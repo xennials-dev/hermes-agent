@@ -1,14 +1,25 @@
 ---
 name: process-redesign
-description: "Redesign and optimize client processes using the AOA framework (Audit, Optimize, Automate). Streamline broken workflows before applying AI."
+description: Redesign and optimize client processes using the AOA fram...
 version: 1.0.0
 author: Hermes Consulting Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [ProcessOptimization, AOAFramework, WorkflowStreamlining, LeanOperations]
-    related_skills: [ai-audit, audit-analyze, knowledge-system, ai-concierge]
+    tags:
+    - ProcessOptimization
+    - AOAFramework
+    - WorkflowStreamlining
+    - LeanOperations
+    related_skills:
+    - ai-audit
+    - audit-analyze
+    - knowledge-system
+    - ai-concierge
 ---
 
 # Process Redesign (The AOA Framework)

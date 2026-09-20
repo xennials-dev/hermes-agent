@@ -1,14 +1,25 @@
 ---
 name: audit-report
-description: "Generate a client-ready AI Audit & ROI Action Report with Effort vs Impact matrix, 4-day quick start plan, and financial projections."
+description: Generate a client-ready AI Audit & ROI Action Report with...
 version: 1.0.0
 author: Hermes Consulting Suite
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [ReportGeneration, ClientDeliverable, ROICalculation, EffortImpactMatrix]
-    related_skills: [ai-audit, audit-analyze, audit-review, ai-concierge]
+    tags:
+    - ReportGeneration
+    - ClientDeliverable
+    - ROICalculation
+    - EffortImpactMatrix
+    related_skills:
+    - ai-audit
+    - audit-analyze
+    - audit-review
+    - ai-concierge
 ---
 
 # Audit Report Generator

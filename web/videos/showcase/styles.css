@@ -1,0 +1,237 @@
+/* HyperFrames Showcase Composition Styles */
+:root {
+  --bg-primary: #050b14;
+  --bg-secondary: #0d1a2d;
+  --accent-teal: #14b8a6;
+  --accent-cyan: #06b6d4;
+  --accent-purple: #8b5cf6;
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-glass: rgba(255, 255, 255, 0.12);
+  --bg-glass: rgba(15, 23, 42, 0.75);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background: radial-gradient(circle at 50% 30%, #0d233a 0%, #050b14 70%);
+  overflow: hidden;
+}
+
+/* Background Ambient Glow */
+.ambient-glow {
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.glow-1 {
+  top: -200px;
+  left: 200px;
+  background: var(--accent-cyan);
+}
+
+.glow-2 {
+  bottom: -200px;
+  right: 200px;
+  background: var(--accent-purple);
+}
+
+/* Clip Wrapper */
+.clip {
+  position: absolute;
+  inset: 0;
+  width: 1920px;
+  height: 1080px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scene-hidden {
+  opacity: 0;
+}
+
+/* Scene 1: Hero & Title */
+.hero-scene {
+  flex-direction: column;
+  text-align: center;
+  gap: 24px;
+}
+
+.badge-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border-radius: 9999px;
+  background: rgba(20, 184, 166, 0.15);
+  border: 1px solid rgba(20, 184, 166, 0.35);
+  color: var(--accent-teal);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.title-hero {
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title-outro {
+  font-size: 64px;
+}
+
+.highlight-text {
+  background: linear-gradient(135deg, #2dd4bf 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle-hero {
+  font-size: 28px;
+  color: var(--text-muted);
+  max-width: 900px;
+  line-height: 1.5;
+}
+
+/* Scene 2: Code Walkthrough */
+.code-scene {
+  flex-direction: column;
+  gap: 32px;
+}
+
+.terminal-window {
+  width: 1100px;
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+.terminal-header {
+  height: 52px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--border-glass);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: relative;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.dot-red { background: #ef4444; }
+.dot-yellow { background: #f59e0b; }
+.dot-green { background: #10b981; }
+
+.terminal-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: monospace;
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.terminal-body {
+  padding: 32px;
+  font-family: "JetBrains Mono", Consolas, Monaco, monospace;
+  font-size: 22px;
+  line-height: 1.8;
+  color: #e2e8f0;
+}
+
+.code-line {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.line-number {
+  color: #64748b;
+  width: 30px;
+  text-align: right;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.keyword { color: #f43f5e; font-weight: 600; }
+.func { color: #38bdf8; }
+.string { color: #34d399; }
+.comment { color: #64748b; font-style: italic; }
+.tag { color: #f59e0b; }
+.attr { color: #a78bfa; }
+
+/* Scene 3: Action & Outro */
+.outro-scene {
+  flex-direction: column;
+  gap: 32px;
+  text-align: center;
+}
+
+.outro-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 80px;
+  background: var(--bg-glass);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--border-glass);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  gap: 20px;
+}
+
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 42px;
+  background: linear-gradient(135deg, #14b8a6 0%, #0284c7 100%);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 24px;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(20, 184, 166, 0.4);
+}

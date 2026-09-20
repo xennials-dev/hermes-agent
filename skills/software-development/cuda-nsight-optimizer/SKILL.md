@@ -1,6 +1,10 @@
 ---
 name: cuda-nsight-optimizer
-description: GPU CUDA kernel profiling, Nsight analysis & performance tuning
+description: GPU CUDA kernel profiling, Nsight analysis & performance...
+platforms:
+- linux
+- macos
+- windows
 ---
 
 # CUDA & Nsight Compute Optimization Playbook

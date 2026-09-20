@@ -1,14 +1,24 @@
 ---
 name: ai-audit
-description: "Conduct 45-minute AI assessment discovery calls with clients."
+description: Conduct 45-minute AI assessment discovery calls with clie...
 version: 1.0.0
 author: Terrance (tee), Hermes Agent
 license: MIT
-platforms: [linux, macos, windows]
+platforms:
+- linux
+- macos
+- windows
 metadata:
   hermes:
-    tags: [Consulting, Assessment, Discovery, Audit, Business]
-    related_skills: [audit-analyze, find-clients]
+    tags:
+    - Consulting
+    - Assessment
+    - Discovery
+    - Audit
+    - Business
+    related_skills:
+    - audit-analyze
+    - find-clients
 ---
 
 # AI Assessment Discovery Call
