@@ -480,7 +480,12 @@ install_never_free_environ()
 # Every entry point imports this module before its dependency graph.
 from pathlib import Path
 
-_root = Path(__file__).resolve().parent
+_src_root_env = os.environ.get("HERMES_PYTHON_SRC_ROOT")
+_root = (
+    Path(_src_root_env).resolve()
+    if _src_root_env and Path(_src_root_env).is_dir()
+    else Path(__file__).resolve().parent
+)
 try:
     os.getcwd()
 except FileNotFoundError:

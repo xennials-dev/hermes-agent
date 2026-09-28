@@ -1,0 +1,78 @@
+services:
+  # SGLang inference service for MiniMax-M3 (or MiniMax-M2.7)
+  minimax-m3:
+    image: lmsysorg/sglang:latest
+    container_name: minimax-m3-sglang
+    restart: unless-stopped
+    shm_size: '64gb'
+    ports:
+      - "${PORT_LLM:-30000}:30000"
+    environment:
+      - HF_TOKEN=${HF_TOKEN:-}
+      - HF_HOME=/root/.cache/huggingface
+      - CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0,1,2,3,4,5,6,7}
+    volumes:
+      - ${HF_CACHE_DIR:-./data/hf-cache}:/root/.cache/huggingface
+      - ${MODEL_WEIGHTS_DIR:-./data/models}:/models
+    command: >
+      sglang serve
+      --model-path ${M3_MODEL_PATH:-MiniMaxAI/MiniMax-M3-MXFP8}
+      --trust-remote-code
+      --tp ${TP_SIZE:-8}
+      --enable-moe-ep
+      --reasoning-parser auto
+      --tool-call-parser auto
+      --host 0.0.0.0
+      --port 30000
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:30000/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 30
+      start_period: 300s
+
+  # SGLang inference service for MiniMax-H3 (Audiovisual 768p Diffusion)
+  minimax-h3:
+    image: lmsysorg/sglang:latest
+    container_name: minimax-h3-sglang
+    profiles: ["video"]
+    restart: unless-stopped
+    shm_size: '64gb'
+    ports:
+      - "${PORT_VIDEO:-30010}:30010"
+    environment:
+      - HF_HUB_OFFLINE=1
+      - HF_HOME=/root/.cache/huggingface
+    volumes:
+      - ${HF_CACHE_DIR:-./data/hf-cache}:/root/.cache/huggingface
+      - ${H3_MODEL_DIR:-./data/models/minimax-h3}:/models/minimax-h3
+    command: >
+      sglang serve
+      --model-path /models/minimax-h3
+      --model-variant fl2va
+      --num-gpus ${H3_NUM_GPUS:-8}
+      --tp-size 1
+      --ulysses-degree ${H3_ULYSSES_DEGREE:-8}
+      --performance-mode speed
+      --host 0.0.0.0
+      --port 30010
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://127.0.0.1:30010/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 240s
