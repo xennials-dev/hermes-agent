@@ -51,6 +51,24 @@ export function TwentyLogo({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+export function N8nLogo({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-label="n8n Workflow Automation"
+    >
+      <rect width="24" height="24" rx="5" fill="#EA4B71" />
+      <circle cx="7" cy="12" r="2.5" fill="#FFFFFF" />
+      <circle cx="17" cy="7.5" r="2.5" fill="#FFFFFF" />
+      <circle cx="17" cy="16.5" r="2.5" fill="#FFFFFF" />
+      <path d="M7 12L17 7.5M7 12L17 16.5" stroke="#FFFFFF" strokeWidth="1.75" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 export function DeepSeekLogo({ className = "h-6 w-6" }: { className?: string }) {
   return (
     <svg viewBox="0 0 32 32" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
@@ -588,9 +606,11 @@ const CATEGORY_TABS = [
 ] as const;
 
 export function ChineseAIHub({
-  twentyCrmUrl = "http://localhost:3020",
+  twentyCrmUrl = "http://2.25.238.185:3000",
+  n8nUrl = "http://2.25.238.185:5678",
 }: {
   twentyCrmUrl?: string;
+  n8nUrl?: string;
 }) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -607,26 +627,26 @@ export function ChineseAIHub({
 
   return (
     <div className="space-y-6">
-      {/* Top Banner with Twenty CRM Direct Link */}
+      {/* Top Banner with Twenty CRM & n8n Direct Links */}
       <div className="relative overflow-hidden rounded-xl border border-current/15 bg-gradient-to-r from-blue-950/20 via-background-base to-purple-950/20 p-5 shadow-sm">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="space-y-1">
             <div className="flex items-center gap-2">
               <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
               <Typography className="font-bold text-sm tracking-wide uppercase text-midground">
-                Open-Source Ecosystem & CRM Directory
+                Open-Source Ecosystem & Workspace Integration
               </Typography>
             </div>
             <Typography className="text-xl font-bold text-text-primary tracking-tight">
               Chinese AI Frontier Models & Live Interfaces
             </Typography>
             <p className="text-xs text-text-secondary max-w-2xl leading-relaxed">
-              Direct access to live playgrounds, chat systems, and reasoning web interfaces for China's leading AI organizations. Ingested and synchronized with your local Twenty CRM workspace.
+              Direct access to live playgrounds, chat systems, and reasoning web interfaces for China's leading AI organizations. Ingested and synchronized with your Twenty CRM and n8n workflow engines.
             </p>
           </div>
 
-          {/* Twenty CRM Quick Action Link */}
-          <div className="flex shrink-0 items-center gap-3">
+          {/* Quick Action Links: Twenty CRM & n8n */}
+          <div className="flex shrink-0 flex-wrap items-center gap-3">
             <a
               href={twentyCrmUrl}
               target="_blank"
@@ -645,7 +665,30 @@ export function ChineseAIHub({
                   <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
                 <div className="text-[11px] text-text-tertiary">
-                  System of Record (17 Companies)
+                  System of Record (Port 3000)
+                </div>
+              </div>
+            </a>
+
+            <a
+              href={n8nUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open n8n Workflow Automation"
+              className={cn(
+                "group flex items-center gap-3 rounded-lg border border-rose-500/30 bg-rose-500/10 px-4 py-2.5",
+                "text-text-primary transition-all duration-200 hover:border-rose-500/60 hover:bg-rose-500/20 hover:shadow-md",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500",
+              )}
+            >
+              <N8nLogo className="h-6 w-6 shrink-0 transition-transform group-hover:scale-105" />
+              <div className="text-left">
+                <div className="flex items-center gap-1.5 font-bold text-xs text-rose-400">
+                  <span>n8n Automation</span>
+                  <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+                <div className="text-[11px] text-text-tertiary">
+                  Workflow Engine (Port 5678)
                 </div>
               </div>
             </a>

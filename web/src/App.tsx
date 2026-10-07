@@ -57,7 +57,7 @@ import {
   Zap,
   ArrowUpRight,
 } from "lucide-react";
-import { CHINESE_AI_ORGS, TwentyLogo } from "@/components/ChineseAIHub";
+import { CHINESE_AI_ORGS, TwentyLogo, N8nLogo } from "@/components/ChineseAIHub";
 import { Button } from "@nous-research/ui/ui/components/button";
 import { SelectionSwitcher } from "@nous-research/ui/ui/components/selection-switcher";
 import { Spinner } from "@nous-research/ui/ui/components/spinner";
@@ -720,11 +720,18 @@ export default function App() {
                 <ul className="flex flex-col">
                   <SidebarWorkspaceLink
                     name="Twenty CRM"
-                    url="http://localhost:3020"
+                    url="http://2.25.238.185:3000"
                     Logo={TwentyLogo}
                     collapsed={isDesktopCollapsed}
                     tooltipWarmRef={tooltipWarmRef}
                     isCrm
+                  />
+                  <SidebarWorkspaceLink
+                    name="n8n Workflows"
+                    url="http://2.25.238.185:5678"
+                    Logo={N8nLogo}
+                    collapsed={isDesktopCollapsed}
+                    tooltipWarmRef={tooltipWarmRef}
                   />
                   {CHINESE_AI_ORGS.map((org) => (
                     <SidebarWorkspaceLink
@@ -755,15 +762,15 @@ export default function App() {
                 </span>
                 <ul className="flex flex-col">
                   <SidebarWorkspaceLink
-                    name="Hermes Agent Core"
-                    url="https://github.com/NousResearch/hermes-agent"
+                    name="Hermes Agent"
+                    url="https://github.com/xennials-dev/hermes-agent"
                     Logo={Code}
                     collapsed={isDesktopCollapsed}
                     tooltipWarmRef={tooltipWarmRef}
                   />
                   <SidebarWorkspaceLink
-                    name="Self-Evolution"
-                    url="https://github.com/NousResearch/hermes-agent-self-evolution"
+                    name="Xennials Sovereign Mesh"
+                    url="https://github.com/xennials-dev/xennials-dev"
                     Logo={Sparkles}
                     collapsed={isDesktopCollapsed}
                     tooltipWarmRef={tooltipWarmRef}
