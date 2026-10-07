@@ -1,0 +1,108 @@
+#
+# Twenty CRM - Official Self-Hosted Stack for Hermes Agent Integration
+# Repository: https://github.com/twentyhq/twenty.git
+# Local URL: http://localhost:3000
+#
+name: twenty
+
+services:
+  server:
+    image: twentycrm/twenty:${TAG:-latest}
+    container_name: twenty-server
+    restart: unless-stopped
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_PORT: 3000
+      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
+      SERVER_URL: ${SERVER_URL:-http://localhost:3000}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS:-false}
+      DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION:-false}
+      STORAGE_TYPE: ${STORAGE_TYPE:-local}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      APP_SECRET: ${APP_SECRET}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  worker:
+    image: twentycrm/twenty:${TAG:-latest}
+    container_name: twenty-worker
+    restart: unless-stopped
+    command: ["yarn", "worker:prod"]
+    volumes:
+      - server-local-data:/app/packages/twenty-server/.local-storage
+    environment:
+      PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
+      SERVER_URL: ${SERVER_URL:-http://localhost:3000}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379}
+      STORAGE_TYPE: ${STORAGE_TYPE:-local}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      APP_SECRET: ${APP_SECRET}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  db:
+    image: twentycrm/twenty-postgres:${TAG:-latest}
+    container_name: twenty-db
+    restart: unless-stopped
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${PG_DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${PG_DATABASE_PASSWORD:-twenty_postgres_password_2026}
+      POSTGRES_DB: ${PG_DATABASE_NAME:-default}
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d default"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:alpine
+    container_name: twenty-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: twenty-n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - WEBHOOK_URL=${N8N_WEBHOOK_URL_BASE:-http://localhost:5678/}
+      - EXECUTIONS_DATA_PRUNE=true
+      - EXECUTIONS_DATA_MAX_AGE=168
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+    volumes:
+      - n8n-data:/home/node/.n8n
+      - ./storage/incoming_files:/data/incoming
+      - ./storage/processed_files:/data/processed
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  server-local-data:
+  db-data:
+  n8n-data:

@@ -1,0 +1,9 @@
+name: twenty_crm
+version: 0.1.0
+description: "Twenty CRM integration for Hermes Agent: autonomous deal summarization with local Chinese/open LLMs, interaction logging, and webhook event handling."
+author: NousResearch
+kind: standalone
+platforms:
+  - linux
+  - macos
+  - windows

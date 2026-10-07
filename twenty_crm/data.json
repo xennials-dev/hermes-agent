@@ -1,0 +1,822 @@
+{
+  "companies": [
+    {
+      "id": "comp-1",
+      "name": "ByteDance AI Infrastructure",
+      "domainName": "bytedance.com",
+      "employees": 110000,
+      "annualRecurringRevenue": 240000,
+      "createdAt": "2026-09-15T08:00:00Z"
+    },
+    {
+      "id": "comp-2",
+      "name": "NovaTech Solutions",
+      "domainName": "novatech-solutions.io",
+      "employees": 450,
+      "annualRecurringRevenue": 85000,
+      "createdAt": "2026-09-20T10:30:00Z"
+    },
+    {
+      "id": "comp-3",
+      "name": "Tencent Cloud AI Lab",
+      "domainName": "tencent.com",
+      "employees": 105000,
+      "annualRecurringRevenue": 350000,
+      "createdAt": "2026-09-28T14:15:00Z"
+    },
+    {
+      "id": "comp-deepseek",
+      "name": "DeepSeek AI",
+      "domainName": "deepseek.com",
+      "employees": 150,
+      "annualRecurringRevenue": 1200000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "Foundational LLM",
+        "Reasoning",
+        "DeepSeek-V3",
+        "R1",
+        "DeepSeek-Coder",
+        "Open-Source"
+      ]
+    },
+    {
+      "id": "comp-alibaba-qwen",
+      "name": "Alibaba Cloud (Qwen Team)",
+      "domainName": "alibabacloud.com",
+      "employees": 130000,
+      "annualRecurringRevenue": 2500000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "Qwen 2.5",
+        "Qwen-Coder",
+        "Qwen-VL",
+        "Qwen-Agent",
+        "Hyperscaler"
+      ]
+    },
+    {
+      "id": "comp-zhipu-thudm",
+      "name": "Zhipu AI & Tsinghua KEG",
+      "domainName": "zhipuai.cn",
+      "employees": 800,
+      "annualRecurringRevenue": 950000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "ChatGLM",
+        "GLM-4",
+        "CogVLM2",
+        "CogVideoX",
+        "Tsinghua"
+      ]
+    },
+    {
+      "id": "comp-01-ai",
+      "name": "01.AI (Kai-Fu Lee)",
+      "domainName": "01.ai",
+      "employees": 200,
+      "annualRecurringRevenue": 400000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "Yi",
+        "Yi-1.5",
+        "Yi-34B",
+        "Foundational LLM"
+      ]
+    },
+    {
+      "id": "comp-baichuan",
+      "name": "Baichuan Intelligent",
+      "domainName": "baichuan-ai.com",
+      "employees": 250,
+      "annualRecurringRevenue": 350000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "Baichuan 2",
+        "Healthcare LLM",
+        "Enterprise"
+      ]
+    },
+    {
+      "id": "comp-shanghai-ai-lab",
+      "name": "Shanghai AI Laboratory",
+      "domainName": "shlab.org.cn",
+      "employees": 1200,
+      "annualRecurringRevenue": 1500000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "InternLM 2.5",
+        "InternVL",
+        "Research Institute",
+        "Open-Source"
+      ]
+    },
+    {
+      "id": "comp-xverse",
+      "name": "XVERSE Technology",
+      "domainName": "xverse.cn",
+      "employees": 180,
+      "annualRecurringRevenue": 280000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "XVERSE-13B",
+        "XVERSE-65B",
+        "Long Context"
+      ]
+    },
+    {
+      "id": "comp-inspur",
+      "name": "Inspur (IEG)",
+      "domainName": "inspur.com",
+      "employees": 32000,
+      "annualRecurringRevenue": 800000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "Yuan 2.0",
+        "HPC",
+        "Enterprise Compute"
+      ]
+    },
+    {
+      "id": "comp-baai",
+      "name": "Beijing Academy of Artificial Intelligence (BAAI)",
+      "domainName": "baai.ac.cn",
+      "employees": 600,
+      "annualRecurringRevenue": 900000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "BGE Embeddings",
+        "Aquila 2",
+        "WuDao",
+        "FlagEmbedding",
+        "FlagAI"
+      ]
+    },
+    {
+      "id": "comp-kunlun",
+      "name": "Kunlun Tech",
+      "domainName": "kunlun.com",
+      "employees": 1500,
+      "annualRecurringRevenue": 450000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "Skywork",
+        "Skywork-MoE",
+        "Open-Weights"
+      ]
+    },
+    {
+      "id": "comp-openbmb",
+      "name": "OpenBMB (Tsinghua ModelBest)",
+      "domainName": "openbmb.org",
+      "employees": 120,
+      "annualRecurringRevenue": 300000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "MiniCPM",
+        "MiniCPM-V",
+        "On-Device SLM",
+        "Edge AI"
+      ]
+    },
+    {
+      "id": "comp-opengvlab",
+      "name": "OpenGVLab",
+      "domainName": "opengvlab.github.io",
+      "employees": 80,
+      "annualRecurringRevenue": 200000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "InternVL",
+        "Multimodal Vision",
+        "VLM Leaderboard"
+      ]
+    },
+    {
+      "id": "comp-map-yue",
+      "name": "Multimodal Art Projection (YuE)",
+      "domainName": "map-bmu.github.io",
+      "employees": 50,
+      "annualRecurringRevenue": 150000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "YuE",
+        "Audio Generation",
+        "Music AI",
+        "Full-Song Generation"
+      ]
+    },
+    {
+      "id": "comp-stepfun",
+      "name": "StepFun (Jieyue Xingchen)",
+      "domainName": "stepfun.com",
+      "employees": 220,
+      "annualRecurringRevenue": 500000,
+      "createdAt": "2026-10-04T12:00:00Z",
+      "enrichedTags": [
+        "Step-Audio",
+        "StepVideo",
+        "Omni Multimodal"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "id": "person-1",
+      "name": {
+        "firstName": "Wei",
+        "lastName": "Chen"
+      },
+      "emails": {
+        "primaryEmail": "chen.wei@bytedance-labs.cn"
+      },
+      "phones": {
+        "primaryPhoneNumber": "+86 10 5888 1234"
+      },
+      "jobTitle": "Head of AI Infrastructure",
+      "companyId": "comp-1",
+      "city": "Beijing"
+    },
+    {
+      "id": "person-2",
+      "name": {
+        "firstName": "Sarah",
+        "lastName": "Jenkins"
+      },
+      "emails": {
+        "primaryEmail": "s.jenkins@novatech-solutions.io"
+      },
+      "phones": {
+        "primaryPhoneNumber": "+1 415 555 0192"
+      },
+      "jobTitle": "VP of Engineering",
+      "companyId": "comp-2",
+      "city": "San Francisco"
+    },
+    {
+      "id": "person-3",
+      "name": {
+        "firstName": "Ming",
+        "lastName": "Li"
+      },
+      "emails": {
+        "primaryEmail": "ming.li@tencent-cloud.com"
+      },
+      "phones": {
+        "primaryPhoneNumber": "+86 21 6123 4567"
+      },
+      "jobTitle": "Director of Cloud Systems",
+      "companyId": "comp-3",
+      "city": "Shenzhen"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp-1",
+      "name": "Enterprise Cluster LLM Mesh (GLM-4 & Qwen)",
+      "amount": {
+        "amountMicros": 240000000000,
+        "currencyCode": "USD"
+      },
+      "stage": "NEGOTIATION",
+      "closeDate": "2026-11-15T00:00:00Z",
+      "companyId": "comp-1",
+      "pointOfContactId": "person-1",
+      "probability": 85,
+      "assignedEmployeeId": "emp-101"
+    },
+    {
+      "id": "opp-2",
+      "name": "Hermes Agent Autonomous Customer Gateway",
+      "amount": {
+        "amountMicros": 85000000000,
+        "currencyCode": "USD"
+      },
+      "stage": "PROPOSAL",
+      "closeDate": "2026-12-01T00:00:00Z",
+      "companyId": "comp-2",
+      "pointOfContactId": "person-2",
+      "probability": 60
+    },
+    {
+      "id": "opp-3",
+      "name": "High-Throughput Chinese Inference Pipeline",
+      "amount": {
+        "amountMicros": 350000000000,
+        "currencyCode": "USD"
+      },
+      "stage": "DISCOVERY",
+      "closeDate": "2026-12-20T00:00:00Z",
+      "companyId": "comp-3",
+      "pointOfContactId": "person-3",
+      "probability": 40
+    },
+    {
+      "id": "opp-chinese-ai",
+      "name": "China Open-Source AI Upstream Sync & Infrastructure Mesh",
+      "amount": {
+        "amountMicros": 500000000000,
+        "currencyCode": "USD"
+      },
+      "stage": "NEGOTIATION",
+      "closeDate": "2026-12-31T00:00:00Z",
+      "companyId": "comp-deepseek",
+      "pointOfContactId": "person-1",
+      "probability": 90,
+      "assignedEmployeeId": "emp-101"
+    }
+  ],
+  "notes": [
+    {
+      "id": "note-1",
+      "title": "Initial Architecture Review with Chen Wei",
+      "body": "Customer confirmed requirement for localized Chinese prompt routing via GLM-4 and Bloom-Z with strict sub-50ms latency.",
+      "targetOpportunityId": "opp-1",
+      "targetCompanyId": "comp-1",
+      "targetPersonId": "person-1",
+      "author": "Hermes Autonomous Agent",
+      "createdAt": "2026-10-01T11:00:00Z"
+    },
+    {
+      "id": "note-41bf51e8",
+      "createdAt": "2026-10-04T20:59:31.296964+00:00",
+      "author": "Hermes Agent (glm-chinese)",
+      "title": "AI Deal Brief: Enterprise Cluster LLM Mesh (GLM-4 & Qwen) (glm-chinese)",
+      "body": "### \ud83c\udfaf Hermes Autonomous Deal Assessment\n**Model Engine**: glm-chinese (Localized Router)\n**Generated At**: 2026-10-04 20:59:30Z\n\n#### 1. Strategic Assessment\nHigh-priority engagement showing clear technical readiness. Direct alignment with Hermes Agent mesh.\n\n#### 2. Risk Factors\n\u2022 Concurrency SLAs on local vLLM instances.\n\u2022 Integration validation required for Twenty CRM outbound webhook triggers.\n\n#### 3. Hermes Autonomous Action Items\n1. Schedule benchmarking session with technical lead.\n2. Confirm deployment parameters for Twenty CRM containerized stack.\n3. Establish bi-directional sync between Twenty Notes and Hermes knowledge base.",
+      "targetOpportunityId": "opp-1",
+      "targetCompanyId": "comp-1"
+    },
+    {
+      "id": "note-3ea84628",
+      "createdAt": "2026-10-04T21:45:01.186703+00:00",
+      "author": "Hermes Agent CLI",
+      "title": "Architecture Sync",
+      "body": "Reviewed 100k tok/sec throughput requirements.",
+      "targetOpportunityId": "opp-1",
+      "targetCompanyId": null,
+      "sentiment": "NEUTRAL",
+      "category": "GENERAL_COMMUNICATION"
+    },
+    {
+      "id": "note-c39be39c",
+      "createdAt": "2026-10-04T21:48:07.470697+00:00",
+      "author": "Hermes Agent (glm-chinese)",
+      "title": "AI Deal Strategy Brief: Enterprise Cluster LLM Mesh (GLM-4 & Qwen) (glm-chinese)",
+      "body": "### \ud83c\udfaf Hermes Autonomous Deal Assessment\n**Model Engine**: glm-chinese (Localized Router)\n**Generated At**: 2026-10-04 21:48:06Z\n\n#### 1. Strategic Assessment\nHigh-priority engagement showing clear technical readiness. Direct alignment with Hermes Agent mesh and Twenty CRM custom AI objects.\n\n#### 2. Risk Factors\n\u2022 Concurrency SLAs on local vLLM instances.\n\u2022 Human review required for AI Proposed tasks.\n\n#### 3. Hermes Autonomous Action Items\n1. Schedule benchmarking session with technical lead.\n2. Confirm deployment parameters for Twenty CRM containerized stack.\n3. Establish bi-directional sync via Twenty native MCP server.",
+      "targetOpportunityId": "opp-1",
+      "targetCompanyId": "comp-1",
+      "sentiment": "AT_RISK",
+      "category": "RISK_ALERT"
+    },
+    {
+      "id": "note-zh-llm-1",
+      "title": "Foundational LLMs Repository Upstream Directory",
+      "body": "### Foundational Large Language Models (LLMs)\nDirect GitHub upstream addresses for automated sync:\n\u2022 DeepSeek AI: DeepSeek-V3, R1, Coder (https://github.com/deepseek-ai/DeepSeek-V3)\n\u2022 Alibaba Cloud: Qwen 2.5, Qwen-Coder (https://github.com/QwenLM/Qwen2.5)\n\u2022 Zhipu AI & Tsinghua: ChatGLM, GLM-4 (https://github.com/THUDM/ChatGLM3)\n\u2022 01.AI: Yi, Yi-1.5 (https://github.com/01-ai/Yi-1.5)\n\u2022 Baichuan Intelligent: Baichuan 2 (https://github.com/baichuan-inc/Baichuan2)\n\u2022 Shanghai AI Lab: InternLM 2.5 (https://github.com/InternLM/InternLM)\n\u2022 XVERSE Technology: XVERSE (https://github.com/xverse-ai/XVERSE-13B)\n\u2022 Inspur (IEG): Yuan 2.0 (https://github.com/IEG-Yuan/Yuan-2.0)\n\u2022 BAAI: Aquila 2, WuDao (https://github.com/FlagAI-Open/FlagAI)\n\u2022 Kunlun Tech: Skywork, Skywork-MoE (https://github.com/SkyworkAI/Skywork)",
+      "targetOpportunityId": "opp-chinese-ai",
+      "targetCompanyId": "comp-deepseek",
+      "author": "Hermes Upstream Sync Engine",
+      "createdAt": "2026-10-05T01:24:25.183345+00:00"
+    },
+    {
+      "id": "note-zh-vlm-2",
+      "title": "Multimodal, Vision, and Edge Models (VLMs / SLMs) Directory",
+      "body": "### Multimodal, Vision, and Edge Models (VLMs / SLMs)\nDirect GitHub upstream addresses for automated sync:\n\u2022 OpenBMB (Tsinghua): MiniCPM, MiniCPM-V (https://github.com/OpenBMB/MiniCPM)\n\u2022 OpenGVLab: InternVL Vision Leader (https://github.com/OpenGVLab/InternVL)\n\u2022 Alibaba Cloud: Qwen-VL, Qwen2-Audio (https://github.com/QwenLM/Qwen2-VL)\n\u2022 Zhipu AI & Tsinghua: CogVLM, CogVision (https://github.com/THUDM/CogVLM2)",
+      "targetOpportunityId": "opp-chinese-ai",
+      "targetCompanyId": "comp-openbmb",
+      "author": "Hermes Upstream Sync Engine",
+      "createdAt": "2026-10-05T01:24:25.183345+00:00"
+    },
+    {
+      "id": "note-zh-gen-3",
+      "title": "Video, Audio, and 3D Generation Repositories",
+      "body": "### Video, Audio, and 3D Generation\nDirect GitHub upstream addresses for automated sync:\n\u2022 Tencent: HunyuanVideo, Hunyuan3D (https://github.com/Tencent/HunyuanVideo)\n\u2022 Zhipu AI: CogVideoX (https://github.com/THUDM/CogVideo)\n\u2022 Multimodal Art Projection: YuE Audio/Music (https://github.com/multimodal-art-projection/YuE)\n\u2022 StepFun: Step-Audio, stepvideo (https://github.com/stepfun-ai)",
+      "targetOpportunityId": "opp-chinese-ai",
+      "targetCompanyId": "comp-3",
+      "author": "Hermes Upstream Sync Engine",
+      "createdAt": "2026-10-05T01:24:25.183345+00:00"
+    },
+    {
+      "id": "note-zh-emb-4",
+      "title": "Embeddings & Specialized Agent Tooling Directory",
+      "body": "### Embeddings and Specialized Tooling\nDirect GitHub upstream addresses for automated sync:\n\u2022 BAAI (Beijing Academy of AI): BGE Embeddings (https://github.com/FlagOpen/FlagEmbedding)\n\u2022 Alibaba / Tongyi: Qwen-Agent Framework (https://github.com/QwenLM/Qwen-Agent)",
+      "targetOpportunityId": "opp-chinese-ai",
+      "targetCompanyId": "comp-baai",
+      "author": "Hermes Upstream Sync Engine",
+      "createdAt": "2026-10-05T01:24:25.183345+00:00"
+    },
+    {
+      "id": "note-801c205d",
+      "createdAt": "2026-10-05T01:27:56.250012+00:00",
+      "title": "AI Deal Strategy Brief: China Open-Source AI Upstream Sync & Infrastructure Mesh (qwen)",
+      "body": "### \ud83c\udfaf Hermes Autonomous Deal Assessment\n**Model Engine**: qwen (Localized Router)\n**Generated At**: 2026-10-05 01:27:53Z\n\n#### 1. Strategic Assessment\nHigh-priority engagement showing clear technical readiness. Direct alignment with Hermes Agent mesh and Twenty CRM custom AI objects.\n\n#### 2. Risk Factors\n\u2022 Concurrency SLAs on local vLLM instances.\n\u2022 Human review required for AI Proposed tasks.\n\n#### 3. Hermes Autonomous Action Items\n1. Schedule benchmarking session with technical lead.\n2. Confirm deployment parameters for Twenty CRM containerized stack.\n3. Establish bi-directional sync via Twenty native MCP server.",
+      "targetOpportunityId": "opp-chinese-ai",
+      "targetCompanyId": "comp-deepseek",
+      "author": "Hermes Agent (qwen)"
+    },
+    {
+      "id": "note-ce3bb7c4",
+      "createdAt": "2026-10-05T01:28:14.427845+00:00",
+      "title": "Autonomous Execution: ",
+      "body": "Task was approved by human operator.\nHermes Agent autonomously executed follow-up workflows across Composio API fabric.\n\n**Composio Dispatches**: slack: OK\n```json\n[\n  {\n    \"platform\": \"slack\",\n    \"result\": {\n      \"id\": \"comp-b56c91cc4a\",\n      \"timestamp\": \"2026-10-05T01:28:13.660107+00:00\",\n      \"action\": \"SLACK_CHAT_POST_MESSAGE\",\n      \"app\": \"slack\",\n      \"status\": \"MOCK_EXECUTED\",\n      \"mode\": \"MOCK\",\n      \"payload\": {\n        \"channel\": \"#sales-deals\",\n        \"text\": \":white_check_mark: *Twenty CRM AI Task Approved*\\n*Task ID*: `opp-chinese-ai`\\n*Title*: Approved AI Task\\n*Context*: ...\"\n      }\n    }\n  }\n]\n```",
+      "targetOpportunityId": null,
+      "targetCompanyId": null,
+      "author": "Hermes Agent Execution Engine"
+    },
+    {
+      "id": "note-2e4cfbc0",
+      "createdAt": "2026-10-05T01:30:14.783022+00:00",
+      "title": "AI Deal Strategy Brief: China Open-Source AI Upstream Sync & Infrastructure Mesh (qwen)",
+      "body": "### \ud83c\udfaf Hermes Autonomous Deal Assessment\n**Model Engine**: qwen (Localized Router)\n**Generated At**: 2026-10-05 01:30:13Z\n\n#### 1. Strategic Assessment\nHigh-priority engagement showing clear technical readiness. Direct alignment with Hermes Agent mesh and Twenty CRM custom AI objects.\n\n#### 2. Risk Factors\n\u2022 Concurrency SLAs on local vLLM instances.\n\u2022 Human review required for AI Proposed tasks.\n\n#### 3. Hermes Autonomous Action Items\n1. Schedule benchmarking session with technical lead.\n2. Confirm deployment parameters for Twenty CRM containerized stack.\n3. Establish bi-directional sync via Twenty native MCP server.",
+      "targetOpportunityId": "opp-chinese-ai",
+      "targetCompanyId": "comp-deepseek",
+      "author": "Hermes Agent (qwen)"
+    },
+    {
+      "id": "note-038b24b9",
+      "createdAt": "2026-10-05T01:30:37.991795+00:00",
+      "title": "Autonomous Execution: ",
+      "body": "Task was approved by human operator.\nHermes Agent autonomously executed follow-up workflows across Composio API fabric.\n\n**Composio Dispatches**: slack: OK\n```json\n[\n  {\n    \"platform\": \"slack\",\n    \"result\": {\n      \"id\": \"comp-6d12ae26ce\",\n      \"timestamp\": \"2026-10-05T01:30:37.543783+00:00\",\n      \"action\": \"SLACK_CHAT_POST_MESSAGE\",\n      \"app\": \"slack\",\n      \"status\": \"MOCK_EXECUTED\",\n      \"mode\": \"MOCK\",\n      \"payload\": {\n        \"channel\": \"#sales-deals\",\n        \"text\": \":white_check_mark: *Twenty CRM AI Task Approved*\\n*Task ID*: `opp-chinese-ai`\\n*Title*: Approved AI Task\\n*Context*: ...\"\n      }\n    }\n  }\n]\n```",
+      "targetOpportunityId": null,
+      "targetCompanyId": null,
+      "author": "Hermes Agent Execution Engine"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-1",
+      "title": "Send NVIDIA Nemotron Benchmarking Report to Sarah Jenkins",
+      "body": "Prepare latency and memory comparisons for 8B model on single L4 GPU.",
+      "status": "TODO",
+      "dueAt": "2026-10-10T17:00:00Z",
+      "targetOpportunityId": "opp-2"
+    },
+    {
+      "id": "task-71763ed7",
+      "createdAt": "2026-10-04T20:59:32.056816+00:00",
+      "status": "APPROVED",
+      "title": "Execute AI Action Items for Enterprise Cluster LLM Mesh (GLM-4 & Qwen)",
+      "body": "Review model recommendations and deliver client follow-up.",
+      "targetOpportunityId": "opp-1",
+      "dueAt": null,
+      "approvedAt": "2026-10-04T21:44:53.339416+00:00"
+    },
+    {
+      "id": "task-3bf5e813",
+      "createdAt": "2026-10-04T21:48:07.789181+00:00",
+      "status": "APPROVED",
+      "createdBy": "Hermes Agent",
+      "title": "[AI Proposed] Deliver Technical SLA & Architecture Brief to Wei Chen",
+      "body": "Hermes Agent proposed action: Deliver tailored benchmarking analysis. Review and approve in Twenty CRM before execution.",
+      "targetOpportunityId": "opp-1",
+      "dueAt": null,
+      "approvedAt": "2026-10-05T05:00:25.503425+00:00"
+    },
+    {
+      "id": "task-34f306e6",
+      "createdAt": "2026-10-05T01:27:56.808805+00:00",
+      "title": "[AI Proposed] Deliver Technical SLA & Architecture Brief to Client",
+      "body": "Hermes Agent proposed action: Deliver tailored benchmarking analysis. Review and approve in Twenty CRM before execution.",
+      "targetOpportunityId": "opp-chinese-ai",
+      "status": "APPROVED",
+      "dueAt": null,
+      "createdBy": "Hermes Agent",
+      "approvedAt": "2026-10-05T01:30:32.764266+00:00"
+    },
+    {
+      "id": "task-f40d79ee",
+      "createdAt": "2026-10-05T01:30:15.082728+00:00",
+      "title": "[AI Proposed] Deliver Technical SLA & Architecture Brief to Client",
+      "body": "Hermes Agent proposed action: Deliver tailored benchmarking analysis. Review and approve in Twenty CRM before execution.",
+      "targetOpportunityId": "opp-chinese-ai",
+      "status": "APPROVED",
+      "dueAt": null,
+      "createdBy": "Hermes Agent",
+      "approvedAt": "2026-10-06T01:00:57.128864+00:00"
+    }
+  ],
+  "dealStrategyBriefs": [
+    {
+      "id": "dsb-1",
+      "opportunityId": "opp-1",
+      "executiveAssessment": "High strategic value account. Client requires hybrid routing across GLM-4 and local Qwen instances to preserve data sovereignty.",
+      "riskScore": 18,
+      "closingProbability": 88,
+      "strategicRecommendations": [
+        "Deploy on-prem vLLM inference node for proof-of-concept",
+        "Guarantee sub-50ms latency for Chinese tokens",
+        "Integrate Twenty CRM webhook dispatchers into client gateway"
+      ],
+      "modelEngine": "glm-chinese",
+      "createdAt": "2026-10-04T12:00:00Z"
+    },
+    {
+      "id": "dsb-33d7ee41",
+      "createdAt": "2026-10-04T21:44:26.893450+00:00",
+      "opportunityId": "opp-1",
+      "executiveAssessment": "High-strategic fit. Opportunity aligns directly with Hermes Agent mesh and local glm-chinese inference nodes.",
+      "riskScore": 22,
+      "closingProbability": 85,
+      "strategicRecommendations": [
+        "Deploy on-prem proof-of-concept cluster",
+        "Provide sub-50ms SLA token benchmarks",
+        "Integrate Twenty CRM MCP server directly into client workflows"
+      ],
+      "modelEngine": "glm-chinese"
+    },
+    {
+      "id": "dsb-7e89e056",
+      "createdAt": "2026-10-04T21:44:37.950759+00:00",
+      "opportunityId": "opp-2",
+      "executiveAssessment": "High-strategic fit. Opportunity aligns directly with Hermes Agent mesh and local qwen inference nodes.",
+      "riskScore": 22,
+      "closingProbability": 60,
+      "strategicRecommendations": [
+        "Deploy on-prem proof-of-concept cluster",
+        "Provide sub-50ms SLA token benchmarks",
+        "Integrate Twenty CRM MCP server directly into client workflows"
+      ],
+      "modelEngine": "qwen"
+    },
+    {
+      "id": "dsb-2d6f72c1",
+      "createdAt": "2026-10-04T21:48:06.551232+00:00",
+      "opportunityId": "opp-1",
+      "executiveAssessment": "High-strategic fit. Opportunity aligns directly with Hermes Agent mesh and local glm-chinese inference nodes.",
+      "riskScore": 22,
+      "closingProbability": 85,
+      "strategicRecommendations": [
+        "Deploy on-prem proof-of-concept cluster",
+        "Provide sub-50ms SLA token benchmarks",
+        "Integrate Twenty CRM MCP server directly into client workflows"
+      ],
+      "modelEngine": "glm-chinese"
+    },
+    {
+      "id": "dsb-f59305c7",
+      "createdAt": "2026-10-05T01:27:54.444395+00:00",
+      "opportunityId": "opp-chinese-ai",
+      "executiveAssessment": "High-strategic fit. Opportunity aligns directly with Hermes Agent mesh and local qwen inference nodes.",
+      "riskScore": 22,
+      "closingProbability": 90,
+      "strategicRecommendations": [
+        "Deploy on-prem proof-of-concept cluster",
+        "Provide sub-50ms SLA token benchmarks",
+        "Integrate Twenty CRM MCP server directly into client workflows"
+      ],
+      "modelEngine": "qwen"
+    },
+    {
+      "id": "dsb-6b85c489",
+      "createdAt": "2026-10-05T01:30:13.868774+00:00",
+      "opportunityId": "opp-chinese-ai",
+      "executiveAssessment": "High-strategic fit. Opportunity aligns directly with Hermes Agent mesh and local qwen inference nodes.",
+      "riskScore": 22,
+      "closingProbability": 90,
+      "strategicRecommendations": [
+        "Deploy on-prem proof-of-concept cluster",
+        "Provide sub-50ms SLA token benchmarks",
+        "Integrate Twenty CRM MCP server directly into client workflows"
+      ],
+      "modelEngine": "qwen"
+    }
+  ],
+  "competitorIntelligences": [
+    {
+      "id": "ci-1",
+      "opportunityId": "opp-1",
+      "competitorName": "Proprietary Cloud Provider X",
+      "pricingPressure": "MEDIUM",
+      "winLossFactor": "Client refuses US-hosted cloud lock-in; Hermes open-weight stack wins on sovereignty.",
+      "counterTactics": "Highlight zero egress cost, local model privacy, and Hermes Agent multi-platform support.",
+      "createdAt": "2026-10-04T12:05:00Z"
+    },
+    {
+      "id": "ci-b8950502",
+      "createdAt": "2026-10-04T21:48:06.880028+00:00",
+      "opportunityId": "opp-1",
+      "competitorName": "Proprietary Closed SaaS",
+      "pricingPressure": "MEDIUM",
+      "winLossFactor": "Client demands private Chinese LLM weights (GLM-4/Qwen) and self-hosted Twenty CRM data sovereignty.",
+      "counterTactics": "Emphasize zero data exfiltration, local vLLM performance, and Hermes Agent multi-platform extensibility."
+    },
+    {
+      "id": "ci-0535b8fe",
+      "createdAt": "2026-10-05T01:27:55.097972+00:00",
+      "opportunityId": "opp-chinese-ai",
+      "competitorName": "Proprietary Closed SaaS",
+      "pricingPressure": "MEDIUM",
+      "winLossFactor": "Client demands private Chinese LLM weights (GLM-4/Qwen) and self-hosted Twenty CRM data sovereignty.",
+      "counterTactics": "Emphasize zero data exfiltration, local vLLM performance, and Hermes Agent multi-platform extensibility."
+    },
+    {
+      "id": "ci-3d26f941",
+      "createdAt": "2026-10-05T01:30:14.178759+00:00",
+      "opportunityId": "opp-chinese-ai",
+      "competitorName": "Proprietary Closed SaaS",
+      "pricingPressure": "MEDIUM",
+      "winLossFactor": "Client demands private Chinese LLM weights (GLM-4/Qwen) and self-hosted Twenty CRM data sovereignty.",
+      "counterTactics": "Emphasize zero data exfiltration, local vLLM performance, and Hermes Agent multi-platform extensibility."
+    }
+  ],
+  "riskAssessments": [
+    {
+      "id": "ra-1",
+      "opportunityId": "opp-1",
+      "riskLevel": "LOW",
+      "technicalRisks": "Local GPU memory allocation during peak Chinese LLM batch inference.",
+      "commercialRisks": "Standard quarterly procurement review delays.",
+      "mitigationPlan": "Provision 4x NVIDIA L4 cluster with dynamic quantization and automated failover.",
+      "createdAt": "2026-10-04T12:10:00Z"
+    },
+    {
+      "id": "ra-95aaddf7",
+      "createdAt": "2026-10-04T21:48:07.183703+00:00",
+      "opportunityId": "opp-1",
+      "riskLevel": "LOW",
+      "technicalRisks": "GPU concurrency during peak inference hours.",
+      "commercialRisks": "Quarterly budget approvals.",
+      "mitigationPlan": "Provide automated failover between local GPU mesh and cloud backup endpoints."
+    },
+    {
+      "id": "ra-f104d5df",
+      "createdAt": "2026-10-05T01:27:55.691081+00:00",
+      "opportunityId": "opp-chinese-ai",
+      "riskLevel": "LOW",
+      "technicalRisks": "GPU concurrency during peak inference hours.",
+      "commercialRisks": "Quarterly budget approvals.",
+      "mitigationPlan": "Provide automated failover between local GPU mesh and cloud backup endpoints."
+    },
+    {
+      "id": "ra-22da63de",
+      "createdAt": "2026-10-05T01:30:14.478431+00:00",
+      "opportunityId": "opp-chinese-ai",
+      "riskLevel": "LOW",
+      "technicalRisks": "GPU concurrency during peak inference hours.",
+      "commercialRisks": "Quarterly budget approvals.",
+      "mitigationPlan": "Provide automated failover between local GPU mesh and cloud backup endpoints."
+    }
+  ],
+  "departments": [
+    {
+      "id": "dept-sales",
+      "name": "Enterprise Sales",
+      "code": "SALES",
+      "headEmployeeId": "emp-101",
+      "budgetTokens": 20000000,
+      "tokensUsed": 1240000,
+      "costAccruedUsd": 124.0,
+      "createdAt": "2026-09-01T00:00:00Z"
+    },
+    {
+      "id": "dept-sol",
+      "name": "Solutions Architecture",
+      "code": "SOLENG",
+      "headEmployeeId": "emp-104",
+      "budgetTokens": 15000000,
+      "tokensUsed": 2850000,
+      "costAccruedUsd": 285.0,
+      "createdAt": "2026-09-01T00:00:00Z"
+    },
+    {
+      "id": "dept-cs",
+      "name": "Customer Success",
+      "code": "CS",
+      "headEmployeeId": "emp-105",
+      "budgetTokens": 10000000,
+      "tokensUsed": 450000,
+      "costAccruedUsd": 45.0,
+      "createdAt": "2026-09-01T00:00:00Z"
+    },
+    {
+      "id": "dept-exec",
+      "name": "Executive Leadership",
+      "code": "EXEC",
+      "headEmployeeId": "emp-100",
+      "budgetTokens": 50000000,
+      "tokensUsed": 3100000,
+      "costAccruedUsd": 310.0,
+      "createdAt": "2026-09-01T00:00:00Z"
+    },
+    {
+      "id": "dept-legal",
+      "name": "Legal & Compliance",
+      "code": "LEGAL",
+      "headEmployeeId": "emp-106",
+      "budgetTokens": 5000000,
+      "tokensUsed": 120000,
+      "costAccruedUsd": 12.0,
+      "createdAt": "2026-09-01T00:00:00Z"
+    }
+  ],
+  "employees": [
+    {
+      "id": "emp-100",
+      "name": "Victoria Sterling",
+      "email": "victoria.sterling@enterprise.com",
+      "role": "SUPER_ADMIN",
+      "departmentId": "dept-exec",
+      "managerId": null,
+      "title": "Chief Commercial Officer",
+      "quotaAnnual": 10000000.0,
+      "closedWonAmount": 3450000.0,
+      "activeDealsCount": 0,
+      "maxCapacityDeals": 20,
+      "skills": [
+        "Executive_Strategy",
+        "Capital_Allocation"
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-01T00:00:00Z"
+    },
+    {
+      "id": "emp-101",
+      "name": "Elena Rostova",
+      "email": "elena.rostova@enterprise.com",
+      "role": "DEPT_HEAD",
+      "departmentId": "dept-sales",
+      "managerId": "emp-100",
+      "title": "VP of Enterprise Sales",
+      "quotaAnnual": 3500000.0,
+      "closedWonAmount": 1240000.0,
+      "activeDealsCount": 2,
+      "maxCapacityDeals": 10,
+      "skills": [
+        "Enterprise_Negotiation",
+        "Chinese_LLM",
+        "Tier1_Accounts"
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-01T00:00:00Z"
+    },
+    {
+      "id": "emp-102",
+      "name": "Marcus Vance",
+      "email": "marcus.vance@enterprise.com",
+      "role": "MANAGER",
+      "departmentId": "dept-sales",
+      "managerId": "emp-101",
+      "title": "Enterprise Sales Director",
+      "quotaAnnual": 1800000.0,
+      "closedWonAmount": 650000.0,
+      "activeDealsCount": 2,
+      "maxCapacityDeals": 12,
+      "skills": [
+        "Cloud_Migration",
+        "SaaS_Security",
+        "Team_Mentorship"
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-05T00:00:00Z"
+    },
+    {
+      "id": "emp-103",
+      "name": "Jin Woo",
+      "email": "jin.woo@enterprise.com",
+      "role": "EMPLOYEE",
+      "departmentId": "dept-sales",
+      "managerId": "emp-102",
+      "title": "Senior Enterprise Account Exec",
+      "quotaAnnual": 800000.0,
+      "closedWonAmount": 240000.0,
+      "activeDealsCount": 3,
+      "maxCapacityDeals": 10,
+      "skills": [
+        "Chinese_LLM",
+        "OnPrem_Deploy",
+        "Bilingual_Mandarin"
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-10T00:00:00Z"
+    },
+    {
+      "id": "emp-104",
+      "name": "Aria Montgomery",
+      "email": "aria.montgomery@enterprise.com",
+      "role": "DEPT_HEAD",
+      "departmentId": "dept-sol",
+      "managerId": "emp-100",
+      "title": "Principal AI Solutions Architect",
+      "quotaAnnual": 0.0,
+      "closedWonAmount": 0.0,
+      "activeDealsCount": 4,
+      "maxCapacityDeals": 8,
+      "skills": [
+        "vLLM_Benchmarking",
+        "GPU_Clusters",
+        "pgvector",
+        "Hermes_Agent_Mesh"
+      ],
+      "isActive": true,
+      "createdAt": "2026-09-01T00:00:00Z"
+    }
+  ],
+  "webhooks": [
+    {
+      "id": "wh-n8n-router",
+      "targetUrl": "http://localhost:5678/webhook/twenty-events",
+      "event": "*",
+      "description": "Route Twenty CRM native lifecycle webhooks to dedicated n8n workflow engine"
+    }
+  ],
+  "auditLogs": []
+}

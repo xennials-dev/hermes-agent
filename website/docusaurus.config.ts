@@ -161,9 +161,19 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/NousResearch/hermes-agent',
+          type: 'dropdown',
           label: 'GitHub',
           position: 'right',
+          items: [
+            {
+              label: 'Hermes Agent Core',
+              href: 'https://github.com/NousResearch/hermes-agent',
+            },
+            {
+              label: 'Hermes Agent Self-Evolution',
+              href: 'https://github.com/NousResearch/hermes-agent-self-evolution',
+            },
+          ],
         },
         {
           href: 'https://discord.gg/NousResearch',
@@ -196,7 +206,8 @@ const config: Config = {
           title: 'More',
           items: [
             { label: 'Desktop Download', href: 'https://hermes-agent.nousresearch.com/' },
-            { label: 'GitHub', href: 'https://github.com/NousResearch/hermes-agent' },
+            { label: 'Hermes Agent Core', href: 'https://github.com/NousResearch/hermes-agent' },
+            { label: 'Hermes Agent Self-Evolution', href: 'https://github.com/NousResearch/hermes-agent-self-evolution' },
             { label: 'Nous Research', href: 'https://nousresearch.com' },
           ],
         },

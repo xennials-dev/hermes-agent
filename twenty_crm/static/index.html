@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twenty CRM — Open Source CRM for Hermes Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="twenty-layout">
+    <!-- Sidebar -->
+    <aside class="twenty-sidebar">
+      <div class="sidebar-header">
+        <div class="twenty-logo-badge">
+          <span>20</span>
+        </div>
+        <div class="twenty-brand">
+          <strong>Twenty</strong>
+          <small>Open Source CRM</small>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Core Workspace</div>
+        <button class="sidebar-btn active" data-view="opportunities">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+          Opportunities (Deals)
+        </button>
+        <button class="sidebar-btn" data-view="companies">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line><line x1="9" y1="13" x2="9.01" y2="13"></line><line x1="15" y1="13" x2="15.01" y2="13"></line><line x1="9" y1="17" x2="9.01" y2="17"></line><line x1="15" y1="17" x2="15.01" y2="17"></line></svg>
+          Companies
+        </button>
+        <button class="sidebar-btn" data-view="people">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          People (Contacts)
+        </button>
+        <button class="sidebar-btn" data-view="notes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Notes & Activity
+        </button>
+
+        <div class="nav-section-title">AI Intelligence & MCP</div>
+        <button class="sidebar-btn" data-view="ai-objects">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+          AI Custom Objects
+        </button>
+        <button class="sidebar-btn" data-view="approvals">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+          Action Approvals
+          <span class="badge-pending" id="sidebar-approvals-count">1</span>
+        </button>
+        <button class="sidebar-btn" data-view="semantic-search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><path d="M11 8v6"></path><path d="M8 11h6"></path></svg>
+          pgvector Semantic Search
+        </button>
+        <button class="sidebar-btn" data-view="loop">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+          Lifecycle Webhooks
+        </button>
+
+        <div class="nav-section-title">Enterprise Operations</div>
+        <button class="sidebar-btn" data-view="workforce">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Workforce & Hierarchy
+        </button>
+        <button class="sidebar-btn" data-view="jobs">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+          Background Jobs
+        </button>
+        <button class="sidebar-btn" data-view="audit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          Audit Trail (SOC2)
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-connection-status">
+          <span class="status-indicator online"></span>
+          <span>Twenty MCP: /mcp</span>
+        </div>
+        <div class="governance-tag">
+          Role: <strong>HERMES_AGENT</strong> (Governed)
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Container -->
+    <div class="twenty-main">
+      <!-- Top bar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="view-title" id="view-title">Deals Pipeline</h1>
+          <span class="topbar-badge" id="env-badge">Localhost :3000</span>
+          <span class="mcp-badge">MCP JSON-RPC 2.0</span>
+        </div>
+        <div class="topbar-actions">
+          <button class="btn btn-primary" id="btn-global-action">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+            <span id="btn-action-label">New Opportunity</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- KPI Ribbon -->
+      <section class="kpi-ribbon">
+        <div class="kpi-item">
+          <span class="kpi-label">Total Pipeline</span>
+          <span class="kpi-value text-accent" id="kpi-pipeline">$675,000</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Active Opportunities</span>
+          <span class="kpi-value" id="kpi-opps-count">3</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">AI Strategy Briefs</span>
+          <span class="kpi-value text-cyan" id="kpi-briefs-count">1</span>
+        </div>
+        <div class="kpi-item">
+          <span class="kpi-label">Pending AI Approvals</span>
+          <span class="kpi-value text-amber" id="kpi-approvals-count">1</span>
+        </div>
+      </section>
+
+      <!-- View Containers -->
+      <main class="content-body">
+        
+        <!-- VIEW: OPPORTUNITIES (KANBAN) -->
+        <div class="twenty-view active" id="view-opportunities">
+          <div class="kanban-board" id="kanban-board">
+            <div class="kanban-column" data-stage="DISCOVERY">
+              <div class="column-header">
+                <span class="col-title">Discovery</span>
+                <span class="col-count" id="count-DISCOVERY">0</span>
+              </div>
+              <div class="col-cards" id="cards-DISCOVERY"></div>
+            </div>
+
+            <div class="kanban-column" data-stage="PROPOSAL">
+              <div class="column-header">
+                <span class="col-title">Proposal</span>
+                <span class="col-count" id="count-PROPOSAL">0</span>
+              </div>
+              <div class="col-cards" id="cards-PROPOSAL"></div>
+            </div>
+
+            <div class="kanban-column" data-stage="NEGOTIATION">
+              <div class="column-header">
+                <span class="col-title">Negotiation</span>
+                <span class="col-count" id="count-NEGOTIATION">0</span>
+              </div>
+              <div class="col-cards" id="cards-NEGOTIATION"></div>
+            </div>
+
+            <div class="kanban-column" data-stage="CLOSED_WON">
+              <div class="column-header">
+                <span class="col-title">Closed Won</span>
+                <span class="col-count" id="count-CLOSED_WON">0</span>
+              </div>
+              <div class="col-cards" id="cards-CLOSED_WON"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW: COMPANIES -->
+        <div class="twenty-view" id="view-companies">
+          <div class="table-container">
+            <table class="twenty-table" id="companies-table">
+              <thead>
+                <tr>
+                  <th>Company Name</th>
+                  <th>Domain</th>
+                  <th>Employees</th>
+                  <th>ARR (USD)</th>
+                  <th>AI Enriched Tags</th>
+                  <th>Created</th>
+                </tr>
+              </thead>
+              <tbody id="companies-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW: PEOPLE -->
+        <div class="twenty-view" id="view-people">
+          <div class="table-container">
+            <table class="twenty-table" id="people-table">
+              <thead>
+                <tr>
+                  <th>Contact Name</th>
+                  <th>Job Title</th>
+                  <th>Primary Email</th>
+                  <th>Phone</th>
+                  <th>Company ID</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody id="people-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- VIEW: NOTES & ACTIVITY -->
+        <div class="twenty-view" id="view-notes">
+          <div class="notes-timeline" id="notes-timeline"></div>
+        </div>
+
+        <!-- VIEW: AI CUSTOM OBJECTS (Metadata API) -->
+        <div class="twenty-view" id="view-ai-objects">
+          <div class="ai-objects-grid">
+            <div class="ai-obj-section">
+              <div class="section-badge-bar">
+                <h3>Deal Strategy Briefs (/rest/dealStrategyBriefs)</h3>
+                <span class="schema-tag">Metadata API: DealStrategyBrief</span>
+              </div>
+              <div class="briefs-list" id="briefs-list"></div>
+            </div>
+
+            <div class="ai-obj-section">
+              <div class="section-badge-bar">
+                <h3>Competitor Intelligence (/rest/competitorIntelligences)</h3>
+                <span class="schema-tag">Metadata API: CompetitorIntelligence</span>
+              </div>
+              <div class="competitor-list" id="competitor-list"></div>
+            </div>
+
+            <div class="ai-obj-section">
+              <div class="section-badge-bar">
+                <h3>Risk Assessments (/rest/riskAssessments)</h3>
+                <span class="schema-tag">Metadata API: RiskAssessment</span>
+              </div>
+              <div class="risk-list" id="risk-list"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW: ACTION APPROVALS -->
+        <div class="twenty-view" id="view-approvals">
+          <div class="approvals-header">
+            <h3>Human-in-the-Loop AI Action Approvals</h3>
+            <p>Tasks proposed by Hermes Agent (`status: AI_PROPOSED`). Review and approve before autonomous communications or execution runs.</p>
+          </div>
+          <div class="approvals-list" id="approvals-list"></div>
+        </div>
+
+        <!-- VIEW: PGVECTOR SEMANTIC SEARCH -->
+        <div class="twenty-view" id="view-semantic-search">
+          <div class="semantic-search-card">
+            <h3>Twenty CRM pgvector Semantic Search</h3>
+            <p>Direct vector similarity matching across all CRM notes, deal strategy briefs, competitor profiles, and opportunity records.</p>
+            <div class="search-input-box">
+              <input type="text" id="semantic-query-input" class="form-input form-input-lg" placeholder="e.g. Find past successful deals with a similar strategic profile or Chinese LLM requirements...">
+              <button class="btn btn-primary" id="btn-run-semantic-search">🔍 Vector Search</button>
+            </div>
+          </div>
+          <div class="semantic-results" id="semantic-results">
+            <div class="empty-state">Enter a natural language search query above to query the vector embedding index.</div>
+          </div>
+        </div>
+
+        <!-- VIEW: LIFECYCLE WEBHOOKS & AUTONOMOUS LOOP -->
+        <div class="twenty-view" id="view-loop">
+          <div class="loop-dashboard">
+            <div class="loop-card">
+              <h3>Lifecycle Webhook Dispatcher</h3>
+              <p>Trigger lifecycle events to test Hermes Agent autonomous responses (note.created, opportunity.stage_updated, task.approved).</p>
+
+              <div class="simulator-box">
+                <h4>Simulate Live Lifecycle Webhook Event</h4>
+                <div class="sim-row">
+                  <select id="sim-event-select" class="form-input">
+                    <option value="opportunity.created">opportunity.created (Trigger Deep Strategy)</option>
+                    <option value="note.created">note.created (Extract Action Items)</option>
+                    <option value="opportunity.stage_updated">opportunity.stage_updated (Monitor Stage)</option>
+                    <option value="task.approved">task.approved (Execute Autonomous Action)</option>
+                  </select>
+                  <select id="sim-opp-select" class="form-input"></select>
+                  <button class="btn btn-primary" id="btn-trigger-sim">
+                    ⚡ Dispatch Event
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="loop-card">
+              <h3>Live Webhook & Agent Event Stream</h3>
+              <div class="event-stream" id="event-stream">
+                <div class="event-item">
+                  <span class="event-time">System Ready</span>
+                  <span class="event-tag">MCP READY</span>
+                  <span class="event-msg">Twenty MCP JSON-RPC 2.0 endpoint active on http://localhost:3000/mcp</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Enterprise Workforce & Org Hierarchy View -->
+        <div class="twenty-view" id="view-workforce">
+          <div class="enterprise-section-header">
+            <h3>Enterprise Departments & Token Budgets</h3>
+            <p>Monitor token consumption, monthly budgets, and departmental allocations.</p>
+          </div>
+          <div class="departments-grid" id="departments-grid"></div>
+
+          <div class="enterprise-section-header" style="margin-top: 24px;">
+            <h3>Enterprise Employee Hierarchy & Workload Allocation</h3>
+            <p>Role-based access, manager reporting lines, skill tags, and active deal capacities.</p>
+          </div>
+          <div class="table-container">
+            <table class="twenty-table" id="employees-table">
+              <thead>
+                <tr>
+                  <th>Employee</th>
+                  <th>Role & Title</th>
+                  <th>Department</th>
+                  <th>Manager</th>
+                  <th>Workload Capacity</th>
+                  <th>Specialized Skills</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="employees-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 9. Enterprise Background Jobs View -->
+        <div class="twenty-view" id="view-jobs">
+          <div class="loop-dashboard">
+            <div class="loop-card">
+              <h3>Submit Asynchronous Enterprise Job</h3>
+              <p>Dispatch long-running AI batch operations to the background worker pool.</p>
+              <div class="simulator-box">
+                <div class="sim-row">
+                  <select id="job-type-select" class="form-input">
+                    <option value="PORTFOLIO_RISK_SCAN">PORTFOLIO_RISK_SCAN (Run LLM Risk Analysis across Deals)</option>
+                    <option value="BATCH_LEAD_ENRICHMENT">BATCH_LEAD_ENRICHMENT (Enrich Corporate Accounts)</option>
+                    <option value="VECTOR_INDEX_SYNC">VECTOR_INDEX_SYNC (pgvector Embedding Sync)</option>
+                    <option value="EMPLOYEE_PERFORMANCE_ROLLUP">EMPLOYEE_PERFORMANCE_ROLLUP (Quota & AI Efficiency)</option>
+                  </select>
+                  <select id="job-priority-select" class="form-input">
+                    <option value="CRITICAL">Priority: CRITICAL (P1)</option>
+                    <option value="HIGH">Priority: HIGH (P2)</option>
+                    <option value="NORMAL" selected>Priority: NORMAL (P3)</option>
+                    <option value="LOW">Priority: LOW (P4)</option>
+                  </select>
+                  <button class="btn btn-primary" id="btn-submit-job">
+                    🚀 Dispatch Background Job
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="loop-card">
+              <h3>Background Job Queue & Worker Status</h3>
+              <div class="table-container">
+                <table class="twenty-table" id="jobs-table">
+                  <thead>
+                    <tr>
+                      <th>Job ID & Type</th>
+                      <th>Priority</th>
+                      <th>Status</th>
+                      <th>Progress</th>
+                      <th>Worker</th>
+                      <th>Created</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="jobs-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Cryptographic Audit Trail (SOC2 / GDPR) View -->
+        <div class="twenty-view" id="view-audit">
+          <div class="audit-status-banner" id="audit-status-banner">
+            <div class="audit-badge verified">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span>SHA-256 Tamper-Proof Chain: VERIFIED</span>
+            </div>
+            <span class="audit-meta" id="audit-blocks-count">Loading cryptographic blocks...</span>
+          </div>
+
+          <div class="table-container" style="margin-top: 16px;">
+            <table class="twenty-table" id="audit-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Actor</th>
+                  <th>Role</th>
+                  <th>Action</th>
+                  <th>Target Entity</th>
+                  <th>Cryptographic Block Hash</th>
+                </tr>
+              </thead>
+              <tbody id="audit-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal: AI Deal Summarizer -->
+  <div class="twenty-modal-backdrop" id="modal-ai-summary" style="display: none;">
+    <div class="twenty-modal modal-wide">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div class="sparkle-badge">AI</div>
+          <h3 id="modal-ai-title">Hermes Autonomous Deal Brief</h3>
+        </div>
+        <button class="btn-close" id="btn-close-ai-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="ai-model-tag-bar">
+          <span>Target Model:</span>
+          <select id="ai-model-picker" class="form-input-sm">
+            <option value="glm-chinese">GLM-4 Chinese (THUDM/glm-4-9b-chat-hf)</option>
+            <option value="qwen-2.5">Qwen 2.5 7B (Alibaba Cloud)</option>
+            <option value="bloom-z">Bloom-Z Multilingual</option>
+            <option value="hf-nvidia">NVIDIA Nemotron 8B</option>
+          </select>
+          <span class="ai-status-pill" id="ai-gen-status">Idle</span>
+        </div>
+
+        <div class="ai-brief-output" id="ai-brief-output">
+          Click "Generate Deal Brief" below to run the autonomous analysis turn.
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn-close-ai">Close</button>
+        <button type="button" class="btn btn-primary" id="btn-generate-ai-brief">
+          ⚡ Generate AI Custom Objects
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

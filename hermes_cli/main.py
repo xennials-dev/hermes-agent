@@ -2871,6 +2871,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "send", "sessions", "setup",
         "skin", "skills", "slack", "status", "sync", "tools", "uninstall", "update",
         "usage", "vault",
+        "twenty",
         "webhook", "whatsapp", "whatsapp-cloud", "worktree", "chat", "secrets", "security",
         "browser",
         "verify",
@@ -3500,6 +3501,8 @@ def _build_cli_parser():
     build_tools_parser(subparsers, cmd_tools=cmd_tools)
     build_computer_use_parser(subparsers)
     build_mcp_parser(subparsers, cmd_mcp=cmd_mcp)
+    from hermes_cli.subcommands.twenty import build_twenty_parser
+    build_twenty_parser(subparsers)
     build_sessions_parser(subparsers, cmd_sessions=_cmd_sessions_lazy)
     build_insights_parser(subparsers, cmd_insights=cmd_insights)
     build_usage_parser(subparsers)

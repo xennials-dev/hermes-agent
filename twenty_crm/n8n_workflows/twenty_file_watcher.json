@@ -1,0 +1,125 @@
+{
+  "name": "Twenty CRM Inbound Contract & File Watcher",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "path": "/data/incoming",
+        "events": [
+          "add"
+        ],
+        "options": {}
+      },
+      "id": "node-file-trigger-1",
+      "name": "Incoming File Trigger",
+      "type": "n8n-nodes-base.localFileTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "filePath": "={{ $json.path }}",
+        "options": {}
+      },
+      "id": "node-read-binary-1",
+      "name": "Read Incoming Document",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://twenty-server:3000/rest/notes",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "X-API-Role",
+              "value": "HERMES_AGENT"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": \"[Automated File Watcher Ingestion] {{ $json.fileName || 'Inbound Contract / Brief' }}\",\n  \"body\": \"File ingested from watched volume at {{ new Date().toISOString() }}.\\nPath: {{ $json.path }}\\nSize: {{ $json.fileSize || 'N/A' }} bytes.\\nReady for Hermes Agent automated semantic indexing.\",\n  \"opportunityId\": \"opp-1\"\n}",
+        "options": {}
+      },
+      "id": "node-create-crm-note",
+      "name": "Create Note in Twenty CRM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "command": "=mv \"{{ $('Incoming File Trigger').item.json.path }}\" \"/data/processed/{{ $('Incoming File Trigger').item.json.fileName || 'file-' + Date.now() }}\""
+      },
+      "id": "node-move-file-1",
+      "name": "Archive to Processed",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Incoming File Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read Incoming Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Incoming Document": {
+      "main": [
+        [
+          {
+            "node": "Create Note in Twenty CRM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Note in Twenty CRM": {
+      "main": [
+        [
+          {
+            "node": "Archive to Processed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "twenty-crm"
+    },
+    {
+      "name": "file-watcher"
+    },
+    {
+      "name": "automation"
+    }
+  ]
+}

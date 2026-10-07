@@ -38,7 +38,9 @@ Good verification targets, cheapest first:
 
 - **Every shipped feature, one line each: https://hermes-agent.nousresearch.com/docs/llms.txt.** Start here for any "can Hermes do X?" or "how do I do X?" — it indexes the entire documentation set with a link to the page that answers. It is generated from the docs tree on every build, so it is never behind the product. Fetch it with `web_extract`, or `curl -s https://hermes-agent.nousresearch.com/docs/llms.txt` when web tools are off. The whole documentation set in one file is at `/docs/llms-full.txt`.
 - CLI commands: `hermes --help`, `hermes <command> --help`, and `hermes_cli/main.py`
-- Source tree: https://github.com/NousResearch/hermes-agent
+- Source trees:
+  - [Hermes Agent Core](https://github.com/NousResearch/hermes-agent) — The main monorepo containing the full Python source, CLI, gateway, documentation, and Docker configuration.
+  - [Hermes Agent Self-Evolution](https://github.com/NousResearch/hermes-agent-self-evolution) — The specialized repository featuring DSPy and GEPA (Genetic-Pareto Prompt Evolution) for optimizing agent skills and tool descriptions.
 
 Never answer "Hermes can't do that" from memory. Hermes ships far more than this skill body describes, and the index exists so a negative answer is always checkable.
 

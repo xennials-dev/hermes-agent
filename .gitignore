@@ -319,3 +319,14 @@ native/fts5_cjk/*.so
 /pm/.lock.json.lock
 
 apps/desktop/.dist-build*
+
+# Twenty CRM runtime storage & audit logs
+twenty_crm/storage/*.jsonl
+twenty_crm/storage/incoming_files/*
+!twenty_crm/storage/incoming_files/.gitkeep
+twenty_crm/storage/processed_files/*
+!twenty_crm/storage/processed_files/.gitkeep
+twenty_crm/.env
+
+# Local IDE workspace customizations & skills
+.agents/

@@ -1,0 +1,264 @@
+{
+  "name": "Twenty CRM Native Lifecycle Router to Hermes Agent & Composio",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "twenty-events",
+        "options": {}
+      },
+      "id": "node-webhook-1",
+      "name": "Twenty CRM Webhook Ingestion",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "twenty-events"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "opportunity.created",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Opportunity Created"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "task.approved",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Task Approved"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "note.created",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Note Created"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict"
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.event }}",
+                    "rightValue": "opportunity.stage_updated",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Stage Updated"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node-switch-1",
+      "name": "Route by CRM Event",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/router/infer",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"task\": \"summarize_deal\",\n  \"opportunityId\": \"{{ $json.body.data.id }}\",\n  \"opportunityName\": \"{{ $json.body.data.name }}\",\n  \"source\": \"n8n_twenty_router\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "node-hermes-deal-analysis",
+      "name": "Trigger Hermes Deal Strategy Loop",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [860, 160]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/composio/dispatch",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"action\": \"TASK_APPROVED_EXECUTE\",\n  \"taskId\": \"{{ $json.body.data.id }}\",\n  \"title\": \"{{ $json.body.data.title }}\",\n  \"channels\": [\"slack\", \"linear\"],\n  \"details\": {{ JSON.stringify($json.body.data) }}\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "node-composio-dispatch",
+      "name": "Composio B2B Action Fabric",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [860, 280]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/router/infer",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"task\": \"extract_action_items\",\n  \"noteId\": \"{{ $json.body.data.id }}\",\n  \"body\": \"{{ $json.body.data.body }}\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "node-note-analysis",
+      "name": "Extract Action Items & Propose Tasks",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [860, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:8000/router/infer",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"task\": \"recalculate_competitor_intel\",\n  \"opportunityId\": \"{{ $json.body.data.id }}\",\n  \"newStage\": \"{{ $json.body.data.stage }}\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true
+            }
+          }
+        }
+      },
+      "id": "node-stage-intel",
+      "name": "Refresh Competitor & Risk Analysis",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [860, 520]
+    }
+  ],
+  "connections": {
+    "Twenty CRM Webhook Ingestion": {
+      "main": [
+        [
+          {
+            "node": "Route by CRM Event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by CRM Event": {
+      "main": [
+        [
+          {
+            "node": "Trigger Hermes Deal Strategy Loop",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Composio B2B Action Fabric",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Extract Action Items & Propose Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Refresh Competitor & Risk Analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    {
+      "name": "twenty-crm"
+    },
+    {
+      "name": "hermes-agent"
+    },
+    {
+      "name": "composio"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+manifest_version: 1
+
+name: composio
+connector_slug: composio
+description: Universal B2B API fabric connecting Hermes Agent to 100+ external tools (Slack, Gmail, Linear, GitHub, Google Drive, Jira, HubSpot).
+source: https://docs.composio.dev/framework/mcp
+
+transport:
+  type: stdio
+  command: uvx
+  args:
+    - composio-core
+    - mcp
+    - start
+
+auth:
+  type: api_key
+  env:
+    - name: COMPOSIO_API_KEY
+      prompt: "Composio API Key (from https://app.composio.dev/settings)"
+      required: true
+      secret: true
+
+suggest:
+  keywords:
+    - composio
+    - slack
+    - linear
+    - gmail
+    - b2b
+    - drive
+  hosts:
+    - composio.dev
+    - connect.composio.dev
+
+post_install: |
+  Composio connects Hermes Agent to 100+ B2B apps through a single unified fabric.
+  1. Obtain your API key at https://app.composio.dev/settings.
+  2. Authorize individual tools (e.g. `composio add slack`, `composio add linear`, `composio add gmail`).
+  3. Run `hermes mcp configure composio` to review connected app endpoints.

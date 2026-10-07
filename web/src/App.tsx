@@ -55,7 +55,9 @@ import {
   Wrench,
   X,
   Zap,
+  ArrowUpRight,
 } from "lucide-react";
+import { CHINESE_AI_ORGS, TwentyLogo } from "@/components/ChineseAIHub";
 import { Button } from "@nous-research/ui/ui/components/button";
 import { SelectionSwitcher } from "@nous-research/ui/ui/components/selection-switcher";
 import { Spinner } from "@nous-research/ui/ui/components/spinner";
@@ -700,6 +702,74 @@ export default function App() {
                   </ul>
                 </div>
               )}
+
+              <div
+                className="flex flex-col border-t border-current/10 pt-2 pb-1"
+                role="group"
+                aria-label="Workspace Integrations"
+              >
+                <span
+                  className={cn(
+                    "px-5 pt-1 pb-1",
+                    "font-sans text-display text-xs tracking-[0.12em] text-text-tertiary",
+                    isDesktopCollapsed && "lg:hidden",
+                  )}
+                >
+                  Workspace
+                </span>
+                <ul className="flex flex-col">
+                  <SidebarWorkspaceLink
+                    name="Twenty CRM"
+                    url="http://localhost:3020"
+                    Logo={TwentyLogo}
+                    collapsed={isDesktopCollapsed}
+                    tooltipWarmRef={tooltipWarmRef}
+                    isCrm
+                  />
+                  {CHINESE_AI_ORGS.map((org) => (
+                    <SidebarWorkspaceLink
+                      key={org.id}
+                      name={org.name}
+                      url={org.interfaceUrl}
+                      Logo={org.logo}
+                      collapsed={isDesktopCollapsed}
+                      tooltipWarmRef={tooltipWarmRef}
+                    />
+                  ))}
+                </ul>
+              </div>
+
+              <div
+                className="flex flex-col border-t border-current/10 pt-2 pb-1"
+                role="group"
+                aria-label="Repositories"
+              >
+                <span
+                  className={cn(
+                    "px-5 pt-1 pb-1",
+                    "font-sans text-display text-xs tracking-[0.12em] text-text-tertiary",
+                    isDesktopCollapsed && "lg:hidden",
+                  )}
+                >
+                  Repositories
+                </span>
+                <ul className="flex flex-col">
+                  <SidebarWorkspaceLink
+                    name="Hermes Agent Core"
+                    url="https://github.com/NousResearch/hermes-agent"
+                    Logo={Code}
+                    collapsed={isDesktopCollapsed}
+                    tooltipWarmRef={tooltipWarmRef}
+                  />
+                  <SidebarWorkspaceLink
+                    name="Self-Evolution"
+                    url="https://github.com/NousResearch/hermes-agent-self-evolution"
+                    Logo={Sparkles}
+                    collapsed={isDesktopCollapsed}
+                    tooltipWarmRef={tooltipWarmRef}
+                  />
+                </ul>
+              </div>
             </nav>
 
             <SidebarSystemActions
@@ -930,6 +1000,91 @@ function SidebarNavLink({
 
       {collapsed && hovered && tooltipAnchor && (
         <SidebarTooltip anchor={tooltipAnchor} label={navLabel} warmRef={tooltipWarmRef} />
+      )}
+    </li>
+  );
+}
+
+function SidebarWorkspaceLink({
+  name,
+  url,
+  Logo,
+  collapsed,
+  tooltipWarmRef,
+  isCrm = false,
+}: {
+  name: string;
+  url: string;
+  Logo: ComponentType<{ className?: string }>;
+  collapsed: boolean;
+  tooltipWarmRef: TooltipWarmRef;
+  isCrm?: boolean;
+}) {
+  const [hovered, setHovered] = useState(false);
+  const [tooltipAnchor, setTooltipAnchor] = useState<HTMLElement | null>(null);
+
+  const showTooltip = (event: MouseEvent<HTMLElement> | FocusEvent<HTMLElement>) => {
+    setHovered(true);
+    setTooltipAnchor(event.currentTarget);
+  };
+  const hideTooltip = () => {
+    setHovered(false);
+    setTooltipAnchor(null);
+  };
+
+  return (
+    <li
+      onMouseEnter={collapsed ? showTooltip : undefined}
+      onMouseLeave={collapsed ? hideTooltip : undefined}
+    >
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={collapsed ? name : undefined}
+        onFocus={collapsed ? showTooltip : undefined}
+        onBlur={collapsed ? hideTooltip : undefined}
+        className={cn(
+          "group/nav relative flex items-center gap-3",
+          "px-5 py-2",
+          "font-sans text-display uppercase text-xs tracking-[0.12em]",
+          "whitespace-nowrap transition-colors cursor-pointer",
+          isCrm
+            ? "text-blue-400 hover:text-blue-300 font-semibold"
+            : "text-text-secondary hover:text-text-primary",
+          "focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-midground",
+        )}
+        style={{
+          clipPath: "var(--component-tab-clip-path)",
+        }}
+      >
+        <Logo className="h-4 w-4 shrink-0" />
+
+        <span
+          className={cn(
+            "truncate transition-opacity duration-300 flex items-center gap-1.5 flex-1 min-w-0",
+            collapsed ? "lg:opacity-0" : "lg:opacity-100",
+          )}
+        >
+          <span className="truncate">{name}</span>
+          <ArrowUpRight className="h-3 w-3 opacity-40 shrink-0 ml-auto group-hover/nav:opacity-100 transition-opacity" />
+        </span>
+
+        <span
+          aria-hidden
+          className={cn(
+            "absolute inset-y-0.5 left-1.5 right-1.5 opacity-0 pointer-events-none transition-opacity duration-200 group-hover/nav:opacity-100",
+            isCrm ? "bg-blue-500/10" : "bg-current/5",
+          )}
+        />
+      </a>
+
+      {collapsed && hovered && tooltipAnchor && (
+        <SidebarTooltip
+          anchor={tooltipAnchor}
+          label={name}
+          warmRef={tooltipWarmRef}
+        />
       )}
     </li>
   );
