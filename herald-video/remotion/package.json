@@ -1,0 +1,21 @@
+{
+  "name": "herald-remotion-video",
+  "version": "1.0.0",
+  "description": "Herald Observability 90-second instructional video with infographics and 3 presenters",
+  "scripts": {
+    "start": "remotion preview",
+    "build": "remotion render src/index.ts HeraldVideo out/herald-video.mp4",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.0",
+    "lucide-react": "^0.475.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}
