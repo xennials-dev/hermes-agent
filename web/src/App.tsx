@@ -56,8 +56,10 @@ import {
   X,
   Zap,
   ArrowUpRight,
+  Workflow,
 } from "lucide-react";
 import { CHINESE_AI_ORGS, TwentyLogo, N8nLogo } from "@/components/ChineseAIHub";
+import { WORKFLOW_TOOLS } from "@/components/WorkflowToolsHub";
 import { Button } from "@nous-research/ui/ui/components/button";
 import { SelectionSwitcher } from "@nous-research/ui/ui/components/selection-switcher";
 import { Spinner } from "@nous-research/ui/ui/components/spinner";
@@ -99,6 +101,7 @@ const ChannelsPage = lazy(() => import("@/pages/ChannelsPage"));
 const WebhooksPage = lazy(() => import("@/pages/WebhooksPage"));
 const SystemPage = lazy(() => import("@/pages/SystemPage"));
 const EcosystemPage = lazy(() => import("@/pages/EcosystemPage"));
+const WorkflowsPage = lazy(() => import("@/pages/WorkflowsPage"));
 const ChatPage = lazy(() => import("@/pages/ChatPage"));
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
@@ -174,6 +177,7 @@ const BUILTIN_ROUTES_CORE: Record<string, ComponentType> = {
   "/webhooks": WebhooksPage,
   "/system": SystemPage,
   "/ecosystem": EcosystemPage,
+  "/workflows": WorkflowsPage,
   "/profiles": ProfilesPage,
   "/profiles/new": ProfileBuilderPage,
   "/config": ConfigPage,
@@ -200,6 +204,11 @@ const BUILTIN_NAV_REST: NavItem[] = [
     path: "/ecosystem",
     label: "AI Ecosystem",
     icon: Sparkles,
+  },
+  {
+    path: "/workflows",
+    label: "Workflows & Agents",
+    icon: Workflow,
   },
   { path: "/files", label: "Files", icon: FolderOpen },
   {
@@ -258,6 +267,7 @@ const ICON_MAP: Record<string, ComponentType<{ className?: string }>> = {
   Star,
   Code,
   Eye,
+  Workflow,
 };
 
 function resolveIcon(name: string): ComponentType<{ className?: string }> {
@@ -746,6 +756,44 @@ export default function App() {
                       name={org.name}
                       url={org.interfaceUrl}
                       Logo={org.logo}
+                      collapsed={isDesktopCollapsed}
+                      tooltipWarmRef={tooltipWarmRef}
+                    />
+                  ))}
+                </ul>
+              </div>
+
+              <div
+                className="flex flex-col border-t border-current/10 pt-2 pb-1"
+                role="group"
+                aria-label="Workflow Automation"
+              >
+                <div className="flex items-center justify-between px-5 pt-1 pb-1">
+                  <span
+                    className={cn(
+                      "font-sans text-display text-xs tracking-[0.12em] text-text-tertiary",
+                      isDesktopCollapsed && "lg:hidden",
+                    )}
+                  >
+                    Workflow Automation
+                  </span>
+                  <NavLink
+                    to="/workflows"
+                    className={cn(
+                      "text-[10px] tracking-wider text-primary hover:underline",
+                      isDesktopCollapsed && "lg:hidden",
+                    )}
+                  >
+                    HUB
+                  </NavLink>
+                </div>
+                <ul className="flex flex-col">
+                  {WORKFLOW_TOOLS.map((tool) => (
+                    <SidebarWorkspaceLink
+                      key={tool.id}
+                      name={tool.name}
+                      url={tool.githubUrl}
+                      Logo={tool.logo}
                       collapsed={isDesktopCollapsed}
                       tooltipWarmRef={tooltipWarmRef}
                     />

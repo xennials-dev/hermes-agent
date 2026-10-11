@@ -5,6 +5,8 @@ import { PluginSlot } from "@/plugins";
 import { ChineseAIHub } from "@/components/ChineseAIHub";
 import { Button } from "@nous-research/ui/ui/components/button";
 
+import { WorkflowToolsHub } from "@/components/WorkflowToolsHub";
+
 export default function EcosystemPage() {
   const { setEnd } = usePageHeader();
 
@@ -39,10 +41,12 @@ export default function EcosystemPage() {
   }, [setEnd]);
 
   return (
-    <div className="flex min-w-0 w-full max-w-full flex-col gap-4 py-2">
+    <div className="flex min-w-0 w-full max-w-full flex-col gap-6 py-2">
       <PluginSlot name="ecosystem:top" />
+      <WorkflowToolsHub />
       <ChineseAIHub />
       <PluginSlot name="ecosystem:bottom" />
     </div>
   );
 }
+
