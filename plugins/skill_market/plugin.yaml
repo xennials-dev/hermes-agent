@@ -1,0 +1,5 @@
+name: skill-market
+version: 1.0.0
+description: "Community skill marketplace for auto-discovery and downloading of missing SKILL.md files."
+author: "Hermes Agent"
+provides_hooks: []

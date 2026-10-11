@@ -1,0 +1,5 @@
+name: tui-focus
+version: 1.0.0
+description: "Minimalist floating bar mode for the Ink TUI."
+author: "Hermes Agent"
+provides_hooks: []

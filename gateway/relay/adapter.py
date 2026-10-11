@@ -28,7 +28,6 @@ from gateway.platforms.base_exec_approval import EA_HEADER_TEXT
 from gateway.platforms.event import MessageEvent, MessageType, ProcessingOutcome
 from gateway.relay.descriptor import CapabilityDescriptor
 from gateway.relay.egress import (
-    EGRESS_DECLINE_CODE,
     decline_error,
     is_egress_decline,
     log_decline,

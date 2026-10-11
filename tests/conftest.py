@@ -730,7 +730,7 @@ def _state_db_write_guard(request, monkeypatch):
 # ``_methods`` dict at import time and keeps per-session state in module
 # globals (sessions, child-run registry, config cache, DB handle). The
 # canonical per-file process isolation above hides any leakage, but a direct
-# multi-file invocation (``pytest tests/tui_gateway/ tests/tui_gateway/test_tui_gateway_server.py``,
+# multi-file invocation (``pytest tests/tui_gateway/ tests/agent/``,
 # or plain ``pytest tests/``) shares one interpreter: a test that stubs
 # ``_methods["slash.exec"]`` or leaves an active-session lease behind breaks
 # unrelated tests in later files. This fixture snapshots the cheap-to-copy
@@ -764,12 +764,12 @@ def _reset_tui_gateway_server_state():
     mod = sys.modules.get(_TUI_SERVER_MODULE)
     snapshot = None
     if mod is not None:
-        snapshot = {
-            "methods": dict(mod._methods),
-            "cfg": (mod._cfg_cache, mod._cfg_sig, mod._cfg_path),
-            "db": (mod._db, mod._db_error),
-            "real_stdout": mod._real_stdout,
-        }
+        snapshot = (
+            dict(mod._methods),
+            (mod._cfg_cache, mod._cfg_sig, mod._cfg_path),
+            (mod._db, mod._db_error),
+            mod._real_stdout,
+        )
 
     yield
 
@@ -795,11 +795,12 @@ def _reset_tui_gateway_server_state():
             obj.clear()
 
     if snapshot is not None:
+        methods, cfg, db, real_stdout = snapshot
         mod._methods.clear()
-        mod._methods.update(snapshot["methods"])
-        mod._cfg_cache, mod._cfg_sig, mod._cfg_path = snapshot["cfg"]
-        mod._db, mod._db_error = snapshot["db"]
-        mod._real_stdout = snapshot["real_stdout"]
+        mod._methods.update(methods)
+        mod._cfg_cache, mod._cfg_sig, mod._cfg_path = cfg
+        mod._db, mod._db_error = db
+        mod._real_stdout = real_stdout
     else:
         # First imported during this test — reset to import-time defaults
         # for the globals we could not snapshot (``_methods`` is left to
@@ -944,7 +945,7 @@ def _wal_is_usable() -> bool:
 # different primitive:
 # a test run spoke the string "partial answer complete" out of the developer's
 # speakers. That string is a test fixture
-# (``tests/tui_gateway/test_tui_gateway_server.py``'s fake ``final_response``), and the
+# (``tests/tui_gateway/test_voice_loading_and_history.py``'s fake ``final_response``), and the
 # route it took is fully in-process — no leaked shell variable required:
 #
 #   1. ``test_voice_toggle_tts_branch_also_carries_record_key`` drives the

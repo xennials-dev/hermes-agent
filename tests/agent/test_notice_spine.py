@@ -5,7 +5,7 @@ Covers:
      object.__new__ — same pattern as test_steer.py and test_file_mutation_verifier.py).
   B. Constructor / init_agent signature threading.
   C. TUI _agent_cbs notice binding — mirrors the status_callback tests already
-     in tests/tui_gateway/test_tui_gateway_server.py.
+     in tests/tui_gateway/test_history_and_resume.py.
 """
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ def _bare_agent() -> AIAgent:
 
 
 class TestAgentCbsNoticeBinding:
-    """Mirror test_status_callback_emits_kind_and_text from test_tui_gateway_server.py."""
+    """Mirror test_status_callback_emits_kind_and_text from test_history_and_resume.py."""
 
     def test_notice_callback_emits_notification_show(self):
         from tui_gateway import server

@@ -1,0 +1,23 @@
+name: Set up ripgrep
+description: Install prebuilt musl ripgrep with sha256 checksum verification
+inputs:
+  version:
+    description: Ripgrep version to install
+    default: "15.1.0"
+runs:
+  using: composite
+  steps:
+    - name: Install ripgrep
+      shell: bash
+      run: |
+        set -euo pipefail
+        RG_VERSION="${{ inputs.version }}"
+        RG_SHA256=1c9297be4a084eea7ecaedf93eb03d058d6faae29bbc57ecdaf5063921491599
+        RG_TARBALL=ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl.tar.gz
+        curl -sSfL --retry 3 --retry-delay 5 -o "$RG_TARBALL" \
+          "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VERSION}/${RG_TARBALL}"
+        echo "${RG_SHA256}  ${RG_TARBALL}" | sha256sum -c -
+        tar -xzf "$RG_TARBALL"
+        sudo mv "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl/rg" /usr/local/bin/rg
+        rm -rf "$RG_TARBALL" "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl"
+        rg --version

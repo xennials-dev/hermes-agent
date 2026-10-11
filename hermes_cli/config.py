@@ -23,8 +23,6 @@ import subprocess
 import sys
 import tempfile
 import threading
-import time
-import unicodedata
 from contextlib import suppress
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation

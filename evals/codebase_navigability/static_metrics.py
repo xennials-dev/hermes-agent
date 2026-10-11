@@ -126,15 +126,26 @@ def analyse(files):
 
 def radon(files):
     """radon cc + mi over the file list (JSON), aggregated."""
-    R = shutil.which("radon") or os.path.join(os.path.dirname(sys.executable), "radon")
+    R = shutil.which("radon") or shutil.which("radon.exe")
+    if not R:
+        cand = os.path.join(os.path.dirname(sys.executable), "radon")
+        if os.path.isfile(cand):
+            R = cand
+        elif os.path.isfile(cand + ".exe"):
+            R = cand + ".exe"
+    if not R or not os.path.isfile(R):
+        return {"cc_error": "radon not installed or not found on PATH", "mi_error": "radon not installed or not found on PATH"}
     import tempfile
     out = {}
     lst = "\n".join(files)
     # radon can't take a list file; run per-directory roots instead
     roots = sorted({os.path.relpath(f, TREE).split(os.sep)[0] if os.sep in os.path.relpath(f, TREE) else os.path.relpath(f, TREE) for f in files})
     roots = [r for r in roots if r != "tests"]
-    cc = subprocess.run([R, "cc", "-j", "-s", "-e", "tests/*,tests/**", *roots], cwd=TREE, capture_output=True, text=True).stdout
-    mi = subprocess.run([R, "mi", "-j", "-e", "tests/*,tests/**", *roots], cwd=TREE, capture_output=True, text=True).stdout
+    try:
+        cc = subprocess.run([R, "cc", "-j", "-s", "-e", "tests/*,tests/**", *roots], cwd=TREE, capture_output=True, text=True).stdout
+        mi = subprocess.run([R, "mi", "-j", "-e", "tests/*,tests/**", *roots], cwd=TREE, capture_output=True, text=True).stdout
+    except Exception as e:
+        return {"cc_error": repr(e)[:200], "mi_error": repr(e)[:200]}
     try:
         ccj = json.loads(cc); blocks = [b for v in ccj.values() if isinstance(v, list) for b in v if isinstance(b, dict) and "complexity" in b]
         cs = sorted(b["complexity"] for b in blocks)

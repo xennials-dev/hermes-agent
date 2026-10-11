@@ -1,0 +1,4 @@
+name: xurl_bot
+version: 0.1.0
+description: "A subagent that uses xurl to periodically read the timeline and reply to mentions."
+author: "Hermes Agent"

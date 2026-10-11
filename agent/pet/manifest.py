@@ -100,7 +100,7 @@ def fetch_manifest(*, timeout: float = _DEFAULT_TIMEOUT, force: bool = False) ->
     if not force and _cache_is_warm():
         return _cache[1]
     try:
-        import httpx
+        import httpx  # noqa: F401
     except ImportError as exc:  # pragma: no cover - httpx is a core dep
         raise ManifestError("httpx is required to fetch the petdex manifest") from exc
     try:

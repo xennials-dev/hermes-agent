@@ -87,8 +87,16 @@ environments/benchmarks/evals/
 
 # Web UI build output
 hermes_cli/web_dist/
+hermes_cli/.web_dist-build-*/
 # Cross-process web UI build lock (flock target, always empty)
 .web_ui_build.lock
+
+# Workspace scratch directories and foreign checkouts
+cloned_repos/
+sherlock/
+upwork_portfolio/
+defensive_remediation_guides.md
+digital_footprint_findings.md
 apps/desktop/build/
 apps/desktop/dist/
 

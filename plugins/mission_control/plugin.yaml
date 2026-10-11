@@ -1,0 +1,5 @@
+name: mission-control
+version: 1.0.0
+description: "Visual mission control dashboard for monitoring the agent's brain and subagents."
+author: "Hermes Agent"
+provides_hooks: []

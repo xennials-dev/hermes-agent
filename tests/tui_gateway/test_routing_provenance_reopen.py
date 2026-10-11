@@ -76,7 +76,7 @@ def db(tmp_path: Path):
 
 @pytest.fixture
 def turn_env(monkeypatch, tmp_path, db):
-    """The immediate-prompt harness of tests/tui_gateway/test_tui_gateway_server.py, with a real SessionDB."""
+    """The immediate-prompt harness of tests/tui_gateway/_server_test_helpers.py, with a real SessionDB."""
     for name, stub in {
         "_emit": lambda *_a, **_k: None, "make_stream_renderer": lambda _cols: None,
         "render_message": lambda _raw, _cols: None, "_wire_callbacks": lambda _sid: None,

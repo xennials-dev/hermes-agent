@@ -1,0 +1,7 @@
+name: time-travel
+version: 1.0.0
+description: "Takes lightweight snapshots of the workspace before tool executions and allows reverting via /rewind."
+author: "Hermes Agent"
+provides_hooks:
+  - pre_tool_call
+  - post_tool_call

@@ -1,0 +1,5 @@
+name: pr-gateway
+version: 1.0.0
+description: "Webhook gateway to automatically review GitHub/GitLab PRs."
+author: "Hermes Agent"
+provides_hooks: []

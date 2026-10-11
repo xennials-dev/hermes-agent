@@ -14,7 +14,6 @@ import shlex
 import subprocess
 import sys
 import time
-from xml.sax.saxutils import escape
 
 
 def _gw():

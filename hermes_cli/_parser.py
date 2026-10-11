@@ -7,7 +7,6 @@ gateway, sessions, …) is built by ``hermes_cli/subcommands/<group>.py`` and wi
 
 import argparse
 import difflib
-import re
 from functools import lru_cache
 
 # `--profile` / `-p` is consumed by ``main._apply_profile_override`` before argparse runs

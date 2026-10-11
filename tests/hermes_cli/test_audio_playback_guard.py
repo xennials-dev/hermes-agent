@@ -2,7 +2,7 @@
 
 The incident: a plain test run spoke the words "partial answer complete" out
 of a developer's speakers. That string is a fake ``final_response`` from
-``tests/tui_gateway/test_tui_gateway_server.py``. The route was entirely in-process — no
+``tests/tui_gateway/test_voice_loading_and_history.py``. The route was entirely in-process — no
 leaked shell variable, so ``scripts/run_tests.sh``'s ``env -i`` was no help:
 
   1. A test drives the ``voice.toggle`` RPC with ``action="tts"``. The

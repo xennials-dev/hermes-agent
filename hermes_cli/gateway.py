@@ -66,7 +66,6 @@ from hermes_cli.setup import (  # noqa: F401 — resolved lazily by siblings thr
     prompt_choice,
     prompt_yes_no,
 )
-from hermes_cli.colors import Colors, color
 logger = logging.getLogger(__name__)
 
 # Shared ``subprocess.run`` kwargs for text-mode probes (stdout/stderr captured, decode-tolerant).

@@ -49,6 +49,7 @@ import type {
 import { timeAgo } from "@/lib/utils";
 import { Markdown } from "@/components/Markdown";
 import { PlatformsCard } from "@/components/PlatformsCard";
+import { UpgradesOverviewCard } from "@/components/UpgradesOverviewCard";
 import { Toast } from "@nous-research/ui/ui/components/toast";
 import { Button } from "@nous-research/ui/ui/components/button";
 import { Checkbox } from "@nous-research/ui/ui/components/checkbox";
@@ -1836,6 +1837,8 @@ export default function SessionsPage() {
           </pre>
         </div>
       )}
+
+      {!isSearching && <UpgradesOverviewCard />}
 
       {(showOverviewTab && !isSearching) || showList ? (
         <div className="flex w-full min-w-0 flex-wrap items-center gap-2 sm:gap-3">

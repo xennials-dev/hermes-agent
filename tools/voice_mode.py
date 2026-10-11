@@ -15,7 +15,6 @@ import subprocess
 import sys
 from collections import deque
 from contextlib import suppress
-from pathlib import Path
 import tempfile
 import threading
 import time
