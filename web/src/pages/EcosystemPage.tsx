@@ -12,7 +12,7 @@ export default function EcosystemPage() {
     setEnd(
       <div className="flex items-center gap-2">
         <a
-          href="http://2.25.238.185:3000"
+          href="https://techstarz101.com:3000"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -22,7 +22,7 @@ export default function EcosystemPage() {
           </Button>
         </a>
         <a
-          href="http://2.25.238.185:5678"
+          href="https://techstarz101.com:5678"
           target="_blank"
           rel="noopener noreferrer"
         >

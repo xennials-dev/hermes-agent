@@ -47,16 +47,16 @@ const UPGRADES: UpgradeItem[] = [
     badges: ["Port 3000", "Live Cloud", "PostgreSQL", "SCIM 2.0"],
     primaryLink: {
       label: "Open Live Twenty CRM",
-      url: "http://2.25.238.185:3000",
+      url: "https://techstarz101.com:3000",
     },
     secondaryLinks: [
       {
-        label: "Local API Docs (:8000)",
-        url: "http://127.0.0.1:8000/docs",
+        label: "Twenty Docs",
+        url: "https://docs.twenty.com",
       },
       {
-        label: "Local CRM Dashboard",
-        url: "http://127.0.0.1:8000/static/index.html",
+        label: "GraphQL API",
+        url: "https://techstarz101.com:3000/graphql",
       },
     ],
     logo: <TwentyLogo className="h-6 w-6" />,
@@ -71,8 +71,14 @@ const UPGRADES: UpgradeItem[] = [
     badges: ["Port 5678", "File Watcher", "Lifecycle Router"],
     primaryLink: {
       label: "Open n8n Workflows",
-      url: "http://2.25.238.185:5678",
+      url: "https://techstarz101.com:5678",
     },
+    secondaryLinks: [
+      {
+        label: "n8n Docs",
+        url: "https://docs.n8n.io",
+      },
+    ],
     logo: <N8nLogo className="h-6 w-6" />,
     accentBorder: "border-rose-500/30 hover:border-rose-500/60",
   },

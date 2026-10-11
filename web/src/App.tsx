@@ -727,7 +727,7 @@ export default function App() {
                 <ul className="flex flex-col">
                   <SidebarWorkspaceLink
                     name="Twenty CRM"
-                    url="http://2.25.238.185:3000"
+                    url="https://techstarz101.com:3000"
                     Logo={TwentyLogo}
                     collapsed={isDesktopCollapsed}
                     tooltipWarmRef={tooltipWarmRef}
@@ -735,7 +735,7 @@ export default function App() {
                   />
                   <SidebarWorkspaceLink
                     name="n8n Workflows"
-                    url="http://2.25.238.185:5678"
+                    url="https://techstarz101.com:5678"
                     Logo={N8nLogo}
                     collapsed={isDesktopCollapsed}
                     tooltipWarmRef={tooltipWarmRef}

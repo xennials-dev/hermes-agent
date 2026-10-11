@@ -606,8 +606,8 @@ const CATEGORY_TABS = [
 ] as const;
 
 export function ChineseAIHub({
-  twentyCrmUrl = "http://2.25.238.185:3000",
-  n8nUrl = "http://2.25.238.185:5678",
+  twentyCrmUrl = "https://techstarz101.com:3000",
+  n8nUrl = "https://techstarz101.com:5678",
 }: {
   twentyCrmUrl?: string;
   n8nUrl?: string;

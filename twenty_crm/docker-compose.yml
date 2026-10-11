@@ -13,12 +13,12 @@ services:
     volumes:
       - server-local-data:/app/packages/twenty-server/.local-storage
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3002:3000"
     environment:
       NODE_PORT: 3000
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
-      SERVER_URL: ${SERVER_URL:-http://localhost:3000}
-      FRONT_BASE_URL: ${FRONT_BASE_URL:-http://localhost:3000}
+      SERVER_URL: ${SERVER_URL:-https://techstarz101.com:3000}
+      FRONT_BASE_URL: ${FRONT_BASE_URL:-https://techstarz101.com:3000}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379}
       DISABLE_DB_MIGRATIONS: ${DISABLE_DB_MIGRATIONS:-false}
       DISABLE_CRON_JOBS_REGISTRATION: ${DISABLE_CRON_JOBS_REGISTRATION:-false}
@@ -40,8 +40,8 @@ services:
       - server-local-data:/app/packages/twenty-server/.local-storage
     environment:
       PG_DATABASE_URL: postgres://${PG_DATABASE_USER:-postgres}:${PG_DATABASE_PASSWORD:-postgres}@${PG_DATABASE_HOST:-db}:${PG_DATABASE_PORT:-5432}/${PG_DATABASE_NAME:-default}
-      SERVER_URL: ${SERVER_URL:-http://localhost:3000}
-      FRONT_BASE_URL: ${FRONT_BASE_URL:-http://localhost:3000}
+      SERVER_URL: ${SERVER_URL:-https://techstarz101.com:3000}
+      FRONT_BASE_URL: ${FRONT_BASE_URL:-https://techstarz101.com:3000}
       REDIS_URL: ${REDIS_URL:-redis://redis:6379}
       DISABLE_DB_MIGRATIONS: "true"
       STORAGE_TYPE: ${STORAGE_TYPE:-local}
@@ -88,15 +88,16 @@ services:
     container_name: twenty-n8n
     restart: unless-stopped
     ports:
-      - "5678:5678"
+      - "127.0.0.1:5679:5678"
     environment:
-      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_HOST=${N8N_HOST:-techstarz101.com}
       - N8N_PORT=5678
-      - N8N_PROTOCOL=http
-      - WEBHOOK_URL=${N8N_WEBHOOK_URL_BASE:-http://localhost:5678/}
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-https}
+      - WEBHOOK_URL=${N8N_WEBHOOK_URL_BASE:-https://techstarz101.com:5678/}
       - EXECUTIONS_DATA_PRUNE=true
       - EXECUTIONS_DATA_MAX_AGE=168
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_SECURE_COOKIE=false
     volumes:
       - n8n-data:/home/node/.n8n
       - ./storage/incoming_files:/data/incoming
