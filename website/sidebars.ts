@@ -225,6 +225,15 @@ const sidebars: SidebarsConfig = {
                 },
                 {
                   type: 'category',
+                  label: 'enterprise',
+                  key: 'skills-bundled-enterprise',
+                  collapsed: true,
+                  items: [
+                    'user-guide/skills/bundled/enterprise/enterprise-nvidia-ai-blueprints',
+                  ],
+                },
+                {
+                  type: 'category',
                   label: 'media',
                   key: 'skills-bundled-media',
                   collapsed: true,
@@ -275,6 +284,7 @@ const sidebars: SidebarsConfig = {
                     'user-guide/skills/bundled/research/research-competitor-news-monitor',
                     'user-guide/skills/bundled/research/research-grounded-citations',
                     'user-guide/skills/bundled/research/research-llm-wiki',
+                    'user-guide/skills/bundled/research/research-osint',
                   ],
                 },
                 {

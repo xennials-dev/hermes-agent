@@ -1,9 +1,10 @@
 ---
 name: nvidia-ai-blueprints
-description: Comprehensive directory and operational runbook for NVIDIA AI Blueprints across Enterprise, Media, Finance, Retail, Healthcare, and Physical AI. Use when building enterprise agents, GPU-accelerated video/rag pipelines, financial models, genomics analysis, or deploying NVIDIA NIM containers.
+description: "Catalog and operational runbook for NVIDIA AI Blueprints."
 version: 1.0.0
 author: NVIDIA AI & Xennials Architecture
 license: Apache-2.0
+platforms: [linux, macos, windows]
 dependencies: [git, docker, nvidia-container-toolkit, curl]
 metadata:
   hermes:

@@ -59,6 +59,12 @@ If a skill is missing from this list but present in the repo, the catalog is reg
 | [`email-inbox-triage`](../user-guide/skills/bundled/email/email-email-inbox-triage.md) | Triage an inbox: prioritize threads, draft replies safely. | `email/email-inbox-triage` |
 | [`himalaya`](../user-guide/skills/bundled/email/email-himalaya.md) | Himalaya CLI: IMAP/SMTP email from terminal. | `email/himalaya` |
 
+## enterprise
+
+| Skill | Description | Path |
+|-------|-------------|------|
+| [`nvidia-ai-blueprints`](../user-guide/skills/bundled/enterprise/enterprise-nvidia-ai-blueprints.md) | Catalog and operational runbook for NVIDIA AI Blueprints. | `enterprise/nvidia-ai-blueprints` |
+
 ## media
 
 | Skill | Description | Path |
@@ -100,6 +106,7 @@ If a skill is missing from this list but present in the repo, the catalog is reg
 | [`competitor-news-monitor`](../user-guide/skills/bundled/research/research-competitor-news-monitor.md) | Watch named companies for material news; cited digests. | `research/competitor-news-monitor` |
 | [`grounded-citations`](../user-guide/skills/bundled/research/research-grounded-citations.md) | Ground answers and documents in cited, verifiable sources. | `research/grounded-citations` |
 | [`llm-wiki`](../user-guide/skills/bundled/research/research-llm-wiki.md) | Karpathy's LLM Wiki: build/query interlinked markdown KB. | `research/llm-wiki` |
+| [`osint`](../user-guide/skills/bundled/research/research-osint.md) | Probe OSINT on people, handles, emails, and phone numbers. | `research/osint` |
 
 ## social-media
 
