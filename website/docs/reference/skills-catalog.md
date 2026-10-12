@@ -45,6 +45,7 @@ If a skill is missing from this list but present in the repo, the catalog is reg
 | [`p5js`](../user-guide/skills/bundled/creative/creative-p5js.md) | p5.js sketches: gen art, shaders, interactive, 3D. | `creative/p5js` |
 | [`popular-web-designs`](../user-guide/skills/bundled/creative/creative-popular-web-designs.md) | 54 real design systems (Stripe, Linear, Vercel) as HTML/CSS. | `creative/popular-web-designs` |
 | [`songwriting-and-ai-music`](../user-guide/skills/bundled/creative/creative-songwriting-and-ai-music.md) | Songwriting craft and Suno AI music prompts. | `creative/songwriting-and-ai-music` |
+| [`synthesia-avatar`](../user-guide/skills/bundled/creative/creative-synthesia-avatar.md) | Control Synthesia interactive avatars and stream sessions. | `creative/synthesia-avatar` |
 
 ## devops
 
