@@ -536,7 +536,7 @@ def _resolve_job_reasoning_config(job: dict, cfg: dict, model: str) -> dict | No
 
 from cron.jobs import (
     _ensure_cron_dir, claim_dispatch, claim_job_for_fire, fire_claim_fence,
-    clear_run_claim, heartbeat_fire_claim, heartbeat_run_claim, mark_job_run,
+    clear_run_claim, get_due_jobs, heartbeat_fire_claim, heartbeat_run_claim, mark_job_run,
     save_job_output, self_removal_delivery_allowed, self_removal_delivery_scope, use_cron_store)
 from cron.executions import (
     _TERMINAL_STATES, HANDOFF_ADOPTION_GRACE_SECONDS, create_execution, finish_execution,
