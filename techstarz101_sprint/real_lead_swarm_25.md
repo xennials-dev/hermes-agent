@@ -66,7 +66,7 @@
 
 #### 05. Digital Strike
 - **Website:** https://digitalstrike.com
-- **Direct Contact Form:** https://digitalstrike.com/contact-us/ | Phone: (314) 200-2490
+- **Direct Contact Form:** https://www.digitalstrike.com/contact/ | Phone: (314) 200-2490
 - **Vertical:** Targeted B2B Performance & SEO (Webster Groves / St. Louis, MO)
 - **Key Decision-Makers:** Chris Westmeyer (Founder & CEO) · Nathan Hopper (President)
 - **SaaS Pain:** Manual client prospecting and fragmented lead data enrichment.
