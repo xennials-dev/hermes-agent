@@ -1,119 +1,110 @@
 ---
 sidebar_position: 0
 title: "Run Nemotron 3 Ultra free in Hermes Agent"
-description: "Try NVIDIA Nemotron 3 Ultra on Nous Portal — free June 4–18 — with day 0 support in Hermes Agent"
+description: "Try NVIDIA Nemotron 3 Ultra on Nous Portal with free-tier access and day 0 support in Hermes Agent"
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 # Run Nemotron 3 Ultra free in Hermes Agent
 
-Nous Research has been inducted into the **Nemotron Coalition** of leading AI labs working with **NVIDIA** to advance open frontier foundation models. In honor of this, we've partnered with **Nebius** to provide **Nemotron 3 Ultra** free on [Nous Portal](https://portal.nousresearch.com) for two weeks (**June 4th – June 18th**). Follow the instructions below to try the model in your Hermes Agent today.
+Nous Research has partnered with **Nebius** and **NVIDIA** as part of the **Nemotron Coalition** to provide **Nemotron 3 Ultra** on [Nous Portal](https://portal.nousresearch.com) with dedicated free-tier access. Follow the instructions below to try the model in your Hermes Agent with zero API cost.
 
-:::info Limited-time offer
-The `nvidia/nemotron-3-ultra:free` tier is available from **June 4th to June 18th**. The `:free` tag is what keeps it on the no-cost plan — pick that exact variant.
+:::tip Free Tier Access
+The `nvidia/nemotron-3-ultra:free` model is available on the Nous Portal Free plan. The `:free` suffix is what keeps it on the zero-cost tier — make sure to pick that variant.
 :::
 
-Pick whichever install fits you. The **desktop app** is the easiest — no terminal required. If you live in a terminal, the **command-line** install is right below it.
+Select your preferred interface below to get started:
 
-## Option A — Desktop app (recommended)
-
-The simplest path: a one-click installer with a guided, point-and-click setup. No terminal needed.
-
-### 1. Download and install
-
-[Download the Hermes Desktop installer](https://hermes-agent.nousresearch.com/) for macOS or Windows, then open it. On first launch it finishes setting itself up (usually under a minute).
-
-### 2. Connect Nous Portal
-
-When the app opens, you'll see a "Let's get you set up" screen. Click **Nous Portal** (marked **Recommended**). Your browser opens — create a [Nous Portal](https://portal.nousresearch.com) account (or sign in), choose the **Free** plan, and authorize Hermes. The app connects automatically.
-
-### 3. Pick the free Nemotron 3 Ultra model
-
-After connecting, the app shows a **Default model** card. Click **Change**, search for **nemotron 3 ultra**, and select the variant tagged **Free tier**:
-
-```
-nvidia/nemotron-3-ultra:free
-```
-
-The `:free` tag is what keeps it on the no-cost tier — pick that variant.
-
-### 4. Start chatting
-
-Click **Start chatting**. That's it — you're talking to Nemotron 3 Ultra, free.
-
-## Option B — Command line
-
-Prefer the terminal?
+<Tabs groupId="client-type">
+  <TabItem value="cli" label="Command Line (CLI)" default>
 
 ### 1. Install Hermes Agent
 
-On macOS/Linux/WSL2/Android, run
+<Tabs groupId="operating-system">
+  <TabItem value="unix" label="Linux / macOS / WSL2 / Android">
 
 ```bash
 curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+source ~/.bashrc   # or source ~/.zshrc
 ```
 
-On Windows, run
+  </TabItem>
+  <TabItem value="windows" label="Windows (PowerShell)">
 
 ```powershell
 iex (irm https://hermes-agent.nousresearch.com/install.ps1)
 ```
 
-Prefer to review first? Download [`install.sh`](https://hermes-agent.nousresearch.com/install.sh), inspect it, then run it.
+  </TabItem>
+</Tabs>
 
-After it finishes, reload your shell:
+:::note Reviewing scripts before running
+Prefer to inspect first? Download [`install.sh`](https://hermes-agent.nousresearch.com/install.sh), review the contents, and execute locally.
+:::
+
+### 2. Connect to Nous Portal
+
+Run the direct portal setup command:
 
 ```bash
-source ~/.bashrc   # or source ~/.zshrc
+hermes setup --portal
 ```
 
-### 2. Run Quick Setup
+Hermes opens your browser automatically. Sign in (or register) at [Nous Portal](https://portal.nousresearch.com) on the **Free** plan and click **Connect**.
 
-```bash
-hermes setup
-```
-
-Select **Quick Setup**. Hermes opens a browser tab and waits for you to finish the next steps.
-
-### 3. Create a Nous Portal account
-
-In the browser, create a [Nous Portal](https://portal.nousresearch.com) account (or sign in) and choose the **Free** plan.
-
-### 4. Connect your account
-
-When prompted to connect your account to Hermes Agent, click **Connect**. You'll see a confirmation once it's linked.
-
-### 5. Select the free Nemotron 3 Ultra model
+### 3. Select Nemotron 3 Ultra & Start Chatting
 
 Return to your terminal. From the model list, select:
 
-```
+```bash
 nvidia/nemotron-3-ultra:free
 ```
 
-The `:free` tag is what keeps it on the no-cost tier, so make sure you pick that variant.
-
-### 6. Start chatting
-
-Complete the remaining Quick Setup prompts, then run:
+Then launch your agent:
 
 ```bash
 hermes
 ```
 
-That's it — you're talking to Nemotron 3 Ultra, free.
+That's it — you are now interacting with Nemotron 3 Ultra at zero API cost.
+
+  </TabItem>
+  <TabItem value="desktop" label="Desktop App (GUI)">
+
+### 1. Download and Install
+
+[Download the Hermes Desktop installer](https://hermes-agent.nousresearch.com/) for macOS or Windows and launch it. Setup completes automatically in under a minute.
+
+### 2. Connect Nous Portal
+
+On first launch, click **Nous Portal (Recommended)** on the setup screen. Your browser will open — sign in to [Nous Portal](https://portal.nousresearch.com) on the **Free** plan and click **Authorize**. The desktop app links automatically.
+
+### 3. Select Nemotron 3 Ultra & Start Chatting
+
+1. On the **Default model** card, click **Change**.
+2. Search for `nemotron 3 ultra` and pick the variant tagged **Free tier**:
+   ```
+   nvidia/nemotron-3-ultra:free
+   ```
+3. Click **Start chatting**.
+
+  </TabItem>
+</Tabs>
 
 ## Switching to it later
 
 Already set up with another model?
 
 - **Desktop app:** open the model picker, search for **nemotron 3 ultra**, and select the **Free tier** variant.
-- **CLI / TUI:** switch any time from inside a session with `/model nvidia/nemotron-3-ultra:free`, or run `/model` to open the picker and choose it from the list.
+- **CLI / TUI:** switch any time from inside a session with `/model nvidia/nemotron-3-ultra:free`, or run `/model` to open the interactive picker.
 
 ## Troubleshooting
 
-- **Don't see the model in the list?** Make sure you finished the Nous Portal connection and that you're on the **Free** plan. In the CLI, `hermes portal info` confirms you're logged in and routing through Nous.
+- **Don't see the model in the list?** Ensure you completed the Nous Portal connection and selected the **Free** plan. In the CLI, run `hermes portal info` to verify login status.
 - **Picked the wrong variant?** Re-select `nvidia/nemotron-3-ultra:free` — the `:free` suffix is required to stay on the no-cost tier.
-- **Browser didn't open / you're on a remote host (CLI)?** See [OAuth over SSH / Remote Hosts](./oauth-over-ssh.md) for port-forwarding workarounds.
+- **Browser didn't open / remote host (CLI)?** See [OAuth over SSH / Remote Hosts](./oauth-over-ssh.md) for port-forwarding instructions.
 
 ## See also
 

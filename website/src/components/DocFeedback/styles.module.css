@@ -1,0 +1,94 @@
+.feedbackContainer {
+  margin: 3rem 0 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: rgba(255, 215, 0, 0.04);
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+[data-theme='light'] .feedbackContainer {
+  background: rgba(139, 101, 8, 0.04);
+  border-color: rgba(139, 101, 8, 0.15);
+}
+
+.contentRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.question {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--ifm-font-color-base);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.voteBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: #0d0d16;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  color: var(--ifm-font-color-base);
+  transition: all 0.2s;
+}
+
+.voteBtn:hover {
+  border-color: #ffd700;
+  color: #ffd700;
+  transform: translateY(-1px);
+}
+
+[data-theme='light'] .voteBtn {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='light'] .voteBtn:hover {
+  border-color: #8b6508;
+  color: #8b6508;
+}
+
+.thankYou {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #ffd700;
+}
+
+[data-theme='light'] .thankYou {
+  color: #8b6508;
+}
+
+.subLinks {
+  font-size: 0.82rem;
+}
+
+.githubLink {
+  color: var(--ifm-font-color-secondary);
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.githubLink:hover {
+  color: #ffd700;
+}
+
+[data-theme='light'] .githubLink:hover {
+  color: #8b6508;
+}
+

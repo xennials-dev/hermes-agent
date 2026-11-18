@@ -1,0 +1,207 @@
+.installContainer {
+  margin: 1.5rem auto 3rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+.tabBar {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+  scrollbar-width: none;
+}
+
+.tabBar::-webkit-scrollbar {
+  display: none;
+}
+
+.tabButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  color: var(--ifm-font-color-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s;
+}
+
+.tabButton:hover {
+  color: var(--ifm-font-color-base);
+  background: rgba(255, 215, 0, 0.04);
+}
+
+.tabActive {
+  color: #ffd700 !important;
+  background: #0d0d16;
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-bottom: 2px solid #ffd700;
+}
+
+[data-theme='light'] .tabActive {
+  color: #8b6508 !important;
+  border-bottom: 2px solid #8b6508;
+  background: #f6f4ed;
+}
+
+.tabBadge {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(255, 215, 0, 0.15);
+  color: #ffd700;
+  font-weight: 600;
+}
+
+[data-theme='light'] .tabBadge {
+  background: rgba(139, 101, 8, 0.15);
+  color: #8b6508;
+}
+
+.codePanel {
+  background: #090910;
+  border: 1px solid rgba(255, 215, 0, 0.15);
+  border-radius: 0 10px 10px 10px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='light'] .codePanel {
+  background: #faf8f2;
+  border-color: rgba(139, 101, 8, 0.2);
+}
+
+.commandRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #050508;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 0, 0.08);
+  overflow-x: auto;
+}
+
+[data-theme='light'] .commandRow {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.promptSign {
+  color: #ffd700;
+  font-family: var(--ifm-font-family-monospace);
+  font-weight: 600;
+  user-select: none;
+}
+
+[data-theme='light'] .promptSign {
+  color: #8b6508;
+}
+
+.commandText {
+  flex: 1;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.92rem;
+  color: #e8e4dc;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  white-space: nowrap;
+}
+
+[data-theme='light'] .commandText {
+  color: #1a1a24;
+}
+
+.copyBtn {
+  padding: 0.4rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  color: #ffd700;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.copyBtn:hover {
+  background: #ffd700;
+  color: #07070d;
+}
+
+[data-theme='light'] .copyBtn {
+  background: rgba(139, 101, 8, 0.1);
+  border-color: rgba(139, 101, 8, 0.3);
+  color: #8b6508;
+}
+
+[data-theme='light'] .copyBtn:hover {
+  background: #8b6508;
+  color: #ffffff;
+}
+
+.linkRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.5rem 0;
+}
+
+.downloadLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #ffd700;
+  color: #07070d !important;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: all 0.2s;
+}
+
+.downloadLink:hover {
+  background: #ffe14d;
+  transform: translateY(-1px);
+}
+
+.panelFooter {
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 215, 0, 0.08);
+}
+
+.description {
+  font-size: 0.88rem;
+  color: var(--ifm-font-color-secondary);
+  margin-bottom: 0.6rem;
+}
+
+.hintWrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.84rem;
+  color: var(--ifm-font-color-secondary);
+  flex-wrap: wrap;
+}
+
+.hintBadge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ifm-font-color-base);
+}
+

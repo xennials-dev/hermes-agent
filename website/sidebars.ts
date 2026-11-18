@@ -8,6 +8,7 @@ const sidebars: SidebarsConfig = {
     // undiscoverable on a phone.
     {type: 'link', label: 'Browse Skills', href: '/skills'},
     {type: 'link', label: 'Browse Plugins', href: '/plugins'},
+    {type: 'link', label: 'Changelog / Release Notes', href: '/changelog'},
     {
       type: 'category',
       label: 'Getting Started',

@@ -71,6 +71,10 @@ const config: Config = {
             from: '/installation',
             to: '/getting-started/installation',
           },
+          {
+            from: '/blog',
+            to: '/changelog',
+          },
         ],
       },
     ],
@@ -88,7 +92,15 @@ const config: Config = {
           // across the zh-Hans fallback boundary; see src/remark/relativeDocLinks.js.
           beforeDefaultRemarkPlugins: [[relativeDocLinks, {siteDir: __dirname}]],
         },
-        blog: false,
+        blog: {
+          path: 'changelog',
+          routeBasePath: 'changelog',
+          blogTitle: 'Hermes Agent Changelog',
+          blogDescription: 'Recent updates, feature releases, and improvements in Hermes Agent',
+          showReadingTime: true,
+          postsPerPage: 10,
+          onInlineAuthors: 'ignore',
+        },
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -144,6 +156,11 @@ const config: Config = {
         {
           to: '/plugins',
           label: 'Plugins',
+          position: 'left',
+        },
+        {
+          to: '/changelog',
+          label: 'Changelog',
           position: 'left',
         },
         {
@@ -205,6 +222,7 @@ const config: Config = {
         {
           title: 'More',
           items: [
+            { label: 'Changelog', to: '/changelog' },
             { label: 'Desktop Download', href: 'https://hermes-agent.nousresearch.com/' },
             { label: 'Hermes Agent Core', href: 'https://github.com/NousResearch/hermes-agent' },
             { label: 'Hermes Agent Self-Evolution', href: 'https://github.com/NousResearch/hermes-agent-self-evolution' },
