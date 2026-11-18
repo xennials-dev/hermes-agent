@@ -1,0 +1,85 @@
+{
+  "name": "Techstarz101 — Postiz Multi-Channel Broadcast (Hermes + n8n)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "techstarz101-postiz-broadcast",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "webhook-in",
+      "name": "Hermes Broadcast Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.POSTIZ_BASE_URL || 'http://127.0.0.1:5000/api/public/v1' }}/integrations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ $env.POSTIZ_API_KEY }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-integrations",
+      "name": "Fetch Connected Postiz Channels",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const webhookBody = $('Hermes Broadcast Webhook').first().json.body || $('Hermes Broadcast Webhook').first().json;\nconst integrations = $input.all().map(i => i.json).flat();\nconst content = webhookBody.content || 'Sovereign AI Workflows by Techstarz 101 — https://techstarz101.com/audit';\nconst postType = webhookBody.type || 'now';\nconst postDate = webhookBody.date || new Date(Date.now() + 300000).toISOString();\n\nconst posts = integrations.map(ch => ({\n  integration: { id: ch.id },\n  value: [{ content, image: webhookBody.images || [] }],\n  settings: { __type: ch.identifier || 'x' }\n}));\n\nreturn [{ json: { type: postType, date: postDate, shortLink: false, tags: [], posts } }];"
+      },
+      "id": "build-payload",
+      "name": "Build Postiz Multi-Channel Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.POSTIZ_BASE_URL || 'http://127.0.0.1:5000/api/public/v1' }}/posts",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "={{ $env.POSTIZ_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "dispatch-postiz",
+      "name": "Publish / Schedule in Postiz",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [960, 300]
+    }
+  ],
+  "connections": {
+    "Hermes Broadcast Webhook": {
+      "main": [[{ "node": "Fetch Connected Postiz Channels", "type": "main", "index": 0 }]]
+    },
+    "Fetch Connected Postiz Channels": {
+      "main": [[{ "node": "Build Postiz Multi-Channel Payload", "type": "main", "index": 0 }]]
+    },
+    "Build Postiz Multi-Channel Payload": {
+      "main": [[{ "node": "Publish / Schedule in Postiz", "type": "main", "index": 0 }]]
+    }
+  }
+}
+
