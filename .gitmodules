@@ -1,0 +1,3 @@
+[submodule "Herald-OS"]
+	path = Herald-OS
+	url = https://github.com/iamlukethedev/Herald-OS.git
