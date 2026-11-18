@@ -83,52 +83,63 @@
 
 #### 06. Kaldi's Coffee
 - **Website:** https://kaldiscoffee.com
+- **Direct Contact:** [kaldiscoffee.com/pages/contact-us](https://kaldiscoffee.com/pages/contact-us) | Phone: `(314) 727-9955`
 - **Vertical:** Specialty Coffee Roaster & DTC E-Commerce (St. Louis, MO)
-- **Role:** Head of E-Commerce / Marketing
+- **Key Decision-Makers:** Tyler Zimmer (Co-Owner & President) · Tricia Zimmer (Co-Owner)
 - **SaaS Pain:** $1,200+/mo Klaviyo bill on high-frequency subscriber drops.
-- **Ready-to-Send Outreach:**
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** Slashing Kaldi's monthly Klaviyo bill  
-  > Hey Team — big fan of Kaldi's single-origins across St. Louis. At your list size, Klaviyo's monthly subscriber tax adds up fast. Through Techstarz101.com, I migrate brands onto self-hosted Listmonk + n8n so you own your subscriber data and slash monthly email spend by 85% while keeping high deliverability. For a flat $390 sprint, I'll stand up the sovereign migration pilot in 48 hours. Worth a quick look at the numbers?  
+  > Hi Tyler & Tricia — big fan of Kaldi's single-origins across St. Louis. At your list size, Klaviyo's monthly subscriber tax adds up fast. Through Techstarz101.com, I migrate brands onto self-hosted Listmonk + n8n so you own your subscriber data and slash monthly email spend by 85% while keeping high deliverability. For a flat $390 sprint, I'll stand up the sovereign migration pilot in 48 hours. Worth a quick look at the numbers?  
   > — Tee (`https://techstarz101.com/intake.html`)
+- **LinkedIn Connection / InMail Note (<300 chars):**
+  > Hi Tyler, love Kaldi's single-origins in STL. We migrate high-volume DTC brands from Klaviyo onto self-hosted Listmonk + n8n to cut email fees by 85% without subscriber limits. Would love to share our cost comparison or $390 48h pilot: https://techstarz101.com/intake.html — Tee
 
 #### 07. Bissinger's Handcrafted Chocolates
 - **Website:** https://bissingers.com
+- **Direct Contact:** [bissingers.com/contactus](https://bissingers.com/contactus) | Phone: `(800) 325-8881`
 - **Vertical:** Historic Confectionery & E-Commerce (St. Louis, MO)
-- **Role:** E-Commerce Director
+- **Key Decision-Maker:** E-Commerce & Digital Marketing Director
 - **SaaS Pain:** Seasonal marketing spikes forcing expensive Mailchimp/Klaviyo tier upgrades.
-- **Ready-to-Send Outreach:**
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** Unlimited holiday email drops for Bissinger's with zero SaaS fees  
-  > Hey Team — saw Bissinger's seasonal confectionery drops. Most DTC brands pay steep monthly penalties whenever their subscriber lists expand during the holidays. At Techstarz101.com, I deploy self-hosted Listmonk so you can send unlimited campaign emails from a private $20/mo server. For a flat $390 48-hour sprint, I'll set up your sovereign broadcast pipeline—open to seeing the architecture?  
+  > Hi Team — saw Bissinger's seasonal confectionery drops. Most DTC brands pay steep monthly penalties whenever their subscriber lists expand during the holidays. At Techstarz101.com, I deploy self-hosted Listmonk so you can send unlimited campaign emails from a private $20/mo server. For a flat $390 48-hour sprint, I'll set up your sovereign broadcast pipeline—open to seeing the architecture?  
   > — Tee (`https://techstarz101.com/intake.html`)
+- **LinkedIn Connection / InMail Note (<300 chars):**
+  > Hi Team, love Bissinger's handcrafted drops. We deploy self-hosted Listmonk engines so confectioners send unlimited holiday campaigns without paying per-subscriber tier penalties. Open to seeing a quick demo or our $390 48h sprint: https://techstarz101.com/intake.html — Tee
 
 #### 08. Arch Apparel
 - **Website:** https://archapparel.com
+- **Direct Contact:** [archapparel.com/pages/contact-us](https://archapparel.com/pages/contact-us) | Email: `hello@archapparel.com`
 - **Vertical:** Streetwear & Lifestyle Brand (St. Louis, MO)
-- **Role:** Brand Director / Founder
-- **SaaS Pain:** High monthly email SaaS fees for SMS/email product drops.
-- **Ready-to-Send Outreach:**
+- **Key Decision-Maker:** Aaron Park (Founder & CEO)
+- **SaaS Pain:** High monthly email SaaS fees for frequent drop announcements.
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** Cutting Arch Apparel's email SaaS spend  
-  > Hey Team — huge fan of Arch Apparel's St. Louis releases. If you're paying $600–$1,200/mo on Klaviyo or Mailchimp, that's pure SaaS tax. At Techstarz101.com, I migrate local brands onto private Listmonk + n8n stacks where you own your subscriber list 100% with zero per-email fees. For a flat $390 sprint, I'll deploy your pilot system in 48 hours. Open to a quick chat?  
+  > Hi Aaron — huge fan of Arch Apparel's St. Louis releases. If you're paying $600–$1,200/mo on Klaviyo or Mailchimp, that's pure SaaS tax. At Techstarz101.com, I migrate local brands onto private Listmonk + n8n stacks where you own your subscriber list 100% with zero per-email fees. For a flat $390 sprint, I'll deploy your pilot system in 48 hours. Open to a quick chat?  
   > — Tee (`https://techstarz101.com/intake.html`)
+- **LinkedIn Connection / InMail Note (<300 chars):**
+  > Hi Aaron, huge fan of Arch Apparel's STL releases. We help lifestyle brands eliminate $800+/mo Klaviyo bills by migrating onto private Listmonk + n8n stacks. Would love to show you the setup or share our $390 48h pilot: https://techstarz101.com/intake.html — Tee
 
 #### 09. Blayzer Digital
 - **Website:** https://blayzer.com
+- **Direct Contact:** [blayzer.com/contact-us](https://blayzer.com/contact-us/) | Phone: `(314) 222-2582`
 - **Vertical:** Integrated Web & Marketing Agency (St. Louis, MO)
-- **Role:** Managing Partner
+- **Key Decision-Maker:** Managing Partner
 - **SaaS Pain:** Rising Mailchimp renewal pricing across agency-managed client accounts.
-- **Ready-to-Send Outreach:**
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** Whitelabel self-hosted email engine for Blayzer's clients  
-  > Hey Team — saw Blayzer manages marketing roadmaps for Midwest manufacturers. If your clients are feeling the pinch from rising Mailchimp/HubSpot renewal rates, we deploy turnkey Listmonk + n8n systems that eliminate recurring seat fees. For $390, I'll stand up a sovereign migration environment in 48 hours for you to test. Want to review the tech specs?  
+  > Hi Team — saw Blayzer manages marketing roadmaps for Midwest manufacturers. If your clients are feeling the pinch from rising Mailchimp/HubSpot renewal rates, we deploy turnkey Listmonk + n8n systems that eliminate recurring seat fees. For $390, I'll stand up a sovereign migration environment in 48 hours for you to test. Want to review the tech specs?  
   > — Tee (`https://techstarz101.com/intake.html`)
 
 #### 10. Insite Advice
 - **Website:** https://insiteadvice.com
+- **Direct Contact:** [insiteadvice.com/contact](https://insiteadvice.com/contact/) | Phone: `(314) 621-6888`
 - **Vertical:** B2B & SMB Digital Agency (St. Louis, MO)
-- **Role:** Agency Founder
+- **Key Decision-Maker:** Agency Founder
 - **SaaS Pain:** Client resistance to $300-$800/mo third-party email tools.
-- **Ready-to-Send Outreach:**
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** $390 sovereign email migration sprint for Insite Advice  
-  > Hey Team — saw Insite Advice helping local St. Louis brands scale their web presence. At Techstarz101.com, we deploy sovereign Listmonk + n8n infrastructure to help SMBs eliminate recurring Mailchimp bloat. For a flat $390 48-hour sprint, I'll audit your setup and deploy a live sovereign broadcast environment. Open to comparing the cost savings?  
+  > Hi Team — saw Insite Advice helping local St. Louis brands scale their web presence. At Techstarz101.com, we deploy sovereign Listmonk + n8n infrastructure to help SMBs eliminate recurring Mailchimp bloat. For a flat $390 48-hour sprint, I'll audit your setup and deploy a live sovereign broadcast environment. Open to comparing the cost savings?  
   > — Tee (`https://techstarz101.com/intake.html`)
 
 ---
@@ -137,52 +148,63 @@
 
 #### 11. OnderLaw
 - **Website:** https://onderlaw.com
+- **Direct Contact:** [onderlaw.com/contact-us](https://onderlaw.com/contact-us/) | Phone: `(314) 963-9000`
 - **Vertical:** Mass Tort & Personal Injury Law (St. Louis, MO)
-- **Role:** Managing Partner / Director of Intake
+- **Key Decision-Maker:** Jim Onder (Founder & Managing Partner)
 - **SaaS Pain:** Strict client privilege rules prevent sending sensitive medical case intake into commercial cloud LLMs.
-- **Ready-to-Send Outreach:**
-  > **Subject:** Private on-premise AI intake for OnderLaw (zero cloud data leaks)  
-  > Hey Team — OnderLaw handles high-stakes, nationally recognized mass tort cases. Most trial firms want AI intake and research speed, but Missouri ethics and client privilege prevent sending sensitive medical/case records into commercial OpenAI clouds. At Techstarz101.com, I deploy local-mesh AI employees running entirely on your own private hardware. For a flat $390 48-hour sprint, I'll deploy a private intake triage pilot. Open to a 15-min architecture audit?  
+- **Ready-to-Send Email / Contact Form Pitch:**
+  > **Subject:** Private on-premise AI intake for Jim & OnderLaw (zero cloud data leaks)  
+  > Hi Jim — OnderLaw handles high-stakes, nationally recognized mass tort cases. Most trial firms want AI intake and research speed, but Missouri ethics and client privilege prevent sending sensitive medical/case records into commercial OpenAI clouds. At Techstarz101.com, I deploy local-mesh AI employees running entirely on your own private hardware. For a flat $390 48-hour sprint, I'll deploy a private intake triage pilot. Open to a 15-min architecture audit?  
   > — Tee (`https://techstarz101.com/intake.html`)
+- **LinkedIn Connection / InMail Note (<300 chars):**
+  > Hi Jim, saw OnderLaw's national trial record. We deploy sovereign local-mesh AI intake systems running on private hardware so trial firms get AI triage speed without cloud privacy leaks. Open to a quick 15-min chat or our $390 pilot: https://techstarz101.com/intake.html — Tee
 
 #### 12. Paule, Camazine & Blumenthal, P.C.
 - **Website:** https://pcblawfirm.com
+- **Direct Contact:** [pcblawfirm.com/contact-us](https://pcblawfirm.com/contact-us/) | Phone: `(314) 727-1015`
+- **Address:** 165 N Meramec Ave, Clayton, MO 63105
 - **Vertical:** High-Asset Family & Business Law (Clayton, MO)
-- **Role:** Senior Partner
+- **Key Decision-Makers:** Alisse C. Camazine & Alan E. Freed (Senior Partners)
 - **SaaS Pain:** Confidential financial discovery and divorce document triage requires 15+ manual associate hours weekly.
-- **Ready-to-Send Outreach:**
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** Sovereign AI document analysis for PCB Law (zero third-party retention)  
-  > Hey Team — saw PCB Law's reputation in Clayton for high-net-worth family litigation. Sifting through thousands of pages of financial discovery is a massive associate bottleneck, but commercial AI tools risk data exposure. At Techstarz101.com, I deploy local-mesh AI assistants that analyze and index discovery documents 100% on-premise with zero cloud exposure. For a flat $390 48-hour sprint, I'll deploy a working document pilot. Worth exploring?  
+  > Hi Alisse & Alan — saw PCB Law's reputation in Clayton for high-net-worth family litigation. Sifting through thousands of pages of financial discovery is a massive associate bottleneck, but commercial AI tools risk data exposure. At Techstarz101.com, I deploy local-mesh AI assistants that analyze and index discovery documents 100% on-premise with zero cloud exposure. For a flat $390 48-hour sprint, I'll deploy a working document pilot. Worth exploring?  
   > — Tee (`https://techstarz101.com/intake.html`)
+- **LinkedIn Connection / InMail Note (<300 chars):**
+  > Hi Alisse, saw PCB Law's family litigation leadership in Clayton. We deploy on-premise AI document triage assistants that summarize discovery files 100% locally with zero cloud retention. Would love to share a demo or our $390 pilot: https://techstarz101.com/intake.html — Tee
 
 #### 13. The Center for Family Law
 - **Website:** https://thecenterforfamilylaw.com
+- **Direct Contact:** [thecenterforfamilylaw.com/contact-us](https://thecenterforfamilylaw.com/contact-us/) | Phone: `(314) 721-8844`
 - **Vertical:** Collaborative Divorce & Mediation (St. Louis, MO)
-- **Role:** Managing Attorney
+- **Key Decision-Maker:** Managing Attorney
 - **SaaS Pain:** High emotional inquiry volume and manual client scheduling coordination.
-- **Ready-to-Send Outreach:**
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** Private AI intake workflow for The Center for Family Law  
-  > Hey Team — love your focus on constructive, collaborative divorce mediation. Handling sensitive intake while protecting client privacy is critical. At Techstarz101.com, I build sovereign AI intake assistants that pre-qualify prospective clients and draft intake summaries without storing client data in public cloud LLMs. For $390, I'll deploy a private 48-hour pilot. Open to a brief chat?  
+  > Hi Team — love your focus on constructive, collaborative divorce mediation. Handling sensitive intake while protecting client privacy is critical. At Techstarz101.com, I build sovereign AI intake assistants that pre-qualify prospective clients and draft intake summaries without storing client data in public cloud LLMs. For $390, I'll deploy a private 48-hour pilot. Open to a brief chat?  
   > — Tee (`https://techstarz101.com/intake.html`)
 
 #### 14. Stange Law Firm, PC
 - **Website:** https://stangelawfirm.com
+- **Direct Contact:** [stangelawfirm.com/contact-us](https://stangelawfirm.com/contact-us/) | Phone: `(855) 805-0595`
 - **Vertical:** Multi-Office Domestic Relations Firm (St. Louis, MO)
-- **Role:** Firm Administrator / Managing Partner
+- **Key Decision-Maker:** Firm Administrator / Managing Partner
 - **SaaS Pain:** Fragmented intake qualification across 20+ Midwest office locations.
-- **Ready-to-Send Outreach:**
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** Standardizing multi-office intake for Stange Law with zero cloud leak  
-  > Hey Team — saw Stange Law's multi-office footprint across Missouri and the Midwest. Coordinating after-hours intake while maintaining strict confidentiality is tough. At Techstarz101.com, I deploy private local AI triage assistants that standardize case qualification across all locations with zero third-party cloud data retention. For a flat $390 sprint, I'll deploy a live pilot in 48 hours. Open to seeing a demo?  
+  > Hi Team — saw Stange Law's multi-office footprint across Missouri and the Midwest. Coordinating after-hours intake while maintaining strict confidentiality is tough. At Techstarz101.com, I deploy private local AI triage assistants that standardize case qualification across all locations with zero third-party cloud data retention. For a flat $390 sprint, I'll deploy a live pilot in 48 hours. Open to seeing a demo?  
   > — Tee (`https://techstarz101.com/intake.html`)
 
 #### 15. The Simon Law Firm, P.C.
 - **Website:** https://simonlawpc.com
+- **Direct Contact:** [simonlawpc.com/contact-us](https://simonlawpc.com/contact-us/) | Phone: `(314) 241-2929`
+- **Address:** 800 Market St, St. Louis, MO 63101
 - **Vertical:** Catastrophic Injury & Trial Practice (St. Louis, MO)
-- **Role:** Trial Partner
+- **Key Decision-Maker:** Trial Partner
 - **SaaS Pain:** Manual review of voluminous medical records with strict HIPAA/privilege compliance.
-- **Ready-to-Send Outreach:**
+- **Ready-to-Send Email / Contact Form Pitch:**
   > **Subject:** Private AI trial research engine for Simon Law  
-  > Hey Team — saw Simon Law's landmark trial results. Reviewing complex medical records and depositions consumes valuable paralegal hours, but uploading records to public AI tools violates privilege. At Techstarz101.com, I deploy air-gapped local AI assistants running on private hardware. For $390, I'll stand up a 48-hour trial document analysis pilot. Worth a 15-minute discussion?  
+  > Hi Team — saw Simon Law's landmark trial results on Market St. Reviewing complex medical records and depositions consumes valuable paralegal hours, but uploading records to public AI tools violates privilege. At Techstarz101.com, I deploy air-gapped local AI assistants running on private hardware. For $390, I'll stand up a 48-hour trial document analysis pilot. Worth a 15-minute discussion?  
   > — Tee (`https://techstarz101.com/intake.html`)
 
 ---
