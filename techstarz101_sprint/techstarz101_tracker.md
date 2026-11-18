@@ -19,6 +19,6 @@
 
 ## Today's 3 Exact Operator Actions
 1. **Review & Approve the Staged OBS Studio / Postiz Launch Video:** Check the OBS Studio preview window (`Techstarz101_Approval_Preview`) and approve the staged Postiz draft triggered via Telegram / Twenty CRM / Odoo ERP.
-2. **Send First 5 Personalized Outreach Messages:** Pick Prospects #01–#05 in `sample_lead_swarm.md` and send Messages #1–#5 in `outreach_wave1_wave2.md`.
+2. **Send First 5 Personalized Outreach Messages:** Pick Leads #01–#05 in [real_lead_swarm_25.md](file:///c:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/techstarz101_sprint/real_lead_swarm_25.md) (Abstrakt Marketing Group, Gorilla 76, Atomicdust, SteadyRain, and Digital Strike) and submit via their verified direct contact forms or LinkedIn notes.
 3. **Log Sent Count:** Update `Outreach Sent` in this file (`techstarz101_tracker.md`) so the `8:30 AM` `techstarz101-coach` cron job tracks your velocity tomorrow morning.
 

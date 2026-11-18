@@ -2,7 +2,8 @@
 
 **Primary Offer:** \$390 48-Hour Sovereign AI Starter Sprint (`https://techstarz101.com/intake.html`)  
 **Full Build Upgrade:** \$1,480 System / \$3,920 Enterprise Local Mesh + \$490/mo Retainer  
-**Brand Email:** `tfisher@techstarz101.com`
+**Brand Email:** `tfisher@techstarz101.com`  
+**Active Operational Lead Swarm:** For live outreach to 25 verified St. Louis businesses with enriched decision-makers, direct forms, and custom pitches, see [real_lead_swarm_25.md](file:///c:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/techstarz101_sprint/real_lead_swarm_25.md).
 
 ---
 

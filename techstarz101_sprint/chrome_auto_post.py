@@ -12,7 +12,6 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
-import time
 import urllib.request
 import websockets
 
@@ -29,11 +28,6 @@ POST_BODY = (
     "or monthly SaaS spend in week 1, you don't pay.\n\n"
     "Book your 48-hour starter sprint: https://techstarz101.com/intake.html\n"
     "Full architecture breakdown: https://techstarz101.com/blog.html"
-)
-SHORT_POST = (
-    "Stop renting your software. Own your AI stack.\n\n"
-    "At Techstarz101.com, we build sovereign AI systems (n8n, Twenty CRM, Listmonk, Hermes) "
-    "that cut SaaS bloat. Flat $390 48-hour starter sprint: https://techstarz101.com/intake.html"
 )
 
 
@@ -137,37 +131,34 @@ async def automate_reddit(ws_url: str) -> dict:
             await asyncio.sleep(8)
 
         # Try filling and clicking Submit/Post on Reddit submit page
-        post_res = await page.eval(f"""
-        (() => {{
-            const titleText = {json.dumps(POST_TITLE)};
-            const bodyText = {json.dumps(POST_BODY)};
-
+        post_res = await page.eval("""
+        (() => {
             // Click Post button if already pre-filled via URL query params
             const buttons = Array.from(document.querySelectorAll('button, r-post-form-submit-button'));
-            for (const b of buttons) {{
+            for (const b of buttons) {
                 const txt = (b.innerText || b.textContent || '').trim();
-                if (/^post$|^submit$/i.test(txt) && !b.disabled) {{
+                if (/^post$|^submit$/i.test(txt) && !b.disabled) {
                     b.click();
                     return 'clicked_post_button';
-                }}
-            }}
+                }
+            }
             // Also check shadow roots (Reddit shreddit uses web components)
-            const findInShadow = (root) => {{
+            const findInShadow = (root) => {
                 const all = root.querySelectorAll('*');
-                for (const el of all) {{
-                    if (el.tagName === 'BUTTON' && /^post$|^submit$/i.test((el.innerText || '').trim()) && !el.disabled) {{
+                for (const el of all) {
+                    if (el.tagName === 'BUTTON' && /^post$|^submit$/i.test((el.innerText || '').trim()) && !el.disabled) {
                         el.click();
                         return 'clicked_shadow_post_button';
-                    }}
-                    if (el.shadowRoot) {{
+                    }
+                    if (el.shadowRoot) {
                         const r = findInShadow(el.shadowRoot);
                         if (r) return r;
-                    }}
-                }}
+                    }
+                }
                 return null;
-            }};
+            };
             return findInShadow(document) || 'awaiting_user_click_or_signin';
-        }})()
+        })()
         """)
         await asyncio.sleep(4)
         final_url = await page.eval("location.href")
@@ -241,8 +232,8 @@ async def automate_facebook(ws_url: str) -> dict:
                     el.dispatchEvent(new Event('input', { bubbles: true }));
                     el.dispatchEvent(new Event('change', { bubbles: true }));
                 };
-                setVal(emailInp, 'tfisher@techstarz101.com');
-                setVal(passInp, '#6052Garfield');
+                setVal(emailInp, 'tfisher314@gmail.com');
+                setVal(passInp, '#6149Hancock');
                 const btn = document.querySelector('button[name="login"], input[type="submit"], div[aria-label="Log in"], div[aria-label="Accessible login button"]');
                 if (btn) btn.click();
                 return 'submitted_facebook_login';
@@ -275,7 +266,7 @@ async def main() -> None:
     sync_profile_cookies()
     urls = [
         "https://www.reddit.com/r/TechStarz101/submit?title=Stop%20renting%20your%20software.%20Own%20your%20AI%20stack%20%E2%80%94%20Techstarz101.com&text=At%20Techstarz101.com%2C%20we%20build%20sovereign%20AI%20systems%20(n8n%2C%20Twenty%20CRM%2C%20Listmonk%2C%20Hermes)%20that%20cut%20SaaS%20bloat%20and%20replace%20manual%20ops.%20For%20a%20flat%20%24390%2048-hour%20sprint%2C%20I'll%20audit%20your%20stack%20and%20deploy%20your%20first%20live%20AI%20workflow%3A%20https%3A%2F%2Ftechstarz101.com%2Fintake.html",
-        "https://www.threads.net/intent/post?text=Stop%20renting%20your%20software.%20Own%20your%20AI%20stack.%20At%20Techstarz101.com%2C%20we%20build%20sovereign%20AI%20systems%20(n8n%2C%20Twenty%20CRM%2C%20Listmonk%2C%20Hermes)%20that%20cut%20SaaS%20bloat.%20Flat%20%24390%2048-hour%20sprint%3A%20https%3A%2F%2Ftechstarz101.com%2Fintake.html",
+        "https://www.threads.com/intent/post?text=Stop%20renting%20your%20software.%20Own%20your%20AI%20stack.%20At%20Techstarz101.com%2C%20we%20build%20sovereign%20AI%20systems%20(n8n%2C%20Twenty%20CRM%2C%20Listmonk%2C%20Hermes)%20that%20cut%20SaaS%20bloat.%20Flat%20%24390%2048-hour%20sprint%3A%20https%3A%2F%2Ftechstarz101.com%2Fintake.html",
         "https://www.facebook.com/people/techstarz101/61596716728528/",
     ]
     proc = subprocess.Popen(
