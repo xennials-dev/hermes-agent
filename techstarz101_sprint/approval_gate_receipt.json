@@ -1,0 +1,34 @@
+{
+  "video_staged": "C:\\Users\\tee\\projects\\video-agent\\output\\output_vertical.mp4",
+  "obs_studio_playing": true,
+  "postiz_draft_staged": true,
+  "telegram_notified": {
+    "results": [
+      {
+        "chat_id": "8235294152",
+        "ok": true
+      },
+      {
+        "chat_id": "xennials_tech_god",
+        "ok": false,
+        "error": "HTTP Error 400: Bad Request"
+      },
+      {
+        "chat_id": "13143483944",
+        "ok": false,
+        "error": "HTTP Error 400: Bad Request"
+      },
+      {
+        "chat_id": "JQ5Y8NRW",
+        "ok": false,
+        "error": "HTTP Error 400: Bad Request"
+      }
+    ]
+  },
+  "crm_erp_notified": {
+    "odoo_erp_and_site_api": {
+      "http_status": 201,
+      "response": "{\"success\":true,\"id\":\"lead_1794973306595_vlks\",\"odooSynced\":true,\"hermesDispatched\":true,\"message\":\"Inquiry received and routed to Odoo CRM, Hermes Agent, and tfisher@techstarz101.com.\"}"
+    }
+  }
+}

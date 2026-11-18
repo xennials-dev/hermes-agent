@@ -68,6 +68,98 @@ def cmd_channels(args: argparse.Namespace, api_key: str, base_url: str) -> int:
     return 0
 
 
+def _default_provider_settings(provider: str, title: str) -> dict:
+    base: dict[str, object] = {"__type": provider}
+    if provider == "discord":
+        base["channel"] = "general"
+    elif provider in ("instagram", "instagram-standalone"):
+        base["post_type"] = "post"
+    elif provider == "reddit":
+        base["subreddit"] = [
+            {
+                "value": {
+                    "subreddit": "techstarz101",
+                    "id": "techstarz101",
+                    "title": title[:100],
+                    "type": "self",
+                    "url": "https://techstarz101.com",
+                    "is_flair_required": False,
+                }
+            }
+        ]
+    elif provider in ("tiktok", "tiktok-business"):
+        base.update(
+            {
+                "privacy_level": "PUBLIC_TO_EVERYONE",
+                "duet": True,
+                "stitch": True,
+                "comment": True,
+                "autoAddMusic": "no",
+                "brand_content_toggle": False,
+                "brand_organic_toggle": False,
+                "content_posting_method": "DIRECT_POST",
+            }
+        )
+    elif provider == "x":
+        base["who_can_reply_post"] = "everyone"
+    elif provider == "youtube":
+        base.update({"title": title[:95], "type": "public"})
+    return base
+
+
+_PROVIDER_MAX_LEN = {
+    "x": 270,
+    "bluesky": 285,
+    "threads": 480,
+    "pinterest": 480,
+}
+
+
+def _split_text_chunks(text: str, max_len: int) -> list[str]:
+    text = text.strip()
+    if len(text) <= max_len:
+        return [text]
+    # Try splitting by sentence boundary first
+    import re
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", text) if s.strip()]
+    chunks: list[str] = []
+    current = ""
+    for sent in sentences:
+        if len(sent) > max_len:
+            words = sent.split()
+            for w in words:
+                candidate = f"{current} {w}".strip() if current else w
+                if len(candidate) <= max_len:
+                    current = candidate
+                else:
+                    if current:
+                        chunks.append(current)
+                    current = w[:max_len]
+        else:
+            candidate = f"{current} {sent}".strip() if current else sent
+            if len(candidate) <= max_len:
+                current = candidate
+            else:
+                if current:
+                    chunks.append(current)
+                current = sent
+    if current:
+        chunks.append(current)
+    return chunks or [text[:max_len]]
+
+
+def _build_provider_values(provider: str, content: str, thread_items: list[str], images: list[dict]) -> list[dict]:
+    max_len = _PROVIDER_MAX_LEN.get(provider, 2200)
+    primary_chunks = _split_text_chunks(content, max_len)
+    values: list[dict] = []
+    for idx, chunk in enumerate(primary_chunks):
+        values.append({"content": chunk, "image": images if idx == 0 else []})
+    for follow_up in thread_items:
+        for chunk in _split_text_chunks(follow_up, max_len):
+            values.append({"content": chunk, "image": []})
+    return values
+
+
 def cmd_post(args: argparse.Namespace, api_key: str, base_url: str) -> int:
     post_date = args.date or (dt.datetime.now(dt.timezone.utc) + dt.timedelta(minutes=5)).strftime("%Y-%m-%dT%H:%M:%S.000Z")
     wanted_platforms = [p.strip().lower() for p in args.platforms.split(",") if p.strip()] if args.platforms else []
@@ -94,18 +186,18 @@ def cmd_post(args: argparse.Namespace, api_key: str, base_url: str) -> int:
         print("✗ No matching Postiz integrations found.", file=sys.stderr)
         return 1
 
-    images = [{"url": u.strip()} for u in (args.media or "").split(",") if u.strip()]
-    value_items = [{"content": args.content, "image": images}]
-    for follow_up in args.thread or []:
-        value_items.append({"content": follow_up, "image": []})
+    raw_media = args.media or "http://2.25.238.185:4200/uploads/output_vertical.mp4"
+    images = [{"id": f"media_{i}", "path": u.strip()} for i, u in enumerate(raw_media.split(",")) if u.strip()]
+    thread_list = list(args.thread or [])
 
+    default_title = getattr(args, "title", None) or "Techstarz 101 — $390 48-Hour Sovereign AI Starter Sprint"
     posts_payload = []
     for ch in integrations:
         provider = str(ch.get("identifier", "x"))
         posts_payload.append({
             "integration": {"id": ch["id"]},
-            "value": value_items,
-            "settings": {"__type": provider},
+            "value": _build_provider_values(provider, args.content, thread_list, images),
+            "settings": _default_provider_settings(provider, default_title),
         })
 
     body = {
