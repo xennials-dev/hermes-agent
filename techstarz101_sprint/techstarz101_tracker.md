@@ -7,10 +7,10 @@
 
 | Day | Core Milestone | Status | Outreach Sent | Replies | Mini-Demos / Audits | Paid Sprints (\$390+) | Revenue (\$) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Day 1** | \$390 wedge locked + 25 B2B leads built (`sample_lead_swarm.csv`) | ✅ Complete | 0 / 5 | 0 | 0 | 0 | \$0 |
+| **Day 1** | \$390 wedge locked + 25 verified real STL B2B leads built (`real_lead_swarm_25.csv`) | ✅ Complete | 0 / 5 | 0 | 0 | 0 | \$0 |
 | **Day 2** | 90-sec Hermes proof video + OBS Studio / Telegram approval gate wired | ✅ Complete | 0 / 5 | 0 | 1 | 0 | \$0 |
 | **Day 3** | `techstarz101.com` CTA + `/intake.html` + Postiz 10-channel stack verified | ✅ Complete | 0 / 5 | 0 | 1 | 0 | \$0 |
-| **Day 4** | **Wave 1 Outreach:** Send 15 personalized DMs/emails (Prospects #01–#15) | 🔄 Next Up | 0 / 15 | — | — | — | — |
+| **Day 4** | **Wave 1 Outreach:** Send 15 personalized DMs/emails (Leads #01–#15 in `real_lead_swarm_25.md`) | 🚀 Ready to Execute | 0 / 15 | — | — | — | — |
 | **Day 5** | **Wave 2 Outreach:** Send 10 more (#16–#25) + 5-min mini-samples for replies | ⏳ Pending | 0 / 10 | — | — | — | — |
 | **Day 6** | Run 15–30 min Audits, anchor \$1,480 build, close \$390 starter sprint | ⏳ Pending | 0 / 5 | — | — | — | — |
 | **Day 7** | Deliver 48h sprint, capture 2-sentence testimonial, upsell \$490/mo retainer | ⏳ Pending | 0 / 5 | — | — | — | — |
