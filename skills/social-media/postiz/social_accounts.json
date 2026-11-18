@@ -1,0 +1,21 @@
+{
+  "email": "tfisher@techstarz101.com",
+  "primary_handle": "techstarz101",
+  "fallback_handle": "techstatrz",
+  "postiz_dashboard": "http://2.25.238.185:4200/launches",
+  "postiz_public_api": "http://2.25.238.185:4200/api/public/v1",
+  "organization_id": "c92302d0-9451-42c9-aaac-883352f79e59",
+  "channels": [
+    { "provider": "bluesky", "profile": "techstarz101.bsky.social", "did": "did:plc:fyc3w7mzzz5spwkl6ohydgfb", "status": "connected (HTTP 201)" },
+    { "provider": "instagram", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" },
+    { "provider": "facebook", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" },
+    { "provider": "x", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" },
+    { "provider": "tiktok", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" },
+    { "provider": "tiktok-business", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" },
+    { "provider": "reddit", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" },
+    { "provider": "discord", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" },
+    { "provider": "threads", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" },
+    { "provider": "youtube", "profile": "techstarz101", "fallback": "techstatrz", "status": "connected (HTTP 201)" }
+  ]
+}
+
