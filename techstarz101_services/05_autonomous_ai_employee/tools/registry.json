@@ -1,0 +1,114 @@
+{
+  "service": "Autonomous AI Employee",
+  "service_id": "TS101-SRV-05",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Sovereign Executive Orchestrator",
+      "tagline": "Open WebUI is the command center, Qdrant stores long-term company memory, Temporal runs durable multi-day tasks, Langfuse audits every action.",
+      "tools": ["open-webui", "qdrant", "temporal", "langfuse"]
+    },
+    "B": {
+      "name": "Stack B: Visual Multi-Agent Teammate",
+      "tagline": "Dify & AnythingLLM run visual knowledge agents, LiteLLM routes across local/cloud models with budget caps, NocoDB manages executive approval boards.",
+      "tools": ["dify", "anythingllm", "litellm", "nocodb"]
+    }
+  },
+  "tools": {
+    "open-webui": {
+      "name": "Open WebUI",
+      "role": "Executive AI chat command center, private RAG docs & multi-model workspace",
+      "icon": "🧠",
+      "stack": "A",
+      "repo": "https://github.com/open-webui/open-webui",
+      "license": "MIT",
+      "url": "http://localhost:5700",
+      "probe": "http://localhost:5700/health",
+      "first_run": "No login required locally (WEBUI_AUTH=False). Auto-connects to local Ollama on host.docker.internal:11434.",
+      "ram_mb": 900
+    },
+    "qdrant": {
+      "name": "Qdrant Vector Memory",
+      "role": "High-speed semantic vector memory storing SOPs, transcripts & company knowledge",
+      "icon": "🧬",
+      "stack": "A",
+      "repo": "https://github.com/qdrant/qdrant",
+      "license": "Apache-2.0",
+      "url": "http://localhost:5710/dashboard",
+      "probe": "http://localhost:5710/readyz",
+      "first_run": "Open /dashboard to inspect vector collections, semantic search indexes, and memory payloads.",
+      "ram_mb": 400
+    },
+    "temporal": {
+      "name": "Temporal Orchestrator",
+      "role": "Durable long-running autonomous task & multi-step workflow execution engine",
+      "icon": "⏱️",
+      "stack": "A",
+      "repo": "https://github.com/temporalio/temporal",
+      "license": "MIT",
+      "url": "http://localhost:5720",
+      "probe": "http://localhost:5720",
+      "first_run": "Temporal Server (:7233) + Temporal Web UI (:5720) boot automatically with zero manual DB setup.",
+      "ram_mb": 800
+    },
+    "langfuse": {
+      "name": "Langfuse Observability",
+      "role": "AI employee audit traces, prompt versioning, latency & token cost governance",
+      "icon": "🔍",
+      "stack": "A",
+      "repo": "https://github.com/langfuse/langfuse",
+      "license": "MIT",
+      "url": "http://localhost:5730",
+      "probe": "http://localhost:5730/api/public/health",
+      "first_run": "Create your local workspace account on first visit to inspect live agent traces and cost ledgers.",
+      "ram_mb": 950
+    },
+    "dify": {
+      "name": "Dify Agent Studio",
+      "role": "Visual AI teammate builder, tool-calling workflows & RAG knowledge pipelines",
+      "icon": "🤖",
+      "stack": "B",
+      "repo": "https://github.com/langgenius/dify",
+      "license": "Apache-2.0",
+      "url": "http://localhost:5800",
+      "probe": "http://localhost:5800",
+      "first_run": "Complete the 1-step admin setup at /install, then build or import autonomous agent workflows.",
+      "ram_mb": 1600
+    },
+    "anythingllm": {
+      "name": "AnythingLLM",
+      "role": "All-in-one private AI teammate with document RAG, web scraping & MCP agents",
+      "icon": "📚",
+      "stack": "B",
+      "repo": "https://github.com/Mintplex-Labs/anything-llm",
+      "license": "MIT",
+      "url": "http://localhost:5810",
+      "probe": "http://localhost:5810/api/ping",
+      "first_run": "Follow the 30-second onboarding wizard to link Ollama or an API key and upload company SOPs.",
+      "ram_mb": 650
+    },
+    "litellm": {
+      "name": "LiteLLM Gateway",
+      "role": "Unified OpenAI-compatible router across 100+ local & cloud LLMs with spend caps",
+      "icon": "🚦",
+      "stack": "B",
+      "repo": "https://github.com/BerriAI/litellm",
+      "license": "MIT",
+      "url": "http://localhost:5820/ui",
+      "probe": "http://localhost:5820/health/liveliness",
+      "first_run": "Admin UI at /ui — log in with LITELLM_MASTER_KEY from tools/litellm/.env to manage model keys & budgets.",
+      "ram_mb": 500
+    },
+    "nocodb": {
+      "name": "NocoDB Executive Board",
+      "role": "Open-source Airtable alternative for AI task queues, SOPs & human approvals",
+      "icon": "📋",
+      "stack": "B",
+      "repo": "https://github.com/nocodb/nocodb",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5830",
+      "probe": "http://localhost:5830/api/v1/health",
+      "first_run": "Sign up on first visit to create your local super-admin and executive task approval tables.",
+      "ram_mb": 450
+    }
+  }
+}

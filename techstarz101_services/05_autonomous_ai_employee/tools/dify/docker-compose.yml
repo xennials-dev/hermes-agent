@@ -1,0 +1,69 @@
+# Dify — Visual Multi-Agent Teammate Studio (Stack B)
+# Upstream: https://github.com/langgenius/dify
+# Local URL: http://localhost:5800
+name: ts101-dify
+
+services:
+  dify-api:
+    image: langgenius/dify-api:0.15.3
+    restart: unless-stopped
+    environment:
+      MODE: api
+      SECRET_KEY: ${DIFY_SECRET_KEY:?run the hub once to generate .env}
+      DB_USERNAME: dify
+      DB_PASSWORD: ${DIFY_DB_PASSWORD}
+      DB_HOST: dify-db
+      DB_PORT: "5432"
+      DB_DATABASE: dify
+      REDIS_HOST: dify-redis
+      REDIS_PORT: "6379"
+      CELERY_BROKER_URL: redis://dify-redis:6379/1
+      CONSOLE_WEB_URL: http://localhost:5800
+      APP_WEB_URL: http://localhost:5800
+      STORAGE_TYPE: local
+    volumes:
+      - dify-storage:/app/api/storage
+    depends_on:
+      dify-db:
+        condition: service_healthy
+      dify-redis:
+        condition: service_healthy
+
+  dify-web:
+    image: langgenius/dify-web:0.15.3
+    restart: unless-stopped
+    ports:
+      - "5800:3000"
+    environment:
+      CONSOLE_API_URL: http://localhost:5800
+      APP_API_URL: http://localhost:5800
+    depends_on:
+      - dify-api
+
+  dify-db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dify
+      POSTGRES_USER: dify
+      POSTGRES_PASSWORD: ${DIFY_DB_PASSWORD}
+    volumes:
+      - dify-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dify -d dify"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  dify-redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  dify-storage:
+  dify-db:

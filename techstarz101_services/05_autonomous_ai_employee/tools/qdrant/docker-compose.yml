@@ -1,0 +1,17 @@
+# Qdrant — High-Speed Vector Memory Engine (Stack A)
+# Upstream: https://github.com/qdrant/qdrant
+# Local Dashboard: http://localhost:5710/dashboard (gRPC :5711)
+name: ts101-qdrant
+
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    restart: unless-stopped
+    ports:
+      - "5710:6333"
+      - "5711:6334"
+    volumes:
+      - qdrant-storage:/qdrant/storage
+
+volumes:
+  qdrant-storage:

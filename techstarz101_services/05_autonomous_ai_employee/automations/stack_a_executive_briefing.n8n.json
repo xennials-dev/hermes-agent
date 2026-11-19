@@ -1,0 +1,13 @@
+{
+  "name": "Techstarz101 Stack A - 8:00 AM Daily Executive Briefing Pipeline",
+  "nodes": [
+    { "parameters": { "rule": { "interval": [{ "field": "cronExpression", "expression": "0 8 * * *" }] } }, "id": "node-cron", "name": "Daily 8AM Trigger", "type": "n8n-nodes-base.scheduleTrigger", "typeVersion": 1.2, "position": [200, 300] },
+    { "parameters": { "method": "GET", "url": "http://host.docker.internal:5710/collections" }, "id": "node-qdrant", "name": "Recall Qdrant Executive Memory", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [480, 300] },
+    { "parameters": { "method": "POST", "url": "http://host.docker.internal:7869/api/employee/delegate", "sendBody": true, "specifyBody": "json", "jsonBody": "{\"directive\":\"Compile 8AM executive briefing & action queue\",\"stack\":\"A\",\"autonomy\":\"approval_gate\"}" }, "id": "node-exec", "name": "Dispatch Executive Orchestrator", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [780, 300] }
+  ],
+  "connections": {
+    "Daily 8AM Trigger": { "main": [[{ "node": "Recall Qdrant Executive Memory", "type": "main", "index": 0 }]] },
+    "Recall Qdrant Executive Memory": { "main": [[{ "node": "Dispatch Executive Orchestrator", "type": "main", "index": 0 }]] }
+  },
+  "active": false
+}

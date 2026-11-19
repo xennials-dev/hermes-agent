@@ -1,0 +1,38 @@
+# NocoDB — Open-Source Airtable for Executive Task Queues & Approvals (Stack B)
+# Upstream: https://github.com/nocodb/nocodb
+# Local URL: http://localhost:5830
+name: ts101-nocodb
+
+services:
+  nocodb:
+    image: nocodb/nocodb:latest
+    restart: unless-stopped
+    ports:
+      - "5830:8080"
+    environment:
+      NC_DB: pg://nocodb-db:5432?u=nocodb&p=${NOCODB_DB_PASSWORD:?run the hub once to generate .env}&d=nocodb
+      NC_AUTH_JWT_SECRET: ${NOCODB_JWT_SECRET}
+    volumes:
+      - nocodb-data:/usr/app/data
+    depends_on:
+      nocodb-db:
+        condition: service_healthy
+
+  nocodb-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nocodb
+      POSTGRES_USER: nocodb
+      POSTGRES_PASSWORD: ${NOCODB_DB_PASSWORD}
+    volumes:
+      - nocodb-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nocodb -d nocodb"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  nocodb-data:
+  nocodb-db:

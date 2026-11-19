@@ -1,0 +1,48 @@
+# Temporal — Durable Autonomous Workflow Orchestrator (Stack A)
+# Upstream: https://github.com/temporalio/temporal
+# Local Web UI: http://localhost:5720 (gRPC :7233)
+name: ts101-temporal
+
+services:
+  temporal:
+    image: temporalio/auto-setup:1.28.1
+    restart: unless-stopped
+    ports:
+      - "7233:7233"
+    environment:
+      DB: postgres12
+      DB_PORT: "5432"
+      POSTGRES_USER: temporal
+      POSTGRES_PWD: ${TEMPORAL_DB_PASSWORD:?run the hub once to generate .env}
+      POSTGRES_SEEDS: temporal-db
+    depends_on:
+      temporal-db:
+        condition: service_healthy
+
+  temporal-ui:
+    image: temporalio/ui:latest
+    restart: unless-stopped
+    ports:
+      - "5720:8080"
+    environment:
+      TEMPORAL_ADDRESS: temporal:7233
+      TEMPORAL_CORS_ORIGINS: http://localhost:5720
+    depends_on:
+      - temporal
+
+  temporal-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: temporal
+      POSTGRES_PASSWORD: ${TEMPORAL_DB_PASSWORD}
+    volumes:
+      - temporal-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U temporal"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  temporal-db:

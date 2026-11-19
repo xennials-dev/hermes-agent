@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Techstarz101 · Service #05 Autonomous AI Employee Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #070a13; color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .glow-card { border: 1px solid rgba(56, 189, 248, 0.22); box-shadow: 0 0 24px rgba(56, 189, 248, 0.06); }
+    .glow-card-b { border: 1px solid rgba(168, 85, 247, 0.25); box-shadow: 0 0 24px rgba(168, 85, 247, 0.06); }
+    .repo-icon-btn { transition: transform 0.15s ease, box-shadow 0.15s ease; }
+    .repo-icon-btn:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25); }
+  </style>
+</head>
+<body class="p-6 md:p-10 max-w-7xl mx-auto">
+
+  <header class="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 border-b border-slate-800 gap-4">
+    <div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-sky-400 mb-2">
+        <span class="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
+        SERVICE #05 · MODULAR TOOL STACK HUB
+      </div>
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
+        Autonomous AI Employee
+        <span class="text-sm font-bold px-2.5 py-1 rounded-md bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">🤖 Full-Stack Teammate &amp; Executive Orchestrator</span>
+      </h1>
+      <p class="text-slate-400 text-sm md:text-base mt-1">
+        Click any tool's repo icon or dedicated link to launch that standalone AI teammate app, stack multiple tools together, or delegate an executive directive live.
+      </p>
+    </div>
+    <div class="flex flex-wrap items-center gap-3">
+      <div id="dockerBadge" class="px-3.5 py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300">🐳 Checking Docker...</div>
+      <a href="https://techstarz101.com/agents/autonomous-ai-employee" target="_blank" class="px-4 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-sm font-bold transition">🚀 Live Service Page</a>
+    </div>
+  </header>
+
+  <div class="my-6 flex flex-wrap border-b border-slate-800 gap-6">
+    <button onclick="switchTab('tools')" id="tab-btn-tools" class="pb-3 font-semibold text-sky-400 border-b-2 border-sky-400">🧩 Individual Tool Repos &amp; Stack Launcher</button>
+    <button onclick="switchTab('delegate')" id="tab-btn-delegate" class="pb-3 font-semibold text-slate-400 hover:text-slate-200">🤖 Executive Task Delegator</button>
+    <button onclick="switchTab('automations')" id="tab-btn-automations" class="pb-3 font-semibold text-slate-400 hover:text-slate-200">🔀 Stack Orchestration Workflows</button>
+    <button onclick="switchTab('infographic')" id="tab-btn-infographic" class="pb-3 font-semibold text-slate-400 hover:text-slate-200">📊 GitHub Infographic</button>
+    <button onclick="switchTab('video')" id="tab-btn-video" class="pb-3 font-semibold text-slate-400 hover:text-slate-200">🎥 Product Feature MP4</button>
+  </div>
+
+  <!-- TAB 1: Individual Tool Repos -->
+  <div id="tab-tools" class="space-y-8">
+    <div class="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+      <div>
+        <h2 class="text-lg font-bold text-white flex items-center gap-2">
+          🔗 Stack &amp; Automate AI Teammate Tools
+          <span id="selectedCountBadge" class="text-xs px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-400 border border-sky-500/30">0 selected</span>
+        </h2>
+        <p class="text-xs text-slate-400 mt-0.5">Every tool runs standalone on its own port &amp; dedicated link (<code class="text-sky-400">/t/&lt;tool&gt;</code>), or check multiple tools to launch as an orchestrated stack.</p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2.5">
+        <button onclick="launchFullStack('A')" class="px-3.5 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-extrabold">▶ Launch Stack A (4 Tools)</button>
+        <button onclick="launchFullStack('B')" class="px-3.5 py-2 rounded-lg bg-purple-500 hover:bg-purple-400 text-slate-950 text-xs font-extrabold">▶ Launch Stack B (4 Tools)</button>
+        <button onclick="launchSelectedStack()" class="px-3.5 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-extrabold">⚡ Launch Checked Stack</button>
+        <button onclick="stopAllTools()" class="px-3.5 py-2 rounded-lg bg-slate-800 hover:bg-rose-500/20 text-slate-300 border border-slate-700 text-xs font-semibold">⏹ Stop All</button>
+      </div>
+    </div>
+
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-sky-500/15 text-sky-400 border border-sky-500/30">Stack A · Sovereign Executive Orchestrator</span>
+      <h3 class="text-xl font-extrabold text-white mt-2 mb-4">Open WebUI + Qdrant Memory + Temporal Durable Engine + Langfuse Audit</h3>
+      <div id="stackAGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+    </div>
+
+    <div>
+      <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded bg-purple-500/15 text-purple-400 border border-purple-500/30">Stack B · Visual Multi-Agent Teammate</span>
+      <h3 class="text-xl font-extrabold text-white mt-2 mb-4">Dify Studio + AnythingLLM + LiteLLM Gateway + NocoDB Approval Board</h3>
+      <div id="stackBGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+    </div>
+  </div>
+
+  <!-- TAB 2: Executive Task Delegator -->
+  <div id="tab-delegate" class="hidden grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+      <span class="text-xs font-bold px-2.5 py-1 rounded bg-emerald-500/15 text-emerald-400">Live Executive Orchestrator</span>
+      <h3 class="text-xl font-bold text-white">Delegate an Executive Directive</h3>
+      <div>
+        <label class="text-xs text-slate-400 font-semibold">Executive Directive</label>
+        <textarea id="dirText" rows="3" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">Prepare weekly revenue brief, audit overdue client invoices, draft personalized follow-ups, and queue Friday executive standup.</textarea>
+      </div>
+      <div class="grid grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs text-slate-400 font-semibold">Target Stack</label>
+          <select id="dirStack" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
+            <option value="A">Stack A (Qdrant → Open WebUI → Temporal → Langfuse)</option>
+            <option value="B">Stack B (AnythingLLM → LiteLLM → Dify → NocoDB)</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-slate-400 font-semibold">Governance Mode</label>
+          <select id="dirAuto" class="w-full mt-1 bg-slate-950 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
+            <option value="approval_gate">Human-in-the-Loop Approval Gate</option>
+            <option value="full_autonomous">Full Autonomous Execution</option>
+          </select>
+        </div>
+      </div>
+      <button onclick="delegateTask()" class="w-full py-3 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-extrabold text-sm">
+        ⚡ Dispatch Executive Orchestration DAG
+      </button>
+    </div>
+
+    <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+      <h3 class="text-lg font-bold text-white">Live Execution Plan &amp; Audit Trace</h3>
+      <div id="delegateTrace" class="space-y-3 text-sm text-slate-300"></div>
+    </div>
+  </div>
+
+  <!-- TAB 3: Automations -->
+  <div id="tab-automations" class="hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+      <span class="text-xs font-bold px-2.5 py-1 rounded bg-sky-500/15 text-sky-400">Stack A Automation</span>
+      <h3 class="text-xl font-bold text-white">8:00 AM Daily Executive Briefing Pipeline</h3>
+      <p class="text-xs text-slate-400">n8n cron workflow pulling Qdrant memory updates, Temporal workflow status, and Langfuse token spend into a crisp daily briefing.</p>
+      <a href="/automations/stack_a_executive_briefing.n8n.json" download class="inline-block px-4 py-2 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs">📥 Download Stack A Workflow JSON</a>
+    </div>
+    <div class="p-6 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+      <span class="text-xs font-bold px-2.5 py-1 rounded bg-purple-500/15 text-purple-400">Stack B Automation</span>
+      <h3 class="text-xl font-bold text-white">Dify Agent → NocoDB Approval Gate → LiteLLM Execute</h3>
+      <p class="text-xs text-slate-400">Human-in-the-loop governance loop ensuring every external email, invoice, or CRM action gets 1-click executive approval inside NocoDB.</p>
+      <a href="/automations/stack_b_agent_approval_loop.json" download class="inline-block px-4 py-2 rounded-lg bg-purple-500 text-slate-950 font-bold text-xs">📥 Download Stack B Workflow JSON</a>
+    </div>
+  </div>
+
+  <!-- TAB 4: Infographic -->
+  <div id="tab-infographic" class="hidden p-6 rounded-2xl bg-slate-900 border border-slate-800">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="text-xl font-bold text-white">GitHub Architecture Infographic (SVG)</h3>
+      <a href="/infographic.svg" target="_blank" class="px-4 py-2 rounded-lg bg-sky-500 text-slate-950 font-bold text-xs">🔍 Open Full SVG</a>
+    </div>
+    <img src="/infographic.svg" alt="Autonomous AI Employee Architecture" class="w-full rounded-xl border border-slate-800">
+  </div>
+
+  <!-- TAB 5: Video -->
+  <div id="tab-video" class="hidden p-6 rounded-2xl bg-slate-900 border border-slate-800 max-w-2xl mx-auto text-center">
+    <h3 class="text-xl font-bold text-white mb-1">Autonomous AI Employee — Product Feature Video (MP4)</h3>
+    <p class="text-xs text-slate-400 mb-5">1080x1080 social format rendered with <code class="text-sky-400">character_03_executive_suite_suit.jpg</code>.</p>
+    <div class="aspect-square w-full max-w-md mx-auto rounded-xl overflow-hidden border border-slate-700 bg-black">
+      <video controls autoplay loop class="w-full h-full object-contain">
+        <source src="/video/autonomous_ai_employee_feature.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <script>
+    let REGISTRY = { stacks: {}, tools: {} };
+    let STATUS = { docker_ready: false, tools: {} };
+    let SELECTED = new Set();
+
+    function phaseBadge(phase) {
+      const map = {
+        running: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+        booting: 'bg-amber-500/20 text-amber-300 border-amber-500/30 animate-pulse',
+        pulling: 'bg-sky-500/20 text-sky-300 border-sky-500/30 animate-pulse',
+        error: 'bg-rose-500/20 text-rose-300 border-rose-500/30',
+        stopped: 'bg-slate-800 text-slate-400 border-slate-700',
+      };
+      const dot = phase === 'running' ? '🟢' : (phase === 'booting' || phase === 'pulling') ? '⏳' : phase === 'error' ? '🔴' : '⚪';
+      return `<span class="text-xs font-bold px-2.5 py-1 rounded-full border ${map[phase] || map.stopped}">${dot} ${phase.toUpperCase()}</span>`;
+    }
+
+    function renderToolCard(tid) {
+      const t = REGISTRY.tools[tid];
+      const st = (STATUS.tools && STATUS.tools[tid]) || { phase: 'stopped' };
+      const isA = t.stack === 'A';
+      const checked = SELECTED.has(tid) ? 'checked' : '';
+      return `
+        <div class="p-5 rounded-2xl bg-slate-900/95 ${isA ? 'glow-card' : 'glow-card-b'} flex flex-col justify-between gap-4">
+          <div>
+            <div class="flex items-start justify-between gap-2">
+              <div class="flex items-center gap-3">
+                <a href="/t/${tid}" target="_blank" title="Click icon to launch &amp; open ${t.name}"
+                   class="repo-icon-btn w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-2xl">${t.icon}</a>
+                <div>
+                  <a href="/t/${tid}" target="_blank" class="text-base font-extrabold text-white hover:text-sky-400">${t.name}</a>
+                  <div class="text-[11px] font-mono text-slate-400">${t.license}</div>
+                </div>
+              </div>
+              <label class="flex items-center gap-1 text-xs text-slate-400 cursor-pointer">
+                <input type="checkbox" ${checked} onchange="toggleSelect('${tid}', this.checked)" class="w-4 h-4 accent-sky-400"> Stack
+              </label>
+            </div>
+            <p class="text-xs text-slate-400 mt-3">${t.role}</p>
+            <div class="mt-3 p-2.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1 text-[11px]">
+              <div class="flex justify-between"><span class="text-slate-500">Launch Link:</span><a href="/t/${tid}" target="_blank" class="font-mono text-sky-400">/t/${tid} ↗</a></div>
+              <div class="flex justify-between"><span class="text-slate-500">Direct Port:</span><a href="${t.url}" target="_blank" class="font-mono text-emerald-400">${t.url.replace('http://','')} ↗</a></div>
+              <div class="flex justify-between"><span class="text-slate-500">Repo Folder:</span><code class="text-slate-300">tools/${tid}/</code></div>
+            </div>
+          </div>
+          <div class="pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
+            ${phaseBadge(st.phase)}
+            <div class="flex items-center gap-1.5">
+              <a href="/t/${tid}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-extrabold">🚀 Launch</a>
+              ${(st.phase === 'running' || st.phase === 'booting' || st.phase === 'pulling')
+                ? `<button onclick="stopTool('${tid}')" class="px-2 py-1.5 rounded-lg bg-slate-800 text-slate-300 text-xs border border-slate-700">Stop</button>`
+                : `<button onclick="startTool('${tid}')" class="px-2 py-1.5 rounded-lg bg-slate-800 text-slate-200 text-xs border border-slate-700">Start</button>`
+              }
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderGrids() {
+      document.getElementById('stackAGrid').innerHTML = (REGISTRY.stacks.A?.tools || []).map(renderToolCard).join('');
+      document.getElementById('stackBGrid').innerHTML = (REGISTRY.stacks.B?.tools || []).map(renderToolCard).join('');
+      const b = document.getElementById('dockerBadge');
+      if (STATUS.docker_ready) {
+        b.className = 'px-3.5 py-2 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-xs font-bold text-emerald-300';
+        b.textContent = '🐳 Docker Engine: Ready';
+      } else {
+        b.className = 'px-3.5 py-2 rounded-lg bg-amber-500/15 border border-amber-500/30 text-xs font-bold text-amber-300 cursor-pointer';
+        b.textContent = '🐳 Docker Stopped (Click to Start)';
+        b.onclick = () => fetch('/api/docker/start', {method: 'POST'}).then(refreshStatus);
+      }
+    }
+
+    function toggleSelect(tid, c) {
+      if (c) SELECTED.add(tid); else SELECTED.delete(tid);
+      document.getElementById('selectedCountBadge').textContent = `${SELECTED.size} selected`;
+    }
+    const startTool = tid => fetch(`/api/tools/${tid}/start`, {method:'POST'}).then(refreshStatus);
+    const stopTool = tid => fetch(`/api/tools/${tid}/stop`, {method:'POST'}).then(refreshStatus);
+    const launchFullStack = stack => fetch('/api/stack/start', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({stack})}).then(refreshStatus);
+    const launchSelectedStack = () => SELECTED.size ? fetch('/api/stack/start', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({tools:[...SELECTED]})}).then(refreshStatus) : alert('Select at least one tool first.');
+    const stopAllTools = () => fetch('/api/stack/stop', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({tools:Object.keys(REGISTRY.tools)})}).then(refreshStatus);
+    async function refreshStatus() { STATUS = await (await fetch('/api/status')).json(); renderGrids(); }
+
+    function switchTab(id) {
+      ['tools','delegate','automations','infographic','video'].forEach(t => {
+        document.getElementById('tab-'+t).classList.add('hidden');
+        document.getElementById('tab-btn-'+t).className = 'pb-3 font-semibold text-slate-400 hover:text-slate-200';
+      });
+      document.getElementById('tab-'+id).classList.remove('hidden');
+      document.getElementById('tab-btn-'+id).className = 'pb-3 font-semibold text-sky-400 border-b-2 border-sky-400';
+    }
+
+    async function delegateTask() {
+      const res = await (await fetch('/api/employee/delegate', {
+        method: 'POST', headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          directive: document.getElementById('dirText').value,
+          stack: document.getElementById('dirStack').value,
+          autonomy: document.getElementById('dirAuto').value,
+        })
+      })).json();
+      document.getElementById('delegateTrace').innerHTML = res.steps.map(s => `
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+          <div class="flex justify-between items-center">
+            <span class="font-bold text-white text-xs">${s.step} <span class="text-sky-400 font-mono">(${s.tool})</span></span>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400">${s.status}</span>
+          </div>
+          <div class="text-xs text-slate-300">${s.detail}</div>
+        </div>`).join('');
+    }
+
+    (async function init() {
+      REGISTRY = await (await fetch('/api/registry')).json();
+      await refreshStatus();
+      delegateTask();
+      setInterval(refreshStatus, 6000);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "Techstarz101 Stack B - Dify Agent -> NocoDB Approval Gate -> LiteLLM Execute",
+  "steps": [
+    { "step": 1, "tool": "anythingllm", "endpoint": "http://localhost:5810/api/v1/workspaces", "action": "Retrieve private SOP context" },
+    { "step": 2, "tool": "dify", "endpoint": "http://localhost:5800/v1/workflows/run", "action": "Synthesize proposed executive actions" },
+    { "step": 3, "tool": "nocodb", "endpoint": "http://localhost:5830/api/v2/tables/approvals/records", "action": "Stage action in Human-in-the-Loop Approval Board" },
+    { "step": 4, "tool": "litellm", "endpoint": "http://localhost:5820/v1/chat/completions", "action": "Execute approved action under spend cap" }
+  ]
+}

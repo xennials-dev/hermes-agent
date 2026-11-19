@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" style="background:#070a13; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#050811"/></linearGradient>
+    <linearGradient id="sa" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient>
+    <linearGradient id="sb" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#c084fc"/></linearGradient>
+    <linearGradient id="gn" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g transform="translate(50, 36)">
+    <rect width="275" height="28" rx="14" fill="#1e293b" stroke="#334155"/>
+    <circle cx="15" cy="14" r="5" fill="#38bdf8"/>
+    <text x="28" y="18" fill="#94a3b8" font-size="11.5" font-weight="700" letter-spacing="1">TECHSTARZ101 · SERVICE #05</text>
+    <text x="0" y="64" fill="#ffffff" font-size="33" font-weight="800">Autonomous AI Employee — Executive Orchestrator</text>
+    <text x="0" y="90" fill="#94a3b8" font-size="14.5">8 standalone open-source repos · Long-term vector memory, durable execution &amp; approval governance</text>
+    <rect x="815" y="10" width="285" height="34" rx="8" fill="url(#gn)"/>
+    <text x="957" y="32" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">⚡ HUB: localhost:7869 · /t/&lt;tool&gt;</text>
+  </g>
+
+  <g transform="translate(50, 152)">
+    <rect width="1100" height="215" rx="16" fill="#0d1424" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="20" y="16" width="350" height="26" rx="6" fill="url(#sa)"/>
+    <text x="32" y="33" fill="#04121f" font-size="12" font-weight="800">STACK A · SOVEREIGN EXECUTIVE ORCHESTRATOR</text>
+    <text x="385" y="33" fill="#94a3b8" font-size="12">Open WebUI + Qdrant Memory + Temporal Durable Engine + Langfuse Audit</text>
+    <g transform="translate(20, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🧠 Open WebUI</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Executive Chat &amp; Private RAG</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/open-webui/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/open-webui</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5700 (MIT)</text></g>
+    <g transform="translate(289, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🧬 Qdrant</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Long-Term Vector Memory</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/qdrant/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/qdrant</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5710 (Apache-2.0)</text></g>
+    <g transform="translate(558, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">⏱️ Temporal</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Durable Task Orchestrator</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/temporal/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/temporal</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5720 (MIT)</text></g>
+    <g transform="translate(827, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🔍 Langfuse</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">AI Audit Traces &amp; Cost Guard</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/langfuse/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/langfuse</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5730 (MIT)</text></g>
+  </g>
+
+  <g transform="translate(50, 390)">
+    <rect width="1100" height="215" rx="16" fill="#0d1424" stroke="#7c3aed" stroke-width="1.5"/>
+    <rect x="20" y="16" width="350" height="26" rx="6" fill="url(#sb)"/>
+    <text x="32" y="33" fill="#ffffff" font-size="12" font-weight="800">STACK B · VISUAL MULTI-AGENT TEAMMATE</text>
+    <text x="385" y="33" fill="#94a3b8" font-size="12">Dify Studio + AnythingLLM + LiteLLM Router + NocoDB Approval Board</text>
+    <g transform="translate(20, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🤖 Dify Studio</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Visual Agent &amp; Tool Workflows</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/dify/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/dify</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5800 (Apache-2.0)</text></g>
+    <g transform="translate(289, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">📚 AnythingLLM</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Private RAG &amp; MCP Teammate</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/anythingllm/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/anythingllm</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5810 (MIT)</text></g>
+    <g transform="translate(558, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🚦 LiteLLM</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">100+ Model Router &amp; Budgets</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/litellm/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/litellm</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5820 (MIT)</text></g>
+    <g transform="translate(827, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">📋 NocoDB</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Executive Approval Boards</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/nocodb/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/nocodb</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5830 (AGPL-3.0)</text></g>
+  </g>
+  <text x="50" y="642" fill="#64748b" font-size="12.5" font-weight="600">Techstarz101.com · 24/7 Sovereign AI Employee · Run Individually or Orchestrate Together</text>
+  <text x="1150" y="642" fill="#10b981" font-size="12.5" font-weight="800" text-anchor="end">HUMAN-IN-THE-LOOP SAFE</text>
+</svg>

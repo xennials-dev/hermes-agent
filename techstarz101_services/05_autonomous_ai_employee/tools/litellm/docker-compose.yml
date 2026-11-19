@@ -1,0 +1,38 @@
+# LiteLLM Proxy — Unified Multi-Model LLM Gateway & Spend Caps (Stack B)
+# Upstream: https://github.com/BerriAI/litellm
+# Local URL: http://localhost:5820/ui
+name: ts101-litellm
+
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm:main-stable
+    restart: unless-stopped
+    ports:
+      - "5820:4000"
+    environment:
+      DATABASE_URL: postgresql://litellm:${LITELLM_DB_PASSWORD:?run the hub once to generate .env}@litellm-db:5432/litellm
+      LITELLM_MASTER_KEY: sk-ts101-${LITELLM_MASTER_KEY}
+      STORE_MODEL_IN_DB: "True"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      litellm-db:
+        condition: service_healthy
+
+  litellm-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: litellm
+      POSTGRES_USER: litellm
+      POSTGRES_PASSWORD: ${LITELLM_DB_PASSWORD}
+    volumes:
+      - litellm-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U litellm -d litellm"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  litellm-db:

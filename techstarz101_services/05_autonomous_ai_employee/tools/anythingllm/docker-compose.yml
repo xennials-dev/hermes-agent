@@ -1,0 +1,22 @@
+# AnythingLLM — Private Workspace AI Teammate & MCP Agent (Stack B)
+# Upstream: https://github.com/Mintplex-Labs/anything-llm
+# Local URL: http://localhost:5810
+name: ts101-anythingllm
+
+services:
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    restart: unless-stopped
+    ports:
+      - "5810:3001"
+    environment:
+      STORAGE_DIR: /app/server/storage
+      JWT_SECRET: ${ANYTHINGLLM_JWT_SECRET:?run the hub once to generate .env}
+      DISABLE_TELEMETRY: "true"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - anythingllm-storage:/app/server/storage
+
+volumes:
+  anythingllm-storage:
