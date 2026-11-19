@@ -1,0 +1,13 @@
+# Kokoro-FastAPI — <150ms Human-Grade Neural TTS (Stack A)
+# Upstream: https://github.com/remsky/Kokoro-FastAPI
+# Local Web UI: http://localhost:6510/web/
+name: ts101-kokoro-tts
+
+services:
+  kokoro-tts:
+    image: ghcr.io/remsky/kokoro-fastapi-cpu:latest
+    restart: unless-stopped
+    ports:
+      - "6510:8880"
+    environment:
+      USE_GPU: "false"

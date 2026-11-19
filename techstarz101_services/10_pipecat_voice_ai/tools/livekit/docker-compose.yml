@@ -1,0 +1,13 @@
+# LiveKit — Ultra-Low-Latency WebRTC & SIP Media Server (Stack A)
+# Upstream: https://github.com/livekit/livekit
+# Local URL: http://localhost:6500
+name: ts101-livekit
+
+services:
+  livekit:
+    image: livekit/livekit-server:latest
+    restart: unless-stopped
+    command: --dev --bind 0.0.0.0
+    ports:
+      - "6500:7880"
+      - "7881:7881"

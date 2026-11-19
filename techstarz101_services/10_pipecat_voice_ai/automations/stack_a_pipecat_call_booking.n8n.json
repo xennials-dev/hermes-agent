@@ -1,0 +1,69 @@
+{
+  "name": "Techstarz101 S10 Stack A - Pipecat Call Booking to Cal.com & SMS",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pipecat-call-complete",
+        "responseMode": "lastNode"
+      },
+      "id": "webhook-pipecat",
+      "name": "Pipecat Call Complete Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6530/api/v2/bookings",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"eventTypeSlug\": \"ai-strategy-call\", \"start\": $json.body.slot_iso, \"attendee\": { \"name\": $json.body.caller_name, \"email\": $json.body.caller_email, \"phoneNumber\": $json.body.caller_phone } } }}"
+      },
+      "id": "calcom-book",
+      "name": "Confirm Cal.com Slot (:6530)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [520, 240]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6620/api/v1/chat/completions",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"model\": \"llama3.2\", \"messages\": [{ \"role\": \"system\", \"content\": \"Summarize this phone call into 3 CRM bullet points + action item.\" }, { \"role\": \"user\", \"content\": $json.body.transcript }] } }}"
+      },
+      "id": "llm-summarize",
+      "name": "Summarize Call Transcript (:6620)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [520, 400]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"booking_confirmed\": true, \"caller\": $json.body.caller_phone } }}"
+      },
+      "id": "respond-ok",
+      "name": "Return Booking Receipt",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [820, 300]
+    }
+  ],
+  "connections": {
+    "Pipecat Call Complete Webhook": {
+      "main": [
+        [
+          { "node": "Confirm Cal.com Slot (:6530)", "type": "main", "index": 0 },
+          { "node": "Summarize Call Transcript (:6620)", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Confirm Cal.com Slot (:6530)": {
+      "main": [[{ "node": "Return Booking Receipt", "type": "main", "index": 0 }]]
+    }
+  }
+}

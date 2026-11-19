@@ -1,0 +1,40 @@
+# Cal.com Voice Booking — Live Mid-Call Appointment Scheduler (Stack A)
+# Upstream: https://github.com/calcom/cal.com
+# Local URL: http://localhost:6530
+name: ts101-calcom-voice
+
+services:
+  calcom-voice:
+    image: calcom/cal.com:latest
+    restart: unless-stopped
+    ports:
+      - "6530:3000"
+    environment:
+      DATABASE_URL: postgresql://calcom:${CALV_DB_PASSWORD:?run the hub once to generate .env}@calv-db:5432/calcom
+      DATABASE_DIRECT_URL: postgresql://calcom:${CALV_DB_PASSWORD}@calv-db:5432/calcom
+      NEXT_PUBLIC_WEBAPP_URL: http://localhost:6530
+      NEXTAUTH_URL: http://localhost:6530
+      NEXTAUTH_SECRET: ${CALV_NEXTAUTH_SECRET}
+      CALENDSO_ENCRYPTION_KEY: ${CALV_ENCRYPTION_KEY}
+      NEXT_PUBLIC_LICENSE_CONSENT: agree
+    depends_on:
+      calv-db:
+        condition: service_healthy
+
+  calv-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: calcom
+      POSTGRES_USER: calcom
+      POSTGRES_PASSWORD: ${CALV_DB_PASSWORD}
+    volumes:
+      - calv-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U calcom -d calcom"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  calv-db:

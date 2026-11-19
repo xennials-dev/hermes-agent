@@ -1,0 +1,114 @@
+{
+  "service": "Pipecat 24/7 Voice AI",
+  "service_id": "TS101-SRV-10",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Sovereign Sub-800ms WebRTC Voice",
+      "tagline": "LiveKit routes WebRTC/SIP audio, Speaches transcribes <220ms, Kokoro-FastAPI speaks <150ms, Cal.com books appointments mid-call.",
+      "tools": ["livekit", "kokoro-tts", "speaches-stt", "calcom-voice"]
+    },
+    "B": {
+      "name": "Stack B: SIP Telephony, Piper TTS & Call Routing",
+      "tagline": "Asterisk PBX terminates real SIP phone trunks, OpenedAI Speech runs Piper neural TTS, Open WebUI tunes scripts, n8n sends SMS & CRM updates.",
+      "tools": ["asterisk", "openedai-speech", "voice-llm", "n8n-voice"]
+    }
+  },
+  "tools": {
+    "livekit": {
+      "name": "LiveKit WebRTC & SIP",
+      "role": "Ultra-low-latency WebRTC & SIP media server powering Pipecat voice streams",
+      "icon": "📡",
+      "stack": "A",
+      "repo": "https://github.com/livekit/livekit",
+      "license": "Apache-2.0",
+      "url": "http://localhost:6500",
+      "probe": "http://localhost:6500",
+      "first_run": "Runs in dev mode locally on ws://localhost:6500 (API key: devkey / secret: secret) ready for Pipecat.",
+      "ram_mb": 300
+    },
+    "kokoro-tts": {
+      "name": "Kokoro-FastAPI TTS",
+      "role": "Human-grade OpenAI-compatible neural TTS with <150ms first-byte latency + Web UI",
+      "icon": "🗣️",
+      "stack": "A",
+      "repo": "https://github.com/remsky/Kokoro-FastAPI",
+      "license": "Apache-2.0",
+      "url": "http://localhost:6510/web/",
+      "probe": "http://localhost:6510/health",
+      "first_run": "Open /web/ to audition voices or POST to /v1/audio/speech from Pipecat at <150ms TTFB.",
+      "ram_mb": 1200
+    },
+    "speaches-stt": {
+      "name": "Speaches Realtime STT",
+      "role": "Streaming Faster-Whisper speech-to-text server for sub-250ms turn detection",
+      "icon": "🎙️",
+      "stack": "A",
+      "repo": "https://github.com/speaches-ai/speaches",
+      "license": "MIT",
+      "url": "http://localhost:6520/docs",
+      "probe": "http://localhost:6520/health",
+      "first_run": "Swagger UI on /docs; Pipecat connects to http://host.docker.internal:6520/v1 for real-time STT.",
+      "ram_mb": 1400
+    },
+    "calcom-voice": {
+      "name": "Cal.com Voice Booking",
+      "role": "Live calendar slot lookup & mid-call appointment booking API",
+      "icon": "📅",
+      "stack": "A",
+      "repo": "https://github.com/calcom/cal.com",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:6530",
+      "probe": "http://localhost:6530",
+      "first_run": "Create your receptionist booking calendar and paste your Cal.com API key into Pipecat tool calls.",
+      "ram_mb": 1400
+    },
+    "asterisk": {
+      "name": "Asterisk SIP PBX",
+      "role": "Self-hosted SIP phone trunk router with ARI REST/WebSocket audio bridge",
+      "icon": "☎️",
+      "stack": "B",
+      "repo": "https://github.com/asterisk/asterisk",
+      "license": "GPL-2.0",
+      "url": "http://localhost:6600/ari/api-docs/resources.json",
+      "probe": "http://localhost:6600",
+      "first_run": "Exposes SIP :5060 and ARI HTTP :6600 to bridge Twilio/Telnyx/VoIP.ms trunks straight into Pipecat.",
+      "ram_mb": 350
+    },
+    "openedai-speech": {
+      "name": "OpenedAI Speech (Piper)",
+      "role": "Drop-in OpenAI /v1/audio/speech server powered by ultra-fast CPU Piper voices",
+      "icon": "🔊",
+      "stack": "B",
+      "repo": "https://github.com/matatonic/openedai-speech",
+      "license": "GPL-3.0",
+      "url": "http://localhost:6610/docs",
+      "probe": "http://localhost:6610/docs",
+      "first_run": "Runs blazingly fast on CPU-only VPS nodes; test voices via Swagger UI at /docs.",
+      "ram_mb": 650
+    },
+    "voice-llm": {
+      "name": "Open WebUI Voice Brain",
+      "role": "Local LLM receptionist prompt studio & objection-handling knowledge base",
+      "icon": "🧠",
+      "stack": "B",
+      "repo": "https://github.com/open-webui/open-webui",
+      "license": "MIT",
+      "url": "http://localhost:6620",
+      "probe": "http://localhost:6620/health",
+      "first_run": "No login locally (WEBUI_AUTH=False). Test receptionist system prompts against local Ollama.",
+      "ram_mb": 900
+    },
+    "n8n-voice": {
+      "name": "n8n Call Router",
+      "role": "Post-call SMS confirmations, Cal.com webhooks & Twenty CRM call logging",
+      "icon": "🔀",
+      "stack": "B",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:6630",
+      "probe": "http://localhost:6630/healthz",
+      "first_run": "Import /automations/stack_a_pipecat_call_booking.n8n.json to automate post-call booking SMS & CRM sync.",
+      "ram_mb": 400
+    }
+  }
+}

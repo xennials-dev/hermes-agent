@@ -1,0 +1,19 @@
+# OpenedAI Speech — Fast CPU Piper Neural TTS (Stack B)
+# Upstream: https://github.com/matatonic/openedai-speech
+# Local Swagger UI: http://localhost:6610/docs
+name: ts101-openedai-speech
+
+services:
+  openedai-speech:
+    image: ghcr.io/matatonic/openedai-speech-min:latest
+    restart: unless-stopped
+    ports:
+      - "6610:8000"
+    environment:
+      TTS_HOME: voices
+      HF_HOME: voices
+    volumes:
+      - openedai-voices:/app/voices
+
+volumes:
+  openedai-voices:

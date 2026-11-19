@@ -1,0 +1,22 @@
+# Open WebUI Voice Brain — Receptionist Prompt & Script Studio (Stack B)
+# Upstream: https://github.com/open-webui/open-webui
+# Local URL: http://localhost:6620
+name: ts101-voice-llm
+
+services:
+  voice-llm:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    ports:
+      - "6620:8080"
+    environment:
+      WEBUI_AUTH: "False"
+      WEBUI_SECRET_KEY: ${VOICE_LLM_SECRET:?run the hub once to generate .env}
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - voice-llm-data:/app/backend/data
+
+volumes:
+  voice-llm-data:

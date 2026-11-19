@@ -1,0 +1,19 @@
+# Speaches Realtime STT — Sub-250ms Streaming Faster-Whisper (Stack A)
+# Upstream: https://github.com/speaches-ai/speaches
+# Local Swagger UI: http://localhost:6520/docs
+name: ts101-speaches-stt
+
+services:
+  speaches-stt:
+    image: ghcr.io/speaches-ai/speaches:latest-cpu
+    restart: unless-stopped
+    ports:
+      - "6520:8000"
+    environment:
+      WHISPER__MODEL: Systran/faster-whisper-tiny.en
+      WHISPER__INFERENCE_DEVICE: cpu
+    volumes:
+      - speaches-stt-cache:/home/ubuntu/.cache/huggingface
+
+volumes:
+  speaches-stt-cache:

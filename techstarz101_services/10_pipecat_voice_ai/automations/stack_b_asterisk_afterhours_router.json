@@ -1,0 +1,74 @@
+{
+  "name": "Techstarz101 S10 Stack B - Asterisk SIP After-Hours Receptionist & Escalation",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "asterisk-ari-event",
+        "responseMode": "lastNode"
+      },
+      "id": "ari-trigger",
+      "name": "Asterisk ARI Inbound Call (:6600)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.body.intent }}",
+              "operation": "equals",
+              "value2": "WARM_TRANSFER"
+            }
+          ]
+        }
+      },
+      "id": "route-urgent",
+      "name": "Is Urgent Escalation?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6600/ari/channels/transfer",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"channel\": $json.body.channel_id, \"target\": \"sip:oncall@techstarz101.internal\" } }}"
+      },
+      "id": "sip-transfer",
+      "name": "Warm Transfer to On-Call Engineer",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [760, 200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6610/v1/audio/speech",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"model\": \"tts-1\", \"voice\": \"alloy\", \"input\": \"Thank you for calling after hours. Your appointment request has been logged and we have texted you a live booking link.\" } }}"
+      },
+      "id": "piper-tts",
+      "name": "Synthesize Piper Confirmation (:6610)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [760, 400]
+    }
+  ],
+  "connections": {
+    "Asterisk ARI Inbound Call (:6600)": {
+      "main": [[{ "node": "Is Urgent Escalation?", "type": "main", "index": 0 }]]
+    },
+    "Is Urgent Escalation?": {
+      "main": [
+        [{ "node": "Warm Transfer to On-Call Engineer", "type": "main", "index": 0 }],
+        [{ "node": "Synthesize Piper Confirmation (:6610)", "type": "main", "index": 0 }]
+      ]
+    }
+  }
+}

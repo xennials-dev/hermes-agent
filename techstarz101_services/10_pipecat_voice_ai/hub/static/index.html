@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service #10: Pipecat 24/7 Voice AI — Techstarz101 Modular Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">TS101-SRV-10</span>
+          <span class="text-xs text-slate-400">2 Open-Source Stacks · 8 Standalone Repos · Sub-800ms Voice AI</span>
+        </div>
+        <h1 class="text-2xl font-extrabold text-white mt-1">Pipecat 24/7 Voice AI — Modular Hub</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <div id="dockerPill" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">Checking Docker…</div>
+        <button id="dockerBtn" onclick="launchDocker()" class="hidden px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950">Start Docker Desktop</button>
+        <a href="/infographic.svg" target="_blank" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700">Architecture SVG</a>
+        <a href="/video/pipecat_voice_ai_feature.mp4" target="_blank" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-500/30">Watch Feature Video ▶</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-10">
+    <!-- Stack Action Bar -->
+    <section class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h2 class="text-sm font-bold text-white">Click Any Repo Icon to Boot Individually — or Check Tools to Stack &amp; Automate</h2>
+        <p class="text-xs text-slate-400 mt-0.5">Every tool runs as its own standalone Docker Compose repo with a dedicated <code class="text-cyan-300">/t/&lt;id&gt;</code> launch link.</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button onclick="bootStack('A')" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs">Boot Full Stack A</button>
+        <button onclick="bootStack('B')" class="px-4 py-2 rounded-xl bg-violet-500 hover:bg-violet-400 text-white font-bold text-xs">Boot Full Stack B</button>
+        <button onclick="bootSelected()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">Boot Checked (<span id="selCount">0</span>)</button>
+        <button onclick="stopSelected()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-rose-600/80 text-slate-200 font-semibold text-xs">Stop Checked</button>
+      </div>
+    </section>
+
+    <!-- Live Sub-800ms Phone Receptionist Simulator -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-900 to-cyan-950/30 border border-cyan-500/30 rounded-2xl p-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-cyan-400">Live Interactive Utility · Zero Docker Required</span>
+          <h2 class="text-xl font-bold text-white mt-0.5">📞 Sub-800ms Phone Receptionist Simulator &amp; Latency Profiler</h2>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="fillSample('Hi, I want to book an AI strategy consultation for tomorrow morning.')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200">Book Slot</button>
+          <button onclick="fillSample('How much does your AI Opportunity Audit cost?')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200">Pricing</button>
+          <button onclick="fillSample('Our phone trunk is down, this is urgent — transfer me to a human!')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200">Warm Transfer</button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-4">
+        <div class="md:col-span-5 space-y-3">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">Business Name</label>
+              <input id="simBiz" value="Techstarz101 AI Studio" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white" />
+            </div>
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">Pipeline Stack</label>
+              <select id="simStack" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white">
+                <option value="A">Stack A (LiveKit + Speaches + Kokoro)</option>
+                <option value="B">Stack B (Asterisk SIP + Piper + Ollama)</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Caller Utterance (Simulated Phone Audio)</label>
+            <textarea id="simInput" rows="3" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white">Hi, I'd like to book an AI strategy appointment for tomorrow morning.</textarea>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="runVoiceSim()" class="flex-1 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-sm">Simulate Voice Turn ⚡</button>
+            <button id="speakBtn" onclick="speakLastReply()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 font-semibold text-sm">🔊 Hear Reply</button>
+          </div>
+        </div>
+
+        <div class="md:col-span-7 bg-slate-950/90 border border-slate-800 rounded-xl p-4 space-y-3">
+          <div class="flex items-center justify-between">
+            <span id="simIntent" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-800 text-cyan-300">Ready to simulate</span>
+            <span id="simTotalMs" class="text-sm font-extrabold text-emerald-400">— ms E2E</span>
+          </div>
+          <div id="simReply" class="text-sm text-slate-200 leading-relaxed bg-slate-900/70 border border-slate-800 rounded-lg p-3">
+            Click <strong>Simulate Voice Turn</strong> to trace VAD → STT → LLM → TTS → WebRTC latency and mid-call Cal.com booking tool execution.
+          </div>
+          <div id="simBars" class="grid grid-cols-5 gap-2 text-center text-[11px]"></div>
+          <pre id="simToolCall" class="text-[11px] font-mono text-amber-300 bg-black/50 border border-slate-800 rounded-lg p-3 overflow-x-auto">{ "tool_call": "waiting..." }</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack A -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-cyan-400">Stack A · Ultra-Low-Latency WebRTC &amp; Neural TTS</span>
+          <h2 id="stackAName" class="text-xl font-bold text-white">Stack A</h2>
+          <p id="stackATagline" class="text-xs text-slate-400"></p>
+        </div>
+        <span class="text-xs text-slate-400 font-mono">Ports :6500 – :6530</span>
+      </div>
+      <div id="gridA" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- Stack B -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-violet-400">Stack B · SIP PBX Telephony, CPU Piper TTS &amp; Call Automation</span>
+          <h2 id="stackBName" class="text-xl font-bold text-white">Stack B</h2>
+          <p id="stackBTagline" class="text-xs text-slate-400"></p>
+        </div>
+        <span class="text-xs text-slate-400 font-mono">Ports :6600 – :6630</span>
+      </div>
+      <div id="gridB" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- Automations & Media -->
+    <section class="grid md:grid-cols-2 gap-6">
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-2">🔀 Ready-to-Import Call Automations</h3>
+        <p class="text-xs text-slate-400 mb-4">Import directly into your standalone n8n Call Router (<code class="text-cyan-300">:6630</code>) to wire post-call SMS, Cal.com bookings, and CRM logging.</p>
+        <div class="space-y-2.5">
+          <a href="/automations/stack_a_pipecat_call_booking.n8n.json" download class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500/50">
+            <div>
+              <div class="text-sm font-semibold text-white">Stack A: Pipecat Call → Cal.com + SMS Confirmation</div>
+              <div class="text-xs text-slate-400">Webhook → Transcript summary → Cal.com booking verify → SMS &amp; CRM sync</div>
+            </div>
+            <span class="text-xs font-bold text-cyan-400">JSON ↓</span>
+          </a>
+          <a href="/automations/stack_b_asterisk_afterhours_router.json" download class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-violet-500/50">
+            <div>
+              <div class="text-sm font-semibold text-white">Stack B: Asterisk SIP After-Hours Receptionist &amp; Escalation</div>
+              <div class="text-xs text-slate-400">SIP ARI event → Urgent keyword router → On-call transfer or voicemail follow-up</div>
+            </div>
+            <span class="text-xs font-bold text-violet-400">JSON ↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-2">🎬 Architecture &amp; Product Feature Video</h3>
+        <p class="text-xs text-slate-400 mb-4">100% open-source voice AI architecture with zero per-minute SaaS tax (~\$0.004–\$0.008/min vs \$0.18/min commercial voice AI).</p>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/infographic.svg" target="_blank" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500/50 text-center">
+            <div class="text-2xl mb-1">🗺️</div>
+            <div class="text-xs font-bold text-white">1200×675 Vector SVG</div>
+            <div class="text-[11px] text-slate-400">Full Stack A &amp; B Blueprint</div>
+          </a>
+          <a href="/video/pipecat_voice_ai_feature.mp4" target="_blank" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500/50 text-center">
+            <div class="text-2xl mb-1">🎥</div>
+            <div class="text-xs font-bold text-white">1080×1080 MP4</div>
+            <div class="text-[11px] text-slate-400">Product Feature Demo</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let REG = null;
+    const SELECTED = new Set();
+    let lastReplyText = "";
+
+    async function loadHub() {
+      REG = await (await fetch("/api/registry")).json();
+      document.getElementById("stackAName").textContent = REG.stacks.A.name;
+      document.getElementById("stackATagline").textContent = REG.stacks.A.tagline;
+      document.getElementById("stackBName").textContent = REG.stacks.B.name;
+      document.getElementById("stackBTagline").textContent = REG.stacks.B.tagline;
+      renderGrid("A", "gridA");
+      renderGrid("B", "gridB");
+      refreshStatus();
+      setInterval(refreshStatus, 4000);
+    }
+
+    function renderGrid(stackKey, elId) {
+      const container = document.getElementById(elId);
+      container.innerHTML = "";
+      for (const tid of REG.stacks[stackKey].tools) {
+        const t = REG.tools[tid];
+        const card = document.createElement("div");
+        card.className = "bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-4 flex flex-col justify-between transition";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <a href="/t/${tid}" target="_blank" title="Click to boot & open ${t.name}"
+                 class="w-12 h-12 rounded-xl bg-cyan-500/15 border border-cyan-500/30 hover:bg-cyan-500/30 flex items-center justify-center text-2xl transition">
+                ${t.icon}
+              </a>
+              <div class="flex items-center gap-2">
+                <span id="dot-${tid}" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400">OFFLINE</span>
+                <input type="checkbox" onchange="toggleSel('${tid}', this.checked)" class="w-4 h-4 accent-cyan-500 cursor-pointer" title="Include in stack boot" />
+              </div>
+            </div>
+            <a href="/t/${tid}" target="_blank" class="text-base font-bold text-white hover:text-cyan-300 transition">${t.name}</a>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">${t.role}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-slate-400">
+              <span>${t.license}</span>
+              <span class="font-mono text-cyan-300">${t.url.replace("http://localhost", "")}</span>
+            </div>
+            <div class="flex gap-2">
+              <a href="/t/${tid}" target="_blank" class="flex-1 text-center py-1.5 rounded-lg bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 font-bold text-xs transition">Launch App →</a>
+              <a href="${t.repo}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">Repo ↗</a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    function toggleSel(tid, checked) {
+      if (checked) SELECTED.add(tid); else SELECTED.delete(tid);
+      document.getElementById("selCount").textContent = SELECTED.size;
+    }
+
+    async function refreshStatus() {
+      try {
+        const st = await (await fetch("/api/status")).json();
+        const pill = document.getElementById("dockerPill");
+        const dbtn = document.getElementById("dockerBtn");
+        if (st.docker_ready) {
+          pill.textContent = "Docker Desktop: Ready";
+          pill.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30";
+          dbtn.classList.add("hidden");
+        } else {
+          pill.textContent = "Docker Desktop: Stopped";
+          pill.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-500/15 text-rose-300 border border-rose-500/30";
+          dbtn.classList.remove("hidden");
+        }
+        for (const [tid, info] of Object.entries(st.tools)) {
+          const dot = document.getElementById(`dot-${tid}`);
+          if (!dot) continue;
+          if (info.up) {
+            dot.textContent = "LIVE";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300";
+          } else if (info.state === "starting") {
+            dot.textContent = "BOOTING";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300";
+          } else {
+            dot.textContent = "READY";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400";
+          }
+        }
+      } catch (e) {}
+    }
+
+    async function bootStack(k) {
+      await fetch("/api/stack/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tools: REG.stacks[k].tools }),
+      });
+      refreshStatus();
+    }
+
+    async function bootSelected() {
+      if (!SELECTED.size) return alert("Check at least one tool card first.");
+      await fetch("/api/stack/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tools: [...SELECTED] }),
+      });
+      refreshStatus();
+    }
+
+    async function stopSelected() {
+      if (!SELECTED.size) return alert("Check at least one tool card first.");
+      await fetch("/api/stack/stop", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tools: [...SELECTED] }),
+      });
+      refreshStatus();
+    }
+
+    async function launchDocker() {
+      await fetch("/api/docker/launch", { method: "POST" });
+      alert("Launching Docker Desktop… wait ~15 seconds for the status badge to turn green.");
+    }
+
+    function fillSample(txt) {
+      document.getElementById("simInput").value = txt;
+      runVoiceSim();
+    }
+
+    async function runVoiceSim() {
+      const resp = await fetch("/api/voice/simulate-turn", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          business_name: document.getElementById("simBiz").value,
+          stack: document.getElementById("simStack").value,
+          caller_utterance: document.getElementById("simInput").value,
+        }),
+      });
+      const data = await resp.json();
+      lastReplyText = data.reply_text;
+      document.getElementById("simIntent").textContent = `Intent: ${data.intent} · Stack ${data.stack}`;
+      document.getElementById("simTotalMs").textContent = `${data.total_e2e_ms}ms E2E (${data.sub_800ms_pass ? "SUB-800ms PASS" : "OVER"})`;
+      document.getElementById("simReply").textContent = data.reply_text;
+      document.getElementById("simToolCall").textContent = JSON.stringify(data.tool_call, null, 2);
+
+      const stages = [
+        ["VAD", data.latency.vad_ms],
+        ["STT", data.latency.stt_ms],
+        ["LLM TTFT", data.latency.llm_ttft_ms],
+        ["TTS TTFB", data.latency.tts_ttfb_ms],
+        ["WebRTC/SIP", data.latency.webrtc_jitter_ms],
+      ];
+      document.getElementById("simBars").innerHTML = stages.map(([k, v]) => `
+        <div class="bg-slate-900 border border-slate-800 rounded-lg p-2">
+          <div class="text-slate-400">${k}</div>
+          <div class="text-cyan-300 font-bold text-xs mt-0.5">${v}ms</div>
+        </div>
+      `).join("");
+    }
+
+    function speakLastReply() {
+      if (!lastReplyText) return;
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(lastReplyText);
+        u.rate = 1.04;
+        window.speechSynthesis.speak(u);
+      }
+    }
+
+    loadHub();
+  </script>
+</body>
+</html>

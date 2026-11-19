@@ -1,0 +1,18 @@
+# Asterisk SIP PBX — Self-Hosted Telephony & ARI Audio Bridge (Stack B)
+# Upstream: https://github.com/asterisk/asterisk
+# Local ARI HTTP: http://localhost:6600 (SIP UDP/TCP :5060)
+name: ts101-asterisk
+
+services:
+  asterisk:
+    image: andrius/asterisk:latest
+    restart: unless-stopped
+    ports:
+      - "6600:8088"
+      - "5060:5060/udp"
+      - "5060:5060/tcp"
+    volumes:
+      - asterisk-etc:/etc/asterisk
+
+volumes:
+  asterisk-etc:
