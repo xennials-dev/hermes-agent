@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" style="background:#070a13; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#050811"/>
+    </linearGradient>
+    <linearGradient id="stackA" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="stackB" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#c084fc"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="675" fill="url(#bg)"/>
+
+  <!-- Header -->
+  <g transform="translate(50, 36)">
+    <rect x="0" y="0" width="275" height="28" rx="14" fill="#1e293b" stroke="#334155"/>
+    <circle cx="15" cy="14" r="5" fill="#38bdf8"/>
+    <text x="28" y="18" fill="#94a3b8" font-size="11.5" font-weight="700" letter-spacing="1">TECHSTARZ101 · SERVICE #02</text>
+    <text x="0" y="64" fill="#ffffff" font-size="33" font-weight="800">Social Media Closer — Modular Tool Stack</text>
+    <text x="0" y="90" fill="#94a3b8" font-size="14.5">9 standalone open-source app repos · Click any icon to boot its live app · Stack &amp; automate on demand</text>
+
+    <rect x="815" y="10" width="285" height="34" rx="8" fill="url(#green)"/>
+    <text x="957" y="32" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">⚡ HUB: localhost:7866 · /t/&lt;tool&gt;</text>
+  </g>
+
+  <!-- STACK A BOX -->
+  <g transform="translate(50, 152)">
+    <rect width="1100" height="215" rx="16" fill="#0d1424" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="20" y="16" width="320" height="26" rx="6" fill="url(#stackA)"/>
+    <text x="32" y="33" fill="#04121f" font-size="12" font-weight="800">STACK A · SOVEREIGN OMNICHANNEL CLOSER</text>
+    <text x="355" y="33" fill="#94a3b8" font-size="12">Auto-Publish → Catch Every DM → Local LLM Reply → CRM Deal Sync</text>
+
+    <!-- 5 Tool Cards -->
+    <g transform="translate(20, 56)">
+      <rect width="198" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="14" y="30" fill="#38bdf8" font-size="14" font-weight="800">📣 Postiz</text>
+      <text x="14" y="50" fill="#cbd5e1" font-size="11.5">30+ Network Scheduler</text>
+      <text x="14" y="70" fill="#64748b" font-size="10.5">tools/postiz/</text>
+      <text x="14" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/postiz</text>
+      <text x="14" y="116" fill="#94a3b8" font-size="11">Port: :5100 (AGPL-3.0)</text>
+    </g>
+
+    <g transform="translate(235, 56)">
+      <rect width="198" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="14" y="30" fill="#38bdf8" font-size="14" font-weight="800">💬 Chatwoot</text>
+      <text x="14" y="50" fill="#cbd5e1" font-size="11.5">Omnichannel DM Inbox</text>
+      <text x="14" y="70" fill="#64748b" font-size="10.5">tools/chatwoot/</text>
+      <text x="14" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/chatwoot</text>
+      <text x="14" y="116" fill="#94a3b8" font-size="11">Port: :5110 (MIT)</text>
+    </g>
+
+    <g transform="translate(450, 56)">
+      <rect width="198" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="14" y="30" fill="#38bdf8" font-size="14" font-weight="800">🔀 n8n</text>
+      <text x="14" y="50" fill="#cbd5e1" font-size="11.5">Workflow Automation</text>
+      <text x="14" y="70" fill="#64748b" font-size="10.5">tools/n8n/</text>
+      <text x="14" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/n8n</text>
+      <text x="14" y="116" fill="#94a3b8" font-size="11">Port: :5120 (Fair-Code)</text>
+    </g>
+
+    <g transform="translate(665, 56)">
+      <rect width="198" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="14" y="30" fill="#38bdf8" font-size="14" font-weight="800">🧠 Ollama + WebUI</text>
+      <text x="14" y="50" fill="#cbd5e1" font-size="11.5">24/7 Sales Reply LLM</text>
+      <text x="14" y="70" fill="#64748b" font-size="10.5">tools/ollama-webui/</text>
+      <text x="14" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/ollama-webui</text>
+      <text x="14" y="116" fill="#94a3b8" font-size="11">Port: :5130 (MIT)</text>
+    </g>
+
+    <g transform="translate(880, 56)">
+      <rect width="198" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="14" y="30" fill="#38bdf8" font-size="14" font-weight="800">🗂️ Twenty CRM</text>
+      <text x="14" y="50" fill="#cbd5e1" font-size="11.5">Pipeline &amp; Deal Record</text>
+      <text x="14" y="70" fill="#64748b" font-size="10.5">tools/twenty/</text>
+      <text x="14" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/twenty</text>
+      <text x="14" y="116" fill="#94a3b8" font-size="11">Port: :5140 (AGPL-3.0)</text>
+    </g>
+  </g>
+
+  <!-- STACK B BOX -->
+  <g transform="translate(50, 390)">
+    <rect width="1100" height="215" rx="16" fill="#0d1424" stroke="#7c3aed" stroke-width="1.5"/>
+    <rect x="20" y="16" width="320" height="26" rx="6" fill="url(#stackB)"/>
+    <text x="32" y="33" fill="#ffffff" font-size="12" font-weight="800">STACK B · AGENTIC LOW-CODE CLOSER</text>
+    <text x="355" y="33" fill="#94a3b8" font-size="12">Visual AI Agent Builder + Zapier Alternative + Lightweight CRM</text>
+
+    <!-- 4 Tool Cards -->
+    <g transform="translate(20, 56)">
+      <rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🗓️ Mixpost</text>
+      <text x="16" y="50" fill="#cbd5e1" font-size="11.5">Self-Hosted Buffer Alternative</text>
+      <text x="16" y="70" fill="#64748b" font-size="10.5">tools/mixpost/docker-compose.yml</text>
+      <text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/mixpost</text>
+      <text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5200 (MIT)</text>
+    </g>
+
+    <g transform="translate(289, 56)">
+      <rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🤖 Flowise</text>
+      <text x="16" y="50" fill="#cbd5e1" font-size="11.5">Visual AI DM Sales Agent</text>
+      <text x="16" y="70" fill="#64748b" font-size="10.5">tools/flowise/docker-compose.yml</text>
+      <text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/flowise</text>
+      <text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5210 (Apache-2.0)</text>
+    </g>
+
+    <g transform="translate(558, 56)">
+      <rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🧩 Activepieces</text>
+      <text x="16" y="50" fill="#cbd5e1" font-size="11.5">No-Code Automation Glue</text>
+      <text x="16" y="70" fill="#64748b" font-size="10.5">tools/activepieces/docker-compose.yml</text>
+      <text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/activepieces</text>
+      <text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5220 (MIT)</text>
+    </g>
+
+    <g transform="translate(827, 56)">
+      <rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/>
+      <text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">📇 EspoCRM</text>
+      <text x="16" y="50" fill="#cbd5e1" font-size="11.5">Lightweight Sales CRM</text>
+      <text x="16" y="70" fill="#64748b" font-size="10.5">tools/espocrm/docker-compose.yml</text>
+      <text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/espocrm</text>
+      <text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5230 (AGPL-3.0)</text>
+    </g>
+  </g>
+
+  <!-- Footer -->
+  <text x="50" y="642" fill="#64748b" font-size="12.5" font-weight="600">Techstarz101.com · 100% Open Source Modular Tool Stacks · Run Individually or Compose Automated Pipelines</text>
+  <text x="1150" y="642" fill="#10b981" font-size="12.5" font-weight="800" text-anchor="end">ZERO PER-SEAT TAX</text>
+</svg>

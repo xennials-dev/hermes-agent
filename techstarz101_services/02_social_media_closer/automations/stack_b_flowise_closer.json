@@ -1,0 +1,42 @@
+{
+  "name": "Techstarz101 Stack B - Flowise 24/7 DM Sales Closer",
+  "description": "Conversational sales agent that qualifies inbound social DMs, handles pricing objections, and routes booked prospects into EspoCRM via Activepieces.",
+  "nodes": [
+    {
+      "id": "chatOllama_0",
+      "data": {
+        "label": "ChatOllama (Local Closer LLM)",
+        "name": "chatOllama",
+        "inputs": {
+          "baseUrl": "http://host.docker.internal:11435",
+          "modelName": "llama3.2:3b",
+          "temperature": 0.4
+        }
+      }
+    },
+    {
+      "id": "bufferMemory_0",
+      "data": {
+        "label": "Conversation Buffer Memory",
+        "name": "bufferMemory",
+        "inputs": {
+          "memoryKey": "chat_history"
+        }
+      }
+    },
+    {
+      "id": "conversationChain_0",
+      "data": {
+        "label": "Techstarz101 DM Closer Chain",
+        "name": "conversationChain",
+        "inputs": {
+          "systemMessagePrompt": "You are the Techstarz101 Social Media Closer. Reply in 2-4 crisp sentences to social DMs. Entry offer: $390 flat 48-hour starter sprint (100% money-back guarantee). Always end with one clear next step and link: https://techstarz101.com/intake.html"
+        }
+      }
+    }
+  ],
+  "edges": [
+    { "source": "chatOllama_0", "target": "conversationChain_0" },
+    { "source": "bufferMemory_0", "target": "conversationChain_0" }
+  ]
+}

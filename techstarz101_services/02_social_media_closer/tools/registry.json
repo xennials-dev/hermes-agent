@@ -1,0 +1,130 @@
+{
+  "service": "Social Media Closer",
+  "service_id": "TS101-SRV-02",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Sovereign Omnichannel Closer",
+      "tagline": "Postiz publishes, Chatwoot catches every DM, n8n routes, Ollama writes the reply, Twenty CRM logs the deal.",
+      "tools": ["postiz", "chatwoot", "n8n", "ollama-webui", "twenty"]
+    },
+    "B": {
+      "name": "Stack B: Agentic Low-Code Closer",
+      "tagline": "Mixpost publishes, a Flowise AI agent qualifies and replies, Activepieces automates hand-offs, EspoCRM tracks the pipeline.",
+      "tools": ["mixpost", "flowise", "activepieces", "espocrm"]
+    }
+  },
+  "tools": {
+    "postiz": {
+      "name": "Postiz",
+      "role": "Social scheduling and auto-posting (30+ networks)",
+      "icon": "📣",
+      "stack": "A",
+      "repo": "https://github.com/gitroomhq/postiz-app",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5100",
+      "probe": "http://localhost:5100",
+      "vps_url": "http://2.25.238.185:4200",
+      "first_run": "Open the link and click 'Sign up' to create the first local admin account.",
+      "ram_mb": 1800
+    },
+    "chatwoot": {
+      "name": "Chatwoot",
+      "role": "Omnichannel DM inbox (FB, IG, WhatsApp, X, Telegram, web chat)",
+      "icon": "💬",
+      "stack": "A",
+      "repo": "https://github.com/chatwoot/chatwoot",
+      "license": "MIT",
+      "url": "http://localhost:5110",
+      "probe": "http://localhost:5110/api",
+      "first_run": "First visit shows the onboarding form; create the super-admin account, then add inboxes under Settings > Inboxes.",
+      "ram_mb": 1500
+    },
+    "n8n": {
+      "name": "n8n",
+      "role": "Workflow automation glue between every tool",
+      "icon": "🔀",
+      "stack": "A",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:5120",
+      "probe": "http://localhost:5120/healthz",
+      "first_run": "Create the owner account, then Workflows > Import from File > /automations/stack_a_dm_closer.n8n.json.",
+      "ram_mb": 400
+    },
+    "ollama-webui": {
+      "name": "Ollama + Open WebUI",
+      "role": "Local LLM that writes 24/7 DM sales replies",
+      "icon": "🧠",
+      "stack": "A",
+      "repo": "https://github.com/ollama/ollama",
+      "repo_secondary": "https://github.com/open-webui/open-webui",
+      "license": "MIT / BSD-3",
+      "url": "http://localhost:5130",
+      "probe": "http://localhost:5130/health",
+      "first_run": "No login (WEBUI_AUTH disabled locally). The llama3.2:3b model is pulled automatically on first launch (~2 GB).",
+      "ram_mb": 4500
+    },
+    "twenty": {
+      "name": "Twenty CRM",
+      "role": "System of record for leads and deals closed from DMs",
+      "icon": "🗂️",
+      "stack": "A",
+      "repo": "https://github.com/twentyhq/twenty",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5140",
+      "probe": "http://localhost:5140/healthz",
+      "vps_url": "http://2.25.238.185:3002",
+      "first_run": "Create a workspace on first visit. Settings > APIs & Webhooks > create an API key for the closer automation.",
+      "ram_mb": 1500
+    },
+    "mixpost": {
+      "name": "Mixpost",
+      "role": "Self-hosted Buffer alternative for scheduling and publishing",
+      "icon": "🗓️",
+      "stack": "B",
+      "repo": "https://github.com/inovector/mixpost",
+      "license": "MIT",
+      "url": "http://localhost:5200/mixpost",
+      "probe": "http://localhost:5200",
+      "first_run": "Open the link; Mixpost shows its installer/register screen for the first admin user.",
+      "ram_mb": 900
+    },
+    "flowise": {
+      "name": "Flowise",
+      "role": "Visual AI agent builder for the DM qualification and closing bot",
+      "icon": "🤖",
+      "stack": "B",
+      "repo": "https://github.com/FlowiseAI/Flowise",
+      "license": "Apache-2.0",
+      "url": "http://localhost:5210",
+      "probe": "http://localhost:5210/api/v1/ping",
+      "first_run": "Create the local admin account, then Chatflows > Load > /automations/stack_b_flowise_closer.json.",
+      "ram_mb": 700
+    },
+    "activepieces": {
+      "name": "Activepieces",
+      "role": "No-code automation (Zapier alternative) for hand-offs and follow-ups",
+      "icon": "🧩",
+      "stack": "B",
+      "repo": "https://github.com/activepieces/activepieces",
+      "license": "MIT (Community Edition)",
+      "url": "http://localhost:5220",
+      "probe": "http://localhost:5220/api/v1/flags",
+      "first_run": "Sign up with any email on first visit (local instance, no verification).",
+      "ram_mb": 900
+    },
+    "espocrm": {
+      "name": "EspoCRM",
+      "role": "Lightweight CRM for leads, opportunities and follow-up tasks",
+      "icon": "📇",
+      "stack": "B",
+      "repo": "https://github.com/espocrm/espocrm",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5230",
+      "probe": "http://localhost:5230",
+      "first_run": "Log in with username 'admin' and the generated password shown on the hub card (stored in tools/espocrm/.env).",
+      "ram_mb": 600
+    }
+  }
+}
+

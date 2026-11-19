@@ -1,0 +1,82 @@
+# Postiz — social scheduling & auto-posting (Stack A)
+# Upstream: https://github.com/gitroomhq/postiz-app
+# Local URL: http://localhost:5100
+name: ts101-postiz
+
+services:
+  postiz:
+    image: ghcr.io/gitroomhq/postiz-app:latest
+    restart: unless-stopped
+    environment:
+      MAIN_URL: http://localhost:5100
+      FRONTEND_URL: http://localhost:5100
+      NEXT_PUBLIC_BACKEND_URL: http://localhost:5100/api
+      BACKEND_INTERNAL_URL: http://localhost:3000
+      JWT_SECRET: ${POSTIZ_JWT_SECRET:?run the hub once to generate .env}
+      DATABASE_URL: postgresql://postiz:${POSTIZ_DB_PASSWORD}@postiz-db:5432/postiz
+      REDIS_URL: redis://postiz-redis:6379
+      TEMPORAL_ADDRESS: temporal:7233
+      IS_GENERAL: "true"
+      NOT_SECURED: "true"
+      DISABLE_REGISTRATION: "false"
+      RUN_CRON: "true"
+      STORAGE_PROVIDER: local
+      UPLOAD_DIRECTORY: /uploads
+      NEXT_PUBLIC_UPLOAD_DIRECTORY: /uploads
+      API_LIMIT: "30"
+    ports:
+      - "5100:5000"
+    volumes:
+      - postiz-uploads:/uploads
+      - postiz-config:/config
+    depends_on:
+      postiz-db:
+        condition: service_healthy
+      postiz-redis:
+        condition: service_healthy
+      temporal:
+        condition: service_started
+
+  postiz-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postiz
+      POSTGRES_PASSWORD: ${POSTIZ_DB_PASSWORD}
+      POSTGRES_DB: postiz
+    volumes:
+      - postiz-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postiz -d postiz"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  postiz-redis:
+    image: redis:7.2-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  # Postiz v2 runs its workers on Temporal.
+  temporal:
+    image: temporalio/auto-setup:1.28.1
+    restart: unless-stopped
+    environment:
+      DB: postgres12
+      DB_PORT: "5432"
+      POSTGRES_USER: postiz
+      POSTGRES_PWD: ${POSTIZ_DB_PASSWORD}
+      POSTGRES_SEEDS: postiz-db
+    depends_on:
+      postiz-db:
+        condition: service_healthy
+
+volumes:
+  postiz-uploads:
+  postiz-config:
+  postiz-db:
+

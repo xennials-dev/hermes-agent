@@ -1,0 +1,4 @@
+tools/*/.env
+hub/settings.local.json
+video/frames/
+__pycache__/

@@ -1,0 +1,67 @@
+{
+  "name": "Techstarz101 Stack A - 24/7 Social Media DM Closer",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "chatwoot-inbound-dm",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "node-webhook",
+      "name": "Chatwoot Inbound DM Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7866/api/closer/generic-webhook",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ message: $json.body.content || $json.content, name: ($json.body.sender && $json.body.sender.name) || 'Social Prospect', email: ($json.body.sender && $json.body.sender.email) || '', stack: 'A', log_to_crm: true }) }}",
+        "options": {}
+      },
+      "id": "node-closer",
+      "name": "Ollama AI Closer + Twenty CRM Sync",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://host.docker.internal:5110/api/v1/accounts/{{ $node['Chatwoot Inbound DM Webhook'].json.body.account.id }}/conversations/{{ $node['Chatwoot Inbound DM Webhook'].json.body.conversation.id }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "api_access_token",
+              "value": "={{ $env.CHATWOOT_API_TOKEN }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ content: $json.reply, message_type: 'outgoing', private: false }) }}",
+        "options": {}
+      },
+      "id": "node-reply",
+      "name": "Send Reply Back to Chatwoot DM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [840, 300]
+    }
+  ],
+  "connections": {
+    "Chatwoot Inbound DM Webhook": {
+      "main": [[{ "node": "Ollama AI Closer + Twenty CRM Sync", "type": "main", "index": 0 }]]
+    },
+    "Ollama AI Closer + Twenty CRM Sync": {
+      "main": [[{ "node": "Send Reply Back to Chatwoot DM", "type": "main", "index": 0 }]]
+    }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" }
+}

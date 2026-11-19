@@ -1,0 +1,67 @@
+# Mixpost — self-hosted Buffer alternative (Stack B)
+# Upstream: https://github.com/inovector/mixpost
+# Local URL: http://localhost:5200/mixpost
+name: ts101-mixpost
+
+services:
+  mixpost:
+    image: inovector/mixpost:latest
+    restart: unless-stopped
+    environment:
+      APP_NAME: Techstarz101 Mixpost
+      APP_KEY: ${MIXPOST_APP_KEY:?run the hub once to generate .env}
+      APP_DEBUG: "false"
+      APP_DOMAIN: localhost
+      APP_URL: http://localhost:5200
+      DB_HOST: mixpost-mysql
+      DB_PORT: "3306"
+      DB_DATABASE: mixpost_db
+      DB_USERNAME: mixpost_user
+      DB_PASSWORD: ${MIXPOST_DB_PASSWORD}
+      REDIS_HOST: mixpost-redis
+      REDIS_PORT: "6379"
+    ports:
+      - "5200:80"
+    volumes:
+      - mixpost-storage:/var/www/html/storage/app
+      - mixpost-logs:/var/www/html/storage/logs
+    depends_on:
+      mixpost-mysql:
+        condition: service_healthy
+      mixpost-redis:
+        condition: service_healthy
+
+  mixpost-mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: mixpost_db
+      MYSQL_USER: mixpost_user
+      MYSQL_PASSWORD: ${MIXPOST_DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MIXPOST_DB_ROOT_PASSWORD}
+    volumes:
+      - mixpost-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p$$MYSQL_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  mixpost-redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - mixpost-redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  mixpost-storage:
+  mixpost-logs:
+  mixpost-mysql:
+  mixpost-redis:
+

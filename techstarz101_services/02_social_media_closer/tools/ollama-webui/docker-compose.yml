@@ -1,0 +1,43 @@
+# Ollama + Open WebUI — local LLM reply engine (Stack A, shared with Stack B)
+# Upstream: https://github.com/ollama/ollama  |  https://github.com/open-webui/open-webui
+# Local URLs: Open WebUI http://localhost:5130  |  Ollama API http://localhost:11435
+name: ts101-ollama-webui
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11435:11434"
+    volumes:
+      - ollama-models:/root/.ollama
+
+  # One-shot: pull the default closer model on first launch.
+  ollama-pull:
+    image: ollama/ollama:latest
+    restart: "no"
+    environment:
+      OLLAMA_HOST: ollama:11434
+    entrypoint: ["/bin/sh", "-c", "sleep 4 && ollama pull ${CLOSER_MODEL:-llama3.2:3b}"]
+    depends_on:
+      - ollama
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    restart: unless-stopped
+    environment:
+      OLLAMA_BASE_URL: http://ollama:11434
+      WEBUI_AUTH: "False"
+      WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY:?run the hub once to generate .env}
+      ENABLE_SIGNUP: "False"
+    ports:
+      - "5130:8080"
+    volumes:
+      - open-webui:/app/backend/data
+    depends_on:
+      - ollama
+
+volumes:
+  ollama-models:
+  open-webui:
+

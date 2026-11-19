@@ -1,0 +1,58 @@
+# EspoCRM — lightweight CRM (Stack B)
+# Upstream: https://github.com/espocrm/espocrm
+# Local URL: http://localhost:5230   (login: admin / ESPOCRM_ADMIN_PASSWORD from .env)
+name: ts101-espocrm
+
+x-espo-env: &espo-env
+  ESPOCRM_DATABASE_PLATFORM: Mysql
+  ESPOCRM_DATABASE_HOST: espocrm-db
+  ESPOCRM_DATABASE_NAME: espocrm
+  ESPOCRM_DATABASE_USER: espocrm
+  ESPOCRM_DATABASE_PASSWORD: ${ESPOCRM_DB_PASSWORD:?run the hub once to generate .env}
+  ESPOCRM_ADMIN_USERNAME: admin
+  ESPOCRM_ADMIN_PASSWORD: ${ESPOCRM_ADMIN_PASSWORD}
+  ESPOCRM_SITE_URL: http://localhost:5230
+
+services:
+  espocrm:
+    image: espocrm/espocrm:latest
+    restart: unless-stopped
+    environment:
+      <<: *espo-env
+    ports:
+      - "5230:80"
+    volumes:
+      - espocrm-data:/var/www/html
+    depends_on:
+      espocrm-db:
+        condition: service_healthy
+
+  espocrm-daemon:
+    image: espocrm/espocrm:latest
+    restart: unless-stopped
+    entrypoint: docker-daemon.sh
+    volumes:
+      - espocrm-data:/var/www/html
+    depends_on:
+      - espocrm
+
+  espocrm-db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${ESPOCRM_DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: espocrm
+      MARIADB_USER: espocrm
+      MARIADB_PASSWORD: ${ESPOCRM_DB_PASSWORD}
+    volumes:
+      - espocrm-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  espocrm-data:
+  espocrm-db:
+

@@ -1,0 +1,84 @@
+# Chatwoot — omnichannel DM inbox (Stack A)
+# Upstream: https://github.com/chatwoot/chatwoot
+# Local URL: http://localhost:5110
+name: ts101-chatwoot
+
+x-chatwoot: &chatwoot
+  image: chatwoot/chatwoot:latest
+  environment: &chatwoot-env
+    SECRET_KEY_BASE: ${CHATWOOT_SECRET_KEY_BASE:?run the hub once to generate .env}
+    FRONTEND_URL: http://localhost:5110
+    RAILS_ENV: production
+    NODE_ENV: production
+    INSTALLATION_ENV: docker
+    RAILS_LOG_TO_STDOUT: "true"
+    LOG_LEVEL: info
+    DEFAULT_LOCALE: en
+    ENABLE_ACCOUNT_SIGNUP: "false"
+    ACTIVE_STORAGE_SERVICE: local
+    POSTGRES_HOST: chatwoot-db
+    POSTGRES_USERNAME: postgres
+    POSTGRES_PASSWORD: ${CHATWOOT_DB_PASSWORD}
+    POSTGRES_DATABASE: chatwoot
+    REDIS_URL: redis://chatwoot-redis:6379
+  volumes:
+    - chatwoot-storage:/app/storage
+
+services:
+  chatwoot-init:
+    <<: *chatwoot
+    command: ["bundle", "exec", "rails", "db:chatwoot_prepare"]
+    restart: "no"
+    depends_on:
+      chatwoot-db:
+        condition: service_healthy
+      chatwoot-redis:
+        condition: service_healthy
+
+  rails:
+    <<: *chatwoot
+    restart: unless-stopped
+    entrypoint: docker/entrypoints/rails.sh
+    command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
+    ports:
+      - "5110:3000"
+    depends_on:
+      chatwoot-init:
+        condition: service_completed_successfully
+
+  sidekiq:
+    <<: *chatwoot
+    restart: unless-stopped
+    command: ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"]
+    depends_on:
+      chatwoot-init:
+        condition: service_completed_successfully
+
+  chatwoot-db:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${CHATWOOT_DB_PASSWORD}
+      POSTGRES_DB: chatwoot
+    volumes:
+      - chatwoot-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d chatwoot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  chatwoot-redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  chatwoot-storage:
+  chatwoot-db:
+
