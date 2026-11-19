@@ -1,0 +1,27 @@
+# n8n Email Automator — Behavioral Drips & Bounce Webhooks (Stack B)
+# Upstream: https://github.com/n8n-io/n8n
+# Local URL: http://localhost:6220
+name: ts101-n8n-email
+
+services:
+  n8n-email:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "6220:5678"
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: "5678"
+      N8N_PROTOCOL: http
+      WEBHOOK_URL: http://localhost:6220/
+      N8N_SECURE_COOKIE: "false"
+      N8N_ENCRYPTION_KEY: ${N8N_EMAIL_ENCRYPTION_KEY:?run the hub once to generate .env}
+      N8N_DIAGNOSTICS_ENABLED: "false"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - n8n-email-data:/home/node/.n8n
+      - ../../automations:/automations:ro
+
+volumes:
+  n8n-email-data:

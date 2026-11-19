@@ -1,0 +1,13 @@
+# Adminer — Instant SQL Subscriber Segmentation Studio (Stack B)
+# Upstream: https://github.com/vrana/adminer
+# Local URL: http://localhost:6230
+name: ts101-adminer
+
+services:
+  adminer:
+    image: adminer:latest
+    restart: unless-stopped
+    ports:
+      - "6230:8080"
+    environment:
+      ADMINER_DESIGN: dracula

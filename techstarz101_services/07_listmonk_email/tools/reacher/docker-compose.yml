@@ -1,0 +1,14 @@
+# Reacher — Self-Hosted Rust MX/SMTP Email Verifier (Stack A)
+# Upstream: https://github.com/reacherhq/check-if-email-exists
+# Local API URL: http://localhost:6130
+name: ts101-reacher
+
+services:
+  reacher:
+    image: reacherhq/backend:latest
+    restart: unless-stopped
+    ports:
+      - "6130:8080"
+    environment:
+      RCH__HTTP_HOST: "0.0.0.0"
+      RCH__HTTP_PORT: "8080"

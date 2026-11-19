@@ -1,0 +1,40 @@
+# Keila — Visual Block Newsletter Engine (Stack B)
+# Upstream: https://github.com/pentacent/keila
+# Local URL: http://localhost:6200
+name: ts101-keila
+
+services:
+  keila:
+    image: pentacent/keila:latest
+    restart: unless-stopped
+    ports:
+      - "6200:4000"
+    environment:
+      DB_URL: postgres://keila:${KEILA_DB_PASSWORD:?run the hub once to generate .env}@keila-db:5432/keila
+      URL_HOST: localhost
+      URL_PORT: "6200"
+      URL_SCHEMA: http
+      SECRET_KEY_BASE: ${KEILA_SECRET_KEY_BASE}
+      KEILA_USER: admin@techstarz101.local
+      KEILA_PASSWORD: ${KEILA_USER_PASSWORD}
+    depends_on:
+      keila-db:
+        condition: service_healthy
+
+  keila-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keila
+      POSTGRES_USER: keila
+      POSTGRES_PASSWORD: ${KEILA_DB_PASSWORD}
+    volumes:
+      - keila-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U keila -d keila"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  keila-db:

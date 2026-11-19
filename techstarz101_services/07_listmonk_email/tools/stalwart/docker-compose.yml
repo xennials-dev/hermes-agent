@@ -1,0 +1,18 @@
+# Stalwart Mail Server — Rust SMTP/JMAP/DKIM/DMARC Engine (Stack A)
+# Upstream: https://github.com/stalwartlabs/mail-server
+# Local Admin URL: http://localhost:6110 (SMTP :2525)
+name: ts101-stalwart
+
+services:
+  stalwart:
+    image: stalwartlabs/mail-server:latest
+    restart: unless-stopped
+    ports:
+      - "6110:8080"
+      - "2525:25"
+      - "2587:587"
+    volumes:
+      - stalwart-data:/opt/stalwart-mail
+
+volumes:
+  stalwart-data:

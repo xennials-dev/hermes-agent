@@ -1,0 +1,22 @@
+# Roundcube — Self-Hosted Campaign Reply Inbox (Stack B)
+# Upstream: https://github.com/roundcube/roundcubemail
+# Local URL: http://localhost:6210
+name: ts101-roundcube
+
+services:
+  roundcube:
+    image: roundcube/roundcubemail:latest
+    restart: unless-stopped
+    ports:
+      - "6210:80"
+    environment:
+      ROUNDCUBEMAIL_DEFAULT_HOST: host.docker.internal
+      ROUNDCUBEMAIL_SMTP_SERVER: host.docker.internal
+      ROUNDCUBEMAIL_SMTP_PORT: "1025"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - roundcube-db:/var/roundcube/db
+
+volumes:
+  roundcube-db:

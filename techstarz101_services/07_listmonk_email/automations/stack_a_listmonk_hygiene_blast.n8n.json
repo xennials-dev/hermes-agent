@@ -1,0 +1,13 @@
+{
+  "name": "Techstarz101 Stack A - Reacher Verify -> Listmonk Upsert -> Mailpit QA -> Stalwart Blast",
+  "nodes": [
+    { "parameters": { "httpMethod": "POST", "path": "new-subscriber-hygiene", "responseMode": "lastNode" }, "id": "node-wh", "name": "New Subscriber Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [200, 300] },
+    { "parameters": { "method": "POST", "url": "http://host.docker.internal:6130/v0/check_email", "sendBody": true, "specifyBody": "json", "jsonBody": "={{ JSON.stringify({ to_email: $json.body.email }) }}" }, "id": "node-reacher", "name": "Verify MX/SMTP via Reacher", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [500, 300] },
+    { "parameters": { "method": "POST", "url": "http://host.docker.internal:6100/api/subscribers", "sendBody": true, "specifyBody": "json", "jsonBody": "={{ JSON.stringify({ email: $node['New Subscriber Webhook'].json.body.email, name: $node['New Subscriber Webhook'].json.body.name || 'Subscriber', status: 'enabled', lists: [1] }) }}" }, "id": "node-lm", "name": "Upsert Verified Contact in Listmonk", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [820, 300] }
+  ],
+  "connections": {
+    "New Subscriber Webhook": { "main": [[{ "node": "Verify MX/SMTP via Reacher", "type": "main", "index": 0 }]] },
+    "Verify MX/SMTP via Reacher": { "main": [[{ "node": "Upsert Verified Contact in Listmonk", "type": "main", "index": 0 }]] }
+  },
+  "active": false
+}

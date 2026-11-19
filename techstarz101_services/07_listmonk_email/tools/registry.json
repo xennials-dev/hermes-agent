@@ -1,0 +1,114 @@
+{
+  "service": "Listmonk Email Marketing",
+  "service_id": "TS101-SRV-07",
+  "stacks": {
+    "A": {
+      "name": "Stack A: High-Throughput Sovereign Broadcast",
+      "tagline": "Listmonk manages millions of contacts at $0 tax, Reacher scrubs bounces, Mailpit QAs HTML renders, Stalwart sends authenticated DKIM/DMARC mail.",
+      "tools": ["listmonk", "stalwart", "mailpit", "reacher"]
+    },
+    "B": {
+      "name": "Stack B: Visual Newsletter & Behavioral Lifecycle",
+      "tagline": "Keila designs visual block newsletters, Roundcube manages warm replies, n8n automates behavioral drips, Adminer runs instant SQL segmentation.",
+      "tools": ["keila", "roundcube", "n8n-email", "adminer"]
+    }
+  },
+  "tools": {
+    "listmonk": {
+      "name": "Listmonk",
+      "role": "High-speed Go self-hosted newsletter & broadcast engine (zero contact tax)",
+      "icon": "📧",
+      "stack": "A",
+      "repo": "https://github.com/knadh/listmonk",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:6100",
+      "probe": "http://localhost:6100/health",
+      "first_run": "Log in with 'admin' and the generated LISTMONK_ADMIN_PASSWORD in tools/listmonk/.env.",
+      "ram_mb": 350
+    },
+    "stalwart": {
+      "name": "Stalwart Mail Server",
+      "role": "Modern Rust all-in-one self-hosted SMTP/JMAP/DKIM/DMARC mail server",
+      "icon": "📮",
+      "stack": "A",
+      "repo": "https://github.com/stalwartlabs/mail-server",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:6110",
+      "probe": "http://localhost:6110",
+      "first_run": "Open the web admin console on :6110; check container logs for the initial generated admin password.",
+      "ram_mb": 300
+    },
+    "mailpit": {
+      "name": "Mailpit QA Sandbox",
+      "role": "Local SMTP capture, HTML rendering & link/spam QA before live blasts",
+      "icon": "🧪",
+      "stack": "A",
+      "repo": "https://github.com/axllent/mailpit",
+      "license": "MIT",
+      "url": "http://localhost:6120",
+      "probe": "http://localhost:6120/api/v1/info",
+      "first_run": "Point Listmonk test SMTP to host.docker.internal:1025 to inspect rendered emails safely before blasting.",
+      "ram_mb": 120
+    },
+    "reacher": {
+      "name": "Reacher Email Verifier",
+      "role": "Self-hosted Rust MX/SMTP email verification API keeping bounce rates <1%",
+      "icon": "🛡️",
+      "stack": "A",
+      "repo": "https://github.com/reacherhq/check-if-email-exists",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:6130",
+      "probe": "http://localhost:6130",
+      "first_run": "POST JSON {\"to_email\":\"lead@domain.com\"} to http://localhost:6130/v0/check_email for instant verification.",
+      "ram_mb": 200
+    },
+    "keila": {
+      "name": "Keila",
+      "role": "Visual block-editor Mailchimp/ConvertKit alternative with segments & forms",
+      "icon": "✉️",
+      "stack": "B",
+      "repo": "https://github.com/pentacent/keila",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:6200",
+      "probe": "http://localhost:6200",
+      "first_run": "Log in with admin@techstarz101.local and KEILA_USER_PASSWORD from tools/keila/.env.",
+      "ram_mb": 450
+    },
+    "roundcube": {
+      "name": "Roundcube Webmail",
+      "role": "Self-hosted reply inbox for managing warm newsletter & campaign responses",
+      "icon": "📥",
+      "stack": "B",
+      "repo": "https://github.com/roundcube/roundcubemail",
+      "license": "GPL-3.0",
+      "url": "http://localhost:6210",
+      "probe": "http://localhost:6210",
+      "first_run": "Connects via IMAP/SMTP to Stalwart or your custom domain mailbox for unified reply handling.",
+      "ram_mb": 250
+    },
+    "n8n-email": {
+      "name": "n8n Email Automator",
+      "role": "Behavioral drip sequences, bounce webhook handling & CRM subscriber sync",
+      "icon": "🔀",
+      "stack": "B",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:6220",
+      "probe": "http://localhost:6220/healthz",
+      "first_run": "Create owner account and import /automations/stack_a_listmonk_hygiene_blast.n8n.json.",
+      "ram_mb": 400
+    },
+    "adminer": {
+      "name": "Adminer SQL Studio",
+      "role": "Instant SQL audience segmentation & subscriber database management UI",
+      "icon": "🗄️",
+      "stack": "B",
+      "repo": "https://github.com/vrana/adminer",
+      "license": "Apache-2.0",
+      "url": "http://localhost:6230",
+      "probe": "http://localhost:6230",
+      "first_run": "Lightweight zero-config SQL UI to query, segment, and export subscriber lists directly from Postgres.",
+      "ram_mb": 100
+    }
+  }
+}

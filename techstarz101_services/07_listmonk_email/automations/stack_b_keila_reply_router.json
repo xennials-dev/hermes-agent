@@ -1,0 +1,9 @@
+{
+  "name": "Techstarz101 Stack B - Keila Newsletter -> Roundcube Reply Inbox -> n8n CRM Tag",
+  "steps": [
+    { "step": 1, "tool": "keila", "endpoint": "http://localhost:6200", "action": "Design & send visual block newsletter" },
+    { "step": 2, "tool": "roundcube", "endpoint": "http://localhost:6210", "action": "Capture warm subscriber replies on Reply-To inbox" },
+    { "step": 3, "tool": "n8n-email", "endpoint": "http://localhost:6220", "action": "Trigger behavioral drip & CRM lead update" },
+    { "step": 4, "tool": "adminer", "endpoint": "http://localhost:6230", "action": "Run SQL segmentation queries across subscriber tables" }
+  ]
+}
