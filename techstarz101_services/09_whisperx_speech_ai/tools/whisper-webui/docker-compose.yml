@@ -1,0 +1,18 @@
+# Whisper-WebUI — Visual Subtitle & Video Transcription Studio (Stack B)
+# Upstream: https://github.com/jhj0517/Whisper-WebUI
+# Local URL: http://localhost:6410
+name: ts101-whisper-webui
+
+services:
+  whisper-webui:
+    image: ghcr.io/jhj0517/whisper-webui:latest
+    restart: unless-stopped
+    ports:
+      - "6410:7860"
+    volumes:
+      - whisper-webui-models:/Whisper-WebUI/models
+      - whisper-webui-outputs:/Whisper-WebUI/outputs
+
+volumes:
+  whisper-webui-models:
+  whisper-webui-outputs:

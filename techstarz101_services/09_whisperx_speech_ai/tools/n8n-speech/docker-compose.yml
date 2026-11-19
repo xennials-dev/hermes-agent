@@ -1,0 +1,27 @@
+# n8n Speech Automator — Audio Pipeline Orchestration (Stack B)
+# Upstream: https://github.com/n8n-io/n8n
+# Local URL: http://localhost:6430
+name: ts101-n8n-speech
+
+services:
+  n8n-speech:
+    image: docker.n8n.io/n8nio/n8n:latest
+    restart: unless-stopped
+    ports:
+      - "6430:5678"
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: "5678"
+      N8N_PROTOCOL: http
+      WEBHOOK_URL: http://localhost:6430/
+      N8N_SECURE_COOKIE: "false"
+      N8N_ENCRYPTION_KEY: ${N8N_SPEECH_ENCRYPTION_KEY:?run the hub once to generate .env}
+      N8N_DIAGNOSTICS_ENABLED: "false"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - n8n-speech-data:/home/node/.n8n
+      - ../../automations:/automations:ro
+
+volumes:
+  n8n-speech-data:

@@ -1,0 +1,16 @@
+# Scriberr — AI Transcription, Diarization & Meeting Summary App (Stack B)
+# Upstream: https://github.com/rishikanthc/Scriberr
+# Local URL: http://localhost:6400
+name: ts101-scriberr
+
+services:
+  scriberr:
+    image: ghcr.io/rishikanthc/scriberr:latest
+    restart: unless-stopped
+    ports:
+      - "6400:8080"
+    volumes:
+      - scriberr-data:/app/data
+
+volumes:
+  scriberr-data:

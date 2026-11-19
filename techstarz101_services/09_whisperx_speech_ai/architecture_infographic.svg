@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" style="background:#070a13; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#050811"/></linearGradient>
+    <linearGradient id="sa" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient>
+    <linearGradient id="sb" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#c084fc"/></linearGradient>
+    <linearGradient id="gn" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g transform="translate(50, 36)">
+    <rect width="275" height="28" rx="14" fill="#1e293b" stroke="#334155"/>
+    <circle cx="15" cy="14" r="5" fill="#38bdf8"/>
+    <text x="28" y="18" fill="#94a3b8" font-size="11.5" font-weight="700" letter-spacing="1">TECHSTARZ101 · SERVICE #09</text>
+    <text x="0" y="64" fill="#ffffff" font-size="33" font-weight="800">WhisperX Speech AI — 70x Real-Time Diarization</text>
+    <text x="0" y="90" fill="#94a3b8" font-size="14.5">8 standalone open-source speech repos · Word-level timestamps, SRT/VTT &amp; instant transcript search</text>
+    <rect x="815" y="10" width="285" height="34" rx="8" fill="url(#gn)"/>
+    <text x="957" y="32" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">⚡ HUB: localhost:7872 · /t/&lt;tool&gt;</text>
+  </g>
+
+  <g transform="translate(50, 152)">
+    <rect width="1100" height="215" rx="16" fill="#0d1424" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="20" y="16" width="370" height="26" rx="6" fill="url(#sa)"/>
+    <text x="32" y="33" fill="#04121f" font-size="12" font-weight="800">STACK A · 70X DIARIZATION &amp; SEARCH</text>
+    <text x="405" y="33" fill="#94a3b8" font-size="12">Speaches API + WhisperX ASR + MinIO Vault + Meilisearch Transcripts</text>
+    <g transform="translate(20, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🎙️ Speaches</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">OpenAI Faster-Whisper API</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/speaches/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/speaches</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :6300 (MIT)</text></g>
+    <g transform="translate(289, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">⚡ WhisperX ASR</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">REST ASR &amp; SRT/VTT Export</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/whisperx-asr/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/whisperx-asr</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :6310 (MIT)</text></g>
+    <g transform="translate(558, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🗄️ MinIO Vault</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">S3 Audio &amp; Call Storage</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/minio/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/minio</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :6320 (AGPL-3.0)</text></g>
+    <g transform="translate(827, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🔎 Meilisearch</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">&lt;50ms Transcript Search</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/meilisearch/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/meilisearch</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :6330 (MIT)</text></g>
+  </g>
+
+  <g transform="translate(50, 390)">
+    <rect width="1100" height="215" rx="16" fill="#0d1424" stroke="#7c3aed" stroke-width="1.5"/>
+    <rect x="20" y="16" width="370" height="26" rx="6" fill="url(#sb)"/>
+    <text x="32" y="33" fill="#ffffff" font-size="12" font-weight="800">STACK B · MEETING INTEL &amp; SUBTITLES</text>
+    <text x="405" y="33" fill="#94a3b8" font-size="12">Scriberr Summaries + Whisper-WebUI + Label Studio QA + n8n Speech</text>
+    <g transform="translate(20, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">📝 Scriberr</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Diarization &amp; AI Summaries</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/scriberr/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/scriberr</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :6400 (MIT)</text></g>
+    <g transform="translate(289, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🎬 Whisper-WebUI</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Visual Video &amp; SRT Studio</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/whisper-webui/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/whisper-webui</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :6410 (MIT)</text></g>
+    <g transform="translate(558, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🎧 Label Studio</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Waveform &amp; Speaker QA</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/label-studio/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/label-studio</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :6420 (Apache-2.0)</text></g>
+    <g transform="translate(827, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🔀 n8n Speech</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Auto-Transcribe &amp; CRM Push</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/n8n-speech/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/n8n-speech</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :6430 (Fair-Code)</text></g>
+  </g>
+  <text x="50" y="642" fill="#64748b" font-size="12.5" font-weight="600">Techstarz101.com · 70x Real-Time Speech AI · Zero Per-Minute Cloud Transcription Fees</text>
+  <text x="1150" y="642" fill="#10b981" font-size="12.5" font-weight="800" text-anchor="end">70X REAL-TIME</text>
+</svg>

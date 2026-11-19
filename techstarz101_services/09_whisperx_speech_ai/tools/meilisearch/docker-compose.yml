@@ -1,0 +1,19 @@
+# Meilisearch — Sub-50ms Full-Text Transcript Search Engine (Stack A)
+# Upstream: https://github.com/meilisearch/meilisearch
+# Local URL: http://localhost:6330
+name: ts101-meilisearch
+
+services:
+  meilisearch:
+    image: getmeili/meilisearch:v1.12
+    restart: unless-stopped
+    ports:
+      - "6330:7700"
+    environment:
+      MEILI_ENV: development
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:?run the hub once to generate .env}
+    volumes:
+      - meili-data:/meili_data
+
+volumes:
+  meili-data:

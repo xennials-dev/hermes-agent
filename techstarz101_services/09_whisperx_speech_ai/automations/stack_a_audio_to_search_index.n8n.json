@@ -1,0 +1,13 @@
+{
+  "name": "Techstarz101 Stack A - MinIO Audio Upload -> WhisperX 70x -> Meilisearch Index",
+  "nodes": [
+    { "parameters": { "httpMethod": "POST", "path": "minio-audio-uploaded", "responseMode": "lastNode" }, "id": "node-minio", "name": "MinIO Bucket Upload Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [200, 300] },
+    { "parameters": { "method": "POST", "url": "http://host.docker.internal:7872/api/speech/transcribe", "sendBody": true, "specifyBody": "json", "jsonBody": "{\"sample\":\"sales_discovery\",\"model\":\"large-v3-turbo\",\"diarize\":true}" }, "id": "node-wx", "name": "WhisperX 70x Diarize & Timestamp", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [500, 300] },
+    { "parameters": { "method": "POST", "url": "http://host.docker.internal:6330/indexes/transcripts/documents", "sendBody": true, "specifyBody": "json", "jsonBody": "={{ JSON.stringify([$json]) }}" }, "id": "node-meili", "name": "Index Transcript in Meilisearch", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [820, 300] }
+  ],
+  "connections": {
+    "MinIO Bucket Upload Webhook": { "main": [[{ "node": "WhisperX 70x Diarize & Timestamp", "type": "main", "index": 0 }]] },
+    "WhisperX 70x Diarize & Timestamp": { "main": [[{ "node": "Index Transcript in Meilisearch", "type": "main", "index": 0 }]] }
+  },
+  "active": false
+}

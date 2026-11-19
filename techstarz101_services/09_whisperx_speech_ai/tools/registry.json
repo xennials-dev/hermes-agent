@@ -1,0 +1,114 @@
+{
+  "service": "WhisperX Speech AI",
+  "service_id": "TS101-SRV-09",
+  "stacks": {
+    "A": {
+      "name": "Stack A: 70x Real-Time Diarization & Search",
+      "tagline": "Speaches & WhisperX ASR transcribe at 70x speed with word timestamps, MinIO stores raw audio, Meilisearch indexes every spoken word.",
+      "tools": ["speaches", "whisperx-asr", "minio", "meilisearch"]
+    },
+    "B": {
+      "name": "Stack B: Meeting Intelligence & Subtitle Studio",
+      "tagline": "Scriberr & Whisper-WebUI generate diarized meeting summaries and SRT/VTT captions, Label Studio reviews audio turns, n8n routes action items.",
+      "tools": ["scriberr", "whisper-webui", "label-studio", "n8n-speech"]
+    }
+  },
+  "tools": {
+    "speaches": {
+      "name": "Speaches (Faster-Whisper API)",
+      "role": "OpenAI-compatible CTranslate2 Whisper speech-to-text server with word timestamps",
+      "icon": "🎙️",
+      "stack": "A",
+      "repo": "https://github.com/speaches-ai/speaches",
+      "license": "MIT",
+      "url": "http://localhost:6300/docs",
+      "probe": "http://localhost:6300/health",
+      "first_run": "Open Swagger UI at /docs or POST audio to /v1/audio/transcriptions (100% OpenAI SDK compatible).",
+      "ram_mb": 1400
+    },
+    "whisperx-asr": {
+      "name": "WhisperX ASR Webservice",
+      "role": "Turnkey REST ASR & diarization API with Swagger UI and SRT/VTT/JSON export",
+      "icon": "⚡",
+      "stack": "A",
+      "repo": "https://github.com/ahmetoner/whisper-asr-webservice",
+      "license": "MIT",
+      "url": "http://localhost:6310/docs",
+      "probe": "http://localhost:6310/docs",
+      "first_run": "Open /docs to upload any MP3/WAV/MP4 and export word-aligned SRT, VTT, or JSON transcripts.",
+      "ram_mb": 1500
+    },
+    "minio": {
+      "name": "MinIO Audio Vault",
+      "role": "S3-compatible sovereign object storage for raw call recordings & transcripts",
+      "icon": "🗄️",
+      "stack": "A",
+      "repo": "https://github.com/minio/minio",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:6320",
+      "probe": "http://localhost:6321/minio/health/live",
+      "first_run": "Log in with minioadmin and MINIO_ROOT_PASSWORD from tools/minio/.env; create bucket 'audio-inbox'.",
+      "ram_mb": 300
+    },
+    "meilisearch": {
+      "name": "Meilisearch Transcripts",
+      "role": "Sub-50ms full-text search engine across thousands of diarized transcripts",
+      "icon": "🔎",
+      "stack": "A",
+      "repo": "https://github.com/meilisearch/meilisearch",
+      "license": "MIT",
+      "url": "http://localhost:6330",
+      "probe": "http://localhost:6330/health",
+      "first_run": "Use MEILI_MASTER_KEY from tools/meilisearch/.env to search spoken phrases & speaker turns instantly.",
+      "ram_mb": 250
+    },
+    "scriberr": {
+      "name": "Scriberr Meeting Studio",
+      "role": "Self-hosted AI audio transcription, speaker diarization & meeting summary app",
+      "icon": "📝",
+      "stack": "B",
+      "repo": "https://github.com/rishikanthc/Scriberr",
+      "license": "MIT",
+      "url": "http://localhost:6400",
+      "probe": "http://localhost:6400",
+      "first_run": "Upload podcasts or sales calls directly in the web UI for diarized transcripts & AI summaries.",
+      "ram_mb": 900
+    },
+    "whisper-webui": {
+      "name": "Whisper-WebUI Studio",
+      "role": "Visual Gradio subtitle studio for local audio, video & YouTube SRT/VTT captions",
+      "icon": "🎬",
+      "stack": "B",
+      "repo": "https://github.com/jhj0517/Whisper-WebUI",
+      "license": "MIT",
+      "url": "http://localhost:6410",
+      "probe": "http://localhost:6410",
+      "first_run": "Drag-and-drop video/audio files or paste YouTube URLs to export synced SRT/VTT/LRC captions.",
+      "ram_mb": 1400
+    },
+    "label-studio": {
+      "name": "Label Studio Audio QA",
+      "role": "Interactive audio waveform review, speaker-turn QA & fine-tuning annotation UI",
+      "icon": "🎧",
+      "stack": "B",
+      "repo": "https://github.com/HumanSignal/label-studio",
+      "license": "Apache-2.0",
+      "url": "http://localhost:6420",
+      "probe": "http://localhost:6420/health",
+      "first_run": "Create your local account on first visit and select the 'Audio Transcription & Diarization' template.",
+      "ram_mb": 700
+    },
+    "n8n-speech": {
+      "name": "n8n Speech Automator",
+      "role": "Auto-watch MinIO audio uploads -> transcribe -> index in Meilisearch -> CRM",
+      "icon": "🔀",
+      "stack": "B",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:6430",
+      "probe": "http://localhost:6430/healthz",
+      "first_run": "Import /automations/stack_a_audio_to_search_index.n8n.json to automate end-to-end call processing.",
+      "ram_mb": 400
+    }
+  }
+}

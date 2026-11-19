@@ -1,0 +1,9 @@
+{
+  "name": "Techstarz101 Stack B - Scriberr Diarization -> Action Items -> Twenty CRM Call Log",
+  "steps": [
+    { "step": 1, "tool": "scriberr", "endpoint": "http://localhost:6400", "action": "Transcribe & diarize uploaded sales call or podcast" },
+    { "step": 2, "tool": "whisper-webui", "endpoint": "http://localhost:6410", "action": "Generate word-aligned SRT/VTT captions for social clips" },
+    { "step": 3, "tool": "label-studio", "endpoint": "http://localhost:6420", "action": "Optional human QA on speaker turns & domain jargon" },
+    { "step": 4, "tool": "n8n-speech", "endpoint": "http://localhost:6430", "action": "Push summary & action items directly into Twenty CRM" }
+  ]
+}

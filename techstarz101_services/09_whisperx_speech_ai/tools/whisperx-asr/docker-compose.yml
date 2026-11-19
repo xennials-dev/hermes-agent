@@ -1,0 +1,19 @@
+# WhisperX ASR Webservice — REST Diarization & SRT/VTT Engine (Stack A)
+# Upstream: https://github.com/ahmetoner/whisper-asr-webservice
+# Local Swagger UI: http://localhost:6310/docs
+name: ts101-whisperx-asr
+
+services:
+  whisperx-asr:
+    image: onerahmet/openai-whisper-asr-webservice:latest
+    restart: unless-stopped
+    ports:
+      - "6310:9000"
+    environment:
+      ASR_ENGINE: faster_whisper
+      ASR_MODEL: small
+    volumes:
+      - whisperx-cache:/root/.cache
+
+volumes:
+  whisperx-cache:

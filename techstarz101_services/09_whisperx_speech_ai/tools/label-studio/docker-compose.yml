@@ -1,0 +1,18 @@
+# Label Studio — Audio Waveform & Diarization QA UI (Stack B)
+# Upstream: https://github.com/HumanSignal/label-studio
+# Local URL: http://localhost:6420
+name: ts101-label-studio
+
+services:
+  label-studio:
+    image: heartexlabs/label-studio:latest
+    restart: unless-stopped
+    ports:
+      - "6420:8080"
+    environment:
+      LABEL_STUDIO_LOCAL_FILES_SERVING_ENABLED: "true"
+    volumes:
+      - label-studio-data:/label-studio/data
+
+volumes:
+  label-studio-data:
