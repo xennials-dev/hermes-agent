@@ -1,0 +1,5 @@
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/clip_nba.mp4'
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/clip_nfl.mp4'
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/clip_ncaa.mp4'
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/clip_nhl.mp4'
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/clip_cinema.mp4'

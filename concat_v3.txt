@@ -1,0 +1,5 @@
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/part1_v3.mp4'
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/part2_v3.mp4'
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/part3_v3.mp4'
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/part4_v3.mp4'
+file 'C:/Users/tee/.gemini/antigravity-ide/scratch/hermes-agent/part5_v3.mp4'

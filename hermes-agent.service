@@ -1,0 +1,18 @@
+[Unit]
+Description=Hermes Agent Autonomous AI Daemon & Gateway
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/apps/hermes-agent
+ExecStart=/opt/apps/hermes-agent/.venv/bin/python run_agent.py
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+Environment="PYTHONUNBUFFERED=1"
+Environment="HERMES_PORT=9118"
+
+[Install]
+WantedBy=multi-user.target

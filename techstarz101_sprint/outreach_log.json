@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "company": "Abstrakt Marketing Group",
+    "decision_makers": "Scott Scully (Founder & CEO) & Neil Erker (CMO)",
+    "timestamp": "2026-11-18T23:17:33.247986+00:00",
+    "channel": "web_contact_form",
+    "subject": "Quick question on Abstrakt's outbound data stack",
+    "status": "dispatched"
+  },
+  {
+    "id": 1,
+    "company": "Abstrakt Marketing Group",
+    "decision_makers": "Scott Scully (Founder & CEO) & Neil Erker (CMO)",
+    "timestamp": "2026-11-19T05:50:51.372344+00:00",
+    "channel": "web_contact_form",
+    "subject": "Quick question on Abstrakt's outbound data stack",
+    "status": "dispatched"
+  },
+  {
+    "id": 2,
+    "company": "Gorilla 76",
+    "decision_makers": "Joe Sullivan (Co-Founder & Host) & Jon Franko (Co-Founder)",
+    "timestamp": "2026-11-19T05:50:51.387578+00:00",
+    "channel": "web_contact_form",
+    "subject": "Automated manufacturing ABM data for Joe & Gorilla 76",
+    "status": "dispatched"
+  },
+  {
+    "id": 3,
+    "company": "Atomicdust",
+    "decision_makers": "Mike Spakowski (Founder, Partner & Creative Director)",
+    "timestamp": "2026-11-19T05:50:51.399058+00:00",
+    "channel": "web_contact_form",
+    "subject": "Sovereign CRM pipeline for Mike & Atomicdust",
+    "status": "dispatched"
+  },
+  {
+    "id": 4,
+    "company": "SteadyRain",
+    "decision_makers": "Thompson Knox (Chief Strategy Officer & Partner)",
+    "timestamp": "2026-11-19T05:50:51.417776+00:00",
+    "channel": "web_contact_form",
+    "subject": "Cutting per-seat CRM costs for SteadyRain",
+    "status": "dispatched"
+  },
+  {
+    "id": 5,
+    "company": "Digital Strike",
+    "decision_makers": "Chris Westmeyer (Founder & CEO) & Nathan Hopper (President)",
+    "timestamp": "2026-11-19T05:50:51.435450+00:00",
+    "channel": "web_contact_form",
+    "subject": "25 enriched B2B leads for Digital Strike",
+    "status": "dispatched"
+  },
+  {
+    "id": 1,
+    "company": "Abstrakt Marketing Group",
+    "decision_makers": "Scott Scully (Founder & CEO) & Neil Erker (CMO)",
+    "timestamp": "2026-11-19T05:51:24.964924+00:00",
+    "channel": "web_contact_form",
+    "subject": "Quick question on Abstrakt's outbound data stack",
+    "status": "dispatched"
+  },
+  {
+    "id": 2,
+    "company": "Gorilla 76",
+    "decision_makers": "Joe Sullivan (Co-Founder & Host) & Jon Franko (Co-Founder)",
+    "timestamp": "2026-11-19T05:51:25.671751+00:00",
+    "channel": "web_contact_form",
+    "subject": "Automated manufacturing ABM data for Joe & Gorilla 76",
+    "status": "dispatched"
+  },
+  {
+    "id": 3,
+    "company": "Atomicdust",
+    "decision_makers": "Mike Spakowski (Founder, Partner & Creative Director)",
+    "timestamp": "2026-11-19T05:51:26.288120+00:00",
+    "channel": "web_contact_form",
+    "subject": "Sovereign CRM pipeline for Mike & Atomicdust",
+    "status": "dispatched"
+  },
+  {
+    "id": 4,
+    "company": "SteadyRain",
+    "decision_makers": "Thompson Knox (Chief Strategy Officer & Partner)",
+    "timestamp": "2026-11-19T05:51:26.911428+00:00",
+    "channel": "web_contact_form",
+    "subject": "Cutting per-seat CRM costs for SteadyRain",
+    "status": "dispatched"
+  }
+]

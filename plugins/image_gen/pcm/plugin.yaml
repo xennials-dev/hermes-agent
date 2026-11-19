@@ -1,0 +1,5 @@
+name: pcm
+version: 1.0.0
+description: "Phased Consistency Model (PCM) rapid generation backend. Supports 1-step to 8-step multi-step consistency generation on SD15, SDXL, and SD3 with sub-second feedback loops."
+author: NousResearch / Terrance Fisher
+kind: backend

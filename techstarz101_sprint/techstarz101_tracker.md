@@ -3,7 +3,12 @@
 **Active Sprint Goal:** Land Customer #1 at **\$390+** within 7 days (60–90 focused minutes/day).  
 **Primary Wedge:** #5 (\$390 30-Min Architecture Audit + 1 Live Automation in 48 Hours) + Wedges #1–#4.  
 **Live Checkout / Intake URL:** `https://techstarz101.com/intake.html`  
-**Live Postiz Hub:** `http://2.25.238.185:4200/launches` (10 Channels Connected)
+**Live Postiz Hub:** `http://2.25.238.185:4200/launches` (10 Channels Connected)  
+**Live Public Announcements:**  
+- 📘 **Facebook:** [Techstarz101 Launch Post](https://www.facebook.com/122097939063557224/posts/122097938985557224) (Page ID: `1378188408719025`)  
+- 🌐 **Bluesky:** [techstarz101.bsky.social](https://bsky.app/profile/techstarz101.bsky.social/post/3n2kp4f5ecu23)  
+- 🧵 **Threads:** [@techstarz101](https://www.threads.com/@techstarz101/post/Df3wHq4DvgG)  
+- 💬 **Reddit:** [r/TechStarz101](https://www.reddit.com/r/TechStarz101/comments/1xz6v4m/stop_renting_your_software_own_your_ai_stack/)  
 
 | Day       | Core Milestone                                                                                  | Status              | Outreach Sent | Replies | Mini-Demos / Audits | Paid Sprints (\$390+) | Revenue (\$) |
 | :-------- | :---------------------------------------------------------------------------------------------- | :------------------ | :------------ | :------ | :------------------ | :-------------------- | :----------- |
