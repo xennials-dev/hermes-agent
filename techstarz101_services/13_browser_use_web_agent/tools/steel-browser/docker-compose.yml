@@ -1,0 +1,9 @@
+services:
+  steel-browser:
+    image: ghcr.io/steel-dev/steel-browser:latest
+    container_name: ts101_s13_steel_browser
+    restart: unless-stopped
+    ports:
+      - "7120:3000"
+      - "7121:9223"
+    shm_size: "1gb"

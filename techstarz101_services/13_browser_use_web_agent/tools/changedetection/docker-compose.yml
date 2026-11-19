@@ -1,0 +1,16 @@
+services:
+  changedetection:
+    image: ghcr.io/dgtlmoon/changedetection.io:latest
+    container_name: ts101_s13_changedetection
+    restart: unless-stopped
+    ports:
+      - "7130:5000"
+    environment:
+      PORT: "5000"
+      PLAYWRIGHT_DRIVER_URL: ws://host.docker.internal:7100
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - changedetection_data:/datastore
+volumes:
+  changedetection_data:

@@ -1,0 +1,42 @@
+{
+  "name": "Techstarz101 S13 Stack A - Scheduled Crawl4AI Portal Extract & Sync",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "rpa-portal-sync", "responseMode": "lastNode" },
+      "id": "rpa-hook",
+      "name": "Portal RPA Sync Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7110/crawl",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"urls\": [$json.body.portal_url || \"https://example.com\"], \"priority\": 10 } }}"
+      },
+      "id": "crawl4ai-run",
+      "name": "Crawl4AI Structured Extract (:7110)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"extracted\": true } }}"
+      },
+      "id": "respond-rpa",
+      "name": "Return RPA Audit Receipt",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [820, 300]
+    }
+  ],
+  "connections": {
+    "Portal RPA Sync Webhook": { "main": [[{ "node": "Crawl4AI Structured Extract (:7110)", "type": "main", "index": 0 }]] },
+    "Crawl4AI Structured Extract (:7110)": { "main": [[{ "node": "Return RPA Audit Receipt", "type": "main", "index": 0 }]] }
+  }
+}

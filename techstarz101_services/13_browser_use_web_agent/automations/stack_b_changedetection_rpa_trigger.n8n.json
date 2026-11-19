@@ -1,0 +1,30 @@
+{
+  "name": "Techstarz101 S13 Stack B - ChangeDetection Diff to Windmill Browser-Use RPA",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "portal-change-detected", "responseMode": "lastNode" },
+      "id": "cd-hook",
+      "name": "ChangeDetection Diff Webhook (:7130)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7210/api/w/main/jobs/run/p/f/rpa/portal_sync",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"url\": $json.body.watch_url, \"diff\": $json.body.diff_rendered } }}"
+      },
+      "id": "windmill-trigger",
+      "name": "Trigger Windmill RPA Script (:7210)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [540, 300]
+    }
+  ],
+  "connections": {
+    "ChangeDetection Diff Webhook (:7130)": { "main": [[{ "node": "Trigger Windmill RPA Script (:7210)", "type": "main", "index": 0 }]] }
+  }
+}

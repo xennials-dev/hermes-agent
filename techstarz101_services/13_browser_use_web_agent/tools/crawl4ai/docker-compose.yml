@@ -1,0 +1,8 @@
+services:
+  crawl4ai:
+    image: unclecode/crawl4ai:latest
+    container_name: ts101_s13_crawl4ai
+    restart: unless-stopped
+    ports:
+      - "7110:11235"
+    shm_size: "1gb"

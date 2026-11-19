@@ -1,0 +1,124 @@
+{
+  "service": "Browser-Use Web Agent",
+  "service_id": "TS101-SRV-13",
+  "stacks": {
+    "A": {
+      "name": "Stack A: AI Browser Sandbox, CDP Fleet & Structured Extraction",
+      "tagline": "Browserless & Steel provide isolated Chromium CDP sandboxes for Browser-Use agents, Crawl4AI extracts clean LLM Markdown/JSON, ChangeDetection triggers on portal updates.",
+      "tools": [
+        "browserless-chrome",
+        "crawl4ai",
+        "steel-browser",
+        "changedetection"
+      ]
+    },
+    "B": {
+      "name": "Stack B: Live noVNC Portal RPA, Script Runner & ERP Sync",
+      "tagline": "Selenium Standalone exposes live noVNC for 2FA handoffs, Windmill executes Python/TS RPA scripts at scale, Activepieces & n8n sync portal data into your CRM/ERP.",
+      "tools": [
+        "selenium-grid",
+        "windmill-rpa",
+        "activepieces-rpa",
+        "n8n-rpa"
+      ]
+    }
+  },
+  "tools": {
+    "browserless-chrome": {
+      "name": "Browserless Chromium CDP",
+      "role": "Headless Chromium fleet with Chrome DevTools Protocol (CDP) & live Debugger UI",
+      "icon": "\ud83c\udf10",
+      "stack": "A",
+      "repo": "https://github.com/browserless/browserless",
+      "license": "SSPL-1.0",
+      "url": "http://localhost:7100",
+      "probe": "http://localhost:7100",
+      "first_run": "Connect Browser-Use or Playwright directly to ws://localhost:7100?token=<TOKEN> for isolated runs.",
+      "ram_mb": 900
+    },
+    "crawl4ai": {
+      "name": "Crawl4AI Extractor",
+      "role": "LLM-ready headless web crawler outputting clean Markdown & structured JSON schemas",
+      "icon": "\ud83d\udd77\ufe0f",
+      "stack": "A",
+      "repo": "https://github.com/unclecode/crawl4ai",
+      "license": "Apache-2.0",
+      "url": "http://localhost:7110/playground",
+      "probe": "http://localhost:7110/health",
+      "first_run": "Open /playground to test zero-API extraction or POST URLs to /crawl from n8n.",
+      "ram_mb": 1100
+    },
+    "steel-browser": {
+      "name": "Steel AI Browser Sandbox",
+      "role": "Stateful AI agent browser with persistent profiles, cookies & live session viewer",
+      "icon": "\ud83e\udd16",
+      "stack": "A",
+      "repo": "https://github.com/steel-dev/steel-browser",
+      "license": "Apache-2.0",
+      "url": "http://localhost:7120/ui",
+      "probe": "http://localhost:7120/v1/health",
+      "first_run": "Watch AI browser sessions live at /ui and attach Browser-Use via ws://localhost:7120.",
+      "ram_mb": 1000
+    },
+    "changedetection": {
+      "name": "ChangeDetection Monitor",
+      "role": "24/7 portal, pricing & regulatory page monitor with visual diffs & webhook alerts",
+      "icon": "\ud83d\udc41\ufe0f",
+      "stack": "A",
+      "repo": "https://github.com/dgtlmoon/changedetection.io",
+      "license": "Apache-2.0",
+      "url": "http://localhost:7130",
+      "probe": "http://localhost:7130",
+      "first_run": "Add any vendor/competitor URL and fire an n8n webhook automatically whenever a value changes.",
+      "ram_mb": 300
+    },
+    "selenium-grid": {
+      "name": "Selenium + Live noVNC",
+      "role": "Interactive Chromium RPA runner with live browser desktop stream for human 2FA handoff",
+      "icon": "\ud83d\udda5\ufe0f",
+      "stack": "B",
+      "repo": "https://github.com/SeleniumHQ/docker-selenium",
+      "license": "Apache-2.0",
+      "url": "http://localhost:7200/ui",
+      "probe": "http://localhost:7200/status",
+      "first_run": "Grid UI on :7200 and live interactive noVNC desktop on http://localhost:7201 (password: secret).",
+      "ram_mb": 950
+    },
+    "windmill-rpa": {
+      "name": "Windmill RPA Runner",
+      "role": "High-speed Python & TypeScript RPA script scheduler with audit logs & approval flows",
+      "icon": "\u2699\ufe0f",
+      "stack": "B",
+      "repo": "https://github.com/windmill-labs/windmill",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:7210",
+      "probe": "http://localhost:7210/api/version",
+      "first_run": "Default local login: admin@windmill.dev / changeme. Paste compiled Browser-Use scripts to schedule.",
+      "ram_mb": 900
+    },
+    "activepieces-rpa": {
+      "name": "Activepieces RPA Glue",
+      "role": "MIT-licensed no-code automation builder for syncing scraped portal data into CRMs",
+      "icon": "\ud83e\udde9",
+      "stack": "B",
+      "repo": "https://github.com/activepieces/activepieces",
+      "license": "MIT",
+      "url": "http://localhost:7220",
+      "probe": "http://localhost:7220",
+      "first_run": "Create your local workspace to connect portal extraction webhooks to Slack, Sheets, or Twenty CRM.",
+      "ram_mb": 650
+    },
+    "n8n-rpa": {
+      "name": "n8n Portal Orchestrator",
+      "role": "End-to-end RPA workflow scheduler wiring Crawl4AI, ChangeDetection & ERP webhooks",
+      "icon": "\ud83d\udd00",
+      "stack": "B",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:7230",
+      "probe": "http://localhost:7230/healthz",
+      "first_run": "Import /automations/stack_a_portal_extract_sync.n8n.json to run scheduled zero-API portal syncs.",
+      "ram_mb": 400
+    }
+  }
+}

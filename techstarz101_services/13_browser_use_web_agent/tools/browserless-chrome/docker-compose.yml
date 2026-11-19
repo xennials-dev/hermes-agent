@@ -1,0 +1,10 @@
+services:
+  browserless:
+    image: ghcr.io/browserless/chromium:latest
+    container_name: ts101_s13_browserless
+    restart: unless-stopped
+    ports:
+      - "7100:3000"
+    environment:
+      CONCURRENT: "5"
+      TOKEN: ${BROWSERLESS_TOKEN}
