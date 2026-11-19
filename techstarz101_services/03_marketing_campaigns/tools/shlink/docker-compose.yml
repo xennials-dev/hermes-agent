@@ -1,0 +1,53 @@
+# Shlink — self-hosted campaign shortlinks & click attribution (Stack A)
+# Upstream: https://github.com/shlinkio/shlink
+# Local URL: http://localhost:5330 (Web UI: http://localhost:5331)
+name: ts101-shlink
+
+services:
+  shlink:
+    image: shlinkio/shlink:stable
+    restart: unless-stopped
+    environment:
+      DEFAULT_DOMAIN: localhost:5330
+      IS_HTTPS_ENABLED: "false"
+      INITIAL_API_KEY: ${SHLINK_API_KEY:?run the hub once to generate .env}
+      DB_DRIVER: postgres
+      DB_USER: shlink
+      DB_PASSWORD: ${SHLINK_DB_PASSWORD}
+      DB_HOST: shlink-db
+      DB_NAME: shlink
+    ports:
+      - "5330:8080"
+    depends_on:
+      shlink-db:
+        condition: service_healthy
+
+  shlink-web:
+    image: shlinkio/shlink-web-client:stable
+    restart: unless-stopped
+    environment:
+      SHLINK_SERVER_NAME: Techstarz101 Campaigns
+      SHLINK_SERVER_URL: http://localhost:5330
+      SHLINK_SERVER_API_KEY: ${SHLINK_API_KEY}
+    ports:
+      - "5331:8080"
+    depends_on:
+      - shlink
+
+  shlink-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: shlink
+      POSTGRES_USER: shlink
+      POSTGRES_PASSWORD: ${SHLINK_DB_PASSWORD}
+    volumes:
+      - shlink-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shlink -d shlink"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  shlink-db:

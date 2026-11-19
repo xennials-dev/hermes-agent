@@ -1,0 +1,51 @@
+# Typebot — conversational ad-landing funnels (Stack B)
+# Upstream: https://github.com/baptisteArno/typebot.io
+# Local URL: Builder http://localhost:5420 | Viewer http://localhost:5421
+name: ts101-typebot
+
+services:
+  typebot-builder:
+    image: baptistearno/typebot-builder:latest
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://typebot:${TYPEBOT_DB_PASSWORD:?run the hub once to generate .env}@typebot-db:5432/typebot
+      NEXTAUTH_URL: http://localhost:5420
+      NEXT_PUBLIC_VIEWER_URL: http://localhost:5421
+      ENCRYPTION_SECRET: ${TYPEBOT_ENCRYPTION_SECRET}
+      ADMIN_EMAIL: admin@techstarz101.local
+    ports:
+      - "5420:3000"
+    depends_on:
+      typebot-db:
+        condition: service_healthy
+
+  typebot-viewer:
+    image: baptistearno/typebot-viewer:latest
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql://typebot:${TYPEBOT_DB_PASSWORD}@typebot-db:5432/typebot
+      NEXT_PUBLIC_VIEWER_URL: http://localhost:5421
+      ENCRYPTION_SECRET: ${TYPEBOT_ENCRYPTION_SECRET}
+    ports:
+      - "5421:3000"
+    depends_on:
+      typebot-db:
+        condition: service_healthy
+
+  typebot-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: typebot
+      POSTGRES_USER: typebot
+      POSTGRES_PASSWORD: ${TYPEBOT_DB_PASSWORD}
+    volumes:
+      - typebot-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U typebot -d typebot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  typebot-db:

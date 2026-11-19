@@ -1,0 +1,46 @@
+{
+  "name": "Techstarz101 Stack A - Bayesian A/B Ad Winner -> Mautic Drip Router",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "campaign-ab-conversion", "responseMode": "lastNode" },
+      "id": "node-webhook",
+      "name": "Shlink / Umami Conversion Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5311/api/v1/experiments",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ event: 'ad_conversion', utm_campaign: $json.body.utm_campaign, variant: $json.body.utm_content }) }}"
+      },
+      "id": "node-gb",
+      "name": "Log Conversion to GrowthBook A/B",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:5300/api/contacts/new",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ email: $node['Shlink / Umami Conversion Webhook'].json.body.email, tags: ['ab-campaign', $node['Shlink / Umami Conversion Webhook'].json.body.utm_campaign] }) }}"
+      },
+      "id": "node-mautic",
+      "name": "Enroll Lead in Mautic Drip",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [840, 300]
+    }
+  ],
+  "connections": {
+    "Shlink / Umami Conversion Webhook": { "main": [[{ "node": "Log Conversion to GrowthBook A/B", "type": "main", "index": 0 }]] },
+    "Log Conversion to GrowthBook A/B": { "main": [[{ "node": "Enroll Lead in Mautic Drip", "type": "main", "index": 0 }]] }
+  },
+  "active": false
+}

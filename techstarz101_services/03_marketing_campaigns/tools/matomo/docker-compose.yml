@@ -1,0 +1,43 @@
+# Matomo — open-source campaign funnel & attribution analytics (Stack B)
+# Upstream: https://github.com/matomo-org/matomo
+# Local URL: http://localhost:5410
+name: ts101-matomo
+
+services:
+  matomo:
+    image: matomo:latest
+    restart: unless-stopped
+    environment:
+      MATOMO_DATABASE_HOST: matomo-db
+      MATOMO_DATABASE_ADAPTER: mysql
+      MATOMO_DATABASE_TABLES_PREFIX: matomo_
+      MATOMO_DATABASE_USERNAME: matomo
+      MATOMO_DATABASE_PASSWORD: ${MATOMO_DB_PASSWORD:?run the hub once to generate .env}
+      MATOMO_DATABASE_DBNAME: matomo
+    ports:
+      - "5410:80"
+    volumes:
+      - matomo-data:/var/www/html
+    depends_on:
+      matomo-db:
+        condition: service_healthy
+
+  matomo-db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MATOMO_DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: matomo
+      MARIADB_USER: matomo
+      MARIADB_PASSWORD: ${MATOMO_DB_PASSWORD}
+    volumes:
+      - matomo-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  matomo-data:
+  matomo-db:

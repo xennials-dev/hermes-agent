@@ -1,0 +1,42 @@
+# Mautic — open-source marketing automation (Stack A)
+# Upstream: https://github.com/mautic/mautic
+# Local URL: http://localhost:5300
+name: ts101-mautic
+
+services:
+  mautic:
+    image: mautic/mautic:5-apache
+    restart: unless-stopped
+    environment:
+      MAUTIC_DB_HOST: mautic-db
+      MAUTIC_DB_USER: mautic
+      MAUTIC_DB_PASSWORD: ${MAUTIC_DB_PASSWORD:?run the hub once to generate .env}
+      MAUTIC_DB_NAME: mautic
+      MAUTIC_RUN_CRON_JOBS: "true"
+    ports:
+      - "5300:80"
+    volumes:
+      - mautic-data:/var/www/html
+    depends_on:
+      mautic-db:
+        condition: service_healthy
+
+  mautic-db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MAUTIC_DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: mautic
+      MARIADB_USER: mautic
+      MARIADB_PASSWORD: ${MAUTIC_DB_PASSWORD}
+    volumes:
+      - mautic-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  mautic-data:
+  mautic-db:

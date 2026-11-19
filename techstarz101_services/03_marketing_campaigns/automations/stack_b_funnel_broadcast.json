@@ -1,0 +1,32 @@
+{
+  "name": "Techstarz101 Stack B - Typebot Funnel -> Listmonk Broadcast & Matomo ROAS",
+  "trigger": {
+    "source": "Typebot Webhook (http://localhost:5420)",
+    "event": "funnel_completed"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "tool": "listmonk",
+      "endpoint": "POST http://host.docker.internal:5400/api/subscribers",
+      "payload": {
+        "email": "{{lead.email}}",
+        "name": "{{lead.name}}",
+        "status": "enabled",
+        "lists": [1],
+        "attribs": { "ad_angle": "{{lead.utm_campaign}}", "variant": "{{lead.utm_content}}" }
+      }
+    },
+    {
+      "step": 2,
+      "tool": "matomo",
+      "endpoint": "POST http://host.docker.internal:5410/matomo.php",
+      "params": { "idsite": 1, "rec": 1, "e_c": "AdFunnel", "e_a": "Converted", "e_n": "{{lead.utm_campaign}}" }
+    },
+    {
+      "step": 3,
+      "tool": "metabase",
+      "note": "Metabase (:5430) queries Listmonk & Matomo databases directly for live ROAS & CAC executive dashboards."
+    }
+  ]
+}

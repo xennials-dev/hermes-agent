@@ -1,0 +1,115 @@
+{
+  "service": "Marketing Campaigns",
+  "service_id": "TS101-SRV-03",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Sovereign Growth & Experimentation",
+      "tagline": "Mautic runs omnichannel drips, GrowthBook runs Bayesian A/B ad tests, Umami tracks conversions, Shlink attributes every ad click.",
+      "tools": ["mautic", "growthbook", "umami", "shlink"]
+    },
+    "B": {
+      "name": "Stack B: Agentic Multi-Angle Ad & Funnel",
+      "tagline": "Typebot captures ad traffic via conversational funnels, Listmonk sends zero-tax broadcasts, Matomo tracks funnels, Metabase reports ROAS.",
+      "tools": ["listmonk", "matomo", "typebot", "metabase"]
+    }
+  },
+  "tools": {
+    "mautic": {
+      "name": "Mautic",
+      "role": "Open-source marketing automation, drip campaigns, segments & landing pages",
+      "icon": "📣",
+      "stack": "A",
+      "repo": "https://github.com/mautic/mautic",
+      "license": "GPL-3.0",
+      "url": "http://localhost:5300",
+      "probe": "http://localhost:5300",
+      "first_run": "Complete the 3-step Mautic web installer using the generated MySQL credentials in tools/mautic/.env.",
+      "ram_mb": 900
+    },
+    "growthbook": {
+      "name": "GrowthBook",
+      "role": "Bayesian A/B testing, multi-angle ad experimentation & feature flags",
+      "icon": "🧪",
+      "stack": "A",
+      "repo": "https://github.com/growthbook/growthbook",
+      "license": "MIT",
+      "url": "http://localhost:5310",
+      "probe": "http://localhost:5310",
+      "first_run": "Create your local GrowthBook admin account on first visit, then add your ad angle experiments.",
+      "ram_mb": 1100
+    },
+    "umami": {
+      "name": "Umami Analytics",
+      "role": "Privacy-first real-time conversion, campaign & UTM attribution analytics",
+      "icon": "📈",
+      "stack": "A",
+      "repo": "https://github.com/umami-software/umami",
+      "license": "MIT",
+      "url": "http://localhost:5320",
+      "probe": "http://localhost:5320/api/heartbeat",
+      "first_run": "Default local login: username 'admin', password 'umami' (change immediately in Settings).",
+      "ram_mb": 500
+    },
+    "shlink": {
+      "name": "Shlink",
+      "role": "Self-hosted campaign shortlinks & multi-angle ad click attribution",
+      "icon": "🔗",
+      "stack": "A",
+      "repo": "https://github.com/shlinkio/shlink",
+      "license": "MIT",
+      "url": "http://localhost:5330",
+      "probe": "http://localhost:5330/rest/health",
+      "vps_url": "http://2.25.238.185:8090",
+      "first_run": "Shlink API + Shlink Web Client are wired together; use the INITIAL_API_KEY in tools/shlink/.env.",
+      "ram_mb": 400
+    },
+    "listmonk": {
+      "name": "Listmonk",
+      "role": "High-throughput self-hosted campaign newsletter & broadcast engine (zero contact tax)",
+      "icon": "📧",
+      "stack": "B",
+      "repo": "https://github.com/knadh/listmonk",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5400",
+      "probe": "http://localhost:5400/health",
+      "first_run": "Log in with 'admin' and the generated LISTMONK_ADMIN_PASSWORD in tools/listmonk/.env.",
+      "ram_mb": 350
+    },
+    "matomo": {
+      "name": "Matomo",
+      "role": "Full open-source Google Analytics & campaign funnel attribution suite",
+      "icon": "📊",
+      "stack": "B",
+      "repo": "https://github.com/matomo-org/matomo",
+      "license": "GPL-3.0",
+      "url": "http://localhost:5410",
+      "probe": "http://localhost:5410",
+      "first_run": "Follow the quick Matomo setup wizard; DB host is 'matomo-db' with credentials from tools/matomo/.env.",
+      "ram_mb": 750
+    },
+    "typebot": {
+      "name": "Typebot",
+      "role": "Interactive conversational ad-landing funnels & lead qualification",
+      "icon": "💬",
+      "stack": "B",
+      "repo": "https://github.com/baptisteArno/typebot.io",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5420",
+      "probe": "http://localhost:5420",
+      "first_run": "Open Builder (:5420) to design conversational ad funnels; Viewer serves public bots on :5421.",
+      "ram_mb": 900
+    },
+    "metabase": {
+      "name": "Metabase",
+      "role": "Executive ROAS, CAC & multi-angle A/B ad performance BI dashboards",
+      "icon": "📉",
+      "stack": "B",
+      "repo": "https://github.com/metabase/metabase",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5430",
+      "probe": "http://localhost:5430/api/health",
+      "first_run": "Create your local admin account on first visit and connect your campaign PostgreSQL / MySQL DBs.",
+      "ram_mb": 1200
+    }
+  }
+}

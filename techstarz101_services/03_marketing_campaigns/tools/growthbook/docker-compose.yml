@@ -1,0 +1,35 @@
+# GrowthBook — Bayesian A/B testing & feature flags (Stack A)
+# Upstream: https://github.com/growthbook/growthbook
+# Local URL: http://localhost:5310 (API: :5311)
+name: ts101-growthbook
+
+services:
+  growthbook:
+    image: growthbook/growthbook:latest
+    restart: unless-stopped
+    environment:
+      MONGODB_URI: mongodb://root:${GB_MONGO_PASSWORD:?run the hub once to generate .env}@gb-mongo:27017/growthbook?authSource=admin
+      APP_ORIGIN: http://localhost:5310
+      API_HOST: http://localhost:5311
+      JWT_SECRET: ${GB_JWT_SECRET}
+      ENCRYPTION_KEY: ${GB_ENCRYPTION_KEY}
+    ports:
+      - "5310:3000"
+      - "5311:3100"
+    volumes:
+      - gb-uploads:/usr/local/src/app/packages/back-end/uploads
+    depends_on:
+      - gb-mongo
+
+  gb-mongo:
+    image: mongo:7
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${GB_MONGO_PASSWORD}
+    volumes:
+      - gb-mongo:/data/db
+
+volumes:
+  gb-uploads:
+  gb-mongo:
