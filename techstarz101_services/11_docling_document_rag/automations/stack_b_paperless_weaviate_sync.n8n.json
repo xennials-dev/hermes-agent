@@ -1,0 +1,53 @@
+{
+  "name": "Techstarz101 S11 Stack B - Paperless-ngx Archive to Weaviate Hybrid RAG",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "paperless-doc-added",
+        "responseMode": "lastNode"
+      },
+      "id": "paperless-hook",
+      "name": "Paperless-ngx Post-Consume Webhook (:6800)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6700/v1/convert/source",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"sources\": [{ \"kind\": \"http\", \"url\": \"http://host.docker.internal:6800/api/documents/\" + $json.body.doc_id + \"/download/\" }], \"options\": { \"to_formats\": [\"md\"], \"table_mode\": \"accurate\" } } }}"
+      },
+      "id": "docling-accurate",
+      "name": "Parse Tables with Docling (:6700)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6810/v1/objects",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"class\": \"EnterpriseDocument\", \"properties\": { \"paperlessId\": $json.body.doc_id, \"title\": $json.body.title, \"markdownContent\": $json.document?.md_content || \"\" } } }}"
+      },
+      "id": "weaviate-index",
+      "name": "Index in Weaviate Hybrid Search (:6810)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [800, 300]
+    }
+  ],
+  "connections": {
+    "Paperless-ngx Post-Consume Webhook (:6800)": {
+      "main": [[{ "node": "Parse Tables with Docling (:6700)", "type": "main", "index": 0 }]]
+    },
+    "Parse Tables with Docling (:6700)": {
+      "main": [[{ "node": "Index in Weaviate Hybrid Search (:6810)", "type": "main", "index": 0 }]]
+    }
+  }
+}

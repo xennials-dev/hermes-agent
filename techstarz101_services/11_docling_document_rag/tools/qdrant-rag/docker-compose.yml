@@ -1,0 +1,12 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: ts101_s11_qdrant
+    restart: unless-stopped
+    ports:
+      - "6710:6333"
+      - "6711:6334"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+volumes:
+  qdrant_storage:

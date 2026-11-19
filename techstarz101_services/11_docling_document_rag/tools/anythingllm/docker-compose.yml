@@ -1,0 +1,14 @@
+services:
+  anythingllm:
+    image: mintplexlabs/anythingllm:latest
+    container_name: ts101_s11_anythingllm
+    restart: unless-stopped
+    ports:
+      - "6720:3001"
+    environment:
+      STORAGE_DIR: /app/server/storage
+      JWT_SECRET: ${JWT_SECRET}
+    volumes:
+      - anythingllm_storage:/app/server/storage
+volumes:
+  anythingllm_storage:

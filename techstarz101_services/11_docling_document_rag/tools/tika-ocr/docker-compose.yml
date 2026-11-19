@@ -1,0 +1,7 @@
+services:
+  tika:
+    image: apache/tika:latest-full
+    container_name: ts101_s11_tika_ocr
+    restart: unless-stopped
+    ports:
+      - "6730:9998"

@@ -1,0 +1,124 @@
+{
+  "service": "Docling Document RAG",
+  "service_id": "TS101-SRV-11",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Sovereign High-Accuracy Layout RAG",
+      "tagline": "IBM Docling parses complex PDFs & tables at 93.6% accuracy, Qdrant indexes hybrid vectors, AnythingLLM chats with page citations, Apache Tika handles legacy OCR.",
+      "tools": [
+        "docling-serve",
+        "qdrant-rag",
+        "anythingllm",
+        "tika-ocr"
+      ]
+    },
+    "B": {
+      "name": "Stack B: Enterprise Document Vault & Automated Ingestion",
+      "tagline": "Paperless-ngx archives & OCRs incoming files, Weaviate runs BM25+vector hybrid search, Open WebUI serves multi-model RAG chat, n8n automates folder/email ingestion.",
+      "tools": [
+        "paperless-ngx",
+        "weaviate-rag",
+        "open-webui-rag",
+        "n8n-ingest"
+      ]
+    }
+  },
+  "tools": {
+    "docling-serve": {
+      "name": "IBM Docling Serve",
+      "role": "Layout-aware PDF/DOCX/PPTX parser with 93.6% table structure accuracy & UI",
+      "icon": "\ud83d\udcc4",
+      "stack": "A",
+      "repo": "https://github.com/docling-project/docling-serve",
+      "license": "MIT",
+      "url": "http://localhost:6700/ui",
+      "probe": "http://localhost:6700/health",
+      "first_run": "Open /ui to drag-and-drop PDFs or POST to /v1/convert/file for structured Markdown & JSON tables.",
+      "ram_mb": 1600
+    },
+    "qdrant-rag": {
+      "name": "Qdrant Vector DB",
+      "role": "Sub-10ms dense + sparse hybrid vector store with built-in Web Dashboard",
+      "icon": "\ud83d\udd37",
+      "stack": "A",
+      "repo": "https://github.com/qdrant/qdrant",
+      "license": "Apache-2.0",
+      "url": "http://localhost:6710/dashboard",
+      "probe": "http://localhost:6710/healthz",
+      "first_run": "Inspect collections, payload filters, and HNSW vector graphs directly at /dashboard.",
+      "ram_mb": 500
+    },
+    "anythingllm": {
+      "name": "AnythingLLM RAG Studio",
+      "role": "Turnkey document workspace with citation grounding, permissions & agent skills",
+      "icon": "\ud83d\udcac",
+      "stack": "A",
+      "repo": "https://github.com/Mintplex-Labs/anything-llm",
+      "license": "MIT",
+      "url": "http://localhost:6720",
+      "probe": "http://localhost:6720/api/ping",
+      "first_run": "Create a workspace, connect Qdrant (:6710) or built-in LanceDB, and chat over Docling Markdown.",
+      "ram_mb": 850
+    },
+    "tika-ocr": {
+      "name": "Apache Tika + Tesseract",
+      "role": "Fallback parser & OCR engine for 1,000+ legacy Office, email & scanned formats",
+      "icon": "\ud83d\udd0d",
+      "stack": "A",
+      "repo": "https://github.com/apache/tika",
+      "license": "Apache-2.0",
+      "url": "http://localhost:6730",
+      "probe": "http://localhost:6730/tika",
+      "first_run": "PUT any binary file to http://localhost:6730/tika or /rmeta for instant text + metadata extraction.",
+      "ram_mb": 700
+    },
+    "paperless-ngx": {
+      "name": "Paperless-ngx Vault",
+      "role": "Self-hosted document management system with auto-OCR, tagging & full-text search",
+      "icon": "\ud83d\uddc2\ufe0f",
+      "stack": "B",
+      "repo": "https://github.com/paperless-ngx/paperless-ngx",
+      "license": "GPL-3.0",
+      "url": "http://localhost:6800",
+      "probe": "http://localhost:6800",
+      "first_run": "Default local login: admin / admin12345 (customizable in .env). Drop PDFs to auto-archive & tag.",
+      "ram_mb": 950
+    },
+    "weaviate-rag": {
+      "name": "Weaviate Hybrid Search",
+      "role": "AI-native vector + BM25 keyword hybrid database for legal & financial RAG",
+      "icon": "\ud83e\uddec",
+      "stack": "B",
+      "repo": "https://github.com/weaviate/weaviate",
+      "license": "BSD-3-Clause",
+      "url": "http://localhost:6810/v1/meta",
+      "probe": "http://localhost:6810/v1/.well-known/ready",
+      "first_run": "Query /v1/graphql with hybrid alpha=0.5 to blend exact SKU/clause matching with semantic search.",
+      "ram_mb": 650
+    },
+    "open-webui-rag": {
+      "name": "Open WebUI Doc Chat",
+      "role": "Multi-model knowledge base chat UI wired to local Ollama & Docling loaders",
+      "icon": "\ud83e\udde0",
+      "stack": "B",
+      "repo": "https://github.com/open-webui/open-webui",
+      "license": "MIT",
+      "url": "http://localhost:6820",
+      "probe": "http://localhost:6820/health",
+      "first_run": "No login required locally (WEBUI_AUTH=False). Attach Knowledge collections to any model.",
+      "ram_mb": 900
+    },
+    "n8n-ingest": {
+      "name": "n8n Document Pipeline",
+      "role": "Automated watch-folder, Gmail & S3 -> Docling -> Vector DB ingestion orchestrator",
+      "icon": "\ud83d\udd00",
+      "stack": "B",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:6830",
+      "probe": "http://localhost:6830/healthz",
+      "first_run": "Import /automations/stack_a_docling_qdrant_ingest.n8n.json to automate zero-touch PDF indexing.",
+      "ram_mb": 400
+    }
+  }
+}

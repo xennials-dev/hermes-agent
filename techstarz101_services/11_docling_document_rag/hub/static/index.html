@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service #11: Docling Document RAG — Techstarz101 Modular Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">TS101-SRV-11</span>
+          <span class="text-xs text-slate-400">2 Open-Source Stacks · 8 Standalone Repos · 93.6% Table Accuracy RAG</span>
+        </div>
+        <h1 class="text-2xl font-extrabold text-white mt-1">Docling Document RAG — Modular Hub</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <div id="dockerPill" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">Checking Docker…</div>
+        <button id="dockerBtn" onclick="launchDocker()" class="hidden px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950">Start Docker Desktop</button>
+        <a href="/infographic.svg" target="_blank" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-700">Architecture SVG</a>
+        <a href="/video/docling_document_rag_feature.mp4" target="_blank" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30">Watch Feature Video ▶</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-10">
+    <!-- Stack Action Bar -->
+    <section class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h2 class="text-sm font-bold text-white">Click Any Repo Icon to Boot Individually — or Check Tools to Stack &amp; Automate</h2>
+        <p class="text-xs text-slate-400 mt-0.5">Every tool runs as its own standalone Docker Compose repo with a dedicated <code class="text-emerald-300">/t/&lt;id&gt;</code> launch link.</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button onclick="bootStack('A')" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">Boot Full Stack A</button>
+        <button onclick="bootStack('B')" class="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-400 text-white font-bold text-xs">Boot Full Stack B</button>
+        <button onclick="bootSelected()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs">Boot Checked (<span id="selCount">0</span>)</button>
+        <button onclick="stopSelected()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-rose-600/80 text-slate-200 font-semibold text-xs">Stop Checked</button>
+      </div>
+    </section>
+
+    <!-- Live Docling Layout & Table RAG Simulator -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-900 to-emerald-950/30 border border-emerald-500/30 rounded-2xl p-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-emerald-400">Live Interactive Utility · Zero Docker Required</span>
+          <h2 class="text-xl font-bold text-white mt-0.5">📄 Docling Layout-Aware Table Extractor &amp; RAG Chunking Simulator</h2>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="loadSample('finance')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200">Q4 Finance Table</button>
+          <button onclick="loadSample('invoice')" class="text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200">Vendor Invoice</button>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-4">
+        <div class="md:col-span-5 space-y-3">
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">Chunking Strategy</label>
+              <select id="docStrategy" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white">
+                <option value="table-atomic">Table-Atomic (Docling Recommended)</option>
+                <option value="heading-hierarchical">Heading-Hierarchical</option>
+                <option value="fixed-token">Fixed-Token Baseline</option>
+              </select>
+            </div>
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">Test RAG Query</label>
+              <input id="docQuery" value="What was total Q4 recurring revenue and gross margin?" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white" />
+            </div>
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Raw Document / Multi-Column PDF Text or CSV Rows</label>
+            <textarea id="docInput" rows="7" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs font-mono text-slate-100"># Q4 2026 Financial Performance Summary
+Techstarz101 AI Systems delivered record recurring margin across self-hosted client deployments.
+
+Segment, Q3 Revenue, Q4 Revenue, Gross Margin
+AI Opportunity Audits, $42000, $67500, 88.4%
+Voice AI & Receptionists, $51000, $94200, 91.2%
+Docling RAG Pipelines, $38500, $81400, 93.6%
+Total Recurring Revenue, $131500, $243100, 91.1%
+
+# Compliance & Retention Policy
+All client contracts and PDFs remain 100% on-premise with zero external LLM training retention.</textarea>
+          </div>
+          <button onclick="runDoclingSim()" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm">Parse Layout &amp; Rank RAG Chunks ⚡</button>
+        </div>
+
+        <div class="md:col-span-7 bg-slate-950/90 border border-slate-800 rounded-xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <span id="docBadge" class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-800 text-emerald-300">Ready to parse</span>
+            <span id="docAcc" class="text-xs font-extrabold text-cyan-300">Docling 93.6% vs Naive PDF 58.2%</span>
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Reconstructed Atomic Markdown Table</div>
+            <pre id="docTableOut" class="text-xs font-mono text-emerald-300 bg-black/50 border border-slate-800 rounded-lg p-3 overflow-x-auto max-h-40">Click "Parse Layout &amp; Rank RAG Chunks" to extract structured tables…</pre>
+          </div>
+          <div>
+            <div class="text-[11px] uppercase tracking-wider text-slate-400 mb-1">Top Ranked RAG Chunks (Ready for Qdrant :6710 / Weaviate :6810)</div>
+            <div id="docChunks" class="space-y-2 max-h-44 overflow-y-auto text-xs"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack A -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Stack A · Sovereign High-Accuracy Layout RAG</span>
+          <h2 id="stackAName" class="text-xl font-bold text-white">Stack A</h2>
+          <p id="stackATagline" class="text-xs text-slate-400"></p>
+        </div>
+        <span class="text-xs text-slate-400 font-mono">Ports :6700 – :6730</span>
+      </div>
+      <div id="gridA" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- Stack B -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Stack B · Enterprise Document Vault &amp; Automated Ingestion</span>
+          <h2 id="stackBName" class="text-xl font-bold text-white">Stack B</h2>
+          <p id="stackBTagline" class="text-xs text-slate-400"></p>
+        </div>
+        <span class="text-xs text-slate-400 font-mono">Ports :6800 – :6830</span>
+      </div>
+      <div id="gridB" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- Automations & Media -->
+    <section class="grid md:grid-cols-2 gap-6">
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-2">🔀 Ready-to-Import Document Ingestion Pipelines</h3>
+        <p class="text-xs text-slate-400 mb-4">Import directly into your standalone n8n Document Pipeline (<code class="text-emerald-300">:6830</code>) for zero-touch PDF → Docling → Vector DB indexing.</p>
+        <div class="space-y-2.5">
+          <a href="/automations/stack_a_docling_qdrant_ingest.n8n.json" download class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500/50">
+            <div>
+              <div class="text-sm font-semibold text-white">Stack A: Docling Serve → Table-Atomic Chunking → Qdrant</div>
+              <div class="text-xs text-slate-400">Webhook upload → Docling (:6700) → Embed → Upsert into Qdrant (:6710)</div>
+            </div>
+            <span class="text-xs font-bold text-emerald-400">JSON ↓</span>
+          </a>
+          <a href="/automations/stack_b_paperless_weaviate_sync.n8n.json" download class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500/50">
+            <div>
+              <div class="text-sm font-semibold text-white">Stack B: Paperless-ngx Archive → Weaviate Hybrid Index</div>
+              <div class="text-xs text-slate-400">New Paperless doc (:6800) → Docling layout parse → Weaviate BM25+Vector (:6810)</div>
+            </div>
+            <span class="text-xs font-bold text-indigo-400">JSON ↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-2">🎬 Architecture &amp; Product Feature Video</h3>
+        <p class="text-xs text-slate-400 mb-4">93.6% table structure accuracy on complex financial, legal, and medical PDFs — 100% private and self-hosted.</p>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/infographic.svg" target="_blank" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500/50 text-center">
+            <div class="text-2xl mb-1">🗺️</div>
+            <div class="text-xs font-bold text-white">1200×675 Vector SVG</div>
+            <div class="text-[11px] text-slate-400">Full Stack A &amp; B Blueprint</div>
+          </a>
+          <a href="/video/docling_document_rag_feature.mp4" target="_blank" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500/50 text-center">
+            <div class="text-2xl mb-1">🎥</div>
+            <div class="text-xs font-bold text-white">1080×1080 MP4</div>
+            <div class="text-[11px] text-slate-400">Product Feature Demo</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let REG = null;
+    const SELECTED = new Set();
+
+    async function loadHub() {
+      REG = await (await fetch("/api/registry")).json();
+      document.getElementById("stackAName").textContent = REG.stacks.A.name;
+      document.getElementById("stackATagline").textContent = REG.stacks.A.tagline;
+      document.getElementById("stackBName").textContent = REG.stacks.B.name;
+      document.getElementById("stackBTagline").textContent = REG.stacks.B.tagline;
+      renderGrid("A", "gridA");
+      renderGrid("B", "gridB");
+      refreshStatus();
+      setInterval(refreshStatus, 4000);
+    }
+
+    function renderGrid(stackKey, elId) {
+      const container = document.getElementById(elId);
+      container.innerHTML = "";
+      for (const tid of REG.stacks[stackKey].tools) {
+        const t = REG.tools[tid];
+        const card = document.createElement("div");
+        card.className = "bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 rounded-2xl p-4 flex flex-col justify-between transition";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <a href="/t/${tid}" target="_blank" title="Click to boot & open ${t.name}"
+                 class="w-12 h-12 rounded-xl bg-emerald-500/15 border border-emerald-500/30 hover:bg-emerald-500/30 flex items-center justify-center text-2xl transition">
+                ${t.icon}
+              </a>
+              <div class="flex items-center gap-2">
+                <span id="dot-${tid}" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400">READY</span>
+                <input type="checkbox" onchange="toggleSel('${tid}', this.checked)" class="w-4 h-4 accent-emerald-500 cursor-pointer" title="Include in stack boot" />
+              </div>
+            </div>
+            <a href="/t/${tid}" target="_blank" class="text-base font-bold text-white hover:text-emerald-300 transition">${t.name}</a>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">${t.role}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-slate-400">
+              <span>${t.license}</span>
+              <span class="font-mono text-emerald-300">${t.url.replace("http://localhost", "")}</span>
+            </div>
+            <div class="flex gap-2">
+              <a href="/t/${tid}" target="_blank" class="flex-1 text-center py-1.5 rounded-lg bg-emerald-500/15 hover:bg-emerald-500 hover:text-slate-950 text-emerald-300 font-bold text-xs transition">Launch App →</a>
+              <a href="${t.repo}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">Repo ↗</a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    function toggleSel(tid, checked) {
+      if (checked) SELECTED.add(tid); else SELECTED.delete(tid);
+      document.getElementById("selCount").textContent = SELECTED.size;
+    }
+
+    async function refreshStatus() {
+      try {
+        const st = await (await fetch("/api/status")).json();
+        const pill = document.getElementById("dockerPill");
+        const dbtn = document.getElementById("dockerBtn");
+        if (st.docker_ready) {
+          pill.textContent = "Docker Desktop: Ready";
+          pill.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30";
+          dbtn.classList.add("hidden");
+        } else {
+          pill.textContent = "Docker Desktop: Stopped";
+          pill.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-500/15 text-rose-300 border border-rose-500/30";
+          dbtn.classList.remove("hidden");
+        }
+        for (const [tid, info] of Object.entries(st.tools)) {
+          const dot = document.getElementById(`dot-${tid}`);
+          if (!dot) continue;
+          if (info.up) {
+            dot.textContent = "LIVE";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300";
+          } else if (info.state === "starting") {
+            dot.textContent = "BOOTING";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300";
+          } else {
+            dot.textContent = "READY";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400";
+          }
+        }
+      } catch (e) {}
+    }
+
+    async function bootStack(k) {
+      await fetch("/api/stack/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tools: REG.stacks[k].tools }),
+      });
+      refreshStatus();
+    }
+
+    async function bootSelected() {
+      if (!SELECTED.size) return alert("Check at least one tool card first.");
+      await fetch("/api/stack/start", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tools: [...SELECTED] }),
+      });
+      refreshStatus();
+    }
+
+    async function stopSelected() {
+      if (!SELECTED.size) return alert("Check at least one tool card first.");
+      await fetch("/api/stack/stop", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tools: [...SELECTED] }),
+      });
+      refreshStatus();
+    }
+
+    async function launchDocker() {
+      await fetch("/api/docker/launch", { method: "POST" });
+      alert("Launching Docker Desktop… wait ~15 seconds for the status badge to turn green.");
+    }
+
+    function loadSample(kind) {
+      if (kind === "invoice") {
+        document.getElementById("docQuery").value = "What is the line item total for GPU Cluster Hosting?";
+        document.getElementById("docInput").value = `# Vendor Invoice INV-2026-8841
+Issued by Sovereign Cloud Infrastructure LLC — Net 15 Terms.
+
+SKU, Line Item, Qty, Unit Price, Line Total
+GPU-A100, GPU Cluster Hosting, 2, $420.00, $840.00
+SIP-TRK, Wholesale SIP Trunk Channels, 10, $4.50, $45.00
+DOC-OCR, Docling Dedicated Worker Node, 1, $110.00, $110.00
+
+# Payment Instructions
+Wire or ACH due within 15 days of receipt.`;
+      } else {
+        document.getElementById("docQuery").value = "What was total Q4 recurring revenue and gross margin?";
+        document.getElementById("docInput").value = `# Q4 2026 Financial Performance Summary
+Techstarz101 AI Systems delivered record recurring margin across self-hosted client deployments.
+
+Segment, Q3 Revenue, Q4 Revenue, Gross Margin
+AI Opportunity Audits, $42000, $67500, 88.4%
+Voice AI & Receptionists, $51000, $94200, 91.2%
+Docling RAG Pipelines, $38500, $81400, 93.6%
+Total Recurring Revenue, $131500, $243100, 91.1%`;
+      }
+      runDoclingSim();
+    }
+
+    async function runDoclingSim() {
+      const resp = await fetch("/api/docling/parse-and-chunk", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          strategy: document.getElementById("docStrategy").value,
+          query: document.getElementById("docQuery").value,
+          raw_content: document.getElementById("docInput").value,
+        }),
+      });
+      const data = await resp.json();
+      document.getElementById("docBadge").textContent = `${data.benchmark.tables_preserved_intact} Table(s) Preserved · ${data.benchmark.total_chunks} Chunks Indexed`;
+      document.getElementById("docTableOut").textContent = data.tables.length
+        ? data.tables.map(t => `### ${t.section}\n${t.markdown}`).join("\n\n")
+        : "No multi-column tables detected in input.";
+      document.getElementById("docChunks").innerHTML = data.chunks.map(c => `
+        <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800">
+          <div class="flex items-center justify-between mb-1">
+            <span class="font-bold text-emerald-300">${c.chunk_id} · ${c.type} · ${c.section}</span>
+            <span class="font-mono text-cyan-300">score ${c.retrieval_score} · ${c.tokens} tok</span>
+          </div>
+          <div class="text-slate-300 font-mono text-[11px] whitespace-pre-wrap">${c.text.slice(0, 220)}${c.text.length > 220 ? "…" : ""}</div>
+        </div>
+      `).join("");
+    }
+
+    loadHub();
+  </script>
+</body>
+</html>

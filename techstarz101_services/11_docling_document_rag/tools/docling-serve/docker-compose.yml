@@ -1,0 +1,14 @@
+services:
+  docling-serve:
+    image: quay.io/docling-project/docling-serve:latest
+    container_name: ts101_s11_docling_serve
+    restart: unless-stopped
+    ports:
+      - "6700:5001"
+    environment:
+      DOCLING_SERVE_ENABLE_UI: "true"
+      DOCLING_SERVE_MAX_SYNC_WAIT: "180"
+    volumes:
+      - docling_cache:/root/.cache
+volumes:
+  docling_cache:

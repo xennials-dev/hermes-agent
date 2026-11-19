@@ -1,0 +1,53 @@
+{
+  "name": "Techstarz101 S11 Stack A - Docling Serve to Qdrant Hybrid Index",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "docling-ingest",
+        "responseMode": "lastNode"
+      },
+      "id": "webhook-upload",
+      "name": "Document Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6700/v1/convert/source",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"sources\": [{ \"kind\": \"http\", \"url\": $json.body.file_url }], \"options\": { \"to_formats\": [\"md\", \"json\"], \"table_mode\": \"accurate\" } } }}"
+      },
+      "id": "docling-parse",
+      "name": "IBM Docling Layout & Table Parse (:6700)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "http://host.docker.internal:6710/collections/techstarz101_docs/points",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"points\": [{ \"id\": Date.now(), \"vector\": $json.embedding || [], \"payload\": { \"source\": $json.document_name, \"markdown\": $json.document?.md_content || \"\" } }] } }}"
+      },
+      "id": "qdrant-upsert",
+      "name": "Upsert Atomic Chunks to Qdrant (:6710)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [800, 300]
+    }
+  ],
+  "connections": {
+    "Document Upload Webhook": {
+      "main": [[{ "node": "IBM Docling Layout & Table Parse (:6700)", "type": "main", "index": 0 }]]
+    },
+    "IBM Docling Layout & Table Parse (:6700)": {
+      "main": [[{ "node": "Upsert Atomic Chunks to Qdrant (:6710)", "type": "main", "index": 0 }]]
+    }
+  }
+}

@@ -1,0 +1,25 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: ts101_s11_paperless_redis
+    restart: unless-stopped
+  paperless:
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    container_name: ts101_s11_paperless
+    restart: unless-stopped
+    depends_on:
+      - redis
+    ports:
+      - "6800:8000"
+    environment:
+      PAPERLESS_REDIS: redis://redis:6379
+      PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
+      PAPERLESS_ADMIN_USER: admin
+      PAPERLESS_ADMIN_PASSWORD: ${PAPERLESS_ADMIN_PASSWORD}
+      PAPERLESS_URL: http://localhost:6800
+    volumes:
+      - paperless_data:/usr/src/paperless/data
+      - paperless_media:/usr/src/paperless/media
+volumes:
+  paperless_data:
+  paperless_media:
