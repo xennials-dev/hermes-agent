@@ -1,0 +1,45 @@
+# Gitea — self-hosted Git & CI/CD Actions (Stack A)
+# Upstream: https://github.com/go-gitea/gitea
+# Local URL: http://localhost:5520
+name: ts101-gitea
+
+services:
+  gitea:
+    image: gitea/gitea:latest
+    restart: unless-stopped
+    environment:
+      USER_UID: "1000"
+      USER_GID: "1000"
+      GITEA__database__DB_TYPE: postgres
+      GITEA__database__HOST: gitea-db:5432
+      GITEA__database__NAME: gitea
+      GITEA__database__USER: gitea
+      GITEA__database__PASSWD: ${GITEA_DB_PASSWORD:?run the hub once to generate .env}
+      GITEA__server__ROOT_URL: http://localhost:5520/
+    ports:
+      - "5520:3000"
+      - "2222:22"
+    volumes:
+      - gitea-data:/data
+    depends_on:
+      gitea-db:
+        condition: service_healthy
+
+  gitea-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: gitea
+      POSTGRES_USER: gitea
+      POSTGRES_PASSWORD: ${GITEA_DB_PASSWORD}
+    volumes:
+      - gitea-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gitea -d gitea"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  gitea-data:
+  gitea-db:

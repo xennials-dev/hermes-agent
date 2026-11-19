@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" style="background:#070a13; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0f172a"/><stop offset="100%" stop-color="#050811"/></linearGradient>
+    <linearGradient id="sa" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#38bdf8"/></linearGradient>
+    <linearGradient id="sb" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#7c3aed"/><stop offset="100%" stop-color="#c084fc"/></linearGradient>
+    <linearGradient id="gn" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#059669"/></linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <g transform="translate(50, 36)">
+    <rect width="275" height="28" rx="14" fill="#1e293b" stroke="#334155"/>
+    <circle cx="15" cy="14" r="5" fill="#38bdf8"/>
+    <text x="28" y="18" fill="#94a3b8" font-size="11.5" font-weight="700" letter-spacing="1">TECHSTARZ101 · SERVICE #04</text>
+    <text x="0" y="64" fill="#ffffff" font-size="33" font-weight="800">Brand &amp; Web Launch — Idea to Live Deployed Web</text>
+    <text x="0" y="90" fill="#94a3b8" font-size="14.5">8 standalone open-source repos · Instant Brand Kit &amp; HTML Site Compiler · Click any icon to launch</text>
+    <rect x="815" y="10" width="285" height="34" rx="8" fill="url(#gn)"/>
+    <text x="957" y="32" fill="#ffffff" font-size="13" font-weight="800" text-anchor="middle">⚡ HUB: localhost:7868 · /t/&lt;tool&gt;</text>
+  </g>
+
+  <g transform="translate(50, 152)">
+    <rect width="1100" height="215" rx="16" fill="#0d1424" stroke="#0284c7" stroke-width="1.5"/>
+    <rect x="20" y="16" width="350" height="26" rx="6" fill="url(#sa)"/>
+    <text x="32" y="33" fill="#04121f" font-size="12" font-weight="800">STACK A · SOVEREIGN DESIGN-TO-DEPLOY</text>
+    <text x="385" y="33" fill="#94a3b8" font-size="12">Penpot Design + Directus CMS + Gitea Git/CI + Nginx Proxy SSL</text>
+    <g transform="translate(20, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🎨 Penpot</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Open-Source Figma Alternative</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/penpot/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/penpot</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5500 (MPL-2.0)</text></g>
+    <g transform="translate(289, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🧱 Directus</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Headless CMS &amp; GraphQL API</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/directus/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/directus</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5510 (BSL/OSS)</text></g>
+    <g transform="translate(558, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🦊 Gitea</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Self-Hosted Git &amp; CI Actions</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/gitea/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/gitea</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5520 (MIT)</text></g>
+    <g transform="translate(827, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#38bdf8" font-size="14" font-weight="800">🌐 Nginx Proxy Mgr</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Visual Domains &amp; Auto SSL</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/nginx-proxy-manager/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/nginx-proxy-manager</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5530 (MIT)</text></g>
+  </g>
+
+  <g transform="translate(50, 390)">
+    <rect width="1100" height="215" rx="16" fill="#0d1424" stroke="#7c3aed" stroke-width="1.5"/>
+    <rect x="20" y="16" width="350" height="26" rx="6" fill="url(#sb)"/>
+    <text x="32" y="33" fill="#ffffff" font-size="12" font-weight="800">STACK B · RAPID VISUAL WEB &amp; BRAND CMS</text>
+    <text x="385" y="33" fill="#94a3b8" font-size="12">WordPress + Ghost SEO Blog + Strapi Headless + Uptime Kuma</text>
+    <g transform="translate(20, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">📝 WordPress</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Visual Site &amp; Landing Builder</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/wordpress/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/wordpress</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5600 (GPL-2.0)</text></g>
+    <g transform="translate(289, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">👻 Ghost</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">SEO Brand Blog &amp; Newsletter</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/ghost/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/ghost</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5610 (MIT)</text></g>
+    <g transform="translate(558, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">⚡ Strapi</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">Headless CMS API Builder</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/strapi/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/strapi</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5620 (MIT)</text></g>
+    <g transform="translate(827, 56)"><rect width="252" height="140" rx="12" fill="#131d33" stroke="#334155"/><text x="16" y="30" fill="#c084fc" font-size="14" font-weight="800">🟢 Uptime Kuma</text><text x="16" y="50" fill="#cbd5e1" font-size="11.5">24/7 SSL &amp; Uptime Monitors</text><text x="16" y="70" fill="#64748b" font-size="10.5">tools/uptime-kuma/</text><text x="16" y="96" fill="#10b981" font-size="11" font-weight="700">Link: /t/uptime-kuma</text><text x="16" y="116" fill="#94a3b8" font-size="11">Port: :5630 (MIT)</text></g>
+  </g>
+  <text x="50" y="642" fill="#64748b" font-size="12.5" font-weight="600">Techstarz101.com · From Brand Idea to Live SSL Deployed Web · Run Individually or Stack Together</text>
+  <text x="1150" y="642" fill="#10b981" font-size="12.5" font-weight="800" text-anchor="end">ZERO WEBFLOW TAX</text>
+</svg>

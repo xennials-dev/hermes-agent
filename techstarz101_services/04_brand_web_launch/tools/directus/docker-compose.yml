@@ -1,0 +1,46 @@
+# Directus — headless CMS & REST/GraphQL backend (Stack A)
+# Upstream: https://github.com/directus/directus
+# Local URL: http://localhost:5510
+name: ts101-directus
+
+services:
+  directus:
+    image: directus/directus:latest
+    restart: unless-stopped
+    ports:
+      - "5510:8055"
+    environment:
+      SECRET: ${DIRECTUS_SECRET:?run the hub once to generate .env}
+      DB_CLIENT: pg
+      DB_HOST: directus-db
+      DB_PORT: "5432"
+      DB_DATABASE: directus
+      DB_USER: directus
+      DB_PASSWORD: ${DIRECTUS_DB_PASSWORD}
+      ADMIN_EMAIL: admin@techstarz101.local
+      ADMIN_PASSWORD: ${DIRECTUS_ADMIN_PASSWORD}
+      PUBLIC_URL: http://localhost:5510
+    volumes:
+      - directus-uploads:/directus/uploads
+    depends_on:
+      directus-db:
+        condition: service_healthy
+
+  directus-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: directus
+      POSTGRES_USER: directus
+      POSTGRES_PASSWORD: ${DIRECTUS_DB_PASSWORD}
+    volumes:
+      - directus-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U directus -d directus"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  directus-uploads:
+  directus-db:

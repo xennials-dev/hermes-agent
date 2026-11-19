@@ -1,0 +1,49 @@
+# Strapi — headless CMS & API builder (Stack B)
+# Upstream: https://github.com/strapi/strapi
+# Local URL: http://localhost:5620/admin
+name: ts101-strapi
+
+services:
+  strapi:
+    image: node:20-alpine
+    restart: unless-stopped
+    working_dir: /srv/app
+    ports:
+      - "5620:1337"
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: strapi-db
+      DATABASE_PORT: "5432"
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: ${STRAPI_DB_PASSWORD:?run the hub once to generate .env}
+      APP_KEYS: ${STRAPI_APP_KEYS}
+      API_TOKEN_SALT: ${STRAPI_API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${STRAPI_ADMIN_JWT_SECRET}
+      JWT_SECRET: ${STRAPI_JWT_SECRET}
+    volumes:
+      - strapi-app:/srv/app
+    command: >
+      sh -c "if [ ! -f package.json ]; then npx create-strapi-app@latest . --no-run --skip-cloud --dbclient=postgres --dbhost=strapi-db --dbport=5432 --dbname=strapi --dbusername=strapi --dbpassword=$$DATABASE_PASSWORD --no-example --ts; fi && npm run develop"
+    depends_on:
+      strapi-db:
+        condition: service_healthy
+
+  strapi-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: ${STRAPI_DB_PASSWORD}
+    volumes:
+      - strapi-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U strapi -d strapi"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  strapi-app:
+  strapi-db:

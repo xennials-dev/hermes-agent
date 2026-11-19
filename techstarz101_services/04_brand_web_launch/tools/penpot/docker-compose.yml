@@ -1,0 +1,74 @@
+# Penpot — open-source Figma alternative (Stack A)
+# Upstream: https://github.com/penpot/penpot
+# Local URL: http://localhost:5500
+name: ts101-penpot
+
+services:
+  penpot-frontend:
+    image: penpotapp/frontend:latest
+    restart: unless-stopped
+    ports:
+      - "5500:8080"
+    environment:
+      PENPOT_FLAGS: "enable-registration enable-login-with-password disable-email-verification"
+    volumes:
+      - penpot-assets:/opt/data/assets
+    depends_on:
+      - penpot-backend
+      - penpot-exporter
+
+  penpot-backend:
+    image: penpotapp/backend:latest
+    restart: unless-stopped
+    environment:
+      PENPOT_FLAGS: "enable-registration enable-login-with-password disable-email-verification disable-secure-session-cookies"
+      PENPOT_PUBLIC_URI: http://localhost:5500
+      PENPOT_DATABASE_URI: postgresql://penpot-db/penpot
+      PENPOT_DATABASE_USERNAME: penpot
+      PENPOT_DATABASE_PASSWORD: ${PENPOT_DB_PASSWORD:?run the hub once to generate .env}
+      PENPOT_REDIS_URI: redis://penpot-redis/0
+      PENPOT_SECRET_KEY: ${PENPOT_SECRET_KEY}
+      PENPOT_ASSETS_STORAGE_BACKEND: assets-fs
+      PENPOT_STORAGE_ASSETS_FS_DIRECTORY: /opt/data/assets
+    volumes:
+      - penpot-assets:/opt/data/assets
+    depends_on:
+      penpot-db:
+        condition: service_healthy
+      penpot-redis:
+        condition: service_healthy
+
+  penpot-exporter:
+    image: penpotapp/exporter:latest
+    restart: unless-stopped
+    environment:
+      PENPOT_PUBLIC_URI: http://penpot-frontend:8080
+      PENPOT_REDIS_URI: redis://penpot-redis/0
+
+  penpot-db:
+    image: postgres:15-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: penpot
+      POSTGRES_USER: penpot
+      POSTGRES_PASSWORD: ${PENPOT_DB_PASSWORD}
+    volumes:
+      - penpot-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U penpot -d penpot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  penpot-redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  penpot-assets:
+  penpot-db:

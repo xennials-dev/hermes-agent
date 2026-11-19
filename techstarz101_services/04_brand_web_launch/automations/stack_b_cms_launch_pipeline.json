@@ -1,0 +1,9 @@
+{
+  "name": "Techstarz101 Stack B - Brand Kit Seed -> Ghost / Strapi / WordPress Publish",
+  "steps": [
+    { "step": 1, "tool": "hub", "endpoint": "POST http://localhost:7868/api/brand/generate", "output": "generated_site/index.html + logo.svg" },
+    { "step": 2, "tool": "wordpress", "endpoint": "http://localhost:5600/wp-json/wp/v2/pages", "action": "Publish landing page from brand tokens" },
+    { "step": 3, "tool": "ghost", "endpoint": "http://localhost:5610/ghost/api/admin/posts/", "action": "Publish launch blog announcement" },
+    { "step": 4, "tool": "uptime-kuma", "endpoint": "http://localhost:5630", "action": "Register 60s HTTP + SSL certificate expiry monitor" }
+  ]
+}

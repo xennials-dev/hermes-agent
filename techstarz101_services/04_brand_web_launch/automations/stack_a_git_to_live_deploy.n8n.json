@@ -1,0 +1,40 @@
+{
+  "name": "Techstarz101 Stack A - Gitea Push -> Directus Sync -> Nginx SSL -> Uptime Kuma",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "gitea-web-deploy", "responseMode": "lastNode" },
+      "id": "node-gitea",
+      "name": "Gitea Push Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "http://host.docker.internal:5510/server/health"
+      },
+      "id": "node-directus",
+      "name": "Verify Directus CMS Health",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "http://host.docker.internal:5630/"
+      },
+      "id": "node-kuma",
+      "name": "Ping Uptime Kuma Monitor",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [820, 300]
+    }
+  ],
+  "connections": {
+    "Gitea Push Webhook": { "main": [[{ "node": "Verify Directus CMS Health", "type": "main", "index": 0 }]] },
+    "Verify Directus CMS Health": { "main": [[{ "node": "Ping Uptime Kuma Monitor", "type": "main", "index": 0 }]] }
+  },
+  "active": false
+}

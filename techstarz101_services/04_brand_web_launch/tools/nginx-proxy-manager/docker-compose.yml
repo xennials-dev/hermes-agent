@@ -1,0 +1,20 @@
+# Nginx Proxy Manager — visual domain routing & Let's Encrypt SSL (Stack A)
+# Upstream: https://github.com/NginxProxyManager/nginx-proxy-manager
+# Local Admin URL: http://localhost:5530 (HTTP proxy :5580, HTTPS proxy :5543)
+name: ts101-nginx-proxy-manager
+
+services:
+  npm:
+    image: jc21/nginx-proxy-manager:latest
+    restart: unless-stopped
+    ports:
+      - "5530:81"
+      - "5580:80"
+      - "5543:443"
+    volumes:
+      - npm-data:/data
+      - npm-letsencrypt:/etc/letsencrypt
+
+volumes:
+  npm-data:
+  npm-letsencrypt:

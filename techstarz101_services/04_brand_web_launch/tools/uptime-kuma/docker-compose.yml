@@ -1,0 +1,16 @@
+# Uptime Kuma — SSL, DNS & live web uptime monitoring (Stack B)
+# Upstream: https://github.com/louislam/uptime-kuma
+# Local URL: http://localhost:5630
+name: ts101-uptime-kuma
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    restart: unless-stopped
+    ports:
+      - "5630:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+
+volumes:
+  uptime-kuma-data:

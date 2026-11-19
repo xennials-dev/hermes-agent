@@ -1,0 +1,19 @@
+# Ghost — SEO-first brand publishing & newsletter CMS (Stack B)
+# Upstream: https://github.com/TryGhost/Ghost
+# Local URL: http://localhost:5610 (Admin: http://localhost:5610/ghost)
+name: ts101-ghost
+
+services:
+  ghost:
+    image: ghost:5-alpine
+    restart: unless-stopped
+    ports:
+      - "5610:2368"
+    environment:
+      NODE_ENV: development
+      url: http://localhost:5610
+    volumes:
+      - ghost-content:/var/lib/ghost/content
+
+volumes:
+  ghost-content:

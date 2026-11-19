@@ -1,0 +1,114 @@
+{
+  "service": "Brand & Web Launch",
+  "service_id": "TS101-SRV-04",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Sovereign Design-to-Deploy",
+      "tagline": "Penpot designs the brand system, Directus serves structured CMS content, Gitea runs Git/CI, Nginx Proxy Manager routes domains & SSL.",
+      "tools": ["penpot", "directus", "gitea", "nginx-proxy-manager"]
+    },
+    "B": {
+      "name": "Stack B: Rapid Visual Web & Brand CMS",
+      "tagline": "WordPress builds visual landing pages, Ghost publishes SEO blogs, Strapi powers custom frontends, Uptime Kuma monitors live uptime & SSL.",
+      "tools": ["wordpress", "ghost", "strapi", "uptime-kuma"]
+    }
+  },
+  "tools": {
+    "penpot": {
+      "name": "Penpot",
+      "role": "Open-source Figma alternative for UI/UX design systems, logos & wireframes",
+      "icon": "🎨",
+      "stack": "A",
+      "repo": "https://github.com/penpot/penpot",
+      "license": "MPL-2.0",
+      "url": "http://localhost:5500",
+      "probe": "http://localhost:5500",
+      "first_run": "Open the link and click 'Create an account' to start your local design workspace.",
+      "ram_mb": 1600
+    },
+    "directus": {
+      "name": "Directus",
+      "role": "Headless CMS & instant REST/GraphQL backend for brand web apps",
+      "icon": "🧱",
+      "stack": "A",
+      "repo": "https://github.com/directus/directus",
+      "license": "BSL-1.1 / Open Source",
+      "url": "http://localhost:5510",
+      "probe": "http://localhost:5510/server/health",
+      "first_run": "Log in with admin@techstarz101.local and the generated ADMIN_PASSWORD in tools/directus/.env.",
+      "ram_mb": 700
+    },
+    "gitea": {
+      "name": "Gitea",
+      "role": "Self-hosted Git server & CI/CD Actions runner for brand web repos",
+      "icon": "🦊",
+      "stack": "A",
+      "repo": "https://github.com/go-gitea/gitea",
+      "license": "MIT",
+      "url": "http://localhost:5520",
+      "probe": "http://localhost:5520/api/healthz",
+      "first_run": "Click 'Install Gitea' on first visit (Postgres is pre-wired) and register your local admin account.",
+      "ram_mb": 350
+    },
+    "nginx-proxy-manager": {
+      "name": "Nginx Proxy Manager",
+      "role": "Visual domain routing, reverse proxy & automated Let's Encrypt SSL",
+      "icon": "🌐",
+      "stack": "A",
+      "repo": "https://github.com/NginxProxyManager/nginx-proxy-manager",
+      "license": "MIT",
+      "url": "http://localhost:5530",
+      "probe": "http://localhost:5530",
+      "first_run": "Default admin login: admin@example.com / changeme (prompts immediately to update).",
+      "ram_mb": 250
+    },
+    "wordpress": {
+      "name": "WordPress",
+      "role": "Open-source visual web builder & rapid landing page engine",
+      "icon": "📝",
+      "stack": "B",
+      "repo": "https://github.com/WordPress/WordPress",
+      "license": "GPL-2.0",
+      "url": "http://localhost:5600",
+      "probe": "http://localhost:5600",
+      "first_run": "Complete the 1-minute WordPress site title & admin setup wizard on first visit.",
+      "ram_mb": 550
+    },
+    "ghost": {
+      "name": "Ghost",
+      "role": "Modern SEO-first brand publishing, blog & newsletter platform",
+      "icon": "👻",
+      "stack": "B",
+      "repo": "https://github.com/TryGhost/Ghost",
+      "license": "MIT",
+      "url": "http://localhost:5610/ghost",
+      "probe": "http://localhost:5610",
+      "first_run": "Open /ghost to create your publication owner account and pick a brand theme.",
+      "ram_mb": 500
+    },
+    "strapi": {
+      "name": "Strapi",
+      "role": "Open-source headless CMS & API builder for custom React/Next.js/Astro sites",
+      "icon": "⚡",
+      "stack": "B",
+      "repo": "https://github.com/strapi/strapi",
+      "license": "MIT",
+      "url": "http://localhost:5620/admin",
+      "probe": "http://localhost:5620/_health",
+      "first_run": "First boot installs Strapi into the volume (~60s), then open /admin to create your super admin.",
+      "ram_mb": 850
+    },
+    "uptime-kuma": {
+      "name": "Uptime Kuma",
+      "role": "Real-time website, SSL certificate & DNS uptime monitoring + status pages",
+      "icon": "🟢",
+      "stack": "B",
+      "repo": "https://github.com/louislam/uptime-kuma",
+      "license": "MIT",
+      "url": "http://localhost:5630",
+      "probe": "http://localhost:5630",
+      "first_run": "Create your local admin password on first visit and add monitors for your live deployed domains.",
+      "ram_mb": 200
+    }
+  }
+}
