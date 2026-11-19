@@ -1,0 +1,13 @@
+{
+  "name": "Techstarz101 Stack A - Formbricks Intake -> Cal.com -> DocuSeal $750 SOW -> BookStack",
+  "nodes": [
+    { "parameters": { "httpMethod": "POST", "path": "audit-intake-submitted", "responseMode": "lastNode" }, "id": "node-fb", "name": "Formbricks 360 Intake Webhook", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [200, 300] },
+    { "parameters": { "method": "POST", "url": "http://host.docker.internal:7870/api/audit/score", "sendBody": true, "specifyBody": "json", "jsonBody": "={{ JSON.stringify($json.body) }}" }, "id": "node-score", "name": "Compute 360 ROI Scorecard", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [500, 300] },
+    { "parameters": { "method": "POST", "url": "http://host.docker.internal:5930/api/submissions", "sendBody": true, "specifyBody": "json", "jsonBody": "{\"template_id\":1,\"send_email\":true}" }, "id": "node-sign", "name": "Dispatch DocuSeal $750 Credited SOW", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4.2, "position": [820, 300] }
+  ],
+  "connections": {
+    "Formbricks 360 Intake Webhook": { "main": [[{ "node": "Compute 360 ROI Scorecard", "type": "main", "index": 0 }]] },
+    "Compute 360 ROI Scorecard": { "main": [[{ "node": "Dispatch DocuSeal $750 Credited SOW", "type": "main", "index": 0 }]] }
+  },
+  "active": false
+}

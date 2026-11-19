@@ -1,0 +1,41 @@
+# Kimai — Audit Billing, Time Tracking & $750 Credit Ledger (Stack B)
+# Upstream: https://github.com/kimai/kimai
+# Local URL: http://localhost:6030
+name: ts101-kimai
+
+services:
+  kimai:
+    image: kimai/kimai2:apache
+    restart: unless-stopped
+    ports:
+      - "6030:8001"
+    environment:
+      ADMINMAIL: admin@techstarz101.local
+      ADMINPASS: ${KIMAI_ADMIN_PASSWORD:?run the hub once to generate .env}
+      DATABASE_URL: mysql://kimai:${KIMAI_DB_PASSWORD}@kimai-db:3306/kimai?charset=utf8mb4&serverVersion=11.0.0-MariaDB
+      APP_SECRET: ${KIMAI_APP_SECRET}
+    volumes:
+      - kimai-data:/opt/kimai/var/data
+    depends_on:
+      kimai-db:
+        condition: service_healthy
+
+  kimai-db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${KIMAI_DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: kimai
+      MARIADB_USER: kimai
+      MARIADB_PASSWORD: ${KIMAI_DB_PASSWORD}
+    volumes:
+      - kimai-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  kimai-data:
+  kimai-db:

@@ -1,0 +1,40 @@
+# Cal.com — Self-Hosted Audit Kickoff Scheduler (Stack A)
+# Upstream: https://github.com/calcom/cal.com
+# Local URL: http://localhost:5910
+name: ts101-calcom
+
+services:
+  calcom:
+    image: calcom/cal.com:latest
+    restart: unless-stopped
+    ports:
+      - "5910:3000"
+    environment:
+      DATABASE_URL: postgresql://calcom:${CAL_DB_PASSWORD:?run the hub once to generate .env}@calcom-db:5432/calcom
+      DATABASE_DIRECT_URL: postgresql://calcom:${CAL_DB_PASSWORD}@calcom-db:5432/calcom
+      NEXT_PUBLIC_WEBAPP_URL: http://localhost:5910
+      NEXTAUTH_URL: http://localhost:5910
+      NEXTAUTH_SECRET: ${CAL_NEXTAUTH_SECRET}
+      CALENDSO_ENCRYPTION_KEY: ${CAL_ENCRYPTION_KEY}
+      NEXT_PUBLIC_LICENSE_CONSENT: agree
+    depends_on:
+      calcom-db:
+        condition: service_healthy
+
+  calcom-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: calcom
+      POSTGRES_USER: calcom
+      POSTGRES_PASSWORD: ${CAL_DB_PASSWORD}
+    volumes:
+      - calcom-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U calcom -d calcom"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  calcom-db:

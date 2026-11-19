@@ -1,0 +1,16 @@
+# DocuSeal — Open-Source SOW & 100% Credit E-Signature (Stack A)
+# Upstream: https://github.com/docusealco/docuseal
+# Local URL: http://localhost:5930
+name: ts101-docuseal
+
+services:
+  docuseal:
+    image: docuseal/docuseal:latest
+    restart: unless-stopped
+    ports:
+      - "5930:3000"
+    volumes:
+      - docuseal-data:/data
+
+volumes:
+  docuseal-data:

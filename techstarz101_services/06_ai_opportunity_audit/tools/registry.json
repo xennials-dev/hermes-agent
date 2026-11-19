@@ -1,0 +1,114 @@
+{
+  "service": "AI Opportunity Audit ($750)",
+  "service_id": "TS101-SRV-06",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Sovereign Discovery, SOW & Client Portal",
+      "tagline": "Formbricks captures 360° ops intake, Cal.com books the audit, BookStack hosts the roadmap wiki, Docuseal signs the $750 100%-credited SOW.",
+      "tools": ["formbricks", "calcom", "bookstack", "docuseal"]
+    },
+    "B": {
+      "name": "Stack B: Visual Mapping, ROI Modeling & Billing",
+      "tagline": "Excalidraw maps live bottlenecks, Grist models SaaS-tax ROI, Stirling-PDF compiles the executive deck, Kimai invoices & tracks the $750 credit.",
+      "tools": ["excalidraw", "grist", "stirling-pdf", "kimai"]
+    }
+  },
+  "tools": {
+    "formbricks": {
+      "name": "Formbricks",
+      "role": "Structured 360° operational intake surveys & SaaS spend discovery forms",
+      "icon": "📝",
+      "stack": "A",
+      "repo": "https://github.com/formbricks/formbricks",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5900",
+      "probe": "http://localhost:5900/api/health",
+      "first_run": "Create your local admin account on first visit and publish the 360° AI Opportunity Audit intake survey.",
+      "ram_mb": 900
+    },
+    "calcom": {
+      "name": "Cal.com",
+      "role": "Self-hosted $750 Audit kickoff & discovery session booking engine",
+      "icon": "📅",
+      "stack": "A",
+      "repo": "https://github.com/calcom/cal.com",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5910",
+      "probe": "http://localhost:5910",
+      "first_run": "Complete the Cal.com onboarding screen to create your 30-min Audit Kickoff event slug.",
+      "ram_mb": 1400
+    },
+    "bookstack": {
+      "name": "BookStack",
+      "role": "Client-facing 360° Audit Report, SOP knowledge base & 90-day roadmap portal",
+      "icon": "📘",
+      "stack": "A",
+      "repo": "https://github.com/BookStackApp/BookStack",
+      "license": "MIT",
+      "url": "http://localhost:5920",
+      "probe": "http://localhost:5920",
+      "first_run": "Default local login: admin@admin.com / password (change immediately in Settings).",
+      "ram_mb": 500
+    },
+    "docuseal": {
+      "name": "DocuSeal",
+      "role": "Open-source DocuSign alternative for $750 Audit SOWs & 100% credit contracts",
+      "icon": "✍️",
+      "stack": "A",
+      "repo": "https://github.com/docusealco/docuseal",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:5930",
+      "probe": "http://localhost:5930",
+      "first_run": "Create your admin account on first visit and upload your $750 Audit SOW PDF template.",
+      "ram_mb": 450
+    },
+    "excalidraw": {
+      "name": "Excalidraw",
+      "role": "Live interactive whiteboard for 360° workflow & bottleneck architecture mapping",
+      "icon": "🗺️",
+      "stack": "B",
+      "repo": "https://github.com/excalidraw/excalidraw",
+      "license": "MIT",
+      "url": "http://localhost:6000",
+      "probe": "http://localhost:6000",
+      "first_run": "Instant zero-login whiteboard — sketch current vs. sovereign AI target architectures live with clients.",
+      "ram_mb": 150
+    },
+    "grist": {
+      "name": "Grist",
+      "role": "Open-source relational spreadsheet & interactive SaaS-savings ROI modeler",
+      "icon": "📊",
+      "stack": "B",
+      "repo": "https://github.com/gristlabs/grist-core",
+      "license": "Apache-2.0",
+      "url": "http://localhost:6010",
+      "probe": "http://localhost:6010/status",
+      "first_run": "Opens directly into your local Grist workspace — import CSVs or build live ROI & payback calculators.",
+      "ram_mb": 450
+    },
+    "stirling-pdf": {
+      "name": "Stirling-PDF",
+      "role": "Self-hosted executive audit PDF compiler, merger, watermarker & redactor",
+      "icon": "📄",
+      "stack": "B",
+      "repo": "https://github.com/Stirling-Tools/Stirling-PDF",
+      "license": "GPL-3.0",
+      "url": "http://localhost:6020",
+      "probe": "http://localhost:6020/api/v1/info/status",
+      "first_run": "Zero login required — merge scorecards, diagrams, and SOWs into branded executive PDFs locally.",
+      "ram_mb": 650
+    },
+    "kimai": {
+      "name": "Kimai Billing",
+      "role": "Audit time tracking, $750 flat invoicing & 100% upgrade credit ledger",
+      "icon": "🧾",
+      "stack": "B",
+      "repo": "https://github.com/kimai/kimai",
+      "license": "MIT",
+      "url": "http://localhost:6030",
+      "probe": "http://localhost:6030",
+      "first_run": "Log in with admin@techstarz101.local and KIMAI_ADMIN_PASSWORD from tools/kimai/.env.",
+      "ram_mb": 550
+    }
+  }
+}

@@ -1,0 +1,11 @@
+# Excalidraw — Live Bottleneck & Architecture Whiteboard (Stack B)
+# Upstream: https://github.com/excalidraw/excalidraw
+# Local URL: http://localhost:6000
+name: ts101-excalidraw
+
+services:
+  excalidraw:
+    image: excalidraw/excalidraw:latest
+    restart: unless-stopped
+    ports:
+      - "6000:80"

@@ -1,0 +1,46 @@
+# BookStack — Client 360° Audit Report & Roadmap Portal (Stack A)
+# Upstream: https://github.com/BookStackApp/BookStack
+# Local URL: http://localhost:5920 (default login: admin@admin.com / password)
+name: ts101-bookstack
+
+services:
+  bookstack:
+    image: lscr.io/linuxserver/bookstack:latest
+    restart: unless-stopped
+    ports:
+      - "5920:80"
+    environment:
+      PUID: "1000"
+      PGID: "1000"
+      APP_URL: http://localhost:5920
+      APP_KEY: ${BOOKSTACK_APP_KEY:?run the hub once to generate .env}
+      DB_HOST: bookstack-db
+      DB_PORT: "3306"
+      DB_USER: bookstack
+      DB_PASS: ${BOOKSTACK_DB_PASSWORD}
+      DB_DATABASE: bookstack
+    volumes:
+      - bookstack-config:/config
+    depends_on:
+      bookstack-db:
+        condition: service_healthy
+
+  bookstack-db:
+    image: mariadb:11
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: ${BOOKSTACK_DB_ROOT_PASSWORD}
+      MARIADB_DATABASE: bookstack
+      MARIADB_USER: bookstack
+      MARIADB_PASSWORD: ${BOOKSTACK_DB_PASSWORD}
+    volumes:
+      - bookstack-db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+volumes:
+  bookstack-config:
+  bookstack-db:

@@ -1,0 +1,9 @@
+{
+  "name": "Techstarz101 Stack B - Grist ROI -> Stirling-PDF Deck -> Kimai $750 Credit Invoice",
+  "steps": [
+    { "step": 1, "tool": "excalidraw", "endpoint": "http://localhost:6000", "action": "Export current vs. target architecture PNG/SVG" },
+    { "step": 2, "tool": "grist", "endpoint": "http://localhost:6010/api/docs", "action": "Calculate 3-year SaaS savings & labor ROI table" },
+    { "step": 3, "tool": "stirling-pdf", "endpoint": "http://localhost:6020/api/v1/general/merge-pdfs", "action": "Assemble branded 360° Executive Audit PDF" },
+    { "step": 4, "tool": "kimai", "endpoint": "http://localhost:6030/api/invoices", "action": "Issue $750 Audit invoice tagged 100% Creditable" }
+  ]
+}

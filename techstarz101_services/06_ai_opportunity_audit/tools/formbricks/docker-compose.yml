@@ -1,0 +1,39 @@
+# Formbricks — 360° Operational Discovery Surveys (Stack A)
+# Upstream: https://github.com/formbricks/formbricks
+# Local URL: http://localhost:5900
+name: ts101-formbricks
+
+services:
+  formbricks:
+    image: ghcr.io/formbricks/formbricks:latest
+    restart: unless-stopped
+    ports:
+      - "5900:3000"
+    environment:
+      WEBAPP_URL: http://localhost:5900
+      NEXTAUTH_URL: http://localhost:5900
+      DATABASE_URL: postgresql://formbricks:${FB_DB_PASSWORD:?run the hub once to generate .env}@fb-db:5432/formbricks
+      NEXTAUTH_SECRET: ${FB_NEXTAUTH_SECRET}
+      ENCRYPTION_KEY: ${FB_ENCRYPTION_KEY}
+      CRON_SECRET: ${FB_CRON_SECRET}
+    depends_on:
+      fb-db:
+        condition: service_healthy
+
+  fb-db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: formbricks
+      POSTGRES_USER: formbricks
+      POSTGRES_PASSWORD: ${FB_DB_PASSWORD}
+    volumes:
+      - fb-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U formbricks -d formbricks"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  fb-db:
