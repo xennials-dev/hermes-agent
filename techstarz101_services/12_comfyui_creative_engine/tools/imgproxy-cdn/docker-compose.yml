@@ -1,0 +1,10 @@
+services:
+  imgproxy:
+    image: darthsim/imgproxy:latest
+    container_name: ts101_s12_imgproxy
+    restart: unless-stopped
+    ports:
+      - "6930:8080"
+    environment:
+      IMGPROXY_LOCAL_FILESYSTEM_ROOT: /data
+      IMGPROXY_USE_ETAG: "true"

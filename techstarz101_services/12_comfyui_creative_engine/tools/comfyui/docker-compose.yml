@@ -1,0 +1,13 @@
+services:
+  comfyui:
+    image: yanwk/comfyui-boot:cu124-slim
+    container_name: ts101_s12_comfyui
+    restart: unless-stopped
+    ports:
+      - "6900:8188"
+    environment:
+      CLI_ARGS: "--listen 0.0.0.0 --port 8188"
+    volumes:
+      - comfyui_storage:/root
+volumes:
+  comfyui_storage:

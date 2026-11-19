@@ -1,0 +1,124 @@
+{
+  "service": "ComfyUI Creative Engine",
+  "service_id": "TS101-SRV-12",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Node-Based Generative Product Visual & Video Studio",
+      "tagline": "ComfyUI runs reproducible Flux/SDXL & video node graphs, Rembg cuts product backgrounds cleanly, MinIO stores S3 assets, imgproxy renders WebP/AVIF ad variants on the fly.",
+      "tools": [
+        "comfyui",
+        "rembg-api",
+        "minio-assets",
+        "imgproxy-cdn"
+      ]
+    },
+    "B": {
+      "name": "Stack B: Canvas Inpainting, Headless Video Assembly & Batch DAM",
+      "tagline": "InvokeAI provides an infinite canvas for brand retouching, NCA FFmpeg API stitches 9:16/16:9 product reels, PhotoPrism indexes generated shoots, n8n automates SKU batches.",
+      "tools": [
+        "invokeai",
+        "nca-video-api",
+        "photoprism-dam",
+        "n8n-creative"
+      ]
+    }
+  },
+  "tools": {
+    "comfyui": {
+      "name": "ComfyUI Node Studio",
+      "role": "Programmable node-graph engine for Flux/SDXL product photography & AI video generation",
+      "icon": "\ud83c\udfa8",
+      "stack": "A",
+      "repo": "https://github.com/comfyanonymous/ComfyUI",
+      "license": "GPL-3.0",
+      "url": "http://localhost:6900",
+      "probe": "http://localhost:6900",
+      "first_run": "Load any generated JSON workflow from the Hub or POST directly to /prompt for automated batch rendering.",
+      "ram_mb": 2400
+    },
+    "rembg-api": {
+      "name": "Rembg Cutout API",
+      "role": "Zero-click AI background removal server & web UI for clean e-commerce product cutouts",
+      "icon": "\u2702\ufe0f",
+      "stack": "A",
+      "repo": "https://github.com/danielgatis/rembg",
+      "license": "MIT",
+      "url": "http://localhost:6910",
+      "probe": "http://localhost:6910",
+      "first_run": "Upload a product photo in the web UI or POST multipart/form-data to /api/remove for transparent PNGs.",
+      "ram_mb": 650
+    },
+    "minio-assets": {
+      "name": "MinIO Creative Vault",
+      "role": "Self-hosted S3-compatible asset storage & web console for raw renders and campaign kits",
+      "icon": "\ud83e\udea3",
+      "stack": "A",
+      "repo": "https://github.com/minio/minio",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:6920",
+      "probe": "http://localhost:6921/minio/health/live",
+      "first_run": "Console on :6920 (S3 API on :6921). Default login: minioadmin / minioadmin123 (configurable in .env).",
+      "ram_mb": 350
+    },
+    "imgproxy-cdn": {
+      "name": "imgproxy Ad Resizer",
+      "role": "Ultra-fast on-the-fly image resizing, smart cropping, WebP/AVIF & watermark processor",
+      "icon": "\ud83d\uddbc\ufe0f",
+      "stack": "A",
+      "repo": "https://github.com/imgproxy/imgproxy",
+      "license": "MIT",
+      "url": "http://localhost:6930/health",
+      "probe": "http://localhost:6930/health",
+      "first_run": "Transform any MinIO asset URL into 1:1, 9:16, or 16:9 ad creatives via /insecure/rs:fill:1080:1080/plain/<url>.",
+      "ram_mb": 200
+    },
+    "invokeai": {
+      "name": "InvokeAI Infinite Canvas",
+      "role": "Interactive generative canvas with inpainting, outpainting, ControlNet & brand boards",
+      "icon": "\ud83d\udd8c\ufe0f",
+      "stack": "B",
+      "repo": "https://github.com/invoke-ai/InvokeAI",
+      "license": "Apache-2.0",
+      "url": "http://localhost:7000",
+      "probe": "http://localhost:7000",
+      "first_run": "Open the Unified Canvas to refine product lighting, swap backgrounds, and manage brand LoRAs visually.",
+      "ram_mb": 2200
+    },
+    "nca-video-api": {
+      "name": "NCA FFmpeg Video API",
+      "role": "Headless FFmpeg REST API for caption burn-in, reel stitching & 9:16/16:9 reformatting",
+      "icon": "\ud83c\udfac",
+      "stack": "B",
+      "repo": "https://github.com/stephengpope/no-code-architects-toolkit",
+      "license": "GPL-2.0",
+      "url": "http://localhost:7010",
+      "probe": "http://localhost:7010",
+      "first_run": "POST JSON jobs from n8n to stitch ComfyUI clips, burn subtitles, and normalize audio into ad-ready MP4s.",
+      "ram_mb": 550
+    },
+    "photoprism-dam": {
+      "name": "PhotoPrism Visual DAM",
+      "role": "AI-tagged digital asset library for reviewing, approving & searching generated product shoots",
+      "icon": "\ud83d\udcf8",
+      "stack": "B",
+      "repo": "https://github.com/photoprism/photoprism",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:7020",
+      "probe": "http://localhost:7020/api/v1/status",
+      "first_run": "Local login: admin / admin12345 (set in .env). Browse, tag, and share client-approved creative galleries.",
+      "ram_mb": 900
+    },
+    "n8n-creative": {
+      "name": "n8n Creative Orchestrator",
+      "role": "Automated SKU-to-Ad pipeline wiring ComfyUI, Rembg, FFmpeg Video API & MinIO storage",
+      "icon": "\ud83d\udd00",
+      "stack": "B",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:7030",
+      "probe": "http://localhost:7030/healthz",
+      "first_run": "Import /automations/stack_a_comfyui_product_batch.n8n.json to turn product briefs into ready ad packs.",
+      "ram_mb": 400
+    }
+  }
+}

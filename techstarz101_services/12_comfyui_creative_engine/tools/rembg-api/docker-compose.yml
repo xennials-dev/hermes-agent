@@ -1,0 +1,8 @@
+services:
+  rembg:
+    image: danielgatis/rembg:latest
+    container_name: ts101_s12_rembg
+    restart: unless-stopped
+    command: s --host 0.0.0.0 --port 7000
+    ports:
+      - "6910:7000"

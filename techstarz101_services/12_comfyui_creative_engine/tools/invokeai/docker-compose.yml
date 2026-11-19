@@ -1,0 +1,11 @@
+services:
+  invokeai:
+    image: ghcr.io/invoke-ai/invokeai:main
+    container_name: ts101_s12_invokeai
+    restart: unless-stopped
+    ports:
+      - "7000:9090"
+    volumes:
+      - invokeai_data:/invokeai
+volumes:
+  invokeai_data:

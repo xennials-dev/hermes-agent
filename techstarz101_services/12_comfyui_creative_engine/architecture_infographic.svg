@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="Inter, Segoe UI, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="100%" stop-color="#13091f"/>
+    </linearGradient>
+    <linearGradient id="fuchGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d946ef"/>
+      <stop offset="100%" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="ambGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="20" y="20" width="1160" height="635" rx="22" fill="none" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="44" y="42" width="142" height="28" rx="14" fill="#d946ef" fill-opacity="0.18" stroke="#d946ef" stroke-opacity="0.5"/>
+  <text x="115" y="61" text-anchor="middle" fill="#f0abfc" font-size="12" font-weight="700">TS101-SRV-12</text>
+  <text x="204" y="62" fill="#94a3b8" font-size="13" font-weight="600">TECHSTARZ101 · 100% OPEN-SOURCE GENERATIVE CREATIVE ENGINE</text>
+  <text x="44" y="108" fill="#ffffff" font-size="34" font-weight="800">ComfyUI Creative Engine — Product Visual &amp; Video Pipeline</text>
+  <text x="44" y="135" fill="#94a3b8" font-size="15">8 Standalone Docker Repos · Programmable Node Graphs · ~$0.002/Render · Clickable /t/&lt;id&gt; Launchers</text>
+
+  <!-- Pipeline Strip -->
+  <rect x="44" y="156" width="1112" height="58" rx="14" fill="#0b1220" stroke="#1e293b"/>
+  <text x="64" y="182" fill="#f0abfc" font-size="12" font-weight="700">AUTOMATED SKU-TO-AD CREATIVE PIPELINE</text>
+  <text x="64" y="201" fill="#cbd5e1" font-size="13">SKU Brief  →  ComfyUI (:6900)  →  Rembg Cutout (:6910)  →  MinIO + imgproxy (:6920/:6930)  →  NCA 9:16 Reel (:7010)</text>
+  <rect x="965" y="169" width="171" height="32" rx="8" fill="#d946ef" fill-opacity="0.2" stroke="#d946ef"/>
+  <text x="1050" y="190" text-anchor="middle" fill="#f5d0fe" font-size="13" font-weight="800">99.4% COST SAVED</text>
+
+  <!-- Stack A -->
+  <rect x="44" y="234" width="540" height="316" rx="18" fill="#170922" stroke="#d946ef" stroke-opacity="0.45" stroke-width="1.5"/>
+  <rect x="44" y="234" width="540" height="44" rx="18" fill="url(#fuchGrad)" fill-opacity="0.14"/>
+  <text x="64" y="262" fill="#f0abfc" font-size="16" font-weight="800">STACK A · Node-Based Visual &amp; CDN Pipeline</text>
+
+  <rect x="64" y="294" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="80" y="320" fill="#ffffff" font-size="15" font-weight="700">🎨 ComfyUI Studio</text>
+  <text x="80" y="340" fill="#f0abfc" font-size="12" font-family="monospace">:6900  ·  /t/comfyui</text>
+  <text x="80" y="362" fill="#94a3b8" font-size="12">Flux / SDXL / Video node</text>
+  <text x="80" y="380" fill="#94a3b8" font-size="12">graphs &amp; REST API · GPL-3.0</text>
+
+  <rect x="324" y="294" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="340" y="320" fill="#ffffff" font-size="15" font-weight="700">✂️ Rembg Cutout API</text>
+  <text x="340" y="340" fill="#f0abfc" font-size="12" font-family="monospace">:6910  ·  /t/rembg-api</text>
+  <text x="340" y="362" fill="#94a3b8" font-size="12">Zero-click AI product</text>
+  <text x="340" y="380" fill="#94a3b8" font-size="12">background removal · MIT</text>
+
+  <rect x="64" y="420" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="80" y="446" fill="#ffffff" font-size="15" font-weight="700">🪣 MinIO Asset Vault</text>
+  <text x="80" y="466" fill="#f0abfc" font-size="12" font-family="monospace">:6920  ·  /t/minio-assets</text>
+  <text x="80" y="488" fill="#94a3b8" font-size="12">Self-hosted S3 buckets</text>
+  <text x="80" y="506" fill="#94a3b8" font-size="12">for raw renders · AGPL-3.0</text>
+
+  <rect x="324" y="420" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="340" y="446" fill="#ffffff" font-size="15" font-weight="700">🖼️ imgproxy Resizer</text>
+  <text x="340" y="466" fill="#f0abfc" font-size="12" font-family="monospace">:6930  ·  /t/imgproxy-cdn</text>
+  <text x="340" y="488" fill="#94a3b8" font-size="12">On-the-fly 1:1 / 9:16 / 16:9</text>
+  <text x="340" y="506" fill="#94a3b8" font-size="12">WebP &amp; AVIF CDN · MIT</text>
+
+  <!-- Stack B -->
+  <rect x="616" y="234" width="540" height="316" rx="18" fill="#1a1207" stroke="#f59e0b" stroke-opacity="0.45" stroke-width="1.5"/>
+  <rect x="616" y="234" width="540" height="44" rx="18" fill="url(#ambGrad)" fill-opacity="0.14"/>
+  <text x="636" y="262" fill="#fde68a" font-size="16" font-weight="800">STACK B · Canvas Inpainting, Video Reels &amp; DAM</text>
+
+  <rect x="636" y="294" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="652" y="320" fill="#ffffff" font-size="15" font-weight="700">🖌️ InvokeAI Canvas</text>
+  <text x="652" y="340" fill="#fde68a" font-size="12" font-family="monospace">:7000  ·  /t/invokeai</text>
+  <text x="652" y="362" fill="#94a3b8" font-size="12">Unified inpainting canvas</text>
+  <text x="652" y="380" fill="#94a3b8" font-size="12">&amp; brand boards · Apache-2.0</text>
+
+  <rect x="896" y="294" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="912" y="320" fill="#ffffff" font-size="15" font-weight="700">🎬 NCA FFmpeg API</text>
+  <text x="912" y="340" fill="#fde68a" font-size="12" font-family="monospace">:7010  ·  /t/nca-video-api</text>
+  <text x="912" y="362" fill="#94a3b8" font-size="12">Headless reel stitching &amp;</text>
+  <text x="912" y="380" fill="#94a3b8" font-size="12">caption burn-in · GPL-2.0</text>
+
+  <rect x="636" y="420" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="652" y="446" fill="#ffffff" font-size="15" font-weight="700">📸 PhotoPrism DAM</text>
+  <text x="652" y="466" fill="#fde68a" font-size="12" font-family="monospace">:7020  ·  /t/photoprism-dam</text>
+  <text x="652" y="488" fill="#94a3b8" font-size="12">AI-tagged visual library</text>
+  <text x="652" y="506" fill="#94a3b8" font-size="12">for shoot review · AGPL-3.0</text>
+
+  <rect x="896" y="420" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="912" y="446" fill="#ffffff" font-size="15" font-weight="700">🔀 n8n Creative Hub</text>
+  <text x="912" y="466" fill="#fde68a" font-size="12" font-family="monospace">:7030  ·  /t/n8n-creative</text>
+  <text x="912" y="488" fill="#94a3b8" font-size="12">Batch SKU → ComfyUI →</text>
+  <text x="912" y="506" fill="#94a3b8" font-size="12">FFmpeg Reel → DAM sync</text>
+
+  <!-- Footer -->
+  <rect x="44" y="572" width="1112" height="58" rx="14" fill="#0b1220" stroke="#1e293b"/>
+  <text x="64" y="606" fill="#e2e8f0" font-size="14" font-weight="700">Modular Hub: http://localhost:7876  ·  Live ComfyUI JSON Graph Builder  ·  Independent or Stacked Boot</text>
+  <text x="1136" y="606" text-anchor="end" fill="#f0abfc" font-size="14" font-weight="800">techstarz101.com</text>
+</svg>

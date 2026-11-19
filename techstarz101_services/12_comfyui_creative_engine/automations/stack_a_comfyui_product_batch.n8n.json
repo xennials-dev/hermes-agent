@@ -1,0 +1,42 @@
+{
+  "name": "Techstarz101 S12 Stack A - SKU Brief to ComfyUI, Rembg & MinIO CDN",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "creative-sku-batch", "responseMode": "lastNode" },
+      "id": "sku-hook",
+      "name": "Product SKU Brief Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:6900/prompt",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"prompt\": $json.body.comfyui_api_workflow } }}"
+      },
+      "id": "comfy-queue",
+      "name": "Queue ComfyUI Render (:6900)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ 'http://host.docker.internal:6930/insecure/rs:fill:1080:1080/plain/http://host.docker.internal:6921/creative-assets/' + ($json.prompt_id || 'latest') + '.png@webp' }}"
+      },
+      "id": "imgproxy-var",
+      "name": "Generate WebP Ad Variant via imgproxy (:6930)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [800, 300]
+    }
+  ],
+  "connections": {
+    "Product SKU Brief Webhook": { "main": [[{ "node": "Queue ComfyUI Render (:6900)", "type": "main", "index": 0 }]] },
+    "Queue ComfyUI Render (:6900)": { "main": [[{ "node": "Generate WebP Ad Variant via imgproxy (:6930)", "type": "main", "index": 0 }]] }
+  }
+}

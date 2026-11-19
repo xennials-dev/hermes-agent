@@ -1,0 +1,45 @@
+{
+  "name": "Techstarz101 S12 Stack B - Multi-Shot Reel Assembly to PhotoPrism DAM",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "assemble-product-reel", "responseMode": "lastNode" },
+      "id": "reel-hook",
+      "name": "Reel Assembly Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7010/v1/video/concatenate",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"video_urls\": $json.body.clips, \"aspect_ratio\": \"9:16\", \"burn_captions\": true } }}"
+      },
+      "id": "nca-stitch",
+      "name": "Stitch 9:16 Reel via NCA FFmpeg API (:7010)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7020/api/v1/index",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"path\": \"/\", \"rescan\": true } }}"
+      },
+      "id": "photoprism-index",
+      "name": "Trigger PhotoPrism DAM Index (:7020)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [820, 300]
+    }
+  ],
+  "connections": {
+    "Reel Assembly Webhook": { "main": [[{ "node": "Stitch 9:16 Reel via NCA FFmpeg API (:7010)", "type": "main", "index": 0 }]] },
+    "Stitch 9:16 Reel via NCA FFmpeg API (:7010)": { "main": [[{ "node": "Trigger PhotoPrism DAM Index (:7020)", "type": "main", "index": 0 }]] }
+  }
+}

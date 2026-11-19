@@ -1,0 +1,9 @@
+services:
+  nca-toolkit:
+    image: stephengpope/no-code-architects-toolkit:latest
+    container_name: ts101_s12_nca_video_api
+    restart: unless-stopped
+    ports:
+      - "7010:8080"
+    environment:
+      API_KEY: ${NCA_API_KEY}

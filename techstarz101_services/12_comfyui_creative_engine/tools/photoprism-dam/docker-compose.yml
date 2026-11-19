@@ -1,0 +1,17 @@
+services:
+  photoprism:
+    image: photoprism/photoprism:latest
+    container_name: ts101_s12_photoprism
+    restart: unless-stopped
+    ports:
+      - "7020:2342"
+    environment:
+      PHOTOPRISM_ADMIN_USER: admin
+      PHOTOPRISM_ADMIN_PASSWORD: ${PHOTOPRISM_ADMIN_PASSWORD}
+      PHOTOPRISM_SITE_URL: http://localhost:7020/
+    volumes:
+      - photoprism_originals:/photoprism/originals
+      - photoprism_storage:/photoprism/storage
+volumes:
+  photoprism_originals:
+  photoprism_storage:
