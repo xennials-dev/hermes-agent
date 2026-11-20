@@ -94,8 +94,8 @@ SHARED_LIVE_OVERRIDES: Dict[str, dict] = {
 # Wave 1: Lightweight VPS Wake-on-Click Open-Source Apps (90–450 MB RAM, auto-sleep after 30m idle)
 WAVE1_REPOS = {
     "https://github.com/gchq/cyberchef": ("cyberchef", 7620, "15_cyber_security_package/tools/cyberchef-soc"),
-    "https://github.com/vrana/adminer": ("adminer", 6210, "07_listmonk_email/tools/adminer"),
-    "https://github.com/axllent/mailpit": ("mailpit", 6220, "07_listmonk_email/tools/mailpit"),
+    "https://github.com/vrana/adminer": ("adminer", 6230, "07_listmonk_email/tools/adminer"),
+    "https://github.com/axllent/mailpit": ("mailpit", 6120, "07_listmonk_email/tools/mailpit"),
     "https://github.com/dani-garcia/vaultwarden": ("vaultwarden", 7610, "15_cyber_security_package/tools/vaultwarden-sec"),
     "https://github.com/excalidraw/excalidraw": ("excalidraw", 6000, "06_ai_opportunity_audit/tools/excalidraw"),
     "https://github.com/louislam/uptime-kuma": ("uptime-kuma", 7530, "15_cyber_security_package/tools/uptime-kuma-sec"),
