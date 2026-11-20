@@ -1,0 +1,13 @@
+services:
+  nocodb:
+    image: nocodb/nocodb:latest
+    container_name: ts101_s14_nocodb_dealroom
+    restart: unless-stopped
+    ports:
+      - "7410:8080"
+    environment:
+      NC_AUTH_JWT_SECRET: ${NC_AUTH_JWT_SECRET}
+    volumes:
+      - nocodb_dealroom_data:/usr/app/data
+volumes:
+  nocodb_dealroom_data:

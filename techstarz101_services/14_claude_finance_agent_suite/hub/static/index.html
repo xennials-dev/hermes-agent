@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service #14: Claude Finance Agent Suite — Techstarz101 Modular Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 bg-slate-950/90 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">TS101-SRV-14</span>
+          <span class="text-xs text-slate-400">2 Open-Source Stacks · 8 Standalone Repos · Official 10-Agent IB, PE &amp; KYC Suite</span>
+        </div>
+        <h1 class="text-2xl font-extrabold text-white mt-1">Claude Finance Agent Suite — Modular Hub</h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <div id="dockerPill" class="px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-slate-300 border border-slate-700">Checking Docker…</div>
+        <button id="dockerBtn" onclick="launchDocker()" class="hidden px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950">Start Docker Desktop</button>
+        <a href="/infographic.svg" target="_blank" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700">Architecture SVG</a>
+        <a href="/video/claude_finance_agent_suite_feature.mp4" target="_blank" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/15 hover:bg-amber-500/25 text-amber-300 border border-amber-500/30">Watch Feature Video ▶</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-10">
+    <!-- Stack Action Bar -->
+    <section class="bg-slate-900/70 border border-slate-800 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <h2 class="text-sm font-bold text-white">Click Any Repo Icon to Boot Individually — or Check Tools to Stack &amp; Automate</h2>
+        <p class="text-xs text-slate-400 mt-0.5">Every tool runs as its own standalone Docker Compose repo with a dedicated <code class="text-amber-300">/t/&lt;id&gt;</code> launch link.</p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button onclick="bootStack('A')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs">Boot Full Stack A</button>
+        <button onclick="bootStack('B')" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">Boot Full Stack B</button>
+        <button onclick="bootSelected()" class="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs">Boot Checked (<span id="selCount">0</span>)</button>
+        <button onclick="stopSelected()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-rose-600/80 text-slate-200 font-semibold text-xs">Stop Checked</button>
+      </div>
+    </section>
+
+    <!-- Live 10-Agent IB / PE / KYC Simulator -->
+    <section class="bg-gradient-to-br from-slate-900 via-slate-900 to-amber-950/25 border border-amber-500/30 rounded-2xl p-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-widest text-amber-400">Live Interactive Utility · Zero Docker Required</span>
+          <h2 class="text-xl font-bold text-white mt-0.5">🏦 Official 10-Agent IB / PE / KYC Deal Simulator (DCF, LBO &amp; AML)</h2>
+        </div>
+        <button id="dlMemoBtn" onclick="downloadMemo()" class="hidden text-xs px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold">Download IC Brief JSON ↓</button>
+      </div>
+
+      <div class="grid md:grid-cols-12 gap-4">
+        <div class="md:col-span-4 space-y-3">
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">Target Company</label>
+            <input id="fComp" value="Apex Industrial Automation Corp." class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white" />
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">Revenue ($M)</label>
+              <input id="fRev" type="number" step="0.5" value="85.0" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white" />
+            </div>
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">EBITDA ($M)</label>
+              <input id="fEbitda" type="number" step="0.5" value="21.5" class="w-full px-2.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white" />
+            </div>
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">Entry Mult</label>
+              <input id="fMult" type="number" step="0.5" value="9.0" class="w-full px-2 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white" />
+            </div>
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">Debt (x)</label>
+              <input id="fLev" type="number" step="0.5" value="4.5" class="w-full px-2 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white" />
+            </div>
+            <div>
+              <label class="text-xs text-slate-400 block mb-1">CAGR (%)</label>
+              <input id="fCagr" type="number" step="1" value="12" class="w-full px-2 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white" />
+            </div>
+          </div>
+          <div>
+            <label class="text-xs text-slate-400 block mb-1">UBO / Principal Name (KYC Screen)</label>
+            <input id="fUbo" value="Elena Rostova" class="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white" />
+          </div>
+          <button onclick="run10Agents()" class="w-full py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm">Run 10-Agent Diligence Suite ⚡</button>
+        </div>
+
+        <div class="md:col-span-8 bg-slate-950/90 border border-slate-800 rounded-xl p-4 space-y-3">
+          <div id="fKpis" class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800"><div class="text-[11px] text-slate-400">Entry EV</div><div class="text-base font-extrabold text-amber-300">—</div></div>
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800"><div class="text-[11px] text-slate-400">DCF Implied</div><div class="text-base font-extrabold text-cyan-300">—</div></div>
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800"><div class="text-[11px] text-slate-400">5-Yr MOIC / IRR</div><div class="text-base font-extrabold text-emerald-400">—</div></div>
+            <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800"><div class="text-[11px] text-slate-400">IC Verdict</div><div class="text-xs font-extrabold text-white mt-1">Ready</div></div>
+          </div>
+          <div id="fAgents" class="space-y-1.5 max-h-64 overflow-y-auto text-xs">
+            <div class="text-slate-400 p-3 text-center">Click <strong>Run 10-Agent Diligence Suite</strong> to execute all 10 IB, PE, DCF, LBO &amp; KYC agents.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stack A -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-amber-400">Stack A · Investment Banking, PE Research &amp; Valuation Modeling</span>
+          <h2 id="stackAName" class="text-xl font-bold text-white">Stack A</h2>
+          <p id="stackATagline" class="text-xs text-slate-400"></p>
+        </div>
+        <span class="text-xs text-slate-400 font-mono">Ports :7300 – :7330</span>
+      </div>
+      <div id="gridA" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- Stack B -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Stack B · KYC/AML Screening, Deal Room &amp; 10-Agent Audit Governance</span>
+          <h2 id="stackBName" class="text-xl font-bold text-white">Stack B</h2>
+          <p id="stackBTagline" class="text-xs text-slate-400"></p>
+        </div>
+        <span class="text-xs text-slate-400 font-mono">Ports :7400 – :7430</span>
+      </div>
+      <div id="gridB" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></div>
+    </section>
+
+    <!-- Automations & Media -->
+    <section class="grid md:grid-cols-2 gap-6">
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-2">🔀 Ready-to-Import 10-Agent Finance Workflows</h3>
+        <p class="text-xs text-slate-400 mb-4">Import directly into your standalone n8n 10-Agent Orchestrator (<code class="text-amber-300">:7430</code>) to automate CIM parsing, KYC screening, and IC memo drafting.</p>
+        <div class="space-y-2.5">
+          <a href="/automations/stack_a_10agent_ic_memo.n8n.json" download class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500/50">
+            <div>
+              <div class="text-sm font-semibold text-white">Stack A: CIM / 10-K → Docling → OpenBB Comps → IC Memo</div>
+              <div class="text-xs text-slate-400">Deal webhook → Docling (:7320) → OpenBB (:7300) → Log trace in Langfuse (:7420)</div>
+            </div>
+            <span class="text-xs font-bold text-amber-400">JSON ↓</span>
+          </a>
+          <a href="/automations/stack_b_kyc_aml_dealroom.n8n.json" download class="flex items-center justify-between p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500/50">
+            <div>
+              <div class="text-sm font-semibold text-white">Stack B: Counterparty / UBO → Yente OFAC/PEP → NocoDB Deal Room</div>
+              <div class="text-xs text-slate-400">Screen UBO via OpenSanctions Yente (:7400) → Write compliance status to NocoDB (:7410)</div>
+            </div>
+            <span class="text-xs font-bold text-emerald-400">JSON ↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6">
+        <h3 class="text-base font-bold text-white mb-2">🎬 Architecture &amp; Product Feature Video</h3>
+        <p class="text-xs text-slate-400 mb-4">Institutional 10-agent IB, PE &amp; KYC diligence architecture with immutable Langfuse audit trails and zero external data retention.</p>
+        <div class="grid grid-cols-2 gap-3">
+          <a href="/infographic.svg" target="_blank" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500/50 text-center">
+            <div class="text-2xl mb-1">🗺️</div>
+            <div class="text-xs font-bold text-white">1200×675 Vector SVG</div>
+            <div class="text-[11px] text-slate-400">10-Agent Stack Blueprint</div>
+          </a>
+          <a href="/video/claude_finance_agent_suite_feature.mp4" target="_blank" class="p-4 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500/50 text-center">
+            <div class="text-2xl mb-1">🎥</div>
+            <div class="text-xs font-bold text-white">1080×1080 MP4</div>
+            <div class="text-[11px] text-slate-400">Product Feature Demo</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let REG = null;
+    const SELECTED = new Set();
+    let lastMemo = null;
+
+    async function loadHub() {
+      REG = await (await fetch("/api/registry")).json();
+      document.getElementById("stackAName").textContent = REG.stacks.A.name;
+      document.getElementById("stackATagline").textContent = REG.stacks.A.tagline;
+      document.getElementById("stackBName").textContent = REG.stacks.B.name;
+      document.getElementById("stackBTagline").textContent = REG.stacks.B.tagline;
+      renderGrid("A", "gridA");
+      renderGrid("B", "gridB");
+      refreshStatus();
+      setInterval(refreshStatus, 4000);
+    }
+
+    function renderGrid(stackKey, elId) {
+      const container = document.getElementById(elId);
+      container.innerHTML = "";
+      for (const tid of REG.stacks[stackKey].tools) {
+        const t = REG.tools[tid];
+        const card = document.createElement("div");
+        card.className = "bg-slate-900/90 border border-slate-800 hover:border-amber-500/50 rounded-2xl p-4 flex flex-col justify-between transition";
+        card.innerHTML = `
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <a href="/t/${tid}" target="_blank" title="Click to boot & open ${t.name}"
+                 class="w-12 h-12 rounded-xl bg-amber-500/15 border border-amber-500/30 hover:bg-amber-500/30 flex items-center justify-center text-2xl transition">
+                ${t.icon}
+              </a>
+              <div class="flex items-center gap-2">
+                <span id="dot-${tid}" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400">READY</span>
+                <input type="checkbox" onchange="toggleSel('${tid}', this.checked)" class="w-4 h-4 accent-amber-500 cursor-pointer" title="Include in stack boot" />
+              </div>
+            </div>
+            <a href="/t/${tid}" target="_blank" class="text-base font-bold text-white hover:text-amber-300 transition">${t.name}</a>
+            <p class="text-xs text-slate-400 mt-1 leading-relaxed">${t.role}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+            <div class="flex items-center justify-between text-[11px] text-slate-400">
+              <span>${t.license}</span>
+              <span class="font-mono text-amber-300">${t.url.replace("http://localhost", "")}</span>
+            </div>
+            <div class="flex gap-2">
+              <a href="/t/${tid}" target="_blank" class="flex-1 text-center py-1.5 rounded-lg bg-amber-500/15 hover:bg-amber-500 hover:text-slate-950 text-amber-300 font-bold text-xs transition">Launch App →</a>
+              <a href="${t.repo}" target="_blank" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">Repo ↗</a>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      }
+    }
+
+    function toggleSel(tid, checked) {
+      if (checked) SELECTED.add(tid); else SELECTED.delete(tid);
+      document.getElementById("selCount").textContent = SELECTED.size;
+    }
+
+    async function refreshStatus() {
+      try {
+        const st = await (await fetch("/api/status")).json();
+        const pill = document.getElementById("dockerPill");
+        const dbtn = document.getElementById("dockerBtn");
+        if (st.docker_ready) {
+          pill.textContent = "Docker Desktop: Ready";
+          pill.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30";
+          dbtn.classList.add("hidden");
+        } else {
+          pill.textContent = "Docker Desktop: Stopped";
+          pill.className = "px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-500/15 text-rose-300 border border-rose-500/30";
+          dbtn.classList.remove("hidden");
+        }
+        for (const [tid, info] of Object.entries(st.tools)) {
+          const dot = document.getElementById(`dot-${tid}`);
+          if (!dot) continue;
+          if (info.up) {
+            dot.textContent = "LIVE";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300";
+          } else if (info.state === "starting") {
+            dot.textContent = "BOOTING";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300";
+          } else {
+            dot.textContent = "READY";
+            dot.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400";
+          }
+        }
+      } catch (e) {}
+    }
+
+    async function bootStack(k) {
+      await fetch("/api/stack/start", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tools: REG.stacks[k].tools }) });
+      refreshStatus();
+    }
+
+    async function bootSelected() {
+      if (!SELECTED.size) return alert("Check at least one tool card first.");
+      await fetch("/api/stack/start", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tools: [...SELECTED] }) });
+      refreshStatus();
+    }
+
+    async function stopSelected() {
+      if (!SELECTED.size) return alert("Check at least one tool card first.");
+      await fetch("/api/stack/stop", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ tools: [...SELECTED] }) });
+      refreshStatus();
+    }
+
+    async function launchDocker() {
+      await fetch("/api/docker/launch", { method: "POST" });
+      alert("Launching Docker Desktop… wait ~15 seconds for the status badge to turn green.");
+    }
+
+    async function run10Agents() {
+      const resp = await fetch("/api/finance/run-10-agents", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          company_name: document.getElementById("fComp").value,
+          revenue_m: parseFloat(document.getElementById("fRev").value || "85"),
+          ebitda_m: parseFloat(document.getElementById("fEbitda").value || "21.5"),
+          entry_multiple: parseFloat(document.getElementById("fMult").value || "9"),
+          leverage_x: parseFloat(document.getElementById("fLev").value || "4.5"),
+          ebitda_cagr_pct: parseFloat(document.getElementById("fCagr").value || "12"),
+          ubo_name: document.getElementById("fUbo").value,
+        }),
+      });
+      const data = await resp.json();
+      lastMemo = data;
+      document.getElementById("dlMemoBtn").classList.remove("hidden");
+      const s = data.summary;
+      document.getElementById("fKpis").innerHTML = `
+        <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800"><div class="text-[11px] text-slate-400">Entry EV</div><div class="text-base font-extrabold text-amber-300">$${s.entry_ev_m}M</div></div>
+        <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800"><div class="text-[11px] text-slate-400">DCF Implied</div><div class="text-base font-extrabold text-cyan-300">$${s.dcf_implied_ev_m}M</div></div>
+        <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800"><div class="text-[11px] text-slate-400">5-Yr MOIC / IRR</div><div class="text-base font-extrabold text-emerald-400">${s.moic}x · ${s.irr_pct}%</div></div>
+        <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-800"><div class="text-[11px] text-slate-400">IC Verdict</div><div class="text-xs font-extrabold text-white mt-1">${s.ic_verdict}</div></div>
+      `;
+      document.getElementById("fAgents").innerHTML = data.agents.map(a => `
+        <div class="p-2 rounded-lg bg-slate-900 border border-slate-800 flex items-start justify-between gap-2">
+          <div>
+            <span class="font-mono font-bold text-amber-300">${a.id}</span>
+            <span class="text-[10px] text-slate-400 ml-2">${a.tool}</span>
+            <div class="text-slate-200 mt-0.5">${a.output}</div>
+          </div>
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold ${a.status === 'PASS' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}">${a.status}</span>
+        </div>
+      `).join("");
+    }
+
+    function downloadMemo() {
+      if (!lastMemo) return;
+      const blob = new Blob([JSON.stringify(lastMemo, null, 2)], { type: "application/json" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "ic_10agent_diligence_memo.json";
+      a.click();
+    }
+
+    loadHub();
+  </script>
+</body>
+</html>

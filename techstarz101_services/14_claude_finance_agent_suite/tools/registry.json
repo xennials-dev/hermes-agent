@@ -1,0 +1,124 @@
+{
+  "service": "Claude Finance Agent Suite",
+  "service_id": "TS101-SRV-14",
+  "stacks": {
+    "A": {
+      "name": "Stack A: Investment Banking, PE Research & Valuation Modeling",
+      "tagline": "OpenBB streams market & SEC data, Jupyter runs reproducible DCF/LBO models, Docling parses 10-Ks & CIM tables at 93.6% accuracy, Metabase builds IC portfolio dashboards.",
+      "tools": [
+        "openbb-platform",
+        "jupyter-quant",
+        "docling-filings",
+        "metabase-ic"
+      ]
+    },
+    "B": {
+      "name": "Stack B: KYC/AML Screening, Deal Room & 10-Agent Audit Governance",
+      "tagline": "OpenSanctions Yente screens OFAC/PEP/UBOs in real time, NocoDB manages VDR diligence & LP deal pipelines, Langfuse logs immutable agent citations, n8n orchestrates all 10 agents.",
+      "tools": [
+        "yente-kyc",
+        "nocodb-dealroom",
+        "langfuse-audit",
+        "n8n-finance"
+      ]
+    }
+  },
+  "tools": {
+    "openbb-platform": {
+      "name": "OpenBB Financial API",
+      "role": "Open-source market data, SEC EDGAR filings, comps & macro REST API",
+      "icon": "\ud83d\udcc8",
+      "stack": "A",
+      "repo": "https://github.com/OpenBB-finance/OpenBB",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:7300/docs",
+      "probe": "http://localhost:7300/docs",
+      "first_run": "Open Swagger UI at /docs to query equity comps, macro indicators, and SEC filings from finance agents.",
+      "ram_mb": 900
+    },
+    "jupyter-quant": {
+      "name": "Jupyter Quant & LBO Lab",
+      "role": "Reproducible Python DCF, LBO sensitivity & Monte Carlo valuation notebooks",
+      "icon": "\ud83e\uddee",
+      "stack": "A",
+      "repo": "https://github.com/jupyter/docker-stacks",
+      "license": "BSD-3-Clause",
+      "url": "http://localhost:7310/lab",
+      "probe": "http://localhost:7310",
+      "first_run": "Passwordless local JupyterLab (token disabled locally) for auditable Python valuation models.",
+      "ram_mb": 850
+    },
+    "docling-filings": {
+      "name": "Docling 10-K / CIM Parser",
+      "role": "93.6% table-accuracy PDF parser for 10-Ks, CIMs, QoE reports & balance sheets",
+      "icon": "\ud83d\udcd1",
+      "stack": "A",
+      "repo": "https://github.com/docling-project/docling-serve",
+      "license": "MIT",
+      "url": "http://localhost:7320/ui",
+      "probe": "http://localhost:7320/health",
+      "first_run": "Upload multi-column financial statements at /ui or POST to /v1/convert/source from n8n.",
+      "ram_mb": 1600
+    },
+    "metabase-ic": {
+      "name": "Metabase IC Dashboards",
+      "role": "Investment Committee KPI dashboards, portfolio rollups & cohort scorecards",
+      "icon": "\ud83d\udcca",
+      "stack": "A",
+      "repo": "https://github.com/metabase/metabase",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:7330",
+      "probe": "http://localhost:7330/api/health",
+      "first_run": "Complete the 2-minute local setup wizard to connect your deal-room database and LP dashboards.",
+      "ram_mb": 950
+    },
+    "yente-kyc": {
+      "name": "OpenSanctions Yente KYC",
+      "role": "Real-time OFAC, EU/UN sanctions, PEP & beneficial ownership (UBO) AML API",
+      "icon": "\ud83d\udee1\ufe0f",
+      "stack": "B",
+      "repo": "https://github.com/opensanctions/yente",
+      "license": "MIT",
+      "url": "http://localhost:7400/docs",
+      "probe": "http://localhost:7400/healthz",
+      "first_run": "Test /match/default in Swagger UI at /docs to screen counterparties, directors, and UBOs.",
+      "ram_mb": 900
+    },
+    "nocodb-dealroom": {
+      "name": "NocoDB PE Deal Room",
+      "role": "Self-hosted Airtable alternative for IB/PE deal pipelines, VDR checklists & LP CRM",
+      "icon": "\ud83d\udcbc",
+      "stack": "B",
+      "repo": "https://github.com/nocodb/nocodb",
+      "license": "AGPL-3.0",
+      "url": "http://localhost:7410",
+      "probe": "http://localhost:7410/api/v1/health",
+      "first_run": "Create your local admin login to track targets, IC memo approvals, and diligence workstreams.",
+      "ram_mb": 500
+    },
+    "langfuse-audit": {
+      "name": "Langfuse Agent Audit",
+      "role": "Immutable LLM trace, citation lineage & compliance governance ledger for all 10 agents",
+      "icon": "\ud83d\udcdc",
+      "stack": "B",
+      "repo": "https://github.com/langfuse/langfuse",
+      "license": "MIT",
+      "url": "http://localhost:7420",
+      "probe": "http://localhost:7420/api/public/health",
+      "first_run": "Log every prompt, filing citation, and valuation calculation with full auditability for IC & compliance.",
+      "ram_mb": 850
+    },
+    "n8n-finance": {
+      "name": "n8n 10-Agent Orchestrator",
+      "role": "End-to-end IB/PE/KYC multi-agent workflow engine wiring filings, KYC & IC memos",
+      "icon": "\ud83d\udd00",
+      "stack": "B",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:7430",
+      "probe": "http://localhost:7430/healthz",
+      "first_run": "Import /automations/stack_a_10agent_ic_memo.n8n.json to run automated CIM-to-IC-Memo diligence.",
+      "ram_mb": 400
+    }
+  }
+}

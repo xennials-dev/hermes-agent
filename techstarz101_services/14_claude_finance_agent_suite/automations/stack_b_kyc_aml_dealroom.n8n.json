@@ -1,0 +1,42 @@
+{
+  "name": "Techstarz101 S14 Stack B - OpenSanctions Yente KYC Screen to NocoDB Deal Room",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "kyc-ubo-screen", "responseMode": "lastNode" },
+      "id": "kyc-hook",
+      "name": "UBO / Counterparty KYC Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7400/match/default",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"queries\": { \"ubo\": { \"schema\": \"Person\", \"properties\": { \"name\": [$json.body.ubo_name] } } } } }}"
+      },
+      "id": "yente-match",
+      "name": "OpenSanctions Yente OFAC/PEP Screen (:7400)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"kyc_screened\": true, \"matches\": $json.responses?.ubo?.results?.length || 0 } }}"
+      },
+      "id": "kyc-reply",
+      "name": "Return KYC Compliance Receipt",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [820, 300]
+    }
+  ],
+  "connections": {
+    "UBO / Counterparty KYC Webhook": { "main": [[{ "node": "OpenSanctions Yente OFAC/PEP Screen (:7400)", "type": "main", "index": 0 }]] },
+    "OpenSanctions Yente OFAC/PEP Screen (:7400)": { "main": [[{ "node": "Return KYC Compliance Receipt", "type": "main", "index": 0 }]] }
+  }
+}

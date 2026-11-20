@@ -1,0 +1,46 @@
+{
+  "name": "Techstarz101 S14 Stack A - 10-Agent CIM & 10-K to IC Memo Pipeline",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "finance-deal-intake", "responseMode": "lastNode" },
+      "id": "deal-hook",
+      "name": "New Deal / CIM Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:7320/v1/convert/source",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"sources\": [{ \"kind\": \"http\", \"url\": $json.body.cim_pdf_url }], \"options\": { \"to_formats\": [\"md\", \"json\"], \"table_mode\": \"accurate\" } } }}"
+      },
+      "id": "docling-cim",
+      "name": "Docling Parse 10-K / CIM Tables (:7320)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [500, 240]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ 'http://host.docker.internal:7300/api/v1/equity/fundamental/overview?symbol=' + ($json.body.ticker || 'MSFT') }}"
+      },
+      "id": "openbb-comps",
+      "name": "Fetch OpenBB Peer Comps (:7300)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [500, 400]
+    }
+  ],
+  "connections": {
+    "New Deal / CIM Webhook": {
+      "main": [[
+        { "node": "Docling Parse 10-K / CIM Tables (:7320)", "type": "main", "index": 0 },
+        { "node": "Fetch OpenBB Peer Comps (:7300)", "type": "main", "index": 0 }
+      ]]
+    }
+  }
+}

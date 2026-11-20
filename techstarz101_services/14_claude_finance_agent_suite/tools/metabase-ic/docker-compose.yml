@@ -1,0 +1,11 @@
+services:
+  metabase:
+    image: metabase/metabase:latest
+    container_name: ts101_s14_metabase_ic
+    restart: unless-stopped
+    ports:
+      - "7330:3000"
+    volumes:
+      - metabase_ic_data:/metabase-data
+volumes:
+  metabase_ic_data:

@@ -1,0 +1,19 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n:latest
+    container_name: ts101_s14_n8n_finance
+    restart: unless-stopped
+    ports:
+      - "7430:5678"
+    environment:
+      N8N_HOST: localhost
+      N8N_PORT: 5678
+      N8N_PROTOCOL: http
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
+      GENERIC_TIMEZONE: America/Chicago
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - n8n_finance_data:/home/node/.n8n
+volumes:
+  n8n_finance_data:

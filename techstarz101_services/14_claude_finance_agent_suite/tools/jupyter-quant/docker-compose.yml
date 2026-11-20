@@ -1,0 +1,12 @@
+services:
+  jupyter:
+    image: quay.io/jupyter/scipy-notebook:latest
+    container_name: ts101_s14_jupyter_quant
+    restart: unless-stopped
+    ports:
+      - "7310:8888"
+    command: start-notebook.py --IdentityProvider.token='' --ServerApp.password=''
+    volumes:
+      - jupyter_quant_work:/home/jovyan/work
+volumes:
+  jupyter_quant_work:

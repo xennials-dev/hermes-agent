@@ -1,0 +1,7 @@
+services:
+  openbb:
+    image: ghcr.io/openbb-finance/openbb-platform:latest
+    container_name: ts101_s14_openbb
+    restart: unless-stopped
+    ports:
+      - "7300:8000"

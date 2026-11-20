@@ -1,0 +1,9 @@
+services:
+  yente:
+    image: ghcr.io/opensanctions/yente:latest
+    container_name: ts101_s14_yente_kyc
+    restart: unless-stopped
+    ports:
+      - "7400:8000"
+    environment:
+      YENTE_MANIFEST: https://data.opensanctions.org/datasets/latest/sanctions/index.json

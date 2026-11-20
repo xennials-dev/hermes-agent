@@ -1,0 +1,4 @@
+tools/*/.env
+video/_frames/
+__pycache__/
+*.pyc
