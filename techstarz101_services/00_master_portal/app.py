@@ -334,10 +334,17 @@ FALLBACK_PATHS: Dict[str, str] = {
     "cyberchef": f"{FALLBACK_BASE}/apps/cyberchef/",
     "adminer": f"{FALLBACK_BASE}/apps/adminer/",
     "mailpit": f"{FALLBACK_BASE}/apps/mailpit/",
+    "vaultwarden": f"{FALLBACK_BASE}/apps/vaultwarden/",
+    "excalidraw": f"{FALLBACK_BASE}/apps/excalidraw/",
+    "uptime-kuma": f"{FALLBACK_BASE}/apps/uptime-kuma/",
+    "nocodb": f"{FALLBACK_BASE}/apps/nocodb/",
 }
 
 # Subdomains that currently hold issued Let's Encrypt certs on sslip.io
-SSLIP_CERTIFIED_SLUGS = {"n8n", "crm", "shlink", "cyberchef", "adminer", "mailpit"}
+SSLIP_CERTIFIED_SLUGS = {
+    "n8n", "crm", "shlink", "cyberchef", "adminer", "mailpit",
+    "vaultwarden", "excalidraw", "uptime-kuma", "nocodb",
+}
 
 
 def _resolve_public_app_url(req: Request, tool: dict) -> str:

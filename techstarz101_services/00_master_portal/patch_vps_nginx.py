@@ -43,6 +43,36 @@ snippet = """    # Techstarz101 Workstation Automatic Fallback Portal
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
+    location ^~ /apps/vaultwarden/ {
+        proxy_pass http://127.0.0.1:7610/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    location ^~ /apps/excalidraw/ {
+        proxy_pass http://127.0.0.1:6000/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    location ^~ /apps/uptime-kuma/ {
+        proxy_pass http://127.0.0.1:7530/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    location ^~ /apps/nocodb/ {
+        proxy_pass http://127.0.0.1:7410/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
 
     # Twenty CRM reverse proxy"""
 
@@ -50,3 +80,4 @@ if "location ^~ /workstation/" not in txt:
     txt = txt.replace("    # Twenty CRM reverse proxy", snippet, 1)
 p.write_text(txt, encoding="utf-8")
 print("PATCHED_CLEANLY")
+
