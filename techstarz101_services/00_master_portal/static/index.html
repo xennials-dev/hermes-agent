@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Techstarz101 — Master Command Portal (All 15 AI Services)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen">
+  <!-- Sticky Topbar -->
+  <header class="border-b border-slate-800/80 bg-slate-950/95 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider rounded bg-gradient-to-r from-cyan-500/25 to-violet-500/25 text-cyan-300 border border-cyan-500/40">TECHSTARZ101 · COMMAND OS</span>
+          <span id="metaCounts" class="text-xs text-slate-400">15 Core Services · Loading Tools…</span>
+        </div>
+        <h1 class="text-2xl font-extrabold text-white mt-1">Master Command Portal — All 15 Modular Hubs</h1>
+      </div>
+      <div class="flex flex-wrap items-center gap-2.5">
+        <span id="livePill" class="px-3 py-1.5 rounded-full text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700">Probing Hubs…</span>
+        <button onclick="startAll()" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">Boot All 14 Local Hubs</button>
+        <button onclick="stopAll()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-rose-600/80 text-slate-200 font-semibold text-xs">Stop Managed</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-10">
+    <!-- Category Filter & Global Search -->
+    <section class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
+      <div id="catBar" class="flex flex-wrap gap-2"></div>
+      <div class="w-full sm:w-80">
+        <input id="toolSearch" oninput="renderTools()" placeholder="Search 100+ open-source tools (e.g. Qdrant, LiveKit, ZAP)…"
+               class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-500" />
+      </div>
+    </section>
+
+    <!-- 15 Services Grid -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-lg font-extrabold text-white">⚡ All 15 Production Service Hubs</h2>
+        <span class="text-xs text-slate-400">Click any service card to auto-boot &amp; open its Modular Hub</span>
+      </div>
+      <div id="svcGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- Global Standalone Tool Directory -->
+    <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div>
+          <h2 class="text-lg font-extrabold text-white">🧰 Global Standalone Open-Source Tool Directory (<span id="toolMatchCount">0</span>)</h2>
+          <p class="text-xs text-slate-400">Every tool across Stack A &amp; Stack B runs in its own isolated Docker Compose repo with a dedicated <code class="text-cyan-300">/t/&lt;id&gt;</code> launcher.</p>
+        </div>
+      </div>
+      <div id="toolGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-h-[520px] overflow-y-auto pr-1"></div>
+    </section>
+  </main>
+
+  <script>
+    let CATALOG = [];
+    let ALL_TOOLS = [];
+    let STATUS = {};
+    let ACTIVE_CAT = "All";
+
+    async function init() {
+      const [catRes, toolRes] = await Promise.all([
+        fetch("/api/portal/catalog").then(r => r.json()),
+        fetch("/api/portal/tools").then(r => r.json()),
+      ]);
+      CATALOG = catRes.services;
+      ALL_TOOLS = toolRes.tools;
+      document.getElementById("metaCounts").textContent = `${catRes.total_services} Core Services · ${catRes.total_standalone_tools} Standalone Open-Source Repos · VPS ${catRes.vps_host}`;
+      buildCategories();
+      renderServices();
+      renderTools();
+      refreshStatus();
+      setInterval(refreshStatus, 5000);
+    }
+
+    function buildCategories() {
+      const cats = ["All", ...new Set(CATALOG.map(s => s.category))];
+      document.getElementById("catBar").innerHTML = cats.map(c => `
+        <button onclick="setCat('${c}')" class="px-3 py-1.5 rounded-lg text-xs font-bold transition ${ACTIVE_CAT === c ? 'bg-cyan-500 text-slate-950' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'}">${c}</button>
+      `).join("");
+    }
+
+    function setCat(c) {
+      ACTIVE_CAT = c;
+      buildCategories();
+      renderServices();
+    }
+
+    function renderServices() {
+      const grid = document.getElementById("svcGrid");
+      const items = ACTIVE_CAT === "All" ? CATALOG : CATALOG.filter(s => s.category === ACTIVE_CAT);
+      grid.innerHTML = items.map(s => {
+        const st = STATUS[s.num];
+        const up = st && st.up;
+        const badge = up
+          ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300">LIVE</span>`
+          : `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-800 text-slate-400">${s.external ? "VPS" : "STANDBY"}</span>`;
+        return `
+          <div class="bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 rounded-2xl p-5 flex flex-col justify-between transition">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-3">
+                <a href="/s/${s.num}" target="_blank" class="w-12 h-12 rounded-xl bg-cyan-500/15 border border-cyan-500/30 hover:bg-cyan-500/30 flex items-center justify-center text-2xl transition">${s.icon}</a>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] font-mono text-slate-400">${s.id}</span>
+                  ${badge}
+                </div>
+              </div>
+              <a href="/s/${s.num}" target="_blank" class="text-base font-bold text-white hover:text-cyan-300 transition">#${s.num} · ${s.name}</a>
+              <p class="text-xs text-slate-400 mt-1 leading-relaxed">${s.tagline}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+              <div class="flex items-center justify-between text-[11px] text-slate-400">
+                <span>${s.tool_count ? s.tool_count + " standalone repos" : s.category}</span>
+                <span class="font-mono text-cyan-300">:${s.port} (${s.tool_ports})</span>
+              </div>
+              <div class="flex gap-2">
+                <a href="/s/${s.num}" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 font-bold text-xs transition">${up ? "Open Live Hub →" : "Auto-Boot & Open →"}</a>
+                ${!s.external && !up ? `<button onclick="bootOne('${s.num}')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 text-xs font-bold">Boot</button>` : ""}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderTools() {
+      const q = (document.getElementById("toolSearch").value || "").toLowerCase().trim();
+      const filtered = q
+        ? ALL_TOOLS.filter(t => (t.name + " " + t.role + " " + t.service_name + " " + t.license + " " + t.tool_id).toLowerCase().includes(q))
+        : ALL_TOOLS;
+      document.getElementById("toolMatchCount").textContent = filtered.length;
+      document.getElementById("toolGrid").innerHTML = filtered.map(t => {
+        const toolHref = t.launch_url.replace("http://localhost", `${window.location.protocol}//${window.location.hostname}`);
+        return `
+        <a href="${toolHref}" target="_blank" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500/50 transition block">
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-lg">${t.icon}</span>
+            <span class="text-[10px] font-mono text-slate-400">S${t.service_num} · Stack ${t.stack}</span>
+          </div>
+          <div class="text-xs font-bold text-white truncate">${t.name}</div>
+          <div class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">${t.role}</div>
+          <div class="flex items-center justify-between mt-2 text-[10px] font-mono">
+            <span class="text-emerald-400">${t.license}</span>
+            <span class="text-cyan-300">/t/${t.tool_id} ↗</span>
+          </div>
+        </a>
+      `;
+      }).join("");
+    }
+
+    async function refreshStatus() {
+      try {
+        const st = await (await fetch("/api/portal/status")).json();
+        STATUS = st.services;
+        document.getElementById("livePill").textContent = `${st.live_count} / ${st.total} Hubs Live`;
+        document.getElementById("livePill").className = "px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30";
+        renderServices();
+      } catch (e) {}
+    }
+
+    async function bootOne(num) {
+      await fetch(`/api/portal/service/${num}/start`, { method: "POST" });
+      setTimeout(refreshStatus, 1800);
+    }
+
+    async function startAll() {
+      await fetch("/api/portal/start-all", { method: "POST" });
+      setTimeout(refreshStatus, 2500);
+    }
+
+    async function stopAll() {
+      await fetch("/api/portal/stop-all", { method: "POST" });
+      setTimeout(refreshStatus, 1200);
+    }
+
+    init();
+  </script>
+</body>
+</html>
