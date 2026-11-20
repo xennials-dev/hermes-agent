@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="Inter, Segoe UI, system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#020617"/>
+      <stop offset="100%" stop-color="#190812"/>
+    </linearGradient>
+    <linearGradient id="roseGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f43f5e"/>
+      <stop offset="100%" stop-color="#fb7185"/>
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#06b6d4"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <rect x="20" y="20" width="1160" height="635" rx="22" fill="none" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Header -->
+  <rect x="44" y="42" width="142" height="28" rx="14" fill="#f43f5e" fill-opacity="0.18" stroke="#f43f5e" stroke-opacity="0.5"/>
+  <text x="115" y="61" text-anchor="middle" fill="#fda4af" font-size="12" font-weight="700">TS101-SRV-15</text>
+  <text x="204" y="62" fill="#94a3b8" font-size="13" font-weight="600">TECHSTARZ101 · 100% OPEN-SOURCE DEFENSIVE SOC &amp; APPSEC</text>
+  <text x="44" y="108" fill="#ffffff" font-size="34" font-weight="800">Cyber Security Package — Zero-Trust Defense &amp; SOAR</text>
+  <text x="44" y="135" fill="#94a3b8" font-size="15">8 Standalone Docker Repos · SAST + DAST + Container CVEs + CrowdSec IPS + Vaultwarden + DFIR · Clickable /t/&lt;id&gt;</text>
+
+  <!-- Defense Loop Strip -->
+  <rect x="44" y="156" width="1112" height="58" rx="14" fill="#0b1220" stroke="#1e293b"/>
+  <text x="64" y="182" fill="#fda4af" font-size="12" font-weight="700">CONTINUOUS DEFENSIVE SECURITY &amp; INCIDENT RESPONSE LOOP</text>
+  <text x="64" y="201" fill="#cbd5e1" font-size="13">SonarQube SAST (:7520)  →  Trivy CVE (:7510)  →  OWASP ZAP (:7500)  →  CrowdSec IPS (:7600)  →  n8n SOAR (:7630)</text>
+  <rect x="965" y="169" width="171" height="32" rx="8" fill="#f43f5e" fill-opacity="0.2" stroke="#f43f5e"/>
+  <text x="1050" y="190" text-anchor="middle" fill="#fecdd3" font-size="13" font-weight="800">ZERO-TRUST SOC</text>
+
+  <!-- Stack A -->
+  <rect x="44" y="234" width="540" height="316" rx="18" fill="#1b0912" stroke="#f43f5e" stroke-opacity="0.45" stroke-width="1.5"/>
+  <rect x="44" y="234" width="540" height="44" rx="18" fill="url(#roseGrad)" fill-opacity="0.14"/>
+  <text x="64" y="262" fill="#fda4af" font-size="16" font-weight="800">STACK A · AppSec, Container CVE &amp; TLS Watchdog</text>
+
+  <rect x="64" y="294" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="80" y="320" fill="#ffffff" font-size="15" font-weight="700">🕷️ OWASP ZAP DAST</text>
+  <text x="80" y="340" fill="#fda4af" font-size="12" font-family="monospace">:7500  ·  /t/owasp-zap</text>
+  <text x="80" y="362" fill="#94a3b8" font-size="12">Authorized web &amp; API</text>
+  <text x="80" y="380" fill="#94a3b8" font-size="12">DAST audits · Apache-2.0</text>
+
+  <rect x="324" y="294" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="340" y="320" fill="#ffffff" font-size="15" font-weight="700">🔬 Aqua Trivy Server</text>
+  <text x="340" y="340" fill="#fda4af" font-size="12" font-family="monospace">:7510  ·  /t/trivy-server</text>
+  <text x="340" y="362" fill="#94a3b8" font-size="12">Container, IaC &amp; SBOM</text>
+  <text x="340" y="380" fill="#94a3b8" font-size="12">CVE scanner · Apache-2.0</text>
+
+  <rect x="64" y="420" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="80" y="446" fill="#ffffff" font-size="15" font-weight="700">🛡️ SonarQube SAST</text>
+  <text x="80" y="466" fill="#fda4af" font-size="12" font-family="monospace">:7520  ·  /t/sonarqube-sast</text>
+  <text x="80" y="488" fill="#94a3b8" font-size="12">OWASP Top 10 &amp; secret</text>
+  <text x="80" y="506" fill="#94a3b8" font-size="12">leak SAST · LGPL-3.0</text>
+
+  <rect x="324" y="420" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="340" y="446" fill="#ffffff" font-size="15" font-weight="700">📡 Uptime Kuma TLS</text>
+  <text x="340" y="466" fill="#fda4af" font-size="12" font-family="monospace">:7530  ·  /t/uptime-kuma-sec</text>
+  <text x="340" y="488" fill="#94a3b8" font-size="12">24/7 TLS cert expiry &amp;</text>
+  <text x="340" y="506" fill="#94a3b8" font-size="12">DNS/HTTP watch · MIT</text>
+
+  <!-- Stack B -->
+  <rect x="616" y="234" width="540" height="316" rx="18" fill="#071824" stroke="#06b6d4" stroke-opacity="0.45" stroke-width="1.5"/>
+  <rect x="616" y="234" width="540" height="44" rx="18" fill="url(#cyanGrad)" fill-opacity="0.14"/>
+  <text x="636" y="262" fill="#67e8f9" font-size="16" font-weight="800">STACK B · IPS, Zero-Trust Vault, DFIR &amp; SOAR</text>
+
+  <rect x="636" y="294" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="652" y="320" fill="#ffffff" font-size="15" font-weight="700">🧱 CrowdSec IPS</text>
+  <text x="652" y="340" fill="#67e8f9" font-size="12" font-family="monospace">:7600  ·  /t/crowdsec-ips</text>
+  <text x="652" y="362" fill="#94a3b8" font-size="12">Collaborative IPS/WAF</text>
+  <text x="652" y="380" fill="#94a3b8" font-size="12">real-time bouncer · MIT</text>
+
+  <rect x="896" y="294" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="912" y="320" fill="#ffffff" font-size="15" font-weight="700">🔐 Vaultwarden</text>
+  <text x="912" y="340" fill="#67e8f9" font-size="12" font-family="monospace">:7610  ·  /t/vaultwarden-sec</text>
+  <text x="912" y="362" fill="#94a3b8" font-size="12">Zero-knowledge team</text>
+  <text x="912" y="380" fill="#94a3b8" font-size="12">secret vault · GPL-3.0</text>
+
+  <rect x="636" y="420" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="652" y="446" fill="#ffffff" font-size="15" font-weight="700">🧪 GCHQ CyberChef</text>
+  <text x="652" y="466" fill="#67e8f9" font-size="12" font-family="monospace">:7620  ·  /t/cyberchef-soc</text>
+  <text x="652" y="488" fill="#94a3b8" font-size="12">Offline DFIR &amp; IOC</text>
+  <text x="652" y="506" fill="#94a3b8" font-size="12">decoding lab · Apache-2.0</text>
+
+  <rect x="896" y="420" width="240" height="106" rx="12" fill="#020617" stroke="#1e293b"/>
+  <text x="912" y="446" fill="#ffffff" font-size="15" font-weight="700">🚨 n8n SOAR Hub</text>
+  <text x="912" y="466" fill="#67e8f9" font-size="12" font-family="monospace">:7630  ·  /t/n8n-soar</text>
+  <text x="912" y="488" fill="#94a3b8" font-size="12">Automated CVE triage &amp;</text>
+  <text x="912" y="506" fill="#94a3b8" font-size="12">CrowdSec SOC alerting</text>
+
+  <!-- Footer -->
+  <rect x="44" y="572" width="1112" height="58" rx="14" fill="#0b1220" stroke="#1e293b"/>
+  <text x="64" y="606" fill="#e2e8f0" font-size="14" font-weight="700">Modular Hub: http://localhost:7879  ·  Live Security Posture &amp; Header Auditor  ·  Independent or Stacked Boot</text>
+  <text x="1136" y="606" text-anchor="end" fill="#fb7185" font-size="14" font-weight="800">techstarz101.com</text>
+</svg>

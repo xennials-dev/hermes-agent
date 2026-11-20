@@ -1,0 +1,124 @@
+{
+  "service": "Cyber Security Package",
+  "service_id": "TS101-SRV-15",
+  "stacks": {
+    "A": {
+      "name": "Stack A: AppSec, Container CVE & Certificate Watchdog",
+      "tagline": "OWASP ZAP audits authorized web/API surfaces, Trivy scans containers & SBOMs for CVEs, SonarQube runs SAST code security, Uptime Kuma monitors TLS certs & uptime 24/7.",
+      "tools": [
+        "owasp-zap",
+        "trivy-server",
+        "sonarqube-sast",
+        "uptime-kuma-sec"
+      ]
+    },
+    "B": {
+      "name": "Stack B: Defensive IPS, Zero-Knowledge Vault, DFIR & SOAR",
+      "tagline": "CrowdSec blocks brute-force & bot attacks in real time, Vaultwarden secures team credentials, CyberChef accelerates SOC IOC triage, n8n SOAR automates incident alerts.",
+      "tools": [
+        "crowdsec-ips",
+        "vaultwarden-sec",
+        "cyberchef-soc",
+        "n8n-soar"
+      ]
+    }
+  },
+  "tools": {
+    "owasp-zap": {
+      "name": "OWASP ZAP DAST",
+      "role": "Authorized web & API vulnerability scanner with headless REST API & WebSwing UI",
+      "icon": "\ud83d\udd77\ufe0f",
+      "stack": "A",
+      "repo": "https://github.com/zaproxy/zaproxy",
+      "license": "Apache-2.0",
+      "url": "http://localhost:7500/zap",
+      "probe": "http://localhost:7500",
+      "first_run": "Open /zap for the interactive OWASP ZAP WebSwing console to run authorized baseline scans.",
+      "ram_mb": 1100
+    },
+    "trivy-server": {
+      "name": "Aqua Trivy CVE Server",
+      "role": "Fast container image, filesystem, IaC & SBOM vulnerability scanning server",
+      "icon": "\ud83d\udd2c",
+      "stack": "A",
+      "repo": "https://github.com/aquasecurity/trivy",
+      "license": "Apache-2.0",
+      "url": "http://localhost:7510/healthz",
+      "probe": "http://localhost:7510/healthz",
+      "first_run": "Run `trivy image --server http://localhost:7510 <image>` in CI/CD or from n8n SOAR.",
+      "ram_mb": 550
+    },
+    "sonarqube-sast": {
+      "name": "SonarQube SAST",
+      "role": "Static Application Security Testing (SAST), OWASP Top 10 & secret leak code analyzer",
+      "icon": "\ud83d\udee1\ufe0f",
+      "stack": "A",
+      "repo": "https://github.com/SonarSource/sonarqube",
+      "license": "LGPL-3.0",
+      "url": "http://localhost:7520",
+      "probe": "http://localhost:7520/api/system/status",
+      "first_run": "Default local login: admin / admin (prompts to update on first sign-in). Connect GitHub repos for SAST.",
+      "ram_mb": 1800
+    },
+    "uptime-kuma-sec": {
+      "name": "Uptime Kuma TLS Watch",
+      "role": "24/7 SSL/TLS certificate expiry, DNS, port & HTTP security availability monitor",
+      "icon": "\ud83d\udce1",
+      "stack": "A",
+      "repo": "https://github.com/louislam/uptime-kuma",
+      "license": "MIT",
+      "url": "http://localhost:7530",
+      "probe": "http://localhost:7530",
+      "first_run": "Create your local admin login and add TLS expiry alerts (14d / 7d) + n8n webhook notifications.",
+      "ram_mb": 250
+    },
+    "crowdsec-ips": {
+      "name": "CrowdSec IPS & LAPI",
+      "role": "Collaborative open-source intrusion prevention system blocking brute-force & bad IPs",
+      "icon": "\ud83e\uddf1",
+      "stack": "B",
+      "repo": "https://github.com/crowdsecurity/crowdsec",
+      "license": "MIT",
+      "url": "http://localhost:7600/health",
+      "probe": "http://localhost:7600/health",
+      "first_run": "Exposes CrowdSec Local API (LAPI) on :7600 for Nginx/Firewall bouncers and n8n threat alerts.",
+      "ram_mb": 300
+    },
+    "vaultwarden-sec": {
+      "name": "Vaultwarden Zero-Trust",
+      "role": "Self-hosted Bitwarden-compatible encrypted vault for SSH keys, API tokens & 2FA",
+      "icon": "\ud83d\udd10",
+      "stack": "B",
+      "repo": "https://github.com/dani-garcia/vaultwarden",
+      "license": "GPL-3.0",
+      "url": "http://localhost:7610",
+      "probe": "http://localhost:7610/alive",
+      "first_run": "Create your team vault account and eliminate plaintext credentials across repos and servers.",
+      "ram_mb": 120
+    },
+    "cyberchef-soc": {
+      "name": "GCHQ CyberChef SOC",
+      "role": "Offline DFIR & SOC workbench for decoding payloads, JWTs, headers & IOC hashes",
+      "icon": "\ud83e\uddea",
+      "stack": "B",
+      "repo": "https://github.com/gchq/CyberChef",
+      "license": "Apache-2.0",
+      "url": "http://localhost:7620",
+      "probe": "http://localhost:7620",
+      "first_run": "100% browser-local DFIR analysis \u2014 inspect suspicious logs, certificates, and IOCs safely offline.",
+      "ram_mb": 90
+    },
+    "n8n-soar": {
+      "name": "n8n SOAR Playbooks",
+      "role": "Automated security orchestration wiring Trivy CVEs, CrowdSec blocks & SOC alerts",
+      "icon": "\ud83d\udea8",
+      "stack": "B",
+      "repo": "https://github.com/n8n-io/n8n",
+      "license": "Sustainable Use (fair-code)",
+      "url": "http://localhost:7630",
+      "probe": "http://localhost:7630/healthz",
+      "first_run": "Import /automations/stack_a_cve_triage_soar.n8n.json to automate CVE severity triage & alerts.",
+      "ram_mb": 400
+    }
+  }
+}

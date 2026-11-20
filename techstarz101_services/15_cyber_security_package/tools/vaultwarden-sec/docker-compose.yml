@@ -1,0 +1,15 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: ts101_s15_vaultwarden
+    restart: unless-stopped
+    ports:
+      - "7610:80"
+    environment:
+      DOMAIN: http://localhost:7610
+      SIGNUPS_ALLOWED: "true"
+      ADMIN_TOKEN: ${VAULTWARDEN_ADMIN_TOKEN}
+    volumes:
+      - vaultwarden_data:/data
+volumes:
+  vaultwarden_data:

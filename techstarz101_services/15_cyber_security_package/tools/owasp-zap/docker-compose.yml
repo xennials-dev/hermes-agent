@@ -1,0 +1,9 @@
+services:
+  zap:
+    image: ghcr.io/zaproxy/zaproxy:stable
+    container_name: ts101_s15_owasp_zap
+    restart: unless-stopped
+    command: zap-webswing.sh
+    ports:
+      - "7500:8080"
+      - "7501:8090"

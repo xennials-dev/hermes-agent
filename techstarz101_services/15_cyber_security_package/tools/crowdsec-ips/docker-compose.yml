@@ -1,0 +1,15 @@
+services:
+  crowdsec:
+    image: crowdsecurity/crowdsec:latest
+    container_name: ts101_s15_crowdsec
+    restart: unless-stopped
+    ports:
+      - "7600:8080"
+    environment:
+      COLLECTIONS: "crowdsecurity/nginx crowdsecurity/http-cve crowdsecurity/sshd"
+    volumes:
+      - crowdsec_db:/var/lib/crowdsec/data
+      - crowdsec_config:/etc/crowdsec
+volumes:
+  crowdsec_db:
+  crowdsec_config:

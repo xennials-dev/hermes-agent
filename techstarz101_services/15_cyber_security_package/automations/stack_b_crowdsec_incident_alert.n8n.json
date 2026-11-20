@@ -1,0 +1,27 @@
+{
+  "name": "Techstarz101 S15 Stack B - CrowdSec IPS Ban to SOC Incident Alert",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "crowdsec-ban-alert", "responseMode": "lastNode" },
+      "id": "cs-hook",
+      "name": "CrowdSec LAPI Ban Webhook (:7600)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"blocked_ip\": $json.body.source_ip || \"unknown\", \"scenario\": $json.body.scenario || \"http-probing\", \"logged\": true } }}"
+      },
+      "id": "cs-log",
+      "name": "Log IOC & Return SOC Receipt",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [560, 300]
+    }
+  ],
+  "connections": {
+    "CrowdSec LAPI Ban Webhook (:7600)": { "main": [[{ "node": "Log IOC & Return SOC Receipt", "type": "main", "index": 0 }]] }
+  }
+}

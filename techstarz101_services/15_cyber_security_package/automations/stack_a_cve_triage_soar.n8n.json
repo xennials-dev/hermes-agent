@@ -1,0 +1,40 @@
+{
+  "name": "Techstarz101 S15 Stack A - Trivy CVE & Uptime Kuma TLS Expiry SOAR",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "soar-cve-alert", "responseMode": "lastNode" },
+      "id": "cve-hook",
+      "name": "Trivy / Uptime Kuma Security Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [{ "value1": "={{ $json.body.severity }}", "operation": "equals", "value2": "CRITICAL" }]
+        }
+      },
+      "id": "sev-check",
+      "name": "Is CRITICAL Severity?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"ok\": true, \"escalated\": true, \"ticket\": \"SOC-CRITICAL-\" + Date.now() } }}"
+      },
+      "id": "escalate",
+      "name": "Escalate Critical SOC Ticket",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [800, 220]
+    }
+  ],
+  "connections": {
+    "Trivy / Uptime Kuma Security Webhook": { "main": [[{ "node": "Is CRITICAL Severity?", "type": "main", "index": 0 }]] },
+    "Is CRITICAL Severity?": { "main": [[{ "node": "Escalate Critical SOC Ticket", "type": "main", "index": 0 }], []] }
+  }
+}

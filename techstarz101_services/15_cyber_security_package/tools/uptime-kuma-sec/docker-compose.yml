@@ -1,0 +1,11 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: ts101_s15_uptime_kuma
+    restart: unless-stopped
+    ports:
+      - "7530:3001"
+    volumes:
+      - uptime_kuma_sec_data:/app/data
+volumes:
+  uptime_kuma_sec_data:

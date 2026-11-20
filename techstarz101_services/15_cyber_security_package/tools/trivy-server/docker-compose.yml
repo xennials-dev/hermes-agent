@@ -1,0 +1,12 @@
+services:
+  trivy:
+    image: aquasec/trivy:latest
+    container_name: ts101_s15_trivy_server
+    restart: unless-stopped
+    command: server --listen 0.0.0.0:4954
+    ports:
+      - "7510:4954"
+    volumes:
+      - trivy_cache:/root/.cache
+volumes:
+  trivy_cache:

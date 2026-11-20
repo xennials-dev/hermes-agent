@@ -1,0 +1,13 @@
+services:
+  sonarqube:
+    image: sonarqube:community
+    container_name: ts101_s15_sonarqube
+    restart: unless-stopped
+    ports:
+      - "7520:9000"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
