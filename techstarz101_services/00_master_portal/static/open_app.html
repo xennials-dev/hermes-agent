@@ -38,23 +38,25 @@
 
     <div class="flex flex-wrap gap-3">
       <a id="openBtn" href="#" class="hidden flex-1 text-center px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm">Open Built Open-Source App →</a>
+      <a id="fallbackBtn" href="#" class="hidden px-4 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 border border-cyan-500/40 text-xs font-bold">Fallback HTTPS ↗</a>
       <button onclick="wakeApp()" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold">Retry Wake</button>
       <a id="repoBtn" href="#" target="_blank" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">GitHub Source ↗</a>
     </div>
   </div>
 
   <script>
+    const BASE = window.location.pathname.startsWith("/workstation") ? "/workstation" : "";
     const SVC = "__SVC_NUM__";
     const TID = "__TOOL_ID__";
     let redirected = false;
 
     async function wakeApp() {
-      await fetch(`/api/portal/wake/${SVC}/${TID}`, { method: "POST" });
+      await fetch(`${BASE}/api/portal/wake/${SVC}/${TID}`, { method: "POST" });
       poll();
     }
 
     async function poll() {
-      const res = await (await fetch(`/api/portal/open-status/${SVC}/${TID}`)).json();
+      const res = await (await fetch(`${BASE}/api/portal/open-status/${SVC}/${TID}`)).json();
       const t = res.tool;
       document.title = `Opening ${t.name} — Workstation`;
       document.getElementById("appIcon").textContent = t.icon;
@@ -64,6 +66,11 @@
       document.getElementById("targetUrl").textContent = res.target_url;
       document.getElementById("repoBtn").href = t.repo;
       document.getElementById("openBtn").href = res.target_url;
+      if (res.fallback_url) {
+        const fb = document.getElementById("fallbackBtn");
+        fb.href = res.fallback_url;
+        fb.classList.remove("hidden");
+      }
 
       if (res.logs && res.logs.length) {
         const el = document.getElementById("logs");
@@ -99,3 +106,4 @@
   </script>
 </body>
 </html>
+

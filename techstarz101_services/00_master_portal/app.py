@@ -34,7 +34,8 @@ from fastapi.staticfiles import StaticFiles
 PORTAL_DIR = Path(__file__).resolve().parent
 SERVICES_ROOT = PORTAL_DIR.parent
 STATIC_DIR = PORTAL_DIR / "static"
-WORKSTATION_DOMAIN = os.environ.get("WORKSTATION_DOMAIN", "workstation.techstarz101.com")
+WORKSTATION_DOMAIN = os.environ.get("WORKSTATION_DOMAIN", "workstation.2-25-238-185.sslip.io")
+FALLBACK_BASE = os.environ.get("WORKSTATION_FALLBACK_BASE", "https://techstarz101.com")
 IDLE_SLEEP_SECONDS = int(os.environ.get("IDLE_SLEEP_SECONDS", "1800"))  # 30 minutes
 
 SERVICES_CATALOG = [
@@ -325,15 +326,43 @@ def _spawn_service(num: str) -> dict:
     return {"ok": True, "state": "starting", "port": svc["port"]}
 
 
+FALLBACK_PATHS: Dict[str, str] = {
+    "n8n": f"{FALLBACK_BASE}/n8n/",
+    "crm": f"{FALLBACK_BASE}/crm/",
+    "shlink": f"{FALLBACK_BASE}/go/",
+    "postiz": "https://postiz.techstarz101.com",
+    "cyberchef": f"{FALLBACK_BASE}/apps/cyberchef/",
+    "adminer": f"{FALLBACK_BASE}/apps/adminer/",
+    "mailpit": f"{FALLBACK_BASE}/apps/mailpit/",
+}
+
+# Subdomains that currently hold issued Let's Encrypt certs on sslip.io
+SSLIP_CERTIFIED_SLUGS = {"n8n", "crm", "shlink", "cyberchef", "adminer", "mailpit"}
+
+
 def _resolve_public_app_url(req: Request, tool: dict) -> str:
     host = (req.headers.get("host") or "").split(":")[0].lower()
-    if tool["slug"] == "postiz":
+    slug = tool["slug"]
+    if slug == "postiz":
         return "https://postiz.techstarz101.com"
-    if WORKSTATION_DOMAIN in host:
-        return tool["subdomain_url"]
     if host in ("127.0.0.1", "localhost"):
         return f"http://localhost:{tool['local_port']}"
+    # If accessed via branded fallback techstarz101.com/workstation/ and a subpath fallback exists, prefer HTTPS
+    if host in ("techstarz101.com", "www.techstarz101.com"):
+        if slug in SSLIP_CERTIFIED_SLUGS:
+            return f"https://{slug}.{WORKSTATION_DOMAIN}"
+        if slug in FALLBACK_PATHS:
+            return FALLBACK_PATHS[slug]
+        return f"http://2.25.238.185:{tool['local_port']}"
+    if "sslip.io" in host or "workstation.techstarz101.com" in host:
+        if slug in SSLIP_CERTIFIED_SLUGS:
+            return f"https://{slug}.{WORKSTATION_DOMAIN}"
+        return f"http://{slug}.{WORKSTATION_DOMAIN}"
     return f"http://{host}:{tool['local_port']}"
+
+
+def _resolve_fallback_app_url(tool: dict) -> Optional[str]:
+    return FALLBACK_PATHS.get(tool["slug"])
 
 
 # ---------------- Routes ---------------- #
@@ -377,6 +406,7 @@ def api_open_status(svc_num: str, tool_id: str, request: Request) -> JSONRespons
             "up": up,
             "state": "running" if up else APP_BOOT_STATE.get(key, "idle"),
             "target_url": _resolve_public_app_url(request, tool),
+            "fallback_url": _resolve_fallback_app_url(tool),
             "logs": APP_BOOT_LOGS.get(key, [])[-40:],
             "tunnel_cmd": f"python techstarz101_services/00_master_portal/hybrid_tunnel.py {svc_num} {tool_id}",
         }
