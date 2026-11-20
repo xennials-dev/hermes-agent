@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Opening Open-Source App — Techstarz101 Workstation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-2xl w-full bg-slate-900/90 border border-slate-800 rounded-2xl p-8 shadow-2xl space-y-5">
+    <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div id="appIcon" class="w-14 h-14 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-3xl">🚀</div>
+        <div>
+          <p id="appTier" class="text-xs uppercase tracking-widest text-cyan-400 font-bold">Techstarz101 Workstation</p>
+          <h1 id="appName" class="text-2xl font-extrabold text-white">Opening Open-Source Application…</h1>
+          <p id="appRole" class="text-xs text-slate-400 mt-0.5"></p>
+        </div>
+      </div>
+      <a href="/" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs text-slate-300">← Workstation</a>
+    </div>
+
+    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 flex items-center justify-between">
+      <div>
+        <div class="text-xs text-slate-400">Open-Source Application Endpoint</div>
+        <div id="targetUrl" class="text-xs font-mono text-cyan-300 mt-0.5">Resolving…</div>
+      </div>
+      <span id="statusBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300">Checking…</span>
+    </div>
+
+    <div id="hybridBox" class="hidden bg-indigo-950/40 border border-indigo-500/40 rounded-xl p-4 space-y-2">
+      <div class="text-xs font-bold text-indigo-300">⚡ Hybrid Local GPU / Full-Stack App (Wave 2–3)</div>
+      <p class="text-xs text-slate-300">This open-source application runs on your local GPU workstation via Docker Desktop and tunnels straight into <code class="text-cyan-300">*.workstation.techstarz101.com</code> with $0 extra cloud cost. Run this command on your local PC to wake &amp; tunnel it live:</p>
+      <pre id="tunnelCmd" class="bg-black/70 border border-slate-800 rounded-lg p-3 text-xs font-mono text-emerald-300 overflow-x-auto"></pre>
+    </div>
+
+    <pre id="logs" class="bg-black/70 border border-slate-800 rounded-xl p-4 text-xs text-emerald-300 font-mono h-48 overflow-y-auto whitespace-pre-wrap">Connecting to Workstation launcher…</pre>
+
+    <div class="flex flex-wrap gap-3">
+      <a id="openBtn" href="#" class="hidden flex-1 text-center px-5 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-sm">Open Built Open-Source App →</a>
+      <button onclick="wakeApp()" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold">Retry Wake</button>
+      <a id="repoBtn" href="#" target="_blank" class="px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs">GitHub Source ↗</a>
+    </div>
+  </div>
+
+  <script>
+    const SVC = "__SVC_NUM__";
+    const TID = "__TOOL_ID__";
+    let redirected = false;
+
+    async function wakeApp() {
+      await fetch(`/api/portal/wake/${SVC}/${TID}`, { method: "POST" });
+      poll();
+    }
+
+    async function poll() {
+      const res = await (await fetch(`/api/portal/open-status/${SVC}/${TID}`)).json();
+      const t = res.tool;
+      document.title = `Opening ${t.name} — Workstation`;
+      document.getElementById("appIcon").textContent = t.icon;
+      document.getElementById("appName").textContent = t.name;
+      document.getElementById("appRole").textContent = t.role;
+      document.getElementById("appTier").textContent = `${t.tier.toUpperCase()} · Service #${t.service_num} · ${t.license}`;
+      document.getElementById("targetUrl").textContent = res.target_url;
+      document.getElementById("repoBtn").href = t.repo;
+      document.getElementById("openBtn").href = res.target_url;
+
+      if (res.logs && res.logs.length) {
+        const el = document.getElementById("logs");
+        el.textContent = res.logs.join("\n");
+        el.scrollTop = el.scrollHeight;
+      }
+
+      const badge = document.getElementById("statusBadge");
+      if (res.up) {
+        badge.textContent = "LIVE · Redirecting…";
+        badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300";
+        document.getElementById("openBtn").classList.remove("hidden");
+        document.getElementById("hybridBox").classList.add("hidden");
+        if (!redirected) {
+          redirected = true;
+          setTimeout(() => { window.location.href = res.target_url; }, 700);
+        }
+      } else if (t.tier === "hybrid_tunnel") {
+        badge.textContent = "Awaiting Local GPU Tunnel";
+        badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300";
+        document.getElementById("hybridBox").classList.remove("hidden");
+        document.getElementById("tunnelCmd").textContent = res.tunnel_cmd;
+      } else if (res.state === "error") {
+        badge.textContent = "Wake Error";
+        badge.className = "px-3 py-1 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300";
+      } else {
+        badge.textContent = "Waking Open-Source Container…";
+      }
+    }
+
+    wakeApp();
+    setInterval(poll, 1800);
+  </script>
+</body>
+</html>

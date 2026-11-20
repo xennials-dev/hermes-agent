@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Techstarz101 — Master Command Portal (All 15 AI Services)</title>
+  <title>Techstarz101 Workstation — All 15 AI Services &amp; Open-Source Apps</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen">
@@ -12,47 +12,53 @@
     <div class="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between gap-4">
       <div>
         <div class="flex items-center gap-2">
-          <span class="px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider rounded bg-gradient-to-r from-cyan-500/25 to-violet-500/25 text-cyan-300 border border-cyan-500/40">TECHSTARZ101 · COMMAND OS</span>
-          <span id="metaCounts" class="text-xs text-slate-400">15 Core Services · Loading Tools…</span>
+          <span class="px-2.5 py-0.5 text-[11px] font-extrabold uppercase tracking-wider rounded bg-gradient-to-r from-cyan-500/25 to-emerald-500/25 text-cyan-300 border border-cyan-500/40">WORKSTATION.TECHSTARZ101.COM</span>
+          <span id="metaCounts" class="text-xs text-slate-400">15 Core Services · Loading Open-Source Apps…</span>
         </div>
-        <h1 class="text-2xl font-extrabold text-white mt-1">Master Command Portal — All 15 Modular Hubs</h1>
+        <h1 class="text-2xl font-extrabold text-white mt-1">Techstarz101 Workstation — Direct Open-Source App Portal</h1>
       </div>
       <div class="flex flex-wrap items-center gap-2.5">
         <span id="livePill" class="px-3 py-1.5 rounded-full text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700">Probing Hubs…</span>
-        <button onclick="startAll()" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">Boot All 14 Local Hubs</button>
+        <button onclick="startAll()" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">Boot All Hubs</button>
         <button onclick="stopAll()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-rose-600/80 text-slate-200 font-semibold text-xs">Stop Managed</button>
       </div>
     </div>
   </header>
 
   <main class="max-w-7xl mx-auto px-6 py-8 space-y-10">
-    <!-- Category Filter & Global Search -->
+    <!-- Filter & Search -->
     <section class="bg-slate-900/75 border border-slate-800 rounded-2xl p-5 flex flex-wrap items-center justify-between gap-4">
       <div id="catBar" class="flex flex-wrap gap-2"></div>
-      <div class="w-full sm:w-80">
-        <input id="toolSearch" oninput="renderTools()" placeholder="Search 100+ open-source tools (e.g. Qdrant, LiveKit, ZAP)…"
-               class="w-full px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-500" />
+      <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+        <select id="tierFilter" onchange="renderTools()" class="px-3 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-slate-200">
+          <option value="all">All App Tiers (105)</option>
+          <option value="vps_live">Live Now on VPS (12)</option>
+          <option value="vps_wave1">Wave 1 VPS Wake-on-Click</option>
+          <option value="hybrid_tunnel">Wave 2–3 Hybrid Local GPU</option>
+        </select>
+        <input id="toolSearch" oninput="renderTools()" placeholder="Search 105 open-source apps (n8n, CyberChef, Vaultwarden…)"
+               class="w-full sm:w-72 px-3.5 py-2 rounded-xl bg-slate-950 border border-slate-700 text-xs text-white focus:outline-none focus:border-cyan-500" />
       </div>
+    </section>
+
+    <!-- Global Direct-to-App Open-Source Directory -->
+    <section class="bg-slate-900/60 border border-cyan-500/30 rounded-2xl p-6">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div>
+          <h2 class="text-lg font-extrabold text-white">🧰 Direct Open-Source Application Directory (<span id="toolMatchCount">0</span>)</h2>
+          <p class="text-xs text-slate-400">Every card routes through <code class="text-cyan-300">/open/&lt;svc&gt;/&lt;app&gt;</code> — waking the real open-source app on-demand and opening it directly (no broken ports).</p>
+        </div>
+      </div>
+      <div id="toolGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-h-[540px] overflow-y-auto pr-1"></div>
     </section>
 
     <!-- 15 Services Grid -->
     <section>
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-extrabold text-white">⚡ All 15 Production Service Hubs</h2>
-        <span class="text-xs text-slate-400">Click any service card to auto-boot &amp; open its Modular Hub</span>
+        <h2 class="text-lg font-extrabold text-white">⚡ All 15 Service Modular Hubs &amp; Live Simulators</h2>
+        <span class="text-xs text-slate-400">Click any service card to auto-boot &amp; open its Hub + interactive simulator</span>
       </div>
       <div id="svcGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-    </section>
-
-    <!-- Global Standalone Tool Directory -->
-    <section class="bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-        <div>
-          <h2 class="text-lg font-extrabold text-white">🧰 Global Standalone Open-Source Tool Directory (<span id="toolMatchCount">0</span>)</h2>
-          <p class="text-xs text-slate-400">Every tool across Stack A &amp; Stack B runs in its own isolated Docker Compose repo with a dedicated <code class="text-cyan-300">/t/&lt;id&gt;</code> launcher.</p>
-        </div>
-      </div>
-      <div id="toolGrid" class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 max-h-[520px] overflow-y-auto pr-1"></div>
     </section>
   </main>
 
@@ -69,7 +75,7 @@
       ]);
       CATALOG = catRes.services;
       ALL_TOOLS = toolRes.tools;
-      document.getElementById("metaCounts").textContent = `${catRes.total_services} Core Services · ${catRes.total_standalone_tools} Standalone Open-Source Repos · VPS ${catRes.vps_host}`;
+      document.getElementById("metaCounts").textContent = `${catRes.total_services} Core Services · ${catRes.total_standalone_tools} Open-Source App Links · Hybrid VPS + Local GPU`;
       buildCategories();
       renderServices();
       renderTools();
@@ -114,12 +120,11 @@
             </div>
             <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
               <div class="flex items-center justify-between text-[11px] text-slate-400">
-                <span>${s.tool_count ? s.tool_count + " standalone repos" : s.category}</span>
-                <span class="font-mono text-cyan-300">:${s.port} (${s.tool_ports})</span>
+                <span>${s.tool_count ? s.tool_count + " open-source apps" : s.category}</span>
+                <span class="font-mono text-cyan-300">:${s.port}</span>
               </div>
               <div class="flex gap-2">
                 <a href="/s/${s.num}" target="_blank" class="flex-1 text-center py-2 rounded-lg bg-cyan-500/15 hover:bg-cyan-500 hover:text-slate-950 text-cyan-300 font-bold text-xs transition">${up ? "Open Live Hub →" : "Auto-Boot & Open →"}</a>
-                ${!s.external && !up ? `<button onclick="bootOne('${s.num}')" class="px-3 py-2 rounded-lg bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-300 text-xs font-bold">Boot</button>` : ""}
               </div>
             </div>
           </div>
@@ -129,23 +134,30 @@
 
     function renderTools() {
       const q = (document.getElementById("toolSearch").value || "").toLowerCase().trim();
-      const filtered = q
-        ? ALL_TOOLS.filter(t => (t.name + " " + t.role + " " + t.service_name + " " + t.license + " " + t.tool_id).toLowerCase().includes(q))
-        : ALL_TOOLS;
+      const tier = document.getElementById("tierFilter").value;
+      const filtered = ALL_TOOLS.filter(t => {
+        if (tier !== "all" && t.tier !== tier) return false;
+        if (!q) return true;
+        return (t.name + " " + t.role + " " + t.service_name + " " + t.license + " " + t.slug).toLowerCase().includes(q);
+      });
       document.getElementById("toolMatchCount").textContent = filtered.length;
       document.getElementById("toolGrid").innerHTML = filtered.map(t => {
-        const toolHref = t.launch_url.replace("http://localhost", `${window.location.protocol}//${window.location.hostname}`);
+        const tierBadge = t.up
+          ? `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300">LIVE APP</span>`
+          : (t.tier === "vps_wave1"
+            ? `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-cyan-500/20 text-cyan-300">VPS WAKE</span>`
+            : `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-indigo-500/20 text-indigo-300">GPU TUNNEL</span>`);
         return `
-        <a href="${toolHref}" target="_blank" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500/50 transition block">
+        <a href="${t.open_url}" target="_blank" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-cyan-500/50 transition block">
           <div class="flex items-center justify-between mb-1">
             <span class="text-lg">${t.icon}</span>
-            <span class="text-[10px] font-mono text-slate-400">S${t.service_num} · Stack ${t.stack}</span>
+            ${tierBadge}
           </div>
           <div class="text-xs font-bold text-white truncate">${t.name}</div>
           <div class="text-[11px] text-slate-400 line-clamp-2 mt-0.5">${t.role}</div>
           <div class="flex items-center justify-between mt-2 text-[10px] font-mono">
-            <span class="text-emerald-400">${t.license}</span>
-            <span class="text-cyan-300">/t/${t.tool_id} ↗</span>
+            <span class="text-slate-400">S${t.service_num} · ${t.license}</span>
+            <span class="text-cyan-300">Open App →</span>
           </div>
         </a>
       `;
@@ -162,20 +174,8 @@
       } catch (e) {}
     }
 
-    async function bootOne(num) {
-      await fetch(`/api/portal/service/${num}/start`, { method: "POST" });
-      setTimeout(refreshStatus, 1800);
-    }
-
-    async function startAll() {
-      await fetch("/api/portal/start-all", { method: "POST" });
-      setTimeout(refreshStatus, 2500);
-    }
-
-    async function stopAll() {
-      await fetch("/api/portal/stop-all", { method: "POST" });
-      setTimeout(refreshStatus, 1200);
-    }
+    async function startAll() { await fetch("/api/portal/start-all", { method: "POST" }); setTimeout(refreshStatus, 2500); }
+    async function stopAll() { await fetch("/api/portal/stop-all", { method: "POST" }); setTimeout(refreshStatus, 1200); }
 
     init();
   </script>
