@@ -73,6 +73,32 @@ snippet = """    # Techstarz101 Workstation Automatic Fallback Portal
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
+    location ^~ /apps/gitea/ {
+        proxy_pass http://127.0.0.1:5520/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    location ^~ /apps/qdrant/ {
+        proxy_pass http://127.0.0.1:6710/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    location ^~ /apps/minio/ {
+        proxy_pass http://127.0.0.1:6920/;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+    location ^~ /apps/changedetection/ {
+        proxy_pass http://127.0.0.1:7130/;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
 
     # Twenty CRM reverse proxy"""
 

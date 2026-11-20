@@ -105,7 +105,7 @@ WAVE1_REPOS = {
     "https://github.com/meilisearch/meilisearch": ("meilisearch", 6330, "09_whisperx_speech_ai/tools/meilisearch"),
     "https://github.com/dgtlmoon/changedetection.io": ("changedetection", 7130, "13_browser_use_web_agent/tools/changedetection"),
     "https://github.com/minio/minio": ("minio", 6920, "12_comfyui_creative_engine/tools/minio-assets"),
-    "https://github.com/go-gitea/gitea": ("gitea", 5630, "04_brand_web_launch/tools/gitea"),
+    "https://github.com/go-gitea/gitea": ("gitea", 5520, "04_brand_web_launch/tools/gitea"),
     "https://github.com/knadh/listmonk": ("listmonk", 6100, "07_listmonk_email/tools/listmonk"),
     "https://github.com/qdrant/qdrant": ("qdrant", 6710, "11_docling_document_rag/tools/qdrant-rag"),
     "https://github.com/nocodb/nocodb": ("nocodb", 7410, "14_claude_finance_agent_suite/tools/nocodb-dealroom"),
@@ -338,12 +338,17 @@ FALLBACK_PATHS: Dict[str, str] = {
     "excalidraw": f"{FALLBACK_BASE}/apps/excalidraw/",
     "uptime-kuma": f"{FALLBACK_BASE}/apps/uptime-kuma/",
     "nocodb": f"{FALLBACK_BASE}/apps/nocodb/",
+    "gitea": f"{FALLBACK_BASE}/apps/gitea/",
+    "qdrant": f"{FALLBACK_BASE}/apps/qdrant/",
+    "minio": f"{FALLBACK_BASE}/apps/minio/",
+    "changedetection": f"{FALLBACK_BASE}/apps/changedetection/",
 }
 
 # Subdomains that currently hold issued Let's Encrypt certs on sslip.io
 SSLIP_CERTIFIED_SLUGS = {
     "n8n", "crm", "shlink", "cyberchef", "adminer", "mailpit",
     "vaultwarden", "excalidraw", "uptime-kuma", "nocodb",
+    "gitea", "qdrant", "minio", "changedetection",
 }
 
 
