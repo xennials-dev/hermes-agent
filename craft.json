@@ -1,0 +1,16 @@
+{
+  "name": "hermes-agent",
+  "engine": "craft-anything + rea",
+  "mode": "clean-room",
+  "stage": "ready",
+  "stack": {
+    "components": ["acp_adapter", "agent", "gateway", "cron", "hermes_cli", "hermes_platform"],
+    "mcp": ["rea", "craft-anything"]
+  },
+  "last_audit": {
+    "date": "2026-11-22",
+    "existing_agents_md_preserved": true,
+    "secret_hits": 0,
+    "path_leaks": 0
+  }
+}

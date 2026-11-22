@@ -338,3 +338,45 @@ twenty_crm/.env
 
 # Local IDE workspace customizations & skills
 .agents/
+
+# --- Antigravity Automated Security & Binary Hygiene ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.venv/
+venv/
+gpu-venv/
+node_modules/
+__pycache__/
+.pytest_cache/
+.next/
+.netlify/
+dist/
+build/
+.dsh-build/
+*.db
+*.db-wal
+*.db-shm
+temp_audio/
+loras/
+exports/
+models/
+weights/
+checkpoints/
+logs/
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.zip
+*.tar.gz
+*.7z
+*.exe
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.ckpt
+*.onnx
